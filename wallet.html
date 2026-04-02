@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wallet – PrimeStakes</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#cc0000;--red2:#e60000;--green:#1a8a3c;--green2:#22a848;
+  --yellow:#f5c518;--dark:#111;--dark2:#1e1e1e;--dark3:#2a2a2a;
+  --text:#1a1a1a;--muted:#666;--muted2:#999;--gray:#f0f0f0;
+  --gray2:#e4e4e4;--gray3:#ccc;--white:#fff;--radius:6px;
+}
+html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);font-size:14px;overflow-x:hidden;}
+.mi{font-family:'Material Icons Round';font-size:20px;line-height:1;vertical-align:middle;display:inline-flex;align-items:center;}
+
+/* TICKER */
+.ticker{background:var(--dark);color:var(--yellow);font-size:12px;font-weight:600;padding:5px 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;gap:40px;animation:tick 60s linear infinite;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HEADER */
+.header{background:var(--red);position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(0,0,0,.4);}
+.header-top{display:flex;align-items:center;gap:10px;padding:0 16px;height:56px;}
+.wordmark{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.wm-box{background:var(--dark);border-radius:6px 0 0 6px;padding:5px 10px;}
+.wm-text{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase;}
+.wm-p{color:#fff;}.wm-s{color:var(--yellow);}
+.wm-bar{width:4px;height:38px;background:var(--yellow);border-radius:0 3px 3px 0;}
+.header-nav{display:flex;gap:2px;flex:1;margin-left:10px;overflow-x:auto;scrollbar-width:none;}
+.header-nav::-webkit-scrollbar{display:none;}
+.hnav{padding:7px 11px;color:rgba(255,255,255,.82);font-size:12.5px;font-weight:600;cursor:pointer;border-radius:4px;white-space:nowrap;transition:background .15s;text-decoration:none;display:flex;align-items:center;gap:5px;}
+.hnav .mi{font-size:16px;}
+.hnav:hover,.hnav.active{background:rgba(0,0,0,.22);color:#fff;}
+.live-pill{background:var(--red2);color:#fff;font-size:9px;font-weight:800;padding:1px 6px;border-radius:10px;animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* AUTH AREA */
+.auth{display:flex;gap:7px;flex-shrink:0;align-items:center;}
+.btn-login{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;white-space:nowrap;}
+.btn-reg{background:var(--yellow);border:none;color:#000;font-size:12px;font-weight:900;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;white-space:nowrap;}
+
+/* USER AREA */
+.user-area{display:none;align-items:center;gap:8px;flex-shrink:0;}
+.user-area.visible{display:flex;}
+.auth.hidden{display:none;}
+.wallet-chip{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.25);border-radius:20px;padding:5px 12px;cursor:pointer;text-decoration:none;transition:background .15s;}
+.wallet-chip:hover{background:rgba(0,0,0,.38);}
+.wallet-chip .mi{font-size:15px;color:var(--yellow);}
+.wallet-bal{font-size:12px;font-weight:700;color:#fff;}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#000;cursor:pointer;border:2px solid rgba(255,255,255,.3);flex-shrink:0;position:relative;}
+.user-wrap{position:relative;}
+.user-dropdown{position:absolute;top:46px;right:0;background:var(--white);border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.15);min-width:190px;z-index:300;display:none;overflow:hidden;}
+.user-dropdown.open{display:block;}
+.ud-header{padding:12px 14px;background:var(--dark2);border-bottom:1px solid #333;}
+.ud-name{font-size:13px;font-weight:700;color:#fff;}
+.ud-email{font-size:10px;color:#888;margin-top:1px;}
+.ud-item{display:flex;align-items:center;gap:8px;padding:11px 14px;font-size:12.5px;color:var(--text);text-decoration:none;border-bottom:1px solid #f5f5f5;cursor:pointer;transition:background .1s;}
+.ud-item:hover{background:#f8f8f8;color:var(--red);}
+.ud-item .mi{font-size:16px;color:var(--green);}
+.ud-logout{color:var(--red)!important;}
+.ud-logout .mi{color:var(--red)!important;}
+.hamburger{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px;flex-shrink:0;}
+
+/* MOBILE MENU */
+.mob-menu{display:none;position:fixed;top:56px;left:0;right:0;background:var(--dark2);z-index:190;border-bottom:2px solid #333;max-height:calc(100vh - 56px);overflow-y:auto;}
+.mob-menu.open{display:block;}
+.mob-menu-lbl{padding:8px 16px;font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;}
+.mob-menu-item{padding:12px 16px;color:rgba(255,255,255,.8);font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;text-decoration:none;border-bottom:1px solid #2a2a2a;cursor:pointer;}
+.mob-menu-item:hover,.mob-menu-item.active{background:#252525;color:#fff;}
+.mob-menu-item .mi{font-size:18px;color:var(--green);}
+.mob-menu-item.live-item .mi{color:var(--red2);}
+.mob-menu-divider{height:6px;background:#111;}
+.mob-auth-row{display:flex;gap:8px;padding:12px 16px;}
+.mob-auth-row a{flex:1;text-align:center;padding:10px;border-radius:4px;font-weight:700;font-size:13px;text-decoration:none;}
+.mob-auth-row .mob-login{border:1.5px solid #666;color:#ccc;}
+.mob-auth-row .mob-reg{background:var(--yellow);color:#000;}
+.mob-user-bar{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#1a1a1a;border-bottom:1px solid #2a2a2a;}
+.mob-av{width:38px;height:38px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#000;flex-shrink:0;}
+.mob-user-info .mob-uname{font-size:13px;font-weight:700;color:#fff;}
+.mob-user-info .mob-ubal{font-size:11px;color:var(--green);font-weight:600;}
+.mob-logout-btn{margin-left:auto;background:rgba(204,0,0,.2);border:1px solid rgba(204,0,0,.4);color:var(--red2);border-radius:4px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
+
+/* PAGE LAYOUT */
+.page-wrap{max-width:900px;margin:0 auto;padding:20px 16px 80px;}
+
+/* AUTH GATE */
+.auth-gate{background:var(--white);border-radius:8px;border:1px solid var(--gray2);padding:48px 24px;text-align:center;margin-top:20px;}
+.auth-gate .mi{font-size:52px;color:var(--gray3);display:block;margin-bottom:14px;}
+.auth-gate h2{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px;}
+.auth-gate p{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.auth-gate-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.auth-gate-btns a{padding:11px 28px;border-radius:5px;font-size:13px;font-weight:700;text-decoration:none;}
+.ag-login{border:1.5px solid var(--gray3);color:var(--text);}
+.ag-reg{background:var(--green);color:#fff;}
+
+/* LOADING STATE */
+.wallet-loading-state{text-align:center;padding:48px 20px;}
+.wallet-loading-state .spinner-lg{display:inline-block;width:36px;height:36px;border:3px solid var(--gray2);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wallet-loading-state p{font-size:13px;color:var(--muted);margin-top:12px;}
+
+/* BALANCE CARDS */
+.balance-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.bal-card{background:var(--white);border-radius:8px;border:1px solid var(--gray2);padding:18px 20px;position:relative;overflow:hidden;}
+.bal-card.main{background:var(--dark);border-color:transparent;}
+.bal-card-ico{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.bal-card-ico .mi{font-size:22px;}
+.bal-card-lbl{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.bal-card.main .bal-card-lbl{color:rgba(255,255,255,.5);}
+.bal-card-val{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--dark);}
+.bal-card.main .bal-card-val{color:var(--yellow);}
+.bal-card-sub{font-size:11px;color:var(--muted);margin-top:4px;}
+.bal-card.main .bal-card-sub{color:rgba(255,255,255,.4);}
+.bal-bg{position:absolute;right:-10px;top:-10px;opacity:.06;}
+.bal-bg .mi{font-size:90px;color:var(--dark);}
+.bal-card.main .bal-bg .mi{color:#fff;}
+
+/* ACTION TABS */
+.wallet-tabs{display:flex;gap:8px;margin-bottom:20px;}
+.wtab{flex:1;padding:12px;text-align:center;background:var(--white);border:1.5px solid var(--gray2);border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.wtab .mi{font-size:18px;}
+.wtab:hover{border-color:var(--green);color:var(--green);}
+.wtab.active{background:var(--green);border-color:var(--green);color:#fff;}
+
+/* PANELS */
+.panel{background:var(--white);border-radius:8px;border:1px solid var(--gray2);margin-bottom:20px;overflow:hidden;}
+.panel-head{padding:14px 18px;border-bottom:1px solid var(--gray2);display:flex;align-items:center;gap:8px;}
+.panel-head .mi{font-size:20px;color:var(--green);}
+.panel-head h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;}
+.panel-head .badge{background:#e8f5ec;color:var(--green);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:auto;}
+.panel-body{padding:20px 18px;}
+
+/* FORM FIELDS */
+.form-row{margin-bottom:16px;}
+.form-label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.4px;}
+.form-inp{width:100%;border:1.5px solid var(--gray3);border-radius:5px;padding:10px 13px;font-size:14px;font-weight:600;outline:none;font-family:'Barlow',sans-serif;color:var(--dark);transition:border-color .15s;}
+.form-inp:focus{border-color:var(--green);}
+.form-inp.err-inp{border-color:var(--red);}
+.form-hint{font-size:11px;color:var(--muted);margin-top:4px;}
+.form-hint.err{color:var(--red);}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.amt-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.amt-chip{border:1.5px solid var(--gray3);border-radius:4px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;color:var(--dark);background:var(--white);transition:all .15s;}
+.amt-chip:hover{border-color:var(--green);color:var(--green);}
+.submit-btn{width:100%;padding:13px;background:var(--green);border:none;border-radius:5px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:4px;transition:background .15s;}
+.submit-btn:hover:not(:disabled){background:var(--green2);}
+.submit-btn:disabled{background:#aaa;cursor:not-allowed;}
+.submit-btn.red-btn{background:var(--red);}
+.submit-btn.red-btn:hover:not(:disabled){background:var(--red2);}
+
+/* RULES BOX */
+.rules-box{background:#f8f8f8;border:1px solid var(--gray2);border-radius:5px;padding:12px 14px;margin-bottom:16px;}
+.rules-box h4{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
+.rules-box h4 .mi{font-size:14px;color:var(--yellow);}
+.rule-item{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--muted);margin-bottom:4px;line-height:1.5;}
+.rule-item .mi{font-size:14px;color:var(--green);margin-top:1px;flex-shrink:0;}
+
+/* FEE SUMMARY */
+.fee-summary{background:var(--dark);border-radius:6px;padding:14px 16px;margin-top:14px;}
+.fs-row{display:flex;justify-content:space-between;font-size:12.5px;padding:5px 0;border-bottom:1px solid #2a2a2a;}
+.fs-row:last-child{border-bottom:none;}
+.fs-row .lbl{color:#888;}
+.fs-row .val{font-weight:700;color:#fff;}
+.fs-row.total .val{color:var(--yellow);font-size:15px;font-family:'Barlow Condensed',sans-serif;}
+
+/* PAYMENT METHOD CARDS */
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+.method-card{border:2px solid var(--gray2);border-radius:6px;padding:12px;cursor:pointer;text-align:center;transition:all .15s;}
+.method-card:hover{border-color:var(--green);}
+.method-card.active{border-color:var(--green);background:#e8f5ec;}
+.method-name{font-size:11px;font-weight:700;margin-top:6px;color:var(--dark);}
+.method-logo{font-size:18px;font-weight:900;font-family:'Barlow Condensed',sans-serif;}
+
+/* PAYSTACK REDIRECT BANNER */
+.paystack-banner{background:#0a2e6e;border-radius:6px;padding:14px 16px;margin-top:14px;display:flex;align-items:center;gap:12px;}
+.paystack-banner .mi{font-size:22px;color:#fff;flex-shrink:0;}
+.paystack-banner-txt{flex:1;}
+.paystack-banner-txt p{font-size:12px;color:rgba(255,255,255,.7);margin-top:2px;}
+.paystack-banner-ttl{font-size:13px;font-weight:700;color:#fff;}
+
+/* TRANSACTIONS */
+.tx-filters{display:flex;gap:8px;padding:12px 18px;border-bottom:1px solid var(--gray2);overflow-x:auto;scrollbar-width:none;}
+.tx-filters::-webkit-scrollbar{display:none;}
+.tx-filter{border:1px solid var(--gray3);border-radius:4px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;color:var(--muted);background:var(--white);white-space:nowrap;transition:all .15s;}
+.tx-filter.active{background:var(--green);border-color:var(--green);color:#fff;}
+.tx-item{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid #f3f3f3;transition:background .1s;}
+.tx-item:hover{background:#fafafa;}
+.tx-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tx-icon .mi{font-size:20px;}
+.tx-icon.dep{background:#e8f5ec;color:var(--green);}
+.tx-icon.wdr{background:#fff0f0;color:var(--red);}
+.tx-icon.bet{background:#fff8e0;color:#d4a000;}
+.tx-icon.win{background:#e8f5ec;color:var(--green);}
+.tx-info{flex:1;min-width:0;}
+.tx-desc{font-size:13px;font-weight:600;color:var(--dark);}
+.tx-meta{font-size:11px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.tx-ref{background:var(--gray);padding:1px 6px;border-radius:3px;font-size:10px;font-weight:600;color:var(--muted2);}
+.tx-status{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;}
+.tx-status.success{background:#e8f5ec;color:var(--green);}
+.tx-status.pending{background:#fff8e0;color:#d4a000;}
+.tx-status.failed{background:#fff0f0;color:var(--red);}
+.tx-amt{text-align:right;flex-shrink:0;}
+.tx-amt-val{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;}
+.tx-amt-val.plus{color:var(--green);}
+.tx-amt-val.minus{color:var(--red);}
+.tx-bal{font-size:10px;color:var(--muted);margin-top:2px;}
+.tx-empty{padding:40px 20px;text-align:center;}
+.tx-empty .mi{font-size:48px;color:var(--gray3);display:block;margin-bottom:10px;}
+.tx-empty p{font-size:13px;color:var(--muted);}
+
+/* BOTTOM MOB NAV */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--red);z-index:300;border-top:2px solid #a80000;}
+.mob-nav-inner{display:flex;}
+.mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px;cursor:pointer;color:rgba(255,255,255,.7);font-size:10px;font-weight:600;gap:2px;transition:color .15s;text-decoration:none;}
+.mob-item .mi{font-size:22px;}
+.mob-item.active,.mob-item:hover{color:#fff;}
+
+/* TOAST */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:opacity .3s;opacity:0;pointer-events:none;white-space:nowrap;max-width:90vw;}
+.toast.show{opacity:1;}
+
+/* SPINNER */
+.spinner{display:inline-block;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .header-nav,.auth,.user-area-desktop{display:none;}
+  .hamburger{display:flex;}
+  .mob-nav{display:block;}
+  .balance-row{grid-template-columns:1fr 1fr;}
+  .form-row-2{grid-template-columns:1fr;}
+  .page-wrap{padding:14px 10px 80px;}
+}
+@media(max-width:600px){
+  .balance-row{grid-template-columns:1fr;}
+  .wallet-tabs{flex-direction:column;}
+  .method-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:480px){
+  .wm-text{font-size:18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner" id="ticker-inner"></div></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <a href="index.html" class="wordmark">
+      <div class="wm-box"><span class="wm-text"><span class="wm-p">PRIME</span><span class="wm-s">STAKES</span></span></div>
+      <div class="wm-bar"></div>
+    </a>
+    <nav class="header-nav">
+      <a class="hnav" href="index.html"><span class="mi">home</span> Home</a>
+      <a class="hnav" href="betting.html"><span class="mi">receipt_long</span> Bet Now</a>
+      <a class="hnav" href="live-games.html"><span class="mi">cell_tower</span> Live <span class="live-pill">LIVE</span></a>
+      <a class="hnav" href="games.html"><span class="mi">sports_esports</span> Games</a>
+      <a class="hnav active" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
+    </nav>
+
+    <!-- Guest -->
+    <div class="auth" id="guest-auth">
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="register.html" class="btn-reg">Register</a>
+    </div>
+
+    <!-- Logged in -->
+    <div class="user-area" id="user-auth">
+      <a href="wallet.html" class="wallet-chip">
+        <span class="mi">account_balance_wallet</span>
+        <span class="wallet-bal" id="header-balance">—</span>
+      </a>
+      <div class="user-wrap">
+        <div class="user-avatar" id="user-avatar" onclick="toggleDropdown()">??</div>
+        <div class="user-dropdown" id="user-dropdown">
+          <div class="ud-header">
+            <div class="ud-name" id="dd-name">—</div>
+            <div class="ud-email" id="dd-email">—</div>
+          </div>
+          <a class="ud-item" href="wallet.html"><span class="mi">account_balance_wallet</span> My Wallet</a>
+          <a class="ud-item" href="betting.html"><span class="mi">receipt_long</span> My Bets</a>
+          <div class="ud-item ud-logout" onclick="logout()"><span class="mi">logout</span> Sign Out</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="hamburger" onclick="toggleMenu()"><span class="mi">menu</span></button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <div id="mob-guest-section">
+    <div class="mob-auth-row">
+      <a href="login.html" class="mob-login">Login</a>
+      <a href="register.html" class="mob-reg">Register</a>
+    </div>
+  </div>
+  <div id="mob-user-section" style="display:none;">
+    <div class="mob-user-bar">
+      <div class="mob-av" id="mob-av">??</div>
+      <div class="mob-user-info">
+        <div class="mob-uname" id="mob-uname">—</div>
+        <div class="mob-ubal" id="mob-ubal">—</div>
+      </div>
+      <button class="mob-logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+  <div class="mob-menu-divider"></div>
+  <div class="mob-menu-lbl">Navigation</div>
+  <a class="mob-menu-item" href="index.html"><span class="mi">home</span> Home</a>
+  <a class="mob-menu-item" href="betting.html"><span class="mi">receipt_long</span> Bet Now</a>
+  <a class="mob-menu-item live-item" href="live-games.html"><span class="mi">cell_tower</span> Live Betting <span class="live-pill" style="margin-left:auto;">LIVE</span></a>
+  <a class="mob-menu-item" href="games.html"><span class="mi">sports_esports</span> Games</a>
+  <a class="mob-menu-item active" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-wrap" id="page-content" style="display:none;">
+
+  <!-- PAGE TITLE -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
+    <span class="mi" style="font-size:28px;color:var(--green);">account_balance_wallet</span>
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;">My Wallet</div>
+      <div style="font-size:12px;color:var(--muted);" id="wallet-country-label">Loading…</div>
+    </div>
+    <button onclick="refreshWallet()" style="margin-left:auto;background:none;border:1px solid var(--gray3);border-radius:4px;padding:7px 14px;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:5px;font-family:'Barlow',sans-serif;">
+      <span class="mi" style="font-size:16px;">refresh</span> Refresh
+    </button>
+  </div>
+
+  <!-- BALANCE CARDS -->
+  <div class="balance-row">
+    <div class="bal-card main">
+      <div class="bal-bg"><span class="mi">account_balance_wallet</span></div>
+      <div class="bal-card-ico" style="background:rgba(245,197,24,.15);"><span class="mi" style="color:var(--yellow);">account_balance_wallet</span></div>
+      <div class="bal-card-lbl">Available Balance</div>
+      <div class="bal-card-val" id="main-balance">—</div>
+      <div class="bal-card-sub" id="bal-can-withdraw">—</div>
+    </div>
+    <div class="bal-card">
+      <div class="bal-bg"><span class="mi">arrow_downward</span></div>
+      <div class="bal-card-ico" style="background:#e8f5ec;"><span class="mi" style="color:var(--green);">arrow_downward</span></div>
+      <div class="bal-card-lbl">Total Deposited</div>
+      <div class="bal-card-val" id="total-dep">—</div>
+      <div class="bal-card-sub">All time deposits</div>
+    </div>
+    <div class="bal-card">
+      <div class="bal-bg"><span class="mi">arrow_upward</span></div>
+      <div class="bal-card-ico" style="background:#fff0f0;"><span class="mi" style="color:var(--red);">arrow_upward</span></div>
+      <div class="bal-card-lbl">Total Withdrawn</div>
+      <div class="bal-card-val" id="total-wdr">—</div>
+      <div class="bal-card-sub">All time withdrawals</div>
+    </div>
+  </div>
+
+  <!-- ACTION TABS -->
+  <div class="wallet-tabs">
+    <div class="wtab active" onclick="showTab('deposit')" id="tab-deposit"><span class="mi">arrow_downward</span> Deposit</div>
+    <div class="wtab" onclick="showTab('withdraw')" id="tab-withdraw"><span class="mi">arrow_upward</span> Withdraw</div>
+    <div class="wtab" onclick="showTab('history')" id="tab-history"><span class="mi">history</span> Transactions</div>
+  </div>
+
+  <!-- DEPOSIT PANEL -->
+  <div id="panel-deposit">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="mi">arrow_downward</span>
+        <h3>Deposit Funds</h3>
+        <span class="badge" id="dep-min-badge">Min: —</span>
+      </div>
+      <div class="panel-body">
+        <div class="rules-box">
+          <h4><span class="mi">info</span> Deposit Rules</h4>
+          <div class="rule-item"><span class="mi">check_circle</span> <span id="rule-min-dep">Minimum deposit: loading…</span></div>
+          <div class="rule-item"><span class="mi">check_circle</span> Funds credited after Paystack payment confirmation</div>
+          <div class="rule-item"><span class="mi">check_circle</span> Accepted: MTN MoMo, Vodafone Cash, AirtelTigo, Card</div>
+          <div class="rule-item"><span class="mi">check_circle</span> Secure payments powered by Paystack</div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label">Amount (<span class="currency-lbl">GHS</span>)</label>
+          <input class="form-inp" type="number" id="dep-amount" placeholder="Enter amount" min="1">
+          <div class="amt-row" id="dep-quick-amts"></div>
+          <div class="form-hint" id="dep-hint">Minimum: loading…</div>
+        </div>
+
+        <div class="paystack-banner">
+          <span class="mi">lock</span>
+          <div class="paystack-banner-txt">
+            <div class="paystack-banner-ttl">Secured by Paystack</div>
+            <p>You'll be redirected to complete payment. Return here after payment is confirmed.</p>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="dep-btn" onclick="initiateDeposit()" style="margin-top:16px;">
+          <span class="mi">open_in_new</span> Proceed to Pay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WITHDRAW PANEL -->
+  <div id="panel-withdraw" style="display:none;">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="mi" style="color:var(--red);">arrow_upward</span>
+        <h3>Withdraw Funds</h3>
+        <span class="badge" id="wdr-min-badge" style="background:#fff0f0;color:var(--red);">Min: —</span>
+      </div>
+      <div class="panel-body">
+        <div class="rules-box">
+          <h4><span class="mi">info</span> Withdrawal Rules</h4>
+          <div class="rule-item"><span class="mi">check_circle</span> <span id="rule-min-wdr">Minimum withdrawal: loading…</span></div>
+          <div class="rule-item"><span class="mi">check_circle</span> 2% processing fee applies</div>
+          <div class="rule-item"><span class="mi">schedule</span> Processing time: 1–24 hours via Paystack Transfer</div>
+          <div class="rule-item"><span class="mi">info</span> Your balance must exceed the minimum to withdraw</div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label">Amount (<span class="currency-lbl">GHS</span>)</label>
+          <input class="form-inp" type="number" id="wdr-amount" placeholder="Enter amount" oninput="updateWdrFee()">
+          <div class="form-hint" id="wdr-hint">—</div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-row" style="margin-bottom:0;">
+            <label class="form-label">Account Name</label>
+            <input class="form-inp" type="text" id="wdr-name" placeholder="Full name on account">
+          </div>
+          <div class="form-row" style="margin-bottom:0;">
+            <label class="form-label">Account / Phone Number</label>
+            <input class="form-inp" type="text" id="wdr-acct" placeholder="e.g. 0241234567">
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-top:16px;">
+          <label class="form-label">Bank / Mobile Network</label>
+          <select class="form-inp" id="wdr-bank">
+            <option value="">— Select bank or network —</option>
+            <option value="MTN_GH">MTN MoMo (Ghana)</option>
+            <option value="VODA_GH">Vodafone Cash</option>
+            <option value="AIRTELTIGO_GH">AirtelTigo Money</option>
+            <option value="ABSA_GH">Absa Bank Ghana</option>
+            <option value="GCB_GH">GCB Bank</option>
+            <option value="ECOBANK_GH">Ecobank Ghana</option>
+            <option value="MTN_NG">MTN Nigeria MoMo</option>
+            <option value="OPAY_NG">OPay</option>
+            <option value="PALMPAY_NG">PalmPay</option>
+            <option value="GTB_NG">GTBank</option>
+            <option value="ACCESS_NG">Access Bank</option>
+            <option value="ZENITH_NG">Zenith Bank</option>
+          </select>
+        </div>
+
+        <div class="fee-summary" id="wdr-fee-summary" style="display:none;">
+          <div class="fs-row"><span class="lbl">Requested Amount</span><span class="val" id="fs-req">—</span></div>
+          <div class="fs-row"><span class="lbl">Processing Fee (2%)</span><span class="val" id="fs-fee" style="color:#ff7777;">—</span></div>
+          <div class="fs-row total"><span class="lbl" style="color:#888;">You Receive</span><span class="val" id="fs-recv">—</span></div>
+        </div>
+
+        <button class="submit-btn red-btn" id="wdr-btn" onclick="initiateWithdraw()" style="margin-top:14px;">
+          <span class="mi">send</span> Submit Withdrawal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSACTION HISTORY -->
+  <div id="panel-history" style="display:none;">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="mi">history</span>
+        <h3>Transaction History</h3>
+        <span class="badge" id="tx-count-badge">0 records</span>
+      </div>
+      <div class="tx-filters">
+        <div class="tx-filter active" onclick="filterTx('all',this)">All</div>
+        <div class="tx-filter" onclick="filterTx('DEPOSIT',this)">Deposits</div>
+        <div class="tx-filter" onclick="filterTx('WITHDRAWAL',this)">Withdrawals</div>
+        <div class="tx-filter" onclick="filterTx('BET',this)">Bets</div>
+        <div class="tx-filter" onclick="filterTx('WIN',this)">Winnings</div>
+      </div>
+      <div id="tx-list"></div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- AUTH GATE (shown when logged out) -->
+<div class="page-wrap" id="auth-gate-wrap" style="display:none;">
+  <div class="auth-gate">
+    <span class="mi">lock</span>
+    <h2>Sign In to Access Your Wallet</h2>
+    <p>Log in or create a free account to deposit, withdraw, and view your transaction history.</p>
+    <div class="auth-gate-btns">
+      <a href="login.html" class="ag-login">Login</a>
+      <a href="register.html" class="ag-reg">Register Free</a>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING STATE -->
+<div class="page-wrap" id="loading-wrap">
+  <div class="wallet-loading-state">
+    <div class="spinner-lg"></div>
+    <p>Loading your wallet…</p>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- BOTTOM MOB NAV -->
+<nav class="mob-nav">
+  <div class="mob-nav-inner">
+    <a class="mob-item" href="index.html"><span class="mi">home</span><span>Home</span></a>
+    <a class="mob-item" href="live-games.html"><span class="mi">cell_tower</span><span>Live</span></a>
+    <a class="mob-item" href="betting.html"><span class="mi">receipt_long</span><span>Bet Now</span></a>
+    <a class="mob-item" href="games.html"><span class="mi">sports_esports</span><span>Games</span></a>
+    <a class="mob-item active" href="wallet.html"><span class="mi">account_balance_wallet</span><span>Wallet</span></a>
+  </div>
+</nav>
+
+<script>
+/* ══════════════════════════════════════════════
+   CONFIG
+══════════════════════════════════════════════ */
+const API_BASE = 'https://kikiwebbackend-iysi.onrender.com';
+
+// Currency rules — driven by backend currency field on the user
+const CURRENCY_CONFIG = {
+  GHS: {
+    label:'Ghana · GHS', flag:'🇬🇭',
+    minDep: 300, quickDep:[300,500,1000,2000,5000],
+    minWdr: 5000,
+    fmt: v => 'GHS ' + Number(v).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})
+  },
+  NGN: {
+    label:'Nigeria · NGN', flag:'🇳🇬',
+    minDep: 30000, quickDep:[30000,50000,100000,200000,500000],
+    minWdr: 500000,
+    fmt: v => 'NGN ' + Number(v).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})
+  }
+};
+
+/* ══════════════════════════════════════════════
+   AUTH HELPERS — same keys as login.html + index.html
+   login.html stores: ps_stakes (token), ps_user (user JSON)
+══════════════════════════════════════════════ */
+const getToken  = () => localStorage.getItem('ps_stakes');
+const getUser   = () => { try { return JSON.parse(localStorage.getItem('ps_user')) || {}; } catch { return {}; } };
+const isLoggedIn = () => !!getToken();
+
+function getInitials(u) {
+  const f = (u.firstName || '').charAt(0).toUpperCase();
+  const l = (u.lastName  || '').charAt(0).toUpperCase();
+  return f + l || '??';
+}
+
+function authHeaders() {
+  return { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' };
+}
+
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
+let walletData   = null;  // from /api/v1/users/me
+let transactions = [];
+let txFilter     = 'all';
+let currency     = 'GHS'; // set after fetching user data
+
+/* ══════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════ */
+async function init() {
+  buildTicker();
+
+  if (!isLoggedIn()) {
+    show('auth-gate-wrap');
+    hide('loading-wrap');
+    hide('page-content');
+    applyGuestHeader();
+    return;
+  }
+
+  applyUserHeader();
+  show('loading-wrap');
+  hide('page-content');
+  hide('auth-gate-wrap');
+
+  await loadWalletData();
+}
+
+/* ══════════════════════════════════════════════
+   LOAD WALLET DATA from /api/v1/users/me
+   ResponseMapper returns: { walletBalance, totalDeposited, totalWithdrawn, canWithdraw, ... }
+══════════════════════════════════════════════ */
+async function loadWalletData() {
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/users/me`, {
+      headers: authHeaders(),
+      signal: AbortSignal.timeout(15000)
+    });
+
+    if (res.status === 401) { logout(); return; }
+
+    const data = await res.json();
+    // Handle nested: { message, data: { ...userResponse } }
+    const payload = data.data || data;
+
+    walletData = payload;
+    currency   = payload.currency || 'GHS';
+
+    // Update stored user
+    const u = getUser();
+    Object.assign(u, {
+      firstName: payload.firstName || u.firstName,
+      lastName:  payload.lastName  || u.lastName,
+      email:     payload.email     || u.email,
+      currency:  currency
+    });
+    localStorage.setItem('ps_user', JSON.stringify(u));
+
+    applyUserHeader(); // refresh with latest name
+    renderBalanceCards();
+    renderDepositForm();
+    renderWithdrawForm();
+
+    hide('loading-wrap');
+    show('page-content');
+
+    // Load transactions
+    loadTransactions();
+
+  } catch (err) {
+    hide('loading-wrap');
+    show('page-content');
+    showToast('⚠️ Could not load wallet data — showing cached info', true);
+    renderBalanceCards();
+    renderDepositForm();
+    renderWithdrawForm();
+  }
+}
+
+/* ══════════════════════════════════════════════
+   LOAD TRANSACTIONS from /api/v1/wallet/transactions
+   Returns: List<TransactionResponse> with type, status, amount, balanceAfter, description, paymentReference, createdAt
+══════════════════════════════════════════════ */
+async function loadTransactions() {
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/wallet/transactions`, {
+      headers: authHeaders(),
+      signal: AbortSignal.timeout(12000)
+    });
+    if (!res.ok) return;
+    const data = await res.json();
+    const list = data.data || data;
+    transactions = Array.isArray(list) ? list : [];
+    renderTransactions();
+  } catch {
+    // transactions stay empty, no crash
+  }
+}
+
+async function refreshWallet() {
+  show('loading-wrap');
+  hide('page-content');
+  await loadWalletData();
+}
+
+/* ══════════════════════════════════════════════
+   RENDER BALANCE CARDS
+══════════════════════════════════════════════ */
+function renderBalanceCards() {
+  const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const d   = walletData;
+
+  document.getElementById('wallet-country-label').textContent = cfg.label;
+  document.querySelectorAll('.currency-lbl').forEach(el => el.textContent = currency);
+
+  if (d) {
+    document.getElementById('main-balance').textContent = cfg.fmt(d.walletBalance ?? 0);
+    document.getElementById('total-dep').textContent    = cfg.fmt(d.totalDeposited  ?? 0);
+    document.getElementById('total-wdr').textContent    = cfg.fmt(d.totalWithdrawn  ?? 0);
+    document.getElementById('bal-can-withdraw').textContent = d.canWithdraw ? 'Eligible to withdraw' : 'Keep betting to withdraw';
+    // Sync header balance
+    document.getElementById('header-balance').textContent = cfg.fmt(d.walletBalance ?? 0);
+    document.getElementById('mob-ubal').textContent       = cfg.fmt(d.walletBalance ?? 0);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   RENDER DEPOSIT FORM
+══════════════════════════════════════════════ */
+function renderDepositForm() {
+  const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const minDep = cfg.minDep;
+
+  document.getElementById('dep-min-badge').textContent = `Min: ${currency} ${minDep.toLocaleString()}`;
+  document.getElementById('rule-min-dep').innerHTML    = `Minimum deposit: <strong>${currency} ${minDep.toLocaleString()}</strong>`;
+  document.getElementById('dep-hint').textContent      = `Minimum: ${currency} ${minDep.toLocaleString()}`;
+  document.getElementById('dep-amount').placeholder    = `Enter amount (min ${minDep.toLocaleString()})`;
+
+  document.getElementById('dep-quick-amts').innerHTML = cfg.quickDep.map(a =>
+    `<div class="amt-chip" onclick="document.getElementById('dep-amount').value=${a}">${currency} ${a.toLocaleString()}</div>`
+  ).join('');
+}
+
+/* ══════════════════════════════════════════════
+   RENDER WITHDRAW FORM
+══════════════════════════════════════════════ */
+function renderWithdrawForm() {
+  const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const minWdr = cfg.minWdr;
+
+  document.getElementById('wdr-min-badge').textContent = `Min: ${currency} ${minWdr.toLocaleString()}`;
+  document.getElementById('rule-min-wdr').innerHTML    = `Minimum withdrawal: <strong>${currency} ${minWdr.toLocaleString()}</strong>`;
+  document.getElementById('wdr-hint').textContent      = `Min: ${currency} ${minWdr.toLocaleString()} · 2% fee applies`;
+  document.getElementById('wdr-amount').placeholder    = `Minimum ${minWdr.toLocaleString()}`;
+}
+
+/* ══════════════════════════════════════════════
+   INITIATE DEPOSIT — POST /api/v1/wallet/deposit
+   Backend returns: { paymentUrl, reference, paystackReference, currency, amountToDeposit }
+══════════════════════════════════════════════ */
+async function initiateDeposit() {
+  const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const amt = parseFloat(document.getElementById('dep-amount').value);
+
+  if (!amt || isNaN(amt) || amt < cfg.minDep) {
+    showToast(`❌ Minimum deposit is ${currency} ${cfg.minDep.toLocaleString()}`, true);
+    document.getElementById('dep-amount').classList.add('err-inp');
+    setTimeout(() => document.getElementById('dep-amount').classList.remove('err-inp'), 2000);
+    return;
+  }
+
+  const btn = document.getElementById('dep-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Connecting to Paystack…';
+
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/wallet/deposit`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ amount: amt }),
+      signal: AbortSignal.timeout(20000)
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      const payload = data.data || data;
+      const paymentUrl = payload.paymentUrl || payload.authorization_url;
+
+      if (paymentUrl) {
+        showToast('✅ Redirecting to Paystack…');
+        setTimeout(() => { window.location.href = paymentUrl; }, 800);
+      } else {
+        showToast('❌ No payment URL returned. Try again.', true);
+        resetDepBtn();
+      }
+    } else {
+      const msg = data.message || data.error || 'Deposit failed. Please try again.';
+      showToast('❌ ' + msg, true);
+      resetDepBtn();
+    }
+  } catch (err) {
+    if (err.name === 'TimeoutError' || err.name === 'AbortError') {
+      showToast('❌ Request timed out — server may be waking up, try again', true);
+    } else {
+      showToast('❌ Network error — check your connection', true);
+    }
+    resetDepBtn();
+  }
+}
+
+function resetDepBtn() {
+  const btn = document.getElementById('dep-btn');
+  btn.disabled = false;
+  btn.innerHTML = '<span class="mi">open_in_new</span> Proceed to Pay';
+}
+
+/* ══════════════════════════════════════════════
+   WITHDRAW FEE PREVIEW
+══════════════════════════════════════════════ */
+function updateWdrFee() {
+  const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const amt = parseFloat(document.getElementById('wdr-amount').value) || 0;
+  const summary = document.getElementById('wdr-fee-summary');
+  if (amt >= cfg.minWdr) {
+    const fee  = +(amt * 0.02).toFixed(2);
+    const recv = +(amt - fee).toFixed(2);
+    document.getElementById('fs-req').textContent  = cfg.fmt(amt);
+    document.getElementById('fs-fee').textContent  = '- ' + cfg.fmt(fee);
+    document.getElementById('fs-recv').textContent = cfg.fmt(recv);
+    summary.style.display = 'block';
+  } else {
+    summary.style.display = 'none';
+  }
+}
+
+/* ══════════════════════════════════════════════
+   INITIATE WITHDRAW — POST /api/v1/wallet/withdraw
+   Request body: { amount, accountName, accountNumber, bankCode }
+   Backend returns: WithdrawResponse { reference, requestedAmount, feeDeducted, amountReceived, balanceAfter, currency, status, message }
+══════════════════════════════════════════════ */
+async function initiateWithdraw() {
+  const cfg  = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const amt  = parseFloat(document.getElementById('wdr-amount').value);
+  const name = document.getElementById('wdr-name').value.trim();
+  const acct = document.getElementById('wdr-acct').value.trim();
+  const bank = document.getElementById('wdr-bank').value;
+
+  if (!amt || isNaN(amt) || amt < cfg.minWdr) {
+    showToast(`❌ Minimum withdrawal is ${currency} ${cfg.minWdr.toLocaleString()}`, true); return;
+  }
+  if (!name) { showToast('❌ Enter your account name', true); return; }
+  if (!acct) { showToast('❌ Enter your account number', true); return; }
+  if (!bank) { showToast('❌ Select a bank or network', true); return; }
+
+  const btn = document.getElementById('wdr-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Submitting…';
+
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/wallet/withdraw`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({
+        amount: amt,
+        accountName: name,
+        accountNumber: acct,
+        bankCode: bank
+      }),
+      signal: AbortSignal.timeout(20000)
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      const payload = data.data || data;
+      const msg = payload.message || `Withdrawal of ${cfg.fmt(amt)} submitted successfully!`;
+      showToast('✅ ' + msg);
+
+      // Clear form
+      document.getElementById('wdr-amount').value = '';
+      document.getElementById('wdr-name').value   = '';
+      document.getElementById('wdr-acct').value   = '';
+      document.getElementById('wdr-bank').value   = '';
+      document.getElementById('wdr-fee-summary').style.display = 'none';
+
+      // Refresh wallet data to show updated balance
+      setTimeout(() => refreshWallet(), 1500);
+    } else {
+      const msg = data.message || data.error || 'Withdrawal failed. Please try again.';
+      showToast('❌ ' + msg, true);
+    }
+  } catch (err) {
+    if (err.name === 'TimeoutError' || err.name === 'AbortError') {
+      showToast('❌ Request timed out. Please try again.', true);
+    } else {
+      showToast('❌ Network error — check your connection', true);
+    }
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span class="mi">send</span> Submit Withdrawal';
+  }
+}
+
+/* ══════════════════════════════════════════════
+   TRANSACTIONS
+══════════════════════════════════════════════ */
+function filterTx(f, el) {
+  txFilter = f;
+  document.querySelectorAll('.tx-filter').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  renderTransactions();
+}
+
+function renderTransactions() {
+  const cfg  = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const list = document.getElementById('tx-list');
+  const badge = document.getElementById('tx-count-badge');
+
+  let filtered = [...transactions];
+  if (txFilter !== 'all') {
+    filtered = filtered.filter(t => (t.type || '').toUpperCase() === txFilter);
+  }
+
+  badge.textContent = filtered.length + ' records';
+
+  if (!filtered.length) {
+    list.innerHTML = `<div class="tx-empty"><span class="mi">receipt_long</span><p>No transactions found</p></div>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map(tx => {
+    const type      = (tx.type   || '').toUpperCase();
+    const status    = (tx.status || '').toUpperCase();
+    const isCredit  = type === 'DEPOSIT' || type === 'WIN';
+    const iconMap   = { DEPOSIT:'arrow_downward', WITHDRAWAL:'arrow_upward', WIN:'emoji_events', BET:'receipt_long' };
+    const classMap  = { DEPOSIT:'dep', WITHDRAWAL:'wdr', WIN:'win', BET:'bet' };
+    const icon      = iconMap[type] || 'swap_horiz';
+    const iconClass = classMap[type] || 'dep';
+    const statusCls = status === 'SUCCESS' ? 'success' : status === 'PENDING' ? 'pending' : 'failed';
+    const amt       = parseFloat(tx.amount || 0);
+    const balAfter  = tx.balanceAfter != null ? parseFloat(tx.balanceAfter) : null;
+    const desc      = tx.description || type;
+    const ref       = tx.paymentReference || tx.ref || '—';
+    const date      = tx.createdAt ? new Date(tx.createdAt).toLocaleString('en-GB', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '—';
+
+    return `<div class="tx-item">
+      <div class="tx-icon ${iconClass}"><span class="mi">${icon}</span></div>
+      <div class="tx-info">
+        <div class="tx-desc">${desc}</div>
+        <div class="tx-meta">
+          <span class="tx-ref">${ref}</span>
+          <span class="tx-status ${statusCls}">${status}</span>
+          <span>${date}</span>
+        </div>
+      </div>
+      <div class="tx-amt">
+        <div class="tx-amt-val ${isCredit?'plus':'minus'}">${isCredit?'+':'-'}${cfg.fmt(amt)}</div>
+        ${balAfter != null ? `<div class="tx-bal">Bal: ${cfg.fmt(balAfter)}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════
+   TABS
+══════════════════════════════════════════════ */
+function showTab(tab) {
+  ['deposit','withdraw','history'].forEach(t => {
+    document.getElementById('panel-'+t).style.display  = t === tab ? 'block' : 'none';
+    document.getElementById('tab-'+t).classList.toggle('active', t === tab);
+  });
+  if (tab === 'history') {
+    if (!transactions.length) loadTransactions();
+    else renderTransactions();
+  }
+}
+
+/* ══════════════════════════════════════════════
+   HEADER AUTH STATE
+══════════════════════════════════════════════ */
+function applyUserHeader() {
+  const u = getUser();
+  const initials = getInitials(u);
+  const fullName = [u.firstName, u.lastName].filter(Boolean).join(' ') || 'My Account';
+  const email    = u.email || '';
+  const cfg      = CURRENCY_CONFIG[u.currency || 'GHS'] || CURRENCY_CONFIG.GHS;
+
+  document.getElementById('guest-auth').classList.add('hidden');
+  document.getElementById('user-auth').classList.add('visible');
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('dd-name').textContent     = fullName;
+  document.getElementById('dd-email').textContent    = email;
+
+  // Mobile menu
+  document.getElementById('mob-guest-section').style.display = 'none';
+  document.getElementById('mob-user-section').style.display  = 'block';
+  document.getElementById('mob-av').textContent    = initials;
+  document.getElementById('mob-uname').textContent = fullName;
+
+  // Balance will update after data loads
+  if (walletData) {
+    const bal = cfg.fmt(walletData.walletBalance ?? 0);
+    document.getElementById('header-balance').textContent = bal;
+    document.getElementById('mob-ubal').textContent       = bal;
+  }
+}
+
+function applyGuestHeader() {
+  document.getElementById('guest-auth').classList.remove('hidden');
+  document.getElementById('user-auth').classList.remove('visible');
+  document.getElementById('mob-guest-section').style.display = 'block';
+  document.getElementById('mob-user-section').style.display  = 'none';
+}
+
+/* ══════════════════════════════════════════════
+   LOGOUT
+══════════════════════════════════════════════ */
+function logout() {
+  localStorage.removeItem('ps_stakes');
+  localStorage.removeItem('ps_user');
+  localStorage.removeItem('ps_slip');
+  window.location.href = 'login.html';
+}
+
+/* ══════════════════════════════════════════════
+   DROPDOWN
+══════════════════════════════════════════════ */
+function toggleDropdown() {
+  document.getElementById('user-dropdown').classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  const wrap = document.getElementById('user-auth');
+  if (wrap && !wrap.contains(e.target)) {
+    const dd = document.getElementById('user-dropdown');
+    if (dd) dd.classList.remove('open');
+  }
+  const menu = document.getElementById('mob-menu');
+  const ham  = document.querySelector('.hamburger');
+  if (menu && menu.classList.contains('open') && !menu.contains(e.target) && ham && !ham.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+
+/* ══════════════════════════════════════════════
+   MOBILE MENU
+══════════════════════════════════════════════ */
+function toggleMenu() { document.getElementById('mob-menu').classList.toggle('open'); }
+
+/* ══════════════════════════════════════════════
+   TICKER
+══════════════════════════════════════════════ */
+function buildTicker() {
+  const items = ["⚽ Arsenal 2–1 Chelsea · 73'","⚽ Real Madrid 1–0 Barcelona · 61'","🏆 JACKPOT GHS 150,000 — BET NOW!","📈 ACCA BOOST: Up to 1000%!","⭐ FREE BET: GHS 20 on registration!","💸 Instant deposits via Paystack"];
+  const d = items.map(t => `<span style="padding:0 4px;">${t}</span><span style="color:#333;margin:0 8px;">●</span>`).join('');
+  document.getElementById('ticker-inner').innerHTML = d + d;
+}
+
+/* ══════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════ */
+function showToast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = isError ? 'var(--red)' : 'var(--green)';
+  t.classList.add('show');
+  clearTimeout(t._to);
+  t._to = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+/* ══════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════ */
+function show(id) { document.getElementById(id).style.display = 'block'; }
+function hide(id) { document.getElementById(id).style.display = 'none'; }
+
+// Check for Paystack callback — ?trxref=... or ?reference=... in URL
+function checkPaystackCallback() {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get('trxref') || params.get('reference');
+  if (ref) {
+    showToast('✅ Payment received! Your balance will update shortly.');
+    // Clean up URL
+    window.history.replaceState({}, '', 'wallet.html');
+  }
+}
+
+/* ══════════════════════════════════════════════
+   BOOT
+══════════════════════════════════════════════ */
+checkPaystackCallback();
+showTab('deposit');
+init();
+</script>
+</body>
+</html>

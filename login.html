@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login – PrimeStakes</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#cc0000;--red2:#e60000;--green:#1a8a3c;--green2:#22a848;
+  --yellow:#f5c518;--dark:#111;--dark2:#1e1e1e;--dark3:#2a2a2a;
+  --text:#1a1a1a;--muted:#666;--muted2:#999;--gray:#f0f0f0;
+  --gray2:#e4e4e4;--gray3:#ccc;--white:#fff;--radius:6px;
+}
+html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);font-size:14px;min-height:100vh;}
+.mi{font-family:'Material Icons Round';font-size:20px;line-height:1;vertical-align:middle;display:inline-flex;align-items:center;}
+
+/* TICKER */
+.ticker{background:var(--dark);color:var(--yellow);font-size:12px;font-weight:600;padding:5px 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;gap:40px;animation:tick 60s linear infinite;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HEADER */
+.header{background:var(--red);position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(0,0,0,.4);}
+.header-top{display:flex;align-items:center;gap:10px;padding:0 16px;height:56px;}
+.wordmark{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.wm-box{background:var(--dark);border-radius:6px 0 0 6px;padding:5px 10px;}
+.wm-text{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase;}
+.wm-p{color:#fff;}.wm-s{color:var(--yellow);}
+.wm-bar{width:4px;height:38px;background:var(--yellow);border-radius:0 3px 3px 0;}
+.header-spacer{flex:1;}
+.auth{display:flex;gap:7px;flex-shrink:0;}
+.btn-login{background:rgba(0,0,0,.25);border:1.5px solid rgba(255,255,255,.5);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;}
+.btn-reg{background:var(--yellow);border:none;color:#000;font-size:12px;font-weight:900;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;}
+
+/* PAGE WRAPPER */
+.page{min-height:calc(100vh - 66px);display:flex;align-items:center;justify-content:center;padding:24px 16px 40px;}
+
+/* CARD */
+.auth-card{width:100%;max-width:440px;}
+.auth-card-inner{background:var(--white);border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.1);}
+
+/* CARD HEADER */
+.card-hdr{background:var(--dark2);padding:22px 28px 20px;position:relative;overflow:hidden;}
+.card-hdr::after{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;background:var(--red);opacity:.12;border-radius:50%;}
+.card-hdr::before{content:'';position:absolute;right:30px;bottom:-30px;width:80px;height:80px;background:var(--yellow);opacity:.07;border-radius:50%;}
+.card-badge{display:inline-flex;align-items:center;gap:5px;background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:3px;text-transform:uppercase;margin-bottom:10px;letter-spacing:.5px;}
+.card-badge .mi{font-size:13px;}
+.card-hdr h1{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.1;}
+.card-hdr p{color:rgba(255,255,255,.5);font-size:12px;margin-top:4px;}
+
+/* CARD BODY */
+.card-body{padding:24px 28px 28px;}
+
+/* FORM */
+.form-group{margin-bottom:16px;}
+.form-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block;}
+.input-wrap{position:relative;display:flex;align-items:center;}
+.input-wrap .mi{position:absolute;left:11px;color:var(--muted2);font-size:18px;pointer-events:none;}
+.form-input{width:100%;border:1.5px solid var(--gray3);border-radius:5px;padding:11px 12px 11px 38px;font-size:13px;font-family:'Barlow',sans-serif;color:var(--text);background:var(--white);outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:var(--green);}
+.form-input::placeholder{color:var(--muted2);}
+.pw-toggle{position:absolute;right:11px;background:none;border:none;cursor:pointer;color:var(--muted2);display:flex;padding:2px;}
+.pw-toggle .mi{font-size:18px;}
+.pw-toggle:hover .mi{color:var(--text);}
+
+/* FORGOT */
+.forgot-row{display:flex;justify-content:flex-end;margin-top:-8px;margin-bottom:16px;}
+.forgot-link{font-size:11px;color:var(--green);font-weight:600;text-decoration:none;}
+.forgot-link:hover{color:var(--red);}
+
+/* REMEMBER */
+.check-row{display:flex;align-items:center;gap:8px;margin-bottom:18px;cursor:pointer;}
+.check-row input{accent-color:var(--green);width:15px;height:15px;cursor:pointer;}
+.check-row span{font-size:12px;color:var(--muted);}
+
+/* SUBMIT */
+.btn-submit{width:100%;background:var(--green);border:none;border-radius:5px;padding:13px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.3px;transition:background .15s;}
+.btn-submit .mi{font-size:20px;}
+.btn-submit:hover{background:var(--green2);}
+.btn-submit:active{transform:scale(.99);}
+.btn-submit.loading{background:#aaa;pointer-events:none;}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:10px;margin:18px 0;}
+.divider-line{flex:1;height:1px;background:var(--gray2);}
+.divider-txt{font-size:11px;color:var(--muted2);font-weight:600;}
+
+/* SOCIAL BTNS */
+.social-row{display:flex;gap:8px;}
+.btn-social{flex:1;border:1.5px solid var(--gray3);border-radius:5px;padding:10px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;font-weight:700;cursor:pointer;background:var(--white);color:var(--text);font-family:'Barlow',sans-serif;transition:all .15s;}
+.btn-social:hover{border-color:var(--dark);background:#fafafa;}
+.btn-social .mi{font-size:18px;}
+
+/* FOOTER LINK */
+.auth-footer{text-align:center;margin-top:20px;font-size:12px;color:var(--muted);}
+.auth-footer a{color:var(--green);font-weight:700;text-decoration:none;}
+.auth-footer a:hover{color:var(--red);}
+
+/* PROMO STRIP */
+.promo-strip{background:linear-gradient(135deg,#1a3d29,#0e2619);border-radius:7px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.promo-icon{width:40px;height:40px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.promo-icon .mi{font-size:22px;color:#000;}
+.promo-txt h4{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;color:#fff;text-transform:uppercase;}
+.promo-txt p{font-size:11px;color:rgba(255,255,255,.6);margin-top:1px;}
+
+/* ERROR */
+.form-error{font-size:11px;color:var(--red);margin-top:4px;display:none;align-items:center;gap:4px;}
+.form-error .mi{font-size:14px;}
+.form-error.show{display:flex;}
+
+/* SUCCESS TOAST */
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--green);color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.error{background:var(--red);}
+
+/* FOOTER */
+.footer-mini{background:var(--dark);padding:16px 24px;text-align:center;}
+.footer-mini p{font-size:11px;color:#444;}
+.footer-mini p span{color:#666;}
+
+/* API STATUS INDICATOR */
+.api-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;color:rgba(255,255,255,.4);margin-top:8px;}
+.api-dot{width:6px;height:6px;border-radius:50%;background:#444;flex-shrink:0;transition:background .3s;}
+.api-dot.online{background:#22a848;}
+.api-dot.offline{background:#cc0000;}
+.api-dot.checking{background:var(--yellow);animation:pulse .8s ease-in-out infinite alternate;}
+@keyframes pulse{from{opacity:.4}to{opacity:1}}
+
+@media(max-width:480px){
+  .card-body,.card-hdr{padding-left:18px;padding-right:18px;}
+  .social-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner" id="ticker-inner"></div></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <a href="index.html" class="wordmark">
+      <div class="wm-box"><span class="wm-text"><span class="wm-p">PRIME</span><span class="wm-s">STAKES</span></span></div>
+      <div class="wm-bar"></div>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="auth">
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="register.html" class="btn-reg">Register</a>
+    </div>
+  </div>
+</header>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- PAGE -->
+<div class="page">
+  <div class="auth-card">
+
+    <!-- PROMO STRIP -->
+    <div class="promo-strip">
+      <div class="promo-icon"><span class="mi">card_giftcard</span></div>
+      <div class="promo-txt">
+        <h4>150% Welcome Bonus</h4>
+        <p>Log in and claim up to GHS 500 on your first deposit</p>
+      </div>
+    </div>
+
+    <div class="auth-card-inner">
+      <!-- CARD HEADER -->
+      <div class="card-hdr">
+        <div class="card-badge"><span class="mi">lock_open</span> Secure Login</div>
+        <h1>Welcome Back</h1>
+        <p>Sign in to your PrimeStakes account</p>
+        <div class="api-status">
+          <div class="api-dot checking" id="api-dot"></div>
+          <span id="api-status-txt">Connecting to server…</span>
+        </div>
+      </div>
+
+      <!-- CARD BODY -->
+      <div class="card-body">
+        <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+
+          <!-- EMAIL -->
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="input-wrap">
+              <span class="mi">mail</span>
+              <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <div class="form-error" id="email-err"><span class="mi">error</span> <span id="email-err-txt">Please enter a valid email</span></div>
+          </div>
+
+          <!-- PASSWORD -->
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrap">
+              <span class="mi">lock</span>
+              <input class="form-input" type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required style="padding-right:40px;">
+              <button type="button" class="pw-toggle" onclick="togglePw('password','pw-eye')"><span class="mi" id="pw-eye">visibility</span></button>
+            </div>
+            <div class="form-error" id="pw-err"><span class="mi">error</span> <span id="pw-err-txt">Password is required</span></div>
+          </div>
+
+          <!-- FORGOT + REMEMBER -->
+          <div class="forgot-row"><a href="#" class="forgot-link">Forgot password?</a></div>
+          <label class="check-row">
+            <input type="checkbox" id="remember">
+            <span>Keep me signed in on this device</span>
+          </label>
+
+          <!-- SUBMIT -->
+          <button class="btn-submit" type="submit" id="submit-btn">
+            <span class="mi">login</span> Sign In
+          </button>
+
+        </form>
+
+        <!-- DIVIDER -->
+        <div class="divider">
+          <div class="divider-line"></div>
+          <span class="divider-txt">OR CONTINUE WITH</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- SOCIAL -->
+        <div class="social-row">
+          <button class="btn-social google" onclick="showToast('Google login coming soon','error')">
+            <span style="font-size:15px;font-weight:900;font-family:sans-serif;color:#ea4335;">G</span> Google
+          </button>
+          <button class="btn-social phone" onclick="showToast('Phone login coming soon','error')">
+            <span class="mi">phone_iphone</span> Phone
+          </button>
+        </div>
+
+        <!-- FOOTER LINK -->
+        <div class="auth-footer">
+          Don't have an account? <a href="register.html">Create one free →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER MINI -->
+<div class="footer-mini">
+  <p>© 2026 PrimeStakes &nbsp;·&nbsp; <span>Licensed by Gaming Commission of Ghana</span> &nbsp;·&nbsp; <span>18+</span> &nbsp;·&nbsp; <a href="#" style="color:#666;text-decoration:none;">Responsible Gaming</a></p>
+</div>
+
+<script>
+const API_BASE = 'https://kikiwebbackend-iysi.onrender.com';
+
+/* ── API HEALTH CHECK ── */
+async function checkApiHealth() {
+  const dot = document.getElementById('api-dot');
+  const txt = document.getElementById('api-status-txt');
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/football/health`, { signal: AbortSignal.timeout(8000) });
+    if (res.ok) {
+      dot.className = 'api-dot online';
+      txt.textContent = 'Server online';
+    } else {
+      dot.className = 'api-dot offline';
+      txt.textContent = 'Server issue';
+    }
+  } catch {
+    dot.className = 'api-dot offline';
+    txt.textContent = 'Server unreachable';
+  }
+}
+checkApiHealth();
+
+/* ── TICKER ── */
+const tickerItems = [
+  "⚽ Arsenal 2–1 Chelsea · 73'",
+  "⚽ Real Madrid 1–0 Barcelona · 61'",
+  "🏆 JACKPOT GHS 150,000 — BET NOW!",
+  "📈 ACCA BOOST: Up to 1000% this weekend!",
+  "⭐ FREE BET: GHS 20 on registration!",
+  "⚽ Celtic 2–0 Rangers · 50'"
+];
+const d = tickerItems.map(t => `<span style="padding:0 4px;">${t}</span><span style="color:#333;margin:0 8px;">●</span>`).join('');
+document.getElementById('ticker-inner').innerHTML = d + d;
+
+/* ── PASSWORD TOGGLE ── */
+function togglePw(inputId, iconId) {
+  const inp = document.getElementById(inputId);
+  const ico = document.getElementById(iconId);
+  if (inp.type === 'password') { inp.type = 'text'; ico.textContent = 'visibility_off'; }
+  else { inp.type = 'password'; ico.textContent = 'visibility'; }
+}
+
+/* ── TOAST ── */
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type === 'error' ? ' error' : '');
+  clearTimeout(t._to);
+  t._to = setTimeout(() => { t.classList.remove('show'); }, 3500);
+}
+
+/* ── VALIDATION ── */
+function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function setError(id, msg) {
+  document.getElementById(id + '-txt').textContent = msg;
+  document.getElementById(id).classList.add('show');
+}
+function clearError(id) { document.getElementById(id).classList.remove('show'); }
+
+/* ── LOGIN HANDLER ── */
+async function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  let valid = true;
+
+  clearError('email-err');
+  clearError('pw-err');
+
+  if (!email || !validateEmail(email)) { setError('email-err', 'Please enter a valid email address'); valid = false; }
+  if (!password) { setError('pw-err', 'Password is required'); valid = false; }
+  if (!valid) return;
+
+  const btn = document.getElementById('submit-btn');
+  btn.classList.add('loading');
+  btn.innerHTML = '<span class="mi">hourglass_empty</span> Signing In…';
+
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/users/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+      signal: AbortSignal.timeout(15000)
+    });
+
+    let data;
+    try { data = await res.json(); } catch { data = {}; }
+
+    if (res.ok) {
+      // Extract token — handles token at root or nested under data
+      const token = data.token || data.data?.token || data.accessToken || data.data?.accessToken;
+      const user  = data.user  || data.data?.user  || data.data || {};
+
+      if (token) {
+        localStorage.setItem('ps_stakes', token);
+        localStorage.setItem('ps_user', JSON.stringify(user));
+      }
+
+      showToast('✅ Welcome back! Redirecting…');
+      setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+    } else {
+      btn.classList.remove('loading');
+      btn.innerHTML = '<span class="mi">login</span> Sign In';
+
+      const msg = data.message || data.error || data.data?.message || 'Invalid email or password';
+      showToast('❌ ' + msg, 'error');
+      setError('pw-err', msg);
+    }
+  } catch (err) {
+    btn.classList.remove('loading');
+    btn.innerHTML = '<span class="mi">login</span> Sign In';
+
+    if (err.name === 'TimeoutError' || err.name === 'AbortError') {
+      showToast('❌ Request timed out — server may be starting up, try again', 'error');
+      setError('pw-err', 'Connection timed out. The server may be waking up — please retry in a moment.');
+    } else {
+      showToast('❌ Network error — check your connection', 'error');
+      setError('pw-err', 'Could not reach the server. Check your internet connection.');
+    }
+  }
+}
+
+/* Auto-focus email */
+document.getElementById('email').focus();
+</script>
+</body>
+</html>
