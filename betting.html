@@ -38,9 +38,20 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .hot{background:var(--yellow);color:#000;font-size:9px;font-weight:900;padding:1px 5px;border-radius:2px;margin-left:2px;}
 .live-pill{background:var(--red2);color:#fff;font-size:9px;font-weight:800;padding:1px 6px;border-radius:10px;animation:blink 1.2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-.auth{display:flex;gap:7px;flex-shrink:0;}
+
+/* ── AUTH AREA (logged out) ── */
+.auth{display:flex;gap:7px;flex-shrink:0;align-items:center;}
 .btn-login{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
 .btn-reg{background:var(--yellow);border:none;color:#000;font-size:12px;font-weight:900;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
+
+/* ── USER AREA (logged in) ── */
+.user-area{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.wallet-btn{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.25);border:1.5px solid rgba(255,255,255,.3);border-radius:4px;padding:5px 10px;color:#fff;cursor:pointer;text-decoration:none;transition:background .15s;}
+.wallet-btn:hover{background:rgba(0,0,0,.4);}
+.wallet-btn .mi{font-size:16px;color:var(--yellow);}
+.wallet-bal{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#fff;white-space:nowrap;}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;color:#000;flex-shrink:0;cursor:pointer;border:2px solid rgba(255,255,255,.4);}
+
 .hamburger{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px;flex-shrink:0;}
 
 /* ── MOBILE MENU ── */
@@ -55,6 +66,14 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-auth-row a{flex:1;text-align:center;padding:10px;border-radius:4px;font-weight:700;font-size:13px;text-decoration:none;}
 .mob-auth-login{border:1.5px solid #666;color:#ccc;}
 .mob-auth-reg{background:var(--yellow);color:#000;}
+/* logged-in user info in mob menu */
+.mob-user-row{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #2a2a2a;}
+.mob-user-av{width:36px;height:36px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;color:#000;flex-shrink:0;}
+.mob-user-info{flex:1;min-width:0;}
+.mob-user-name{font-size:13px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mob-user-bal{font-size:11px;color:var(--green2);}
+.mob-wallet-link{display:flex;align-items:center;gap:10px;padding:12px 16px;color:var(--yellow);font-size:13px;font-weight:700;text-decoration:none;border-bottom:1px solid #2a2a2a;}
+.mob-wallet-link .mi{font-size:18px;}
 
 /* ── PAGE TABS ── */
 .page-tabs{background:var(--white);border-bottom:2px solid var(--gray2);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 16px;}
@@ -78,7 +97,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .sb-left .mi{font-size:14px;color:var(--green);flex-shrink:0;}
 .sb-item.active .sb-left .mi{color:var(--red);}
 .sb-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;}
-.sb-cnt{background:#eee;color:var(--muted);font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;flex-shrink:0;}
 
 /* ── CENTRE ── */
 .center{flex:1;padding:10px;min-width:0;overflow:hidden;}
@@ -274,7 +292,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 @media(max-width:1100px){.sidebar{display:none;}.mobile-chips{display:flex;}}
 @media(max-width:900px){.betslip{display:none;}.bet-bubble{display:flex;}}
 @media(max-width:800px){
-  .header-nav,.auth{display:none;}.hamburger{display:flex;}
+  .header-nav,.auth,.user-area{display:none;}.hamburger{display:flex;}
   .mob-nav{display:block;}.layout{padding-bottom:60px;}
   .center{padding:8px 8px 72px;}
   .game-main{grid-template-columns:1fr;gap:6px;}
@@ -305,9 +323,18 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <a class="hnav" href="#"><span class="mi">emoji_events</span> Jackpot</a>
       <a class="hnav" href="#"><span class="mi">workspace_premium</span> Loyalty <span class="hot">HOT</span></a>
     </nav>
-    <div class="auth">
+    <!-- Logged-out auth -->
+    <div class="auth" id="header-auth">
       <a href="login.html" class="btn-login">Login</a>
       <a href="register.html" class="btn-reg">Register</a>
+    </div>
+    <!-- Logged-in user area -->
+    <div class="user-area" id="header-user" style="display:none;">
+      <a href="wallet.html" class="wallet-btn" id="header-wallet-btn">
+        <span class="mi">account_balance_wallet</span>
+        <span class="wallet-bal" id="header-wallet-bal">GHS 0.00</span>
+      </a>
+      <div class="user-avatar" id="header-avatar" onclick="toggleMenu()">--</div>
     </div>
     <button class="hamburger" onclick="toggleMenu()"><span class="mi">menu</span></button>
   </div>
@@ -315,9 +342,23 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mob-menu">
-  <div class="mob-auth-row">
-    <a href="login.html" class="mob-auth-login">Login</a>
-    <a href="register.html" class="mob-auth-reg">Register</a>
+  <!-- Logged-out view -->
+  <div id="mob-auth-section">
+    <div class="mob-auth-row">
+      <a href="login.html" class="mob-auth-login">Login</a>
+      <a href="register.html" class="mob-auth-reg">Register</a>
+    </div>
+  </div>
+  <!-- Logged-in view -->
+  <div id="mob-user-section" style="display:none;">
+    <div class="mob-user-row">
+      <div class="mob-user-av" id="mob-user-av">--</div>
+      <div class="mob-user-info">
+        <div class="mob-user-name" id="mob-user-name">User</div>
+        <div class="mob-user-bal" id="mob-user-bal">GHS 0.00</div>
+      </div>
+    </div>
+    <a href="wallet.html" class="mob-wallet-link"><span class="mi">account_balance_wallet</span> My Wallet</a>
   </div>
   <div class="mob-menu-divider"></div>
   <div class="mob-menu-lbl">Navigation</div>
@@ -325,6 +366,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <a class="mob-menu-item" href="live-games.html"><span class="mi">cell_tower</span> Live Betting</a>
   <a class="mob-menu-item active" href="betting.html"><span class="mi">receipt_long</span> Bet Now</a>
   <a class="mob-menu-item" href="games.html"><span class="mi">sports_esports</span> Games</a>
+  <a class="mob-menu-item" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
 </div>
 
 <!-- PAGE TABS -->
@@ -482,19 +524,86 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 const API_BASE = 'https://kikiwebbackend-iysi.onrender.com';
 
-// ── AUTH — reads ps_stakes ────────────────────────────────────────────────────
+// ── AUTH ──────────────────────────────────────────────────────────────────────
 const isLoggedIn = () => !!localStorage.getItem('ps_stakes');
 const getToken   = () => localStorage.getItem('ps_stakes');
 
-// ── MINIMAL FALLBACK (only shown if API is unreachable) ───────────────────────
+function getInitials(user) {
+  if (!user) return '?';
+  const first = (user.firstName || user.first_name || '').trim();
+  const last  = (user.lastName  || user.last_name  || '').trim();
+  if (first && last) return (first[0] + last[0]).toUpperCase();
+  if (first) return first.substring(0,2).toUpperCase();
+  return '?';
+}
+
+function getDisplayName(user) {
+  if (!user) return 'User';
+  const first = user.firstName || user.first_name || '';
+  const last  = user.lastName  || user.last_name  || '';
+  return (first + ' ' + last).trim() || user.email || 'User';
+}
+
+// Fetch wallet balance from API
+async function fetchWalletBalance() {
+  const token = getToken();
+  if (!token) return null;
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/users/me`, {
+      headers: { 'Authorization': `Bearer ${token}` },
+      signal: AbortSignal.timeout(8000)
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    // Handle nested response: data.data or data directly
+    const payload = data.data || data;
+    return payload.walletBalance != null ? parseFloat(payload.walletBalance) : null;
+  } catch { return null; }
+}
+
+async function initAuth() {
+  const authEl  = document.getElementById('header-auth');
+  const userEl  = document.getElementById('header-user');
+  const mobAuth = document.getElementById('mob-auth-section');
+  const mobUser = document.getElementById('mob-user-section');
+
+  if (!isLoggedIn()) {
+    authEl.style.display  = 'flex';
+    userEl.style.display  = 'none';
+    mobAuth.style.display = 'block';
+    mobUser.style.display = 'none';
+    return;
+  }
+
+  authEl.style.display  = 'none';
+  userEl.style.display  = 'flex';
+  mobAuth.style.display = 'none';
+  mobUser.style.display = 'block';
+
+  // Set initials from stored user data
+  let storedUser = null;
+  try { storedUser = JSON.parse(localStorage.getItem('ps_user') || 'null'); } catch {}
+  const initials = getInitials(storedUser);
+  const name     = getDisplayName(storedUser);
+
+  document.getElementById('header-avatar').textContent    = initials;
+  document.getElementById('mob-user-av').textContent      = initials;
+  document.getElementById('mob-user-name').textContent    = name;
+
+  // Fetch live balance
+  const bal = await fetchWalletBalance();
+  const balStr = bal != null ? `GHS ${bal.toFixed(2)}` : 'GHS --';
+  document.getElementById('header-wallet-bal').textContent = balStr;
+  document.getElementById('mob-user-bal').textContent      = balStr;
+}
+
+// ── MINIMAL FALLBACK (only 2 games) ──────────────────────────────────────────
 function makeDate(daysOffset, h, m) {
   const d = new Date(); d.setDate(d.getDate() + daysOffset); d.setHours(h, m, 0, 0); return d.toISOString();
 }
 const FALLBACK_GAMES = [
-  { id:'f001', homeTeam:'Hearts of Oak',  awayTeam:'Asante Kotoko', matchDate:makeDate(0,15,0), league:'Ghana Premier League', oddsHomeWin:2.10, oddsDraw:3.20, oddsAwayWin:3.40 },
-  { id:'f002', homeTeam:'Arsenal',        awayTeam:'Chelsea',        matchDate:makeDate(0,17,0), league:'England Premier League', oddsHomeWin:2.42, oddsDraw:3.35, oddsAwayWin:2.96 },
-  { id:'f003', homeTeam:'Real Madrid',    awayTeam:'Barcelona',      matchDate:makeDate(1,20,0), league:'Spain La Liga',          oddsHomeWin:2.98, oddsDraw:3.94, oddsAwayWin:2.17 },
-  { id:'f004', homeTeam:'Bayern Munich',  awayTeam:'PSG',            matchDate:makeDate(1,17,0), league:'UEFA Champions League',  oddsHomeWin:1.85, oddsDraw:3.70, oddsAwayWin:4.20 },
+  { id:'f001', homeTeam:'Hearts of Oak', awayTeam:'Asante Kotoko', matchDate:makeDate(0,15,0), league:'Ghana Premier League', oddsHomeWin:2.10, oddsDraw:3.20, oddsAwayWin:3.40 },
+  { id:'f002', homeTeam:'Arsenal',       awayTeam:'Chelsea',       matchDate:makeDate(0,17,0), league:'England Premier League', oddsHomeWin:2.42, oddsDraw:3.35, oddsAwayWin:2.96 },
 ];
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
@@ -505,7 +614,7 @@ let openScorePanels = new Set();
 let scoreOptionsCache = {};
 let usingFallback = false;
 
-// ── SCORE OPTIONS (generated client-side for any game) ────────────────────────
+// ── SCORE OPTIONS ─────────────────────────────────────────────────────────────
 function generateScoreOptions(gameId) {
   const rnd = (base) => parseFloat((base * (0.85 + Math.random() * 0.3)).toFixed(2));
   const opts = [];
@@ -519,7 +628,7 @@ function generateScoreOptions(gameId) {
   return opts;
 }
 
-// ── LOAD GAMES FROM API ───────────────────────────────────────────────────────
+// ── LOAD GAMES ────────────────────────────────────────────────────────────────
 async function loadGames() {
   document.getElementById('games-container').innerHTML =
     '<div class="loading-state"><span class="mi">refresh</span> Loading games…</div>';
@@ -530,9 +639,7 @@ async function loadGames() {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     const games = Array.isArray(data) ? data : (data.data || []);
-
     if (!games.length) throw new Error('Empty');
-
     allGames = games.map(g => ({ ...g, league: g.league || guessLeague(g) }));
     usingFallback = false;
     document.getElementById('demo-notice').style.display = 'none';
@@ -557,7 +664,6 @@ function guessLeague(g) {
 // ── SCORE OPTIONS LOADER ──────────────────────────────────────────────────────
 async function loadScoreOptions(gameId) {
   if (scoreOptionsCache[gameId]) return scoreOptionsCache[gameId];
-
   try {
     const res = await fetch(`${API_BASE}/api/v1/games/public/${gameId}/correct-score`, { signal: AbortSignal.timeout(8000) });
     if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -911,6 +1017,8 @@ async function placeBet() {
     ids.forEach(id => refreshGameCard(id));
     renderBS(); updateBadges(); closeBsDrawer();
     showToast(`✅ Bet placed! Potential: GHS ${(stake * tot).toFixed(2)}`);
+    // Refresh wallet balance display
+    initAuth();
   }
 }
 
@@ -991,8 +1099,10 @@ function toggleMenu() { document.getElementById('mob-menu').classList.toggle('op
 document.addEventListener('click', e => {
   const menu  = document.getElementById('mob-menu');
   const ham   = document.querySelector('.hamburger');
+  const av    = document.getElementById('header-avatar');
   const modal = document.getElementById('login-modal');
-  if (menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)) menu.classList.remove('open');
+  const clickedOutside = !menu.contains(e.target) && !ham?.contains(e.target) && !av?.contains(e.target);
+  if (menu.classList.contains('open') && clickedOutside) menu.classList.remove('open');
   if (modal.classList.contains('open') && e.target === modal) closeLoginModal();
 });
 
@@ -1011,6 +1121,7 @@ buildTicker();
 loadGames();
 renderBS();
 updateBadges();
+initAuth();
 </script>
 </body>
 </html>
