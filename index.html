@@ -72,7 +72,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-user-info .mob-ubal{font-size:11px;color:var(--green);font-weight:600;}
 .mob-logout-btn{margin-left:auto;background:rgba(204,0,0,.2);border:1px solid rgba(204,0,0,.4);color:var(--red2);border-radius:4px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
 
-/* LAYOUT — no sidebar, just center + betslip */
+/* LAYOUT */
 .layout{display:flex;min-height:calc(100vh - 56px);}
 .center{flex:1;padding:10px;min-width:0;overflow:hidden;}
 
@@ -217,10 +217,40 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .bs-lock-reg{background:var(--green);color:#fff;}
 .bs-empty{padding:14px;}
 .bs-empty-txt{color:var(--muted);font-size:12.5px;line-height:1.65;margin-bottom:12px;}
-.book-lbl{font-size:12px;font-weight:600;margin-bottom:4px;}
-.book-inp{width:100%;border:1px solid var(--gray3);border-radius:4px;padding:8px 10px;font-size:12px;outline:none;font-family:'Barlow',sans-serif;}
+
+/* BOOKING CODE UI */
+.book-section{padding:10px 12px;border-top:1px solid var(--gray2);}
+.book-section-lbl{font-size:12px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:5px;color:var(--text);}
+.book-section-lbl .mi{font-size:15px;color:var(--green);}
+.book-section-hint{font-size:11px;color:var(--muted);margin-bottom:6px;line-height:1.5;}
+.book-inp{width:100%;border:1.5px solid var(--gray3);border-radius:4px;padding:9px 10px;font-size:13px;font-weight:700;letter-spacing:1px;outline:none;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;transition:border-color .2s;}
 .book-inp:focus{border-color:var(--green);}
-.load-btn{width:100%;background:var(--gray2);border:none;border-radius:4px;padding:8px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Barlow',sans-serif;margin-top:6px;}
+.book-inp::placeholder{font-weight:400;letter-spacing:0;text-transform:none;font-family:'Barlow',sans-serif;font-size:12px;}
+.book-load-btn{width:100%;margin-top:6px;background:var(--green);border:none;border-radius:4px;padding:9px;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s;}
+.book-load-btn:hover{background:var(--green2);}
+.book-load-btn:disabled{background:#aaa;cursor:not-allowed;}
+.book-err{margin-top:6px;padding:8px 10px;background:#fff0f0;border:1px solid #ffcccc;border-radius:4px;font-size:11px;color:var(--red);font-weight:600;display:flex;align-items:flex-start;gap:5px;}
+.book-err .mi{font-size:14px;flex-shrink:0;margin-top:1px;}
+.book-result{margin-top:8px;border:1px solid var(--gray2);border-radius:5px;overflow:hidden;}
+.book-result-head{background:var(--dark2);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;}
+.book-result-code{font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px;}
+.book-result-code .mi{font-size:14px;color:var(--yellow);}
+.book-result-odds{font-size:11px;color:var(--yellow);font-weight:700;}
+.book-game{padding:9px 12px;border-bottom:1px solid #f0f0f0;display:flex;flex-direction:column;gap:3px;}
+.book-game:last-child{border-bottom:none;}
+.book-game-teams{font-size:12px;font-weight:700;color:var(--dark);line-height:1.4;}
+.book-game-pick{display:flex;align-items:center;justify-content:space-between;margin-top:2px;}
+.book-game-pick-lbl{font-size:11px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:3px;}
+.book-game-pick-lbl .mi{font-size:12px;}
+.book-game-odd{font-size:14px;font-weight:900;color:var(--green);font-family:'Barlow Condensed',sans-serif;}
+.book-game-score{font-size:10px;color:var(--muted);font-weight:600;}
+.book-game-date{font-size:10px;color:var(--muted2);}
+.book-add-btn{width:100%;background:var(--green);border:none;padding:11px;font-size:14px;font-weight:800;color:#fff;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:.3px;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s;}
+.book-add-btn:hover{background:var(--green2);}
+.book-add-btn.login-needed{background:var(--red);}
+.book-add-btn.login-needed:hover{background:var(--red2);}
+
+.book-lbl{font-size:12px;font-weight:600;margin-bottom:4px;}
 .winners{border-top:1px solid var(--gray2);padding:10px 12px;}
 .wf-title{font-size:12px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
 .wf-title .mi{font-size:16px;color:var(--yellow);}
@@ -398,8 +428,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 
 <div class="layout">
 
-<!-- NO SIDEBAR — removed -->
-
 <main class="center">
   <div class="hero">
     <img class="hero-img" src="https://cdn.modernghana.com/content__/640/457/4292025124051-k5frj7u2h1-cedi-dollar.jpg" alt="" onerror="this.style.display='none'">
@@ -464,6 +492,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   </div>
 </main>
 
+<!-- ═══════════════════════ BETSLIP ═══════════════════════ -->
 <aside class="betslip" id="betslip-panel">
   <div class="bs-tabs">
     <div class="bs-tab active"><span class="mi">receipt_long</span> Betslip</div>
@@ -544,7 +573,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     </ul></div>
     <div class="ft-col ft-contact"><h4>Contact</h4>
       <div class="ci"><span class="mi">phone</span> +233 059 692 1899</div>
-      <div class="ci"><span class="mi">email</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="493a3c3939263b3d09393b20242c3a3d28222c3a672a2624">[email&#160;protected]</a></div>
+      <div class="ci"><span class="mi">email</span> support@primestakes.com</div>
       <div class="ci"><span class="mi">location_on</span> Accra, Ghana</div>
       <div class="socials">
         <div class="soc" style="background:#1877f2;color:#fff;">f</div>
@@ -568,17 +597,14 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <div class="ft-copy">© 2026 PrimeStakes. All rights reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const API_BASE      = 'https://kikiwebbackend-iysi.onrender.com';
 const FOOTBALL_BASE = 'https://kikiwebbackend-iysi.onrender.com';
 
-function getToken() {
-  return localStorage.getItem('ps_stakes') || localStorage.getItem('token') || localStorage.getItem('accessToken') || null;
-}
-function getUser() {
-  try { return JSON.parse(localStorage.getItem('ps_user') || '{}') || {}; } catch { return {}; }
-}
-function isLoggedIn() { return !!getToken(); }
+/* ─── AUTH HELPERS ─────────────────────────────────────────────────────────── */
+function getToken()  { return localStorage.getItem('ps_stakes') || localStorage.getItem('token') || localStorage.getItem('accessToken') || null; }
+function getUser()   { try { return JSON.parse(localStorage.getItem('ps_user') || '{}') || {}; } catch { return {}; } }
+function isLoggedIn(){ return !!getToken(); }
 function getDisplayName(u) {
   if (u.firstName || u.lastName) return [u.firstName, u.lastName].filter(Boolean).join(' ');
   return u.name || u.username || (u.email ? u.email.split('@')[0] : 'My Account');
@@ -647,9 +673,148 @@ document.addEventListener('click', e => {
   if (menu?.classList.contains('open') && !menu.contains(e.target) && !ham?.contains(e.target)) menu.classList.remove('open');
 });
 
+/* ─── SLIP STATE ──────────────────────────────────────────────────────────── */
 let slip = {};
 try { const s = localStorage.getItem('ps_slip'); if (s) slip = JSON.parse(s); } catch {}
 
+/* ─── BOOKING CODE STATE ──────────────────────────────────────────────────── */
+let loadedBooking = null;   // { data, isCorrectScore }
+
+/* ─── BOOKING CODE LOADER ─────────────────────────────────────────────────── */
+async function loadBookingCode() {
+  const inp      = document.getElementById('book-inp');
+  const btn      = document.getElementById('book-load-btn');
+  const resultEl = document.getElementById('book-result-area');
+  if (!inp || !btn || !resultEl) return;
+
+  const code = (inp.value || '').trim().toUpperCase();
+  if (!code) { inp.focus(); return; }
+
+  btn.disabled   = true;
+  btn.innerHTML  = '<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading…';
+  resultEl.innerHTML = '';
+  loadedBooking  = null;
+
+  let data = null;
+  let isCorrectScore = false;
+
+  try {
+    // 1️⃣  Try standard endpoint first
+    const r1 = await fetch(`${API_BASE}/api/v1/booking-codes/standard/${code}`, { signal: AbortSignal.timeout(14000) });
+
+    if (r1.ok) {
+      data = await r1.json();
+    } else if (r1.status === 400) {
+      // Backend says it's a correct-score slip → try correct-score endpoint
+      const r2 = await fetch(`${API_BASE}/api/v1/booking-codes/correct-score/${code}`, { signal: AbortSignal.timeout(14000) });
+      if (r2.ok)              { data = await r2.json(); isCorrectScore = true; }
+      else if (r2.status === 404) throw new Error('Booking code not found. Please check and try again.');
+      else if (r2.status === 410) throw new Error('This booking code has expired or been disabled.');
+      else                        throw new Error('Could not load booking code. Try again.');
+    } else if (r1.status === 404) {
+      throw new Error('Booking code not found. Please check and try again.');
+    } else if (r1.status === 410) {
+      throw new Error('This booking code has expired or been disabled.');
+    } else {
+      throw new Error('Could not load booking code. Try again.');
+    }
+  } catch (e) {
+    resultEl.innerHTML = `<div class="book-err"><span class="mi">error_outline</span>${esc(e.message || 'Network error — please try again.')}</div>`;
+    btn.disabled  = false;
+    btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
+    return;
+  }
+
+  loadedBooking = { data, isCorrectScore };
+  renderBookingResult(data, isCorrectScore);
+
+  btn.disabled  = false;
+  btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
+}
+
+function renderBookingResult(data, isCorrectScore) {
+  const resultEl = document.getElementById('book-result-area');
+  if (!resultEl) return;
+
+  if (!data || !data.games || !data.games.length) {
+    resultEl.innerHTML = '<div class="book-err"><span class="mi">error_outline</span>No games found in this booking code.</div>';
+    return;
+  }
+
+  const combinedOdds = data.combinedOdds ? parseFloat(data.combinedOdds).toFixed(2) : '—';
+  const count        = data.gameCount || data.games.length;
+  const typeLabel    = isCorrectScore ? 'Correct Score' : 'Standard';
+
+  const gamesHtml = data.games.map(g => {
+    const pickLabel = g.pickLabel || g.pick || '';
+    const oddVal    = g.odds ? parseFloat(g.odds).toFixed(2) : '—';
+    const scoreLine = isCorrectScore && g.scorePrediction
+      ? `<div class="book-game-score"><span class="mi" style="font-size:11px;">scoreboard</span> Predicted: ${esc(g.scorePrediction)}</div>` : '';
+    const dateStr = g.matchDate
+      ? new Date(g.matchDate).toLocaleDateString('en-GB', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' })
+      : '';
+    return `<div class="book-game">
+      <div class="book-game-teams">${esc(g.homeTeam||'Home')} <span style="color:var(--muted);font-weight:400;font-size:10px;">vs</span> ${esc(g.awayTeam||'Away')}</div>
+      ${scoreLine}
+      <div class="book-game-pick">
+        <span class="book-game-pick-lbl"><span class="mi">check_circle</span>${esc(pickLabel)}</span>
+        <span class="book-game-odd">${oddVal}</span>
+      </div>
+      ${dateStr ? `<div class="book-game-date"><span class="mi" style="font-size:11px;">schedule</span> ${dateStr}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  const loggedIn    = isLoggedIn();
+  const btnClass    = loggedIn ? 'book-add-btn' : 'book-add-btn login-needed';
+  const btnIcon     = loggedIn ? 'add_circle' : 'login';
+  const btnLabel    = loggedIn ? 'Add to Betslip & Bet Now' : 'Login to Place This Bet';
+
+  resultEl.innerHTML = `<div class="book-result">
+    <div class="book-result-head">
+      <span class="book-result-code"><span class="mi">confirmation_number</span>${count} game${count>1?'s':''} · ${typeLabel}</span>
+      <span class="book-result-odds">Combined: ${combinedOdds}x</span>
+    </div>
+    ${gamesHtml}
+    <button class="${btnClass}" onclick="addBookingToSlip()">
+      <span class="mi">${btnIcon}</span>${btnLabel}
+    </button>
+  </div>`;
+}
+
+function addBookingToSlip() {
+  if (!loadedBooking) return;
+
+  if (!isLoggedIn()) {
+    // Save pending code so it auto-loads after login
+    const inp = document.getElementById('book-inp');
+    if (inp) localStorage.setItem('ps_pending_code', inp.value.trim().toUpperCase());
+    showToast('Please login to place this bet');
+    setTimeout(() => window.location.href = 'login.html', 900);
+    return;
+  }
+
+  const { data, isCorrectScore } = loadedBooking;
+  data.games.forEach(g => {
+    const matchKey = g.gameId ? String(g.gameId) : (g.homeTeam + '_' + g.awayTeam);
+    const label    = isCorrectScore && g.scorePrediction
+      ? `${g.scorePrediction} (Correct Score)`
+      : (g.pickLabel || g.pick || 'Selection');
+    slip[matchKey] = {
+      id:     matchKey,
+      t:      g.pick,
+      label,
+      odd:    parseFloat(g.odds) || 1,
+      league: 'Booking Code',
+      teams:  `${g.homeTeam} v ${g.awayTeam}`
+    };
+  });
+
+  localStorage.setItem('ps_slip', JSON.stringify(slip));
+  showToast(`✅ ${data.games.length} selection${data.games.length > 1 ? 's' : ''} loaded — Going to Bet Now`);
+  setTimeout(() => window.location.href = 'betting.html', 900);
+}
+
+/* ─── FOOTBALL DATA ───────────────────────────────────────────────────────── */
 async function fetchTodayGames() {
   try {
     const res = await fetch(`${FOOTBALL_BASE}/api/v1/football/games/today`, { signal:AbortSignal.timeout(30000) });
@@ -676,35 +841,22 @@ function fmt(v) { if (v == null || v <= 0) return null; return parseFloat(v).toF
 function skeletonRows(n, dark) {
   let h = '';
   for (let i=0;i<n;i++) {
-    const sc = dark?'skel dark':'skel';
+    const sc  = dark ? 'skel dark' : 'skel';
     const div = `<div class="${sc}" style="width:44px;height:32px;border-radius:3px;"></div>`;
     h += `<div class="skel-row${dark?' dark-row':''}" style="${dark?'background:#1a1a1a;':''}"><div style="flex:1"><div class="${sc}" style="width:${55+i*5}%;height:12px;"></div><div class="${sc}" style="width:${40+i*3}%;height:12px;margin-top:6px;"></div></div><div style="display:flex;gap:4px;margin-left:12px;">${div.repeat(6)}</div></div>`;
   }
   return h;
 }
 
-/* BSD stores times in Asia/Dubai (UTC+4).
-   Ghana is GMT+0, so subtract 4 hours to get correct local time. */
 function toGhanaTime(raw) {
   if (!raw) return '--:--';
   try {
-    // Parse the ISO string — if it has no tz suffix treat as UTC+4 (BSD default)
     let d;
-    if (/[+\-]\d{2}:?\d{2}$|Z$/.test(raw)) {
-      // Has explicit timezone — let JS parse it then subtract 4h for Dubai offset
-      d = new Date(raw);
-    } else {
-      // No timezone — BSD says it's Dubai (UTC+4), add 'Z' would make it UTC
-      // so treat it as UTC+4 by subtracting 4h from the raw time
-      d = new Date(raw + '+04:00');
-    }
+    if (/[+\-]\d{2}:?\d{2}$|Z$/.test(raw)) { d = new Date(raw); }
+    else { d = new Date(raw + '+04:00'); }
     if (isNaN(d.getTime())) return '--:--';
-    // Now format in Ghana timezone (Africa/Accra = UTC+0)
-    return d.toLocaleTimeString('en-GB', {
-      hour: '2-digit', minute: '2-digit',
-      timeZone: 'Africa/Accra'
-    });
-  } catch(e) { return '--:--'; }
+    return d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit', timeZone:'Africa/Accra' });
+  } catch { return '--:--'; }
 }
 
 function renderTodayMatches(matches) {
@@ -723,15 +875,21 @@ function renderTodayMatches(matches) {
     html += `<div class="league-hdr-row"><span class="mi">sports_soccer</span>${esc(league)}<span style="margin-left:auto;font-size:10px;color:#888;">${ms.length} match${ms.length>1?'es':''}</span></div>`;
     ms.forEach(m => {
       const matchKey = m.externalFixtureId || (m.homeTeam+'_'+m.awayTeam);
-      const sel = slip[matchKey]||{};
-      const isLive = m.status==='LIVE', isFin = m.status==='FINISHED', showScore = isLive||isFin;
-      const koTime = toGhanaTime(m.kickoffTime);
+      const sel      = slip[matchKey]||{};
+      const isLive   = m.status==='LIVE', isFin = m.status==='FINISHED', showScore = isLive||isFin;
+      const koTime   = toGhanaTime(m.kickoffTime);
       const periodLabel = m.matchPeriod||(isLive?'Live':isFin?'FT':'Upcoming');
-      const timeDisplay = isLive ? `<div class="match-time live-time">${m.elapsedMinutes?m.elapsedMinutes+"'":'●'}</div>` : `<div class="match-time">${koTime}</div>`;
-      let periodBadge = isLive ? `<span class="period-badge pb-live"><span class="mi" style="font-size:9px;">circle</span> ${esc(periodLabel)}</span>` : isFin ? `<span class="period-badge pb-ft">FT</span>` : `<span class="period-badge pb-up">${koTime}</span>`;
+      const timeDisplay = isLive
+        ? `<div class="match-time live-time">${m.elapsedMinutes?m.elapsedMinutes+"'":'●'}</div>`
+        : `<div class="match-time">${koTime}</div>`;
+      let periodBadge = isLive
+        ? `<span class="period-badge pb-live"><span class="mi" style="font-size:9px;">circle</span> ${esc(periodLabel)}</span>`
+        : isFin
+          ? `<span class="period-badge pb-ft">FT</span>`
+          : `<span class="period-badge pb-up">${koTime}</span>`;
       const homeCrest = m.homeLogo?`<img class="crest" src="${esc(m.homeLogo)}" onerror="this.style.display='none'" alt="">`:'';
       const awayCrest = m.awayLogo?`<img class="crest" src="${esc(m.awayLogo)}" onerror="this.style.display='none'" alt="">`:'';
-      const hw=fmt(m.homeWinOdds), dr=fmt(m.drawOdds), aw=fmt(m.awayWinOdds), ov=fmt(m.over25Odds), un=fmt(m.under25Odds);
+      const hw=fmt(m.homeWinOdds), dr=fmt(m.drawOdds), aw=fmt(m.awayWinOdds), ov=fmt(m.over25Odds);
       const goals = m.over25Odds?'2.5':(m.over15Odds?'1.5':'—');
       const lq=esc(league), tm=`${esc(m.homeTeam)} v ${esc(m.awayTeam)}`;
       html += `<div class="match-row">
@@ -760,7 +918,7 @@ function renderLiveCards(matches) {
   const row = document.getElementById('live-cards-row');
   if (!matches||!matches.length) { row.innerHTML=''; return; }
   row.innerHTML = matches.map(m => {
-    const score = (m.homeScore!=null&&m.awayScore!=null)?`${m.homeScore}–${m.awayScore}`:'–';
+    const score   = (m.homeScore!=null&&m.awayScore!=null)?`${m.homeScore}–${m.awayScore}`:'–';
     const elapsed = m.elapsedMinutes?`${m.elapsedMinutes}'`:'●';
     return `<div class="live-card" onclick="window.location='live-games.html'">
       <div class="lc-top"><span class="lc-league">${esc(m.league||'')}</span><span class="live-badge"><span class="mi">circle</span> LIVE</span></div>
@@ -771,48 +929,47 @@ function renderLiveCards(matches) {
   }).join('');
 }
 
-/* generate random odds seeded by team names so they stay stable per match */
 function randOdd(seed, min, max) {
   let h = 0;
-  for (let i = 0; i < seed.length; i++) { h = Math.imul(31, h) + seed.charCodeAt(i) | 0; }
-  const r = Math.abs(h) / 2147483647;
-  return (min + r * (max - min)).toFixed(2);
+  for (let i=0;i<seed.length;i++) { h = Math.imul(31,h)+seed.charCodeAt(i)|0; }
+  const r = Math.abs(h)/2147483647;
+  return (min+r*(max-min)).toFixed(2);
 }
 function getOdds(m) {
-  const seed = (m.homeTeam||'') + (m.awayTeam||'');
+  const seed = (m.homeTeam||'')+(m.awayTeam||'');
   return {
-    hw: m.homeWinOdds  && m.homeWinOdds  > 0 ? m.homeWinOdds.toFixed(2)  : randOdd(seed+'h', 1.40, 4.50),
-    dr: m.drawOdds     && m.drawOdds     > 0 ? m.drawOdds.toFixed(2)     : randOdd(seed+'d', 2.80, 3.80),
-    aw: m.awayWinOdds  && m.awayWinOdds  > 0 ? m.awayWinOdds.toFixed(2)  : randOdd(seed+'a', 1.60, 5.50),
-    ov: m.over25Odds   && m.over25Odds   > 0 ? m.over25Odds.toFixed(2)   : randOdd(seed+'o', 1.60, 2.40),
+    hw: m.homeWinOdds && m.homeWinOdds>0 ? m.homeWinOdds.toFixed(2) : randOdd(seed+'h',1.40,4.50),
+    dr: m.drawOdds    && m.drawOdds>0    ? m.drawOdds.toFixed(2)    : randOdd(seed+'d',2.80,3.80),
+    aw: m.awayWinOdds && m.awayWinOdds>0 ? m.awayWinOdds.toFixed(2) : randOdd(seed+'a',1.60,5.50),
+    ov: m.over25Odds  && m.over25Odds>0  ? m.over25Odds.toFixed(2)  : randOdd(seed+'o',1.60,2.40),
   };
 }
 
 function renderLiveSection(matches) {
   const container = document.getElementById('live-list');
   const badge     = document.getElementById('live-count-badge');
-  if (!matches || !matches.length) {
+  if (!matches||!matches.length) {
     badge.textContent = '';
     container.innerHTML = `<div class="state-box dark-state"><span class="mi">cell_tower</span><p style="color:#555;">No live matches right now.<br>Check back during match times.</p></div>`;
     return;
   }
   badge.textContent = `(${matches.length} live)`;
   const grouped = {};
-  matches.forEach(m => { const k = m.league||'Other'; if(!grouped[k]) grouped[k]=[]; grouped[k].push(m); });
+  matches.forEach(m => { const k=m.league||'Other'; if(!grouped[k]) grouped[k]=[]; grouped[k].push(m); });
   let html = '';
   for (const [league, ms] of Object.entries(grouped)) {
     html += `<div class="live-league-bar"><span class="mi">sports_soccer</span><span class="ll-name">${esc(league)}</span><span style="margin-left:auto;font-size:10px;color:#555;">${ms.length} live</span></div>`;
     ms.forEach(m => {
-      const matchKey = m.externalFixtureId || (m.homeTeam + '_' + m.awayTeam);
-      const sel = slip[matchKey] || {};
-      const elapsed = m.elapsedMinutes ? `${m.elapsedMinutes}'` : '●';
-      const period  = m.matchPeriod || 'Live';
-      const o = getOdds(m);
-      const lq = esc(league), tm = `${esc(m.homeTeam)} v ${esc(m.awayTeam)}`;
-      const hLogo = m.homeLogo ? `<img src="${esc(m.homeLogo)}" onerror="this.style.display='none'" alt="">` : '';
-      const aLogo = m.awayLogo ? `<img src="${esc(m.awayLogo)}" onerror="this.style.display='none'" alt="">` : '';
-      const hScore = m.homeScore != null ? m.homeScore : 0;
-      const aScore = m.awayScore != null ? m.awayScore : 0;
+      const matchKey = m.externalFixtureId || (m.homeTeam+'_'+m.awayTeam);
+      const sel      = slip[matchKey]||{};
+      const elapsed  = m.elapsedMinutes?`${m.elapsedMinutes}'`:'●';
+      const period   = m.matchPeriod||'Live';
+      const o        = getOdds(m);
+      const lq=esc(league), tm=`${esc(m.homeTeam)} v ${esc(m.awayTeam)}`;
+      const hLogo = m.homeLogo?`<img src="${esc(m.homeLogo)}" onerror="this.style.display='none'" alt="">`:'';
+      const aLogo = m.awayLogo?`<img src="${esc(m.awayLogo)}" onerror="this.style.display='none'" alt="">`:'';
+      const hScore = m.homeScore!=null?m.homeScore:0;
+      const aScore = m.awayScore!=null?m.awayScore:0;
       html += `<div class="live-match">
         <div class="lm-top">
           <span class="lm-badge"><span class="mi">radio_button_checked</span>${elapsed}</span>
@@ -846,8 +1003,8 @@ function renderLiveSection(matches) {
 function renderLiveMatches(matches) { renderLiveCards(matches); renderLiveSection(matches); }
 
 async function loadAllData() {
-  document.getElementById('match-list').innerHTML   = skeletonRows(4,false);
-  document.getElementById('live-list').innerHTML    = skeletonRows(2,true);
+  document.getElementById('match-list').innerHTML    = skeletonRows(4,false);
+  document.getElementById('live-list').innerHTML     = skeletonRows(2,true);
   document.getElementById('live-cards-row').innerHTML = '';
   const [today,live] = await Promise.all([fetchTodayGames(),fetchLiveGames()]);
   renderTodayMatches(today);
@@ -856,6 +1013,7 @@ async function loadAllData() {
   updateBadges();
 }
 
+/* ─── BET ACTIONS ─────────────────────────────────────────────────────────── */
 function addBet(id,type,label,odd,league,teams) {
   if(!odd||odd<=0) return;
   if(slip[id]&&slip[id].t===type){delete slip[id];}
@@ -865,54 +1023,190 @@ function addBet(id,type,label,odd,league,teams) {
   showToast('✅ '+label+' added — Go to Bet Now');
   setTimeout(()=>window.location.href='betting.html',900);
 }
-function removeBet(id){delete slip[id];localStorage.setItem('ps_slip',JSON.stringify(slip));renderBsMainArea();updateBadges();}
-function goToBetting(){localStorage.setItem('ps_slip',JSON.stringify(slip));window.location.href='betting.html';}
+function removeBet(id){ delete slip[id]; localStorage.setItem('ps_slip',JSON.stringify(slip)); renderBsMainArea(); updateBadges(); }
+function goToBetting(){ localStorage.setItem('ps_slip',JSON.stringify(slip)); window.location.href='betting.html'; }
 
+/* ─── BETSLIP RENDER ──────────────────────────────────────────────────────── */
 function renderBsMainArea() {
-  const area=document.getElementById('bs-main-area'),betArea=document.getElementById('bs-bet-area'),items=Object.values(slip);
-  if(!isLoggedIn()){
-    area.style.display='block';betArea.style.display='none';
-    area.innerHTML=`<div class="bs-locked"><span class="mi" style="font-size:40px;color:#ccc;display:block;margin-bottom:10px;">lock</span><div class="bs-lock-title">Sign in to Bet</div><p class="bs-lock-txt">Log in or create a free account to start placing bets.</p><div class="bs-lock-btns"><a href="login.html" class="bs-lock-login">Login</a><a href="register.html" class="bs-lock-reg">Register</a></div></div><div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div><div class="mini-g"><div class="mg-title"><span class="mi">casino</span> Quick Games</div><div class="mg-grid"><a class="mg-card" href="games.html"><span class="mi" style="color:#f5a623;">sports_esports</span><div class="mg-name">eFootball</div></a><a class="mg-card" href="games.html"><span class="mi" style="color:#e74c3c;">style</span><div class="mg-name">Red Black</div></a><a class="mg-card" href="games.html"><span class="mi" style="color:#3498db;">height</span><div class="mg-name">Hi-Lo</div></a><a class="mg-card" href="games.html"><span class="mi" style="color:#2ecc71;">casino</span><div class="mg-name">Dice Roll</div></a></div></div>`;
-    renderWinners(); return;
+  const area    = document.getElementById('bs-main-area');
+  const betArea = document.getElementById('bs-bet-area');
+  const items   = Object.values(slip);
+
+  /* ── Guest view ── */
+  if (!isLoggedIn()) {
+    area.style.display    = 'block';
+    betArea.style.display = 'none';
+    area.innerHTML = `
+      <div class="bs-locked">
+        <span class="mi" style="font-size:40px;color:#ccc;display:block;margin-bottom:10px;">lock</span>
+        <div class="bs-lock-title">Sign in to Bet</div>
+        <p class="bs-lock-txt">Log in or create a free account to start placing bets.</p>
+        <div class="bs-lock-btns">
+          <a href="login.html" class="bs-lock-login">Login</a>
+          <a href="register.html" class="bs-lock-reg">Register</a>
+        </div>
+      </div>
+
+      <div class="book-section">
+        <div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div>
+        <p class="book-section-hint">Enter a code to preview games. Login to place the bet.</p>
+        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123"
+               onkeydown="if(event.key==='Enter')loadBookingCode()">
+        <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()">
+          <span class="mi" style="font-size:16px;">download</span> Load Code
+        </button>
+        <div id="book-result-area"></div>
+      </div>
+
+      <div class="winners">
+        <div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div>
+        <div id="winners-list"></div>
+      </div>
+      <div class="mini-g">
+        <div class="mg-title"><span class="mi">casino</span> Quick Games</div>
+        <div class="mg-grid">
+          <a class="mg-card" href="games.html"><span class="mi" style="color:#f5a623;">sports_esports</span><div class="mg-name">eFootball</div></a>
+          <a class="mg-card" href="games.html"><span class="mi" style="color:#e74c3c;">style</span><div class="mg-name">Red Black</div></a>
+          <a class="mg-card" href="games.html"><span class="mi" style="color:#3498db;">height</span><div class="mg-name">Hi-Lo</div></a>
+          <a class="mg-card" href="games.html"><span class="mi" style="color:#2ecc71;">casino</span><div class="mg-name">Dice Roll</div></a>
+        </div>
+      </div>`;
+
+    renderWinners();
+
+    // Auto-load any pending booking code (e.g. returning from login)
+    const pending = localStorage.getItem('ps_pending_code');
+    if (pending) {
+      const inp = document.getElementById('book-inp');
+      if (inp) { inp.value = pending; loadBookingCode(); }
+    }
+    return;
   }
-  if(!items.length){
-    area.style.display='block';betArea.style.display='none';
-    area.innerHTML=`<div class="bs-empty"><p class="bs-empty-txt">Click any odds to add selections, then head to Bet Now to place your bet.</p><div class="book-lbl">Booking Code</div><input class="book-inp" placeholder="Enter booking code…"><button class="load-btn"><span class="mi" style="font-size:15px;vertical-align:middle;">download</span> Load</button></div><div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
-    renderWinners(); return;
+
+  /* ── Logged in — no selections ── */
+  if (!items.length) {
+    area.style.display    = 'block';
+    betArea.style.display = 'none';
+    area.innerHTML = `
+      <div class="bs-empty">
+        <p class="bs-empty-txt">Click any odds to add selections, then head to Bet Now to place your bet.</p>
+      </div>
+
+      <div class="book-section">
+        <div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div>
+        <p class="book-section-hint">Enter a booking code to load a pre-built slip.</p>
+        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123"
+               onkeydown="if(event.key==='Enter')loadBookingCode()">
+        <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()">
+          <span class="mi" style="font-size:16px;">download</span> Load Code
+        </button>
+        <div id="book-result-area"></div>
+      </div>
+
+      <div class="winners">
+        <div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div>
+        <div id="winners-list"></div>
+      </div>`;
+
+    renderWinners();
+
+    // Auto-load pending booking code after login redirect
+    const pending = localStorage.getItem('ps_pending_code');
+    if (pending) {
+      localStorage.removeItem('ps_pending_code');
+      const inp = document.getElementById('book-inp');
+      if (inp) { inp.value = pending; loadBookingCode(); }
+    }
+    return;
   }
-  area.style.display='none';betArea.style.display='block';
-  document.getElementById('bet-items').innerHTML=items.map(b=>`<div class="bet-item"><button class="bet-rm" onclick="removeBet('${b.id}')"><span class="mi">close</span></button><div class="bet-league">${esc(b.league)}</div><div class="bet-match">${esc(b.teams)}</div><div class="bet-sel-row"><div><div class="bet-sel">${esc(b.label)}</div><div class="bet-mkt">Full Time</div></div><div class="bet-odd">${parseFloat(b.odd).toFixed(2)}</div></div></div>`).join('');
+
+  /* ── Has selections ── */
+  area.style.display    = 'none';
+  betArea.style.display = 'block';
+  document.getElementById('bet-items').innerHTML = items.map(b => `
+    <div class="bet-item">
+      <button class="bet-rm" onclick="removeBet('${b.id}')"><span class="mi">close</span></button>
+      <div class="bet-league">${esc(b.league)}</div>
+      <div class="bet-match">${esc(b.teams)}</div>
+      <div class="bet-sel-row">
+        <div>
+          <div class="bet-sel">${esc(b.label)}</div>
+          <div class="bet-mkt">Full Time</div>
+        </div>
+        <div class="bet-odd">${parseFloat(b.odd).toFixed(2)}</div>
+      </div>
+    </div>`).join('');
   calcPayout();
 }
 
-const winners=[{n:'Kwame A***',a:'GHS 11,928',t:'Sports Betting',c:'#e74c3c'},{n:'Ama B***',a:'GHS 5,000',t:'UCL Acca',c:'#3498db'},{n:'Kofi M***',a:'GHS 3,549',t:'Jackpot 12',c:'#2ecc71'},{n:'Abena S***',a:'GHS 11,100',t:'Sports Betting',c:'#9b59b6'}];
-function renderWinners(){const el=document.getElementById('winners-list');if(!el)return;el.innerHTML=winners.slice(0,4).map(w=>`<div class="winner-item"><div class="w-av" style="background:${w.c};"><span class="mi">person</span></div><div class="w-info"><div class="w-name">${w.n}</div><div class="w-type">${w.t}</div></div><div><div class="w-amt">${w.a}</div><div class="w-time">Just now</div></div></div>`).join('');}
-setInterval(()=>{const names=['Nana K***','Kwesi L***','Akua T***','Fiifi G***','Afia M***'],types=['Sports Betting','Jackpot 12','Hi-Lo','UCL Acca'],colors=['#e74c3c','#3498db','#2ecc71','#9b59b6','#e67e22','#1abc9c'];winners.unshift({n:names[Math.floor(Math.random()*names.length)],a:'GHS '+(Math.random()*15000+200|0).toLocaleString(),t:types[Math.floor(Math.random()*types.length)],c:colors[Math.floor(Math.random()*colors.length)]});if(winners.length>20)winners.pop();renderWinners();},6000);
+/* ─── WINNERS ─────────────────────────────────────────────────────────────── */
+const winners = [
+  {n:'Kwame A***',a:'GHS 11,928',t:'Sports Betting',c:'#e74c3c'},
+  {n:'Ama B***',  a:'GHS 5,000', t:'UCL Acca',      c:'#3498db'},
+  {n:'Kofi M***', a:'GHS 3,549', t:'Jackpot 12',    c:'#2ecc71'},
+  {n:'Abena S***',a:'GHS 11,100',t:'Sports Betting', c:'#9b59b6'}
+];
+function renderWinners(){
+  const el=document.getElementById('winners-list');
+  if(!el) return;
+  el.innerHTML=winners.slice(0,4).map(w=>`
+    <div class="winner-item">
+      <div class="w-av" style="background:${w.c};"><span class="mi">person</span></div>
+      <div class="w-info"><div class="w-name">${w.n}</div><div class="w-type">${w.t}</div></div>
+      <div><div class="w-amt">${w.a}</div><div class="w-time">Just now</div></div>
+    </div>`).join('');
+}
+setInterval(()=>{
+  const names =['Nana K***','Kwesi L***','Akua T***','Fiifi G***','Afia M***'];
+  const types =['Sports Betting','Jackpot 12','Hi-Lo','UCL Acca'];
+  const colors=['#e74c3c','#3498db','#2ecc71','#9b59b6','#e67e22','#1abc9c'];
+  winners.unshift({
+    n:names[Math.floor(Math.random()*names.length)],
+    a:'GHS '+(Math.random()*15000+200|0).toLocaleString(),
+    t:types[Math.floor(Math.random()*types.length)],
+    c:colors[Math.floor(Math.random()*colors.length)]
+  });
+  if(winners.length>20) winners.pop();
+  renderWinners();
+},6000);
 
-function calcPayout(){const items=Object.values(slip),tot=items.reduce((a,b)=>a*b.odd,1),stake=parseFloat(document.getElementById('stake-inp').value)||0;document.getElementById('sel-count').textContent=items.length;document.getElementById('tot-odds').textContent=tot.toFixed(2);document.getElementById('pot-win').textContent='GHS '+(stake*tot-stake).toFixed(2);document.getElementById('tot-payout').textContent='GHS '+(stake*tot).toFixed(2);}
-function setStake(v){document.getElementById('stake-inp').value=v;calcPayout();}
-function updateBadges(){const c=Object.keys(slip).length;document.getElementById('bubble-count').textContent=c;document.getElementById('mob-badge').textContent=c;}
+/* ─── PAYOUT / STAKES ─────────────────────────────────────────────────────── */
+function calcPayout(){
+  const items=Object.values(slip), tot=items.reduce((a,b)=>a*b.odd,1), stake=parseFloat(document.getElementById('stake-inp').value)||0;
+  document.getElementById('sel-count').textContent   = items.length;
+  document.getElementById('tot-odds').textContent    = tot.toFixed(2);
+  document.getElementById('pot-win').textContent     = 'GHS '+(stake*tot-stake).toFixed(2);
+  document.getElementById('tot-payout').textContent  = 'GHS '+(stake*tot).toFixed(2);
+}
+function setStake(v){ document.getElementById('stake-inp').value=v; calcPayout(); }
+function updateBadges(){
+  const c=Object.keys(slip).length;
+  document.getElementById('bubble-count').textContent=c;
+  document.getElementById('mob-badge').textContent=c;
+}
 
+/* ─── TOAST ───────────────────────────────────────────────────────────────── */
 function showToast(msg){
   let t=document.getElementById('ps-toast');
   if(!t){
     t=document.createElement('div');
     t.id='ps-toast';
-    t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a8a3c;color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);white-space:nowrap;pointer-events:none;transition:opacity .3s;';
+    t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a8a3c;color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:9999;box-shadow:0 4px 14px rgba(0,0,0,.2);white-space:nowrap;pointer-events:none;transition:opacity .3s;';
     document.body.appendChild(t);
   }
   t.textContent=msg;
   t.style.opacity='1';
   clearTimeout(t._to);
-  t._to=setTimeout(()=>{ t.style.opacity='0'; }, 2800);
+  t._to=setTimeout(()=>{ t.style.opacity='0'; },2800);
 }
 
-/* Auto-refresh live every 30s */
+/* ─── AUTO-REFRESH LIVE ───────────────────────────────────────────────────── */
 setInterval(async()=>{
   const live=await fetchLiveGames();
   if(live!==null) renderLiveMatches(live);
 },30000);
 
+/* ─── INIT ────────────────────────────────────────────────────────────────── */
 applyAuthState();
 renderBsMainArea();
 updateBadges();
