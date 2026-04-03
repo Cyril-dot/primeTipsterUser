@@ -9,16 +9,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --red:#cc0000;--red2:#e60000;--green:#1a8a3c;--green2:#22a848;
-  --yellow:#f5c518;--dark:#111;--dark2:#1e1e1e;--dark3:#2a2a2a;
-  --text:#1a1a1a;--muted:#666;--muted2:#999;--gray:#f0f0f0;
-  --gray2:#e4e4e4;--gray3:#ccc;--white:#fff;--radius:6px;
-}
+:root{--red:#cc0000;--red2:#e60000;--green:#1a8a3c;--green2:#22a848;--yellow:#f5c518;--dark:#111;--dark2:#1e1e1e;--dark3:#2a2a2a;--text:#1a1a1a;--muted:#666;--muted2:#999;--gray:#f0f0f0;--gray2:#e4e4e4;--gray3:#ccc;--white:#fff;}
 html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);font-size:14px;overflow-x:hidden;}
 .mi{font-family:'Material Icons Round';font-size:20px;line-height:1;vertical-align:middle;display:inline-flex;align-items:center;}
-
-/* HEADER */
 .header{background:var(--red);position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(0,0,0,.4);}
 .header-top{display:flex;align-items:center;gap:10px;padding:0 16px;height:56px;}
 .wordmark{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;}
@@ -49,18 +42,14 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .ud-item{display:flex;align-items:center;gap:8px;padding:11px 14px;font-size:12.5px;color:var(--text);text-decoration:none;border-bottom:1px solid #f5f5f5;cursor:pointer;}
 .ud-item:hover{background:#f8f8f8;color:var(--red);}
 .ud-item .mi{font-size:16px;color:var(--green);}
-.ud-logout{color:var(--red)!important;}
-.ud-logout .mi{color:var(--red)!important;}
+.ud-logout{color:var(--red)!important;}.ud-logout .mi{color:var(--red)!important;}
 .hamburger{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px;flex-shrink:0;}
-
-/* MOBILE MENU */
 .mob-menu{display:none;position:fixed;top:56px;left:0;right:0;background:var(--dark2);z-index:190;border-bottom:2px solid #333;max-height:calc(100vh - 56px);overflow-y:auto;}
 .mob-menu.open{display:block;}
 .mob-menu-lbl{padding:8px 16px;font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;}
 .mob-menu-item{padding:12px 16px;color:rgba(255,255,255,.8);font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;text-decoration:none;border-bottom:1px solid #2a2a2a;cursor:pointer;}
 .mob-menu-item:hover,.mob-menu-item.active{background:#252525;color:#fff;}
 .mob-menu-item .mi{font-size:18px;color:var(--green);}
-.mob-menu-item.live-item .mi{color:var(--red2);}
 .mob-menu-divider{height:6px;background:#111;}
 .mob-auth-row{display:flex;gap:8px;padding:12px 16px;}
 .mob-auth-row a{flex:1;text-align:center;padding:10px;border-radius:4px;font-weight:700;font-size:13px;text-decoration:none;}
@@ -71,12 +60,8 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-user-info .mob-uname{font-size:13px;font-weight:700;color:#fff;}
 .mob-user-info .mob-ubal{font-size:11px;color:var(--green);font-weight:600;}
 .mob-logout-btn{margin-left:auto;background:rgba(204,0,0,.2);border:1px solid rgba(204,0,0,.4);color:var(--red2);border-radius:4px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
-
-/* LAYOUT */
 .layout{display:flex;min-height:calc(100vh - 56px);}
 .center{flex:1;padding:10px;min-width:0;overflow:hidden;}
-
-/* HERO */
 .hero{background:var(--dark);border-radius:8px;padding:24px 28px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;min-height:180px;}
 .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.18) 100%);z-index:1;}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;filter:saturate(1.1) brightness(0.85);}
@@ -87,16 +72,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .hero p{color:rgba(255,255,255,.75);font-size:13px;margin-top:6px;}
 .hero-btn{margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;border:none;border-radius:5px;padding:11px 24px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;}
 .hero-btn:hover{background:var(--green2);}
-
-/* PROMO ROW */
 .promo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;}
 .promo-card{border-radius:6px;padding:14px 16px;cursor:pointer;position:relative;overflow:hidden;}
 .promo-card h4{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;color:#fff;text-transform:uppercase;}
 .promo-card p{font-size:11px;color:rgba(255,255,255,.7);margin-top:2px;}
 .pc-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.18;}
 .pc-icon .mi{font-size:44px;color:#fff;}
-
-/* LIVE CARDS ROW */
 .live-row{display:flex;gap:8px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
 .live-row::-webkit-scrollbar{display:none;}
 .live-card{background:var(--white);border-radius:6px;padding:10px 14px;min-width:175px;border:1px solid var(--gray2);cursor:pointer;flex-shrink:0;}
@@ -109,8 +90,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .lc-score{font-size:22px;font-weight:900;color:var(--red);font-family:'Barlow Condensed',sans-serif;letter-spacing:-1px;}
 .lc-time{font-size:10px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:3px;}
 .lc-time .mi{font-size:12px;}
-
-/* MATCH SECTIONS */
 .sc{background:var(--white);border-radius:6px;border:1px solid var(--gray2);margin-bottom:10px;}
 .sc-head{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--gray2);}
 .sc-dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0;}
@@ -123,8 +102,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .match-hdr{display:grid;grid-template-columns:190px 1fr;gap:4px;padding:4px 14px;background:#fafafa;border-bottom:1px solid var(--gray2);}
 .mhg{display:grid;grid-template-columns:repeat(3,1fr) 46px 1fr 38px;gap:3px;}
 .mhl{font-size:10px;color:var(--muted2);text-align:center;font-weight:700;text-transform:uppercase;}
-
-/* MATCH ROW */
 .match-row{display:grid;grid-template-columns:190px 1fr;gap:4px;padding:7px 14px;border-bottom:1px solid #f3f3f3;align-items:center;}
 .match-row:hover{background:#fafafa;}
 .match-left{display:flex;gap:8px;align-items:center;}
@@ -146,8 +123,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .more-btn:hover{color:var(--red);}
 .league-hdr-row{padding:6px 14px;font-size:11px;font-weight:700;color:#fff;background:var(--dark2);display:flex;align-items:center;gap:6px;}
 .league-hdr-row .mi{font-size:14px;color:var(--yellow);}
-
-/* LIVE SECTION */
 .live-sec{background:var(--dark);border-radius:6px;margin-bottom:10px;border:1px solid #333;overflow:hidden;}
 .live-sec-head{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--dark2);}
 .live-league-bar{padding:6px 14px;background:#1a1a1a;display:flex;align-items:center;gap:8px;border-bottom:1px solid #222;}
@@ -173,16 +148,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .lm-goals-v{background:#1a3a22;border:1px solid #2a5a32;border-radius:3px;padding:3px 2px;font-size:10px;font-weight:700;color:#7ae07a;text-align:center;}
 .lm-more{font-size:10px;color:#7ae07a;font-weight:700;text-align:center;cursor:pointer;}
 .lm-more:hover{color:var(--yellow);}
-
-/* JACKPOT */
 .jackpot{background:var(--dark);border-radius:6px;padding:16px 22px;margin-bottom:10px;display:flex;align-items:center;gap:18px;border:1px solid #5a0000;}
 .jp-logo{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;}
 .jp-logo span{color:var(--yellow);}
 .jp-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--yellow);display:flex;align-items:center;gap:6px;}
 .jp-amt{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--yellow);margin-left:auto;}
 .jp-btn{background:var(--yellow);color:#000;border:none;border-radius:5px;padding:10px 22px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;cursor:pointer;flex-shrink:0;}
-
-/* STATES */
 .state-box{padding:32px 20px;text-align:center;color:var(--muted);}
 .state-box .mi{font-size:40px;color:#ccc;display:block;margin-bottom:8px;}
 .state-box p{font-size:13px;line-height:1.6;}
@@ -190,14 +161,10 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .state-box.dark-state{background:#1a1a1a;}
 .state-box.dark-state .mi{color:#333;}
 .state-box.dark-state p{color:#555;}
-
-/* SKELETON */
 .skel{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;border-radius:3px;height:14px;margin-bottom:6px;}
 .skel.dark{background:linear-gradient(90deg,#222 25%,#2a2a2a 50%,#222 75%);background-size:200% 100%;}
 .skel-row{padding:12px 14px;border-bottom:1px solid #f3f3f3;display:flex;gap:12px;align-items:center;}
 .skel-row.dark-row{border-bottom:1px solid #222;}
-
-/* BETSLIP */
 .betslip{width:255px;flex-shrink:0;background:var(--white);border-left:1px solid var(--gray2);display:flex;flex-direction:column;max-height:calc(100vh - 56px);position:sticky;top:56px;overflow-y:auto;}
 .bs-tabs{display:flex;border-bottom:2px solid var(--gray2);}
 .bs-tab{flex:1;padding:12px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;justify-content:center;gap:5px;}
@@ -217,8 +184,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .bs-lock-reg{background:var(--green);color:#fff;}
 .bs-empty{padding:14px;}
 .bs-empty-txt{color:var(--muted);font-size:12.5px;line-height:1.65;margin-bottom:12px;}
-
-/* BOOKING CODE UI */
 .book-section{padding:10px 12px;border-top:1px solid var(--gray2);}
 .book-section-lbl{font-size:12px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:5px;color:var(--text);}
 .book-section-lbl .mi{font-size:15px;color:var(--green);}
@@ -243,14 +208,10 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .book-game-pick-lbl{font-size:11px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:3px;}
 .book-game-pick-lbl .mi{font-size:12px;}
 .book-game-odd{font-size:14px;font-weight:900;color:var(--green);font-family:'Barlow Condensed',sans-serif;}
-.book-game-score{font-size:10px;color:var(--muted);font-weight:600;}
 .book-game-date{font-size:10px;color:var(--muted2);}
-.book-add-btn{width:100%;background:var(--green);border:none;padding:11px;font-size:14px;font-weight:800;color:#fff;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:.3px;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s;}
+.book-add-btn{width:100%;background:var(--green);border:none;padding:12px;font-size:14px;font-weight:800;color:#fff;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:.3px;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s;}
 .book-add-btn:hover{background:var(--green2);}
 .book-add-btn.login-needed{background:var(--red);}
-.book-add-btn.login-needed:hover{background:var(--red2);}
-
-.book-lbl{font-size:12px;font-weight:600;margin-bottom:4px;}
 .winners{border-top:1px solid var(--gray2);padding:10px 12px;}
 .wf-title{font-size:12px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
 .wf-title .mi{font-size:16px;color:var(--yellow);}
@@ -300,74 +261,30 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .pb-live{background:rgba(230,0,0,.1);color:var(--red2);}
 .pb-ft{background:rgba(26,138,60,.1);color:var(--green);}
 .pb-up{background:var(--gray2);color:var(--muted);}
-
-/* ── FLOATING BUBBLE ── */
-.bet-bubble{
-  position:fixed;bottom:72px;right:18px;z-index:400;
-  display:none; /* shown via JS on mobile */
-  flex-direction:column;align-items:center;gap:4px;
-  cursor:pointer;border:none;background:none;padding:0;
-}
-.bet-bubble-btn{
-  width:58px;height:58px;background:var(--green);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(0,0,0,.35);
-  border:3px solid var(--green2);position:relative;
-  transition:transform .15s,background .15s;
-}
+/* BUBBLE */
+.bet-bubble{position:fixed;bottom:72px;right:18px;z-index:400;display:none;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:none;background:none;padding:0;}
+.bet-bubble-btn{width:58px;height:58px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.35);border:3px solid var(--green2);position:relative;transition:transform .15s,background .15s;}
 .bet-bubble-btn:hover{transform:scale(1.08);background:var(--green2);}
 .bet-bubble-btn .mi{font-size:26px;color:#fff;}
-.bet-bubble-count{
-  position:absolute;top:-5px;right:-5px;
-  background:var(--yellow);color:#000;
-  font-size:11px;font-weight:900;
-  min-width:20px;height:20px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  padding:0 4px;border:2px solid #fff;
-}
-/* label under bubble */
-.bet-bubble-label{
-  font-size:9px;font-weight:800;color:#fff;
-  background:rgba(0,0,0,.55);border-radius:3px;
-  padding:2px 6px;white-space:nowrap;letter-spacing:.3px;
-}
-
-/* ── MOBILE BETSLIP DRAWER ── */
+.bet-bubble-count{position:absolute;top:-5px;right:-5px;background:var(--yellow);color:#000;font-size:11px;font-weight:900;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid #fff;}
+.bet-bubble-label{font-size:9px;font-weight:800;color:#fff;background:rgba(0,0,0,.55);border-radius:3px;padding:2px 6px;white-space:nowrap;letter-spacing:.3px;}
+/* DRAWER */
 .bs-drawer-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:450;display:none;}
 .bs-drawer-overlay.open{display:block;}
-.bs-drawer{
-  position:fixed;bottom:0;left:0;right:0;z-index:460;
-  background:var(--white);border-radius:16px 16px 0 0;
-  max-height:88vh;overflow-y:auto;
-  transform:translateY(100%);transition:transform .3s ease;
-}
+.bs-drawer{position:fixed;bottom:0;left:0;right:0;z-index:460;background:var(--white);border-radius:16px 16px 0 0;max-height:88vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease;}
 .bs-drawer.open{transform:translateY(0);}
 .bs-drawer-handle{width:36px;height:4px;background:var(--gray3);border-radius:2px;margin:10px auto 0;}
-.bs-drawer-head{
-  padding:10px 14px;display:flex;align-items:center;
-  justify-content:space-between;border-bottom:2px solid var(--gray2);
-}
+.bs-drawer-head{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gray2);}
 .bs-drawer-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;display:flex;align-items:center;gap:6px;}
 .bs-drawer-title .mi{font-size:20px;color:var(--green);}
 .bs-drawer-close{background:none;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;}
 .bs-drawer-close .mi{font-size:22px;}
-
-/* Drawer inner tabs */
 .drawer-tabs{display:flex;border-bottom:2px solid var(--gray2);}
-.drawer-tab{
-  flex:1;padding:10px 6px;text-align:center;
-  font-size:12px;font-weight:700;cursor:pointer;
-  color:var(--muted);border-bottom:3px solid transparent;
-  margin-bottom:-2px;display:flex;align-items:center;
-  justify-content:center;gap:4px;
-}
+.drawer-tab{flex:1;padding:10px 6px;text-align:center;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;justify-content:center;gap:4px;}
 .drawer-tab .mi{font-size:15px;}
 .drawer-tab.active{color:var(--green);border-bottom-color:var(--green);}
-
 .drawer-pane{display:none;}
 .drawer-pane.active{display:block;}
-
-/* Betslip pane */
 .bs-drawer-body{padding:0 0 16px;}
 .drawer-empty{padding:28px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;}
 .drawer-empty .mi{font-size:40px;color:var(--gray3);display:block;margin-bottom:8px;}
@@ -386,19 +303,13 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .drawer-pw .val{font-weight:700;}
 .drawer-pw.tot{border-bottom:none;}
 .drawer-pw.tot .val{color:var(--green);font-size:15px;font-weight:800;}
-
-/* Booking code pane inside drawer */
-.drawer-book-pane{padding:14px 16px 24px;}
-.drawer-book-pane .book-section{padding:0;border-top:none;}
-.drawer-book-pane .book-section-lbl{font-size:13px;margin-bottom:6px;}
-.drawer-book-pane .book-inp{font-size:15px;padding:11px 12px;}
-.drawer-book-pane .book-load-btn{padding:11px;font-size:14px;margin-top:8px;}
-.drawer-book-pane .book-err{font-size:12px;}
-.drawer-book-pane .book-result{margin-top:10px;}
-.drawer-book-pane .book-game-teams{font-size:13px;}
-.drawer-book-pane .book-game-odd{font-size:16px;}
-.drawer-book-pane .book-add-btn{padding:13px;font-size:15px;}
-
+/* BOOKING LOADING OVERLAY */
+.booking-loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:600;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
+.booking-loading-overlay.show{display:flex;}
+.bl-spinner{width:52px;height:52px;border:4px solid rgba(255,255,255,.15);border-top-color:var(--green);border-radius:50%;animation:bspin .7s linear infinite;}
+@keyframes bspin{to{transform:rotate(360deg)}}
+.bl-msg{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:.3px;}
+.bl-sub{color:rgba(255,255,255,.55);font-size:13px;}
 /* FOOTER */
 .footer{background:var(--dark);color:#ccc;}
 .ft-top{padding:30px 24px 20px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:24px;border-bottom:1px solid #2a2a2a;}
@@ -410,16 +321,13 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .ft-col ul li a:hover{color:var(--yellow);}
 .ft-contact .ci{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;color:#777;}
 .ft-contact .ci .mi{font-size:15px;color:var(--green);}
-.socials{display:flex;gap:8px;margin-top:12px;}
-.soc{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;font-weight:800;}
 .ft-bot{padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .ft-legal{font-size:11px;color:#555;max-width:580px;line-height:1.55;}
 .badge-18{width:32px;height:32px;border-radius:50%;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#555;}
 .pay-icons{display:flex;gap:6px;align-items:center;}
 .pay-ic{background:#fff;border-radius:3px;padding:3px 8px;font-size:10px;font-weight:800;color:var(--dark);}
 .ft-copy{padding:10px 24px;border-top:1px solid #1a1a1a;text-align:center;font-size:11px;color:#444;}
-
-/* MOBILE NAV */
+/* MOB NAV */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--red);z-index:300;border-top:2px solid #a80000;}
 .mob-nav-inner{display:flex;}
 .mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px;cursor:pointer;color:rgba(255,255,255,.7);font-size:10px;font-weight:600;gap:2px;text-decoration:none;}
@@ -427,12 +335,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-item.active,.mob-item:hover{color:#fff;}
 .mob-badge-wrap{position:relative;}
 .mob-badge{position:absolute;background:var(--yellow);color:#000;font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;top:-4px;right:-6px;padding:0 3px;}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .betslip{display:none;}
-  /* bubble always visible on mobile (display set by JS) */
-}
+@media(max-width:900px){.betslip{display:none;}}
 @media(max-width:800px){
   .header-nav,#guest-auth,#user-auth{display:none!important;}
   .hamburger{display:flex;}
@@ -451,11 +354,18 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   .odds-grid,.mhg{grid-template-columns:repeat(3,1fr) 36px 1fr 28px;}
 }
 @media(max-width:600px){.ft-top{grid-template-columns:1fr;}.promo-row{grid-template-columns:1fr 1fr;}}
-@media(max-width:480px){.promo-row{grid-template-columns:1fr 1fr;}.hero h2{font-size:20px;}.jp-title{font-size:18px;}.jp-amt{font-size:22px;}.jp-btn{padding:8px 14px;font-size:14px;}}
+@media(max-width:480px){.promo-row{grid-template-columns:1fr 1fr;}.hero h2{font-size:20px;}.jp-title{font-size:18px;}.jp-amt{font-size:22px;}}
 @media(min-width:901px){.bet-bubble{display:none!important;}}
 </style>
 </head>
 <body>
+
+<!-- BOOKING LOADING OVERLAY -->
+<div class="booking-loading-overlay" id="booking-loading-overlay">
+  <div class="bl-spinner"></div>
+  <div class="bl-msg">Loading your slip…</div>
+  <div class="bl-sub">Taking you to Bet Now to place your stake</div>
+</div>
 
 <header class="header">
   <div class="header-top">
@@ -477,15 +387,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     <div id="user-auth">
       <a href="wallet.html" class="wallet-chip">
         <span class="mi">account_balance_wallet</span>
-        <span class="wallet-bal" id="header-balance">GHS —</span>
+        <span class="wallet-bal" id="header-balance">GHS &mdash;</span>
       </a>
       <div class="user-wrap">
         <div class="user-avatar" id="user-avatar" onclick="toggleDropdown()">??</div>
         <div class="user-dropdown" id="user-dropdown">
-          <div class="ud-header">
-            <div class="ud-name" id="dd-name">—</div>
-            <div class="ud-email" id="dd-email">—</div>
-          </div>
+          <div class="ud-header"><div class="ud-name" id="dd-name">&mdash;</div><div class="ud-email" id="dd-email">&mdash;</div></div>
           <a class="ud-item" href="wallet.html"><span class="mi">account_balance_wallet</span> My Wallet</a>
           <a class="ud-item" href="betting.html"><span class="mi">receipt_long</span> My Bets</a>
           <div class="ud-item ud-logout" onclick="logout()"><span class="mi">logout</span> Sign Out</div>
@@ -507,8 +414,8 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     <div class="mob-user-bar">
       <div class="mob-av" id="mob-av">??</div>
       <div class="mob-user-info">
-        <div class="mob-uname" id="mob-uname">—</div>
-        <div class="mob-ubal" id="mob-ubal">Loading balance…</div>
+        <div class="mob-uname" id="mob-uname">&mdash;</div>
+        <div class="mob-ubal" id="mob-ubal">Loading balance&hellip;</div>
       </div>
       <button class="mob-logout-btn" onclick="logout()">Sign Out</button>
     </div>
@@ -517,7 +424,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <div class="mob-menu-lbl">Navigation</div>
   <a class="mob-menu-item active" href="index.html"><span class="mi">home</span> Home</a>
   <a class="mob-menu-item" href="betting.html"><span class="mi">receipt_long</span> Bet Now</a>
-  <a class="mob-menu-item live-item" href="live-games.html"><span class="mi">cell_tower</span> Live Betting <span class="live-pill" style="margin-left:auto;">LIVE</span></a>
+  <a class="mob-menu-item" href="live-games.html"><span class="mi">cell_tower</span> Live Betting <span class="live-pill" style="margin-left:auto;">LIVE</span></a>
   <a class="mob-menu-item" href="games.html"><span class="mi">sports_esports</span> Games</a>
   <a class="mob-menu-item" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
 </div>
@@ -557,8 +464,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <div></div>
       <div class="mhg">
         <div class="mhl">1</div><div class="mhl">X</div><div class="mhl">2</div>
-        <div class="mhl">Goals</div><div class="mhl">Over</div>
-        <div></div>
+        <div class="mhl">Goals</div><div class="mhl">Over</div><div></div>
       </div>
     </div>
     <div id="match-list"></div>
@@ -580,14 +486,13 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     <div>
       <div class="jp-logo">PRIME<span>STAKES</span></div>
       <div class="jp-title"><span class="mi">emoji_events</span> JACKPOT 12</div>
-      <div style="font-size:12px;color:#aaa;">Pick 12 correct scores — Win massive</div>
+      <div style="font-size:12px;color:#aaa;">Pick 12 correct scores &mdash; Win massive</div>
     </div>
     <div class="jp-amt">GHS 150,000</div>
     <button class="jp-btn" onclick="location.href='betting.html'"><span class="mi">confirmation_number</span> BET NOW</button>
   </div>
 </main>
 
-<!-- DESKTOP BETSLIP -->
 <aside class="betslip" id="betslip-panel">
   <div class="bs-tabs">
     <div class="bs-tab active"><span class="mi">receipt_long</span> Betslip</div>
@@ -619,10 +524,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </aside>
 </div>
 
-<!-- ═══════════════════════════════════════
-     FLOATING BETSLIP BUBBLE (mobile only)
-     Always visible — shows betslip + booking code tabs
-════════════════════════════════════════ -->
 <button class="bet-bubble" id="bet-bubble" onclick="openDrawer()">
   <div class="bet-bubble-btn">
     <span class="mi">receipt_long</span>
@@ -631,7 +532,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <span class="bet-bubble-label">BETSLIP</span>
 </button>
 
-<!-- MOBILE BETSLIP DRAWER (with tabs: Betslip | Booking Code) -->
 <div class="bs-drawer-overlay" id="bs-drawer-overlay" onclick="closeDrawer()"></div>
 <div class="bs-drawer" id="bs-drawer">
   <div class="bs-drawer-handle"></div>
@@ -639,8 +539,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     <span class="bs-drawer-title"><span class="mi">receipt_long</span> Betslip</span>
     <button class="bs-drawer-close" onclick="closeDrawer()"><span class="mi">close</span></button>
   </div>
-
-  <!-- Drawer Tabs -->
   <div class="drawer-tabs">
     <div class="drawer-tab active" id="dtab-slip" onclick="switchDrawerTab('slip')">
       <span class="mi">receipt_long</span> Betslip
@@ -650,27 +548,23 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <span class="mi">confirmation_number</span> Booking Code
     </div>
   </div>
-
-  <!-- Betslip Pane -->
   <div class="drawer-pane active" id="dpane-slip">
     <div class="bs-drawer-body" id="bs-drawer-body"></div>
   </div>
-
-  <!-- Booking Code Pane -->
   <div class="drawer-pane" id="dpane-book">
-    <div class="drawer-book-pane">
-      <div class="book-section" style="border-top:none;padding:0;">
-        <div class="book-section-lbl" style="font-size:13px;margin-bottom:8px;">
-          <span class="mi">confirmation_number</span> Load a Booking Code
-        </div>
-        <p class="book-section-hint" style="font-size:12px;margin-bottom:10px;">Enter a booking code shared with you to preview and load games into your betslip.</p>
-        <input class="book-inp" id="mob-book-inp" placeholder="e.g. ABC123" style="font-size:15px;padding:12px;"
-          onkeydown="if(event.key==='Enter')loadMobBookingCode()">
-        <button class="book-load-btn" id="mob-book-load-btn" onclick="loadMobBookingCode()" style="padding:12px;font-size:14px;margin-top:8px;">
-          <span class="mi" style="font-size:16px;">download</span> Load Code
-        </button>
-        <div id="mob-book-result-area"></div>
+    <div style="padding:16px 16px 24px;">
+      <div style="font-size:15px;font-weight:700;display:flex;align-items:center;gap:7px;margin-bottom:8px;color:var(--dark);">
+        <span class="mi" style="color:var(--green);">confirmation_number</span> Load a Booking Code
       </div>
+      <p style="font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:12px;">
+        Enter a booking code to preview your games. Tap <strong>Load &amp; Bet Now</strong> and you'll be taken straight to Bet Now to enter your stake and confirm.
+      </p>
+      <input class="book-inp" id="mob-book-inp" placeholder="e.g. ABC123" style="font-size:16px;padding:13px 12px;"
+        onkeydown="if(event.key==='Enter')loadMobBookingCode()">
+      <button class="book-load-btn" id="mob-book-load-btn" onclick="loadMobBookingCode()" style="padding:13px;font-size:15px;margin-top:10px;">
+        <span class="mi" style="font-size:18px;">download</span> Load &amp; Bet Now
+      </button>
+      <div id="mob-book-result-area" style="margin-top:4px;"></div>
     </div>
   </div>
 </div>
@@ -696,10 +590,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
         <div style="width:4px;height:34px;background:#f5c518;border-radius:0 3px 3px 0;"></div>
       </div>
       <p style="font-size:12px;color:#555;margin-top:10px;line-height:1.7;">Official Sports Betting Platform. Licensed by the Gaming Commission of Ghana.</p>
-      <div style="display:flex;gap:8px;margin-top:10px;">
-        <div style="background:rgba(255,255,255,.08);border-radius:4px;padding:4px 8px;font-size:10px;color:#999;">LICENSED</div>
-        <div style="background:rgba(255,255,255,.08);border-radius:4px;padding:4px 8px;font-size:10px;color:#999;">18+</div>
-      </div>
     </div>
     <div class="ft-col"><h4>Company</h4><ul>
       <li><a href="#"><span class="mi">chevron_right</span> About Us</a></li>
@@ -717,430 +607,293 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <div class="ci"><span class="mi">phone</span> +233 059 692 1899</div>
       <div class="ci"><span class="mi">email</span> support@primestakes.com</div>
       <div class="ci"><span class="mi">location_on</span> Accra, Ghana</div>
-      <div class="socials">
-        <div class="soc" style="background:#1877f2;color:#fff;">f</div>
-        <div class="soc" style="background:#000;color:#fff;">𝕏</div>
-        <div class="soc" style="background:#e1306c;color:#fff;"><span class="mi" style="font-size:14px;">photo_camera</span></div>
-        <div class="soc" style="background:#25d366;color:#fff;"><span class="mi" style="font-size:14px;">chat</span></div>
-      </div>
     </div>
   </div>
   <div class="ft-bot">
     <div class="badge-18">18+</div>
     <p class="ft-legal">Age 18+ only. Play Responsibly. PrimeStakes is licensed by the Gaming Commission of Ghana under Act 721, License No. 0000237.</p>
     <div class="pay-icons">
-      <div class="pay-ic">VISA</div>
-      <div class="pay-ic">Mastercard</div>
+      <div class="pay-ic">VISA</div><div class="pay-ic">Mastercard</div>
       <div class="pay-ic" style="color:#ffcb00;font-weight:900;">MTN</div>
       <div class="pay-ic" style="color:#e60000;">Vodafone</div>
       <div class="pay-ic" style="color:#00a0e3;font-size:10px;">AirtelTigo</div>
     </div>
   </div>
-  <div class="ft-copy">© 2026 PrimeStakes. All rights reserved.</div>
+  <div class="ft-copy">&copy; 2026 PrimeStakes. All rights reserved.</div>
 </footer>
 
 <script>
-const API_BASE      = 'https://kikiwebbackend-iysi.onrender.com';
-const FOOTBALL_BASE = 'https://kikiwebbackend-iysi.onrender.com';
+const API_BASE='https://kikiwebbackend-iysi.onrender.com';
+const FOOTBALL_BASE='https://kikiwebbackend-iysi.onrender.com';
 
-/* ─── AUTH HELPERS ─── */
-function getToken()  { return localStorage.getItem('ps_stakes') || localStorage.getItem('token') || localStorage.getItem('accessToken') || null; }
-function getUser()   { try { return JSON.parse(localStorage.getItem('ps_user') || '{}') || {}; } catch { return {}; } }
-function isLoggedIn(){ return !!getToken(); }
-function getDisplayName(u) {
-  if (u.firstName || u.lastName) return [u.firstName, u.lastName].filter(Boolean).join(' ');
-  return u.name || u.username || (u.email ? u.email.split('@')[0] : 'My Account');
-}
-function getInitials(u) {
-  if (u.firstName || u.lastName) return ((u.firstName||'').charAt(0)+(u.lastName||'').charAt(0)).toUpperCase();
-  if (u.name)     return u.name.substring(0,2).toUpperCase();
-  if (u.username) return u.username.substring(0,2).toUpperCase();
-  if (u.email)    return u.email.charAt(0).toUpperCase();
-  return '?';
-}
+function getToken(){return localStorage.getItem('ps_stakes')||localStorage.getItem('token')||localStorage.getItem('accessToken')||null;}
+function getUser(){try{return JSON.parse(localStorage.getItem('ps_user')||'{}')||{};}catch{return{};}}
+function isLoggedIn(){return !!getToken();}
+function getDisplayName(u){if(u.firstName||u.lastName)return[u.firstName,u.lastName].filter(Boolean).join(' ');return u.name||u.username||(u.email?u.email.split('@')[0]:'My Account');}
+function getInitials(u){if(u.firstName||u.lastName)return((u.firstName||'').charAt(0)+(u.lastName||'').charAt(0)).toUpperCase();if(u.name)return u.name.substring(0,2).toUpperCase();if(u.username)return u.username.substring(0,2).toUpperCase();if(u.email)return u.email.charAt(0).toUpperCase();return'?';}
 
-function applyAuthState() {
-  const guestEl = document.getElementById('guest-auth');
-  const userEl  = document.getElementById('user-auth');
-  if (isLoggedIn()) {
-    const u = getUser();
-    guestEl.style.display = 'none';
-    userEl.style.display  = 'flex';
-    document.getElementById('user-avatar').textContent = getInitials(u);
-    document.getElementById('dd-name').textContent     = getDisplayName(u);
-    document.getElementById('dd-email').textContent    = u.email || '';
-    const heroCta = document.getElementById('hero-cta');
-    if (heroCta) { heroCta.href = 'betting.html'; heroCta.innerHTML = '<span class="mi">receipt_long</span> Bet Now'; }
-    document.getElementById('mob-guest-section').style.display = 'none';
-    document.getElementById('mob-user-section').style.display  = 'block';
-    document.getElementById('mob-av').textContent    = getInitials(u);
-    document.getElementById('mob-uname').textContent = getDisplayName(u);
+function applyAuthState(){
+  const guestEl=document.getElementById('guest-auth'),userEl=document.getElementById('user-auth');
+  if(isLoggedIn()){
+    const u=getUser();
+    guestEl.style.display='none';userEl.style.display='flex';
+    document.getElementById('user-avatar').textContent=getInitials(u);
+    document.getElementById('dd-name').textContent=getDisplayName(u);
+    document.getElementById('dd-email').textContent=u.email||'';
+    const heroCta=document.getElementById('hero-cta');
+    if(heroCta){heroCta.href='betting.html';heroCta.innerHTML='<span class="mi">receipt_long</span> Bet Now';}
+    document.getElementById('mob-guest-section').style.display='none';
+    document.getElementById('mob-user-section').style.display='block';
+    document.getElementById('mob-av').textContent=getInitials(u);
+    document.getElementById('mob-uname').textContent=getDisplayName(u);
     fetchBalance();
-  } else {
-    guestEl.style.display = 'flex';
-    userEl.style.display  = 'none';
-    document.getElementById('mob-guest-section').style.display = 'block';
-    document.getElementById('mob-user-section').style.display  = 'none';
+  }else{
+    guestEl.style.display='flex';userEl.style.display='none';
+    document.getElementById('mob-guest-section').style.display='block';
+    document.getElementById('mob-user-section').style.display='none';
   }
 }
-
-async function fetchBalance() {
-  const token = getToken(); if (!token) return;
-  try {
-    const res = await fetch(`${API_BASE}/api/v1/users/me`, { headers:{'Authorization':`Bearer ${token}`}, signal:AbortSignal.timeout(10000) });
-    if (res.ok) {
-      const data = await res.json();
-      const payload = data.data || data;
-      const bal = payload.walletBalance ?? payload.balance ?? payload.wallet?.balance ?? null;
-      if (bal !== null) {
-        const fmt = 'GHS ' + parseFloat(bal).toFixed(2);
-        document.getElementById('header-balance').textContent = fmt;
-        const mobBal = document.getElementById('mob-ubal'); if (mobBal) mobBal.textContent = fmt;
+async function fetchBalance(){
+  const token=getToken();if(!token)return;
+  try{
+    const res=await fetch(`${API_BASE}/api/v1/users/me`,{headers:{'Authorization':`Bearer ${token}`},signal:AbortSignal.timeout(10000)});
+    if(res.ok){
+      const data=await res.json(),payload=data.data||data;
+      const bal=payload.walletBalance??payload.balance??payload.wallet?.balance??null;
+      if(bal!==null){
+        const fmt='GHS '+parseFloat(bal).toFixed(2);
+        document.getElementById('header-balance').textContent=fmt;
+        const mb=document.getElementById('mob-ubal');if(mb)mb.textContent=fmt;
       }
-    } else if (res.status === 401) logout(false);
-  } catch { document.getElementById('header-balance').textContent = 'GHS —'; }
+    }else if(res.status===401)logout(false);
+  }catch{}
 }
-
-function logout(redirect=true) {
-  ['ps_stakes','ps_user','ps_slip','token','accessToken'].forEach(k=>localStorage.removeItem(k));
-  if (redirect) window.location.href = 'login.html';
-}
-function toggleDropdown() { document.getElementById('user-dropdown').classList.toggle('open'); }
-function toggleMenu()     { document.getElementById('mob-menu').classList.toggle('open'); }
-document.addEventListener('click', e => {
-  const userArea = document.getElementById('user-auth');
-  if (userArea && !userArea.contains(e.target)) document.getElementById('user-dropdown')?.classList.remove('open');
-  const menu = document.getElementById('mob-menu');
-  const ham  = document.querySelector('.hamburger');
-  if (menu?.classList.contains('open') && !menu.contains(e.target) && !ham?.contains(e.target)) menu.classList.remove('open');
+function logout(redirect=true){['ps_stakes','ps_user','ps_slip','token','accessToken'].forEach(k=>localStorage.removeItem(k));if(redirect)window.location.href='login.html';}
+function toggleDropdown(){document.getElementById('user-dropdown').classList.toggle('open');}
+function toggleMenu(){document.getElementById('mob-menu').classList.toggle('open');}
+document.addEventListener('click',e=>{
+  const ua=document.getElementById('user-auth');
+  if(ua&&!ua.contains(e.target))document.getElementById('user-dropdown')?.classList.remove('open');
+  const menu=document.getElementById('mob-menu'),ham=document.querySelector('.hamburger');
+  if(menu?.classList.contains('open')&&!menu.contains(e.target)&&!ham?.contains(e.target))menu.classList.remove('open');
 });
 
-/* ─── SLIP STATE ─── */
-let slip = {};
-try { const s = localStorage.getItem('ps_slip'); if (s) slip = JSON.parse(s); } catch {}
+let slip={};
+try{const s=localStorage.getItem('ps_slip');if(s)slip=JSON.parse(s);}catch{}
 
-/* ─── DRAWER TABS ─── */
-let activeDrawerTab = 'slip';
-function switchDrawerTab(tab) {
-  activeDrawerTab = tab;
-  document.getElementById('dtab-slip').classList.toggle('active', tab==='slip');
-  document.getElementById('dtab-book').classList.toggle('active', tab==='book');
-  document.getElementById('dpane-slip').classList.toggle('active', tab==='slip');
-  document.getElementById('dpane-book').classList.toggle('active', tab==='book');
+let activeDrawerTab='slip';
+function switchDrawerTab(tab){
+  activeDrawerTab=tab;
+  document.getElementById('dtab-slip').classList.toggle('active',tab==='slip');
+  document.getElementById('dtab-book').classList.toggle('active',tab==='book');
+  document.getElementById('dpane-slip').classList.toggle('active',tab==='slip');
+  document.getElementById('dpane-book').classList.toggle('active',tab==='book');
 }
-
-/* ─── MOBILE DRAWER ─── */
-function openDrawer(tab) {
-  if (tab) switchDrawerTab(tab);
+function openDrawer(tab){
+  if(tab)switchDrawerTab(tab);
   renderDrawer();
   document.getElementById('bs-drawer-overlay').classList.add('open');
   document.getElementById('bs-drawer').classList.add('open');
-  // check for pending code
-  const pending = localStorage.getItem('ps_pending_code');
-  if (pending) {
-    switchDrawerTab('book');
-    const inp = document.getElementById('mob-book-inp');
-    if (inp) { inp.value = pending; loadMobBookingCode(); }
-  }
 }
-function closeDrawer() {
+function closeDrawer(){
   document.getElementById('bs-drawer-overlay').classList.remove('open');
   document.getElementById('bs-drawer').classList.remove('open');
 }
-
-function renderDrawer() {
-  const body  = document.getElementById('bs-drawer-body');
-  const items = Object.values(slip);
-
-  if (!items.length) {
-    body.innerHTML = `
-      <div class="drawer-empty">
-        <span class="mi">receipt_long</span>
-        No selections yet.<br>Tap any odds to add them here.
-      </div>
-      <div style="padding:0 16px 8px;">
-        <button onclick="openDrawer('book')" style="width:100%;padding:12px;background:none;border:1.5px dashed var(--green);border-radius:6px;color:var(--green);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Barlow',sans-serif;">
-          <span class="mi">confirmation_number</span> Load a Booking Code
-        </button>
-      </div>`;
-    return;
-  }
-
-  const stake = 10;
-  const tot   = items.reduce((a,b) => a * b.odd, 1);
-
-  let html = '<div style="padding:10px 14px 0;">';
-  html += items.map(b => `
-    <div class="drawer-bet-item">
-      <button class="drawer-bet-rm" onclick="removeAndRefreshDrawer('${b.id}')"><span class="mi">close</span></button>
-      <div class="bet-league">${esc(b.league)}</div>
-      <div class="bet-match">${esc(b.teams)}</div>
-      <div class="bet-sel-row">
-        <div>
-          <div class="bet-sel">${esc(b.label)}</div>
-          <div class="bet-mkt">Full Time</div>
-        </div>
-        <div class="bet-odd">${parseFloat(b.odd).toFixed(2)}</div>
-      </div>
-    </div>`).join('');
-
-  html += `</div>
-    <div style="padding:0 14px;">
-      <div class="drawer-payout">
-        <div class="drawer-pw"><span class="lbl">Selections</span><span class="val">${items.length}</span></div>
-        <div class="drawer-pw"><span class="lbl">Total odds</span><span class="val">${tot.toFixed(2)}</span></div>
-        <div class="drawer-pw tot"><span class="lbl" style="font-weight:700;">Est. payout (GHS 10)</span><span class="val">GHS ${(10 * tot).toFixed(2)}</span></div>
-      </div>
-      <button class="drawer-go-btn" onclick="goToBetting()">
-        <span class="mi">receipt_long</span> Go to Bet Now
+function renderDrawer(){
+  const body=document.getElementById('bs-drawer-body'),items=Object.values(slip);
+  if(!items.length){
+    body.innerHTML=`<div class="drawer-empty"><span class="mi">receipt_long</span>No selections yet.<br>Tap any odds to add them here.</div>
+    <div style="padding:0 16px 8px;">
+      <button onclick="switchDrawerTab('book')" style="width:100%;padding:12px;background:none;border:1.5px dashed var(--green);border-radius:6px;color:var(--green);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Barlow',sans-serif;">
+        <span class="mi">confirmation_number</span> Load a Booking Code
       </button>
-      <button class="drawer-clear-btn" onclick="clearSlipAndDrawer()">Clear all selections</button>
-    </div>`;
-
-  body.innerHTML = html;
+    </div>`;return;
+  }
+  const tot=items.reduce((a,b)=>a*b.odd,1);
+  let html='<div style="padding:10px 14px 0;">';
+  html+=items.map(b=>`<div class="drawer-bet-item">
+    <button class="drawer-bet-rm" onclick="removeAndRefreshDrawer('${b.id}')"><span class="mi">close</span></button>
+    <div class="bet-league">${esc(b.league)}</div>
+    <div class="bet-match">${esc(b.teams)}</div>
+    <div class="bet-sel-row">
+      <div><div class="bet-sel">${esc(b.label)}</div><div class="bet-mkt">Full Time</div></div>
+      <div class="bet-odd">${parseFloat(b.odd).toFixed(2)}</div>
+    </div></div>`).join('');
+  html+=`</div><div style="padding:0 14px;">
+    <div class="drawer-payout">
+      <div class="drawer-pw"><span class="lbl">Selections</span><span class="val">${items.length}</span></div>
+      <div class="drawer-pw"><span class="lbl">Total odds</span><span class="val">${tot.toFixed(2)}</span></div>
+      <div class="drawer-pw tot"><span class="lbl" style="font-weight:700;">Est. payout (GHS 10)</span><span class="val">GHS ${(10*tot).toFixed(2)}</span></div>
+    </div>
+    <button class="drawer-go-btn" onclick="goToBetting()"><span class="mi">receipt_long</span> Go to Bet Now</button>
+    <button class="drawer-clear-btn" onclick="clearSlipAndDrawer()">Clear all selections</button>
+  </div>`;
+  body.innerHTML=html;
 }
+function removeAndRefreshDrawer(id){delete slip[id];localStorage.setItem('ps_slip',JSON.stringify(slip));renderBsMainArea();updateBadges();renderDrawer();}
+function clearSlipAndDrawer(){slip={};localStorage.setItem('ps_slip',JSON.stringify(slip));renderBsMainArea();updateBadges();renderDrawer();}
 
-function removeAndRefreshDrawer(id) {
-  delete slip[id];
-  localStorage.setItem('ps_slip', JSON.stringify(slip));
-  renderBsMainArea();
-  updateBadges();
-  renderDrawer();
-}
+/* ── BOOKING CODE ── */
+let loadedBooking=null,loadedMobBooking=null;
 
-function clearSlipAndDrawer() {
-  slip = {};
-  localStorage.setItem('ps_slip', JSON.stringify(slip));
-  renderBsMainArea();
-  updateBadges();
-  renderDrawer();
-}
-
-/* ─── BOOKING CODE SHARED LOGIC ─── */
-let loadedBooking     = null;  // desktop
-let loadedMobBooking  = null;  // mobile drawer
-
-async function _fetchBookingCode(code) {
-  const r1 = await fetch(`${API_BASE}/api/v1/booking-codes/standard/${code}`, { signal: AbortSignal.timeout(14000) });
-  if (r1.ok) return { data: await r1.json(), isCorrectScore: false };
-  if (r1.status === 400 || r1.status === 404) {
-    const r2 = await fetch(`${API_BASE}/api/v1/booking-codes/correct-score/${code}`, { signal: AbortSignal.timeout(14000) });
-    if (r2.ok)              return { data: await r2.json(), isCorrectScore: true };
-    if (r2.status === 404)  throw new Error('Booking code not found. Please check and try again.');
-    if (r2.status === 410)  throw new Error('This booking code has expired or been disabled.');
+async function _fetchBookingCode(code){
+  const r1=await fetch(`${API_BASE}/api/v1/booking-codes/standard/${code}`,{signal:AbortSignal.timeout(14000)});
+  if(r1.ok)return{data:await r1.json(),isCorrectScore:false};
+  if(r1.status===400||r1.status===404){
+    const r2=await fetch(`${API_BASE}/api/v1/booking-codes/correct-score/${code}`,{signal:AbortSignal.timeout(14000)});
+    if(r2.ok)return{data:await r2.json(),isCorrectScore:true};
+    if(r2.status===404)throw new Error('Booking code not found. Please check and try again.');
+    if(r2.status===410)throw new Error('This booking code has expired or been disabled.');
     throw new Error('Could not load booking code. Try again.');
   }
-  if (r1.status === 410) throw new Error('This booking code has expired or been disabled.');
+  if(r1.status===410)throw new Error('This booking code has expired or been disabled.');
   throw new Error('Could not load booking code. Try again.');
 }
 
-function _bookingResultHtml(data, isCorrectScore, addFnName) {
-  if (!data || !data.games || !data.games.length)
-    return '<div class="book-err"><span class="mi">error_outline</span>No games found in this booking code.</div>';
-  const combinedOdds = data.combinedOdds ? parseFloat(data.combinedOdds).toFixed(2) : '—';
-  const count        = data.gameCount || data.games.length;
-  const typeLabel    = isCorrectScore ? 'Correct Score' : 'Standard';
-  const gamesHtml = data.games.map(g => {
-    const pickLabel = g.pickLabel || g.pick || '';
-    const oddVal    = g.odds ? parseFloat(g.odds).toFixed(2) : '—';
-    const scoreLine = isCorrectScore && g.scorePrediction
-      ? `<div class="book-game-score"><span class="mi" style="font-size:11px;">scoreboard</span> Predicted: ${esc(g.scorePrediction)}</div>` : '';
-    const dateStr = g.matchDate
-      ? new Date(g.matchDate).toLocaleDateString('en-GB', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' })
-      : '';
-    return `<div class="book-game">
+/* Converts API response to ps_slip entries — compatible with both index.html and betting.html */
+function _bookingToSlip(data,isCorrectScore){
+  const entries={};
+  (data.games||[]).forEach(g=>{
+    const gameId=g.gameId?String(g.gameId):`${g.homeTeam}_${g.awayTeam}`;
+    const pickType=isCorrectScore?'CS':'1X2';
+    const subKey=g.pick||g.optId||gameId;
+    const key=`${gameId}-${pickType}-${subKey}`;
+    const label=isCorrectScore&&g.scorePrediction?`Score ${g.scorePrediction} (Correct Score)`:(g.pickLabel||g.pick||'Selection');
+    entries[key]={
+      key,id:key,gameId,
+      t:g.pick,
+      type:isCorrectScore?'CS':'1X2',
+      label,
+      odd:parseFloat(g.odds)||1,
+      league:g.league||'Booking Code',
+      teams:`${g.homeTeam} v ${g.awayTeam}`,
+      isScore:isCorrectScore,
+      optId:g.optId||g.correctScoreOptionId||null
+    };
+  });
+  return entries;
+}
+
+function _buildBookingResultHtml(data,isCorrectScore,addFn){
+  if(!data||!data.games||!data.games.length)return'<div class="book-err"><span class="mi">error_outline</span>No games found in this booking code.</div>';
+  const combinedOdds=data.combinedOdds?parseFloat(data.combinedOdds).toFixed(2):'&mdash;';
+  const count=data.gameCount||data.games.length;
+  const gamesHtml=data.games.map(g=>{
+    const pickLabel=g.pickLabel||g.pick||'';
+    const oddVal=g.odds?parseFloat(g.odds).toFixed(2):'&mdash;';
+    const scoreLine=isCorrectScore&&g.scorePrediction?`<div style="font-size:10px;color:var(--muted);"><span class="mi" style="font-size:11px;">scoreboard</span> ${esc(g.scorePrediction)}</div>`:'';
+    const dateStr=g.matchDate?new Date(g.matchDate).toLocaleDateString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+    return`<div class="book-game">
       <div class="book-game-teams">${esc(g.homeTeam||'Home')} <span style="color:var(--muted);font-weight:400;font-size:10px;">vs</span> ${esc(g.awayTeam||'Away')}</div>
       ${scoreLine}
       <div class="book-game-pick">
         <span class="book-game-pick-lbl"><span class="mi">check_circle</span>${esc(pickLabel)}</span>
         <span class="book-game-odd">${oddVal}</span>
       </div>
-      ${dateStr ? `<div class="book-game-date"><span class="mi" style="font-size:11px;">schedule</span> ${dateStr}</div>` : ''}
+      ${dateStr?`<div class="book-game-date"><span class="mi" style="font-size:11px;">schedule</span> ${dateStr}</div>`:''}
     </div>`;
   }).join('');
-  const loggedIn = isLoggedIn();
-  const btnClass = loggedIn ? 'book-add-btn' : 'book-add-btn login-needed';
-  const btnIcon  = loggedIn ? 'add_circle' : 'login';
-  const btnLabel = loggedIn ? 'Add to Betslip & Bet Now' : 'Login to Place This Bet';
-  return `<div class="book-result">
+  const loggedIn=isLoggedIn();
+  const btnClass=loggedIn?'book-add-btn':'book-add-btn login-needed';
+  const btnLabel=loggedIn?`Add ${count} game${count>1?'s':''} &amp; Go to Bet Now`:'Login to Place This Bet';
+  const btnIcon=loggedIn?'arrow_forward':'login';
+  return`<div class="book-result">
     <div class="book-result-head">
-      <span class="book-result-code"><span class="mi">confirmation_number</span>${count} game${count>1?'s':''} · ${typeLabel}</span>
+      <span class="book-result-code"><span class="mi">confirmation_number</span>${count} game${count>1?'s':''}&nbsp;&bull;&nbsp;${isCorrectScore?'Correct Score':'Standard'}</span>
       <span class="book-result-odds">Combined: ${combinedOdds}x</span>
     </div>
     ${gamesHtml}
-    <button class="${btnClass}" onclick="${addFnName}()">
-      <span class="mi">${btnIcon}</span>${btnLabel}
-    </button>
+    <button class="${btnClass}" onclick="${addFn}()"><span class="mi">${btnIcon}</span>${btnLabel}</button>
   </div>`;
 }
 
-/* DESKTOP booking code */
-async function loadBookingCode() {
-  const inp      = document.getElementById('book-inp');
-  const btn      = document.getElementById('book-load-btn');
-  const resultEl = document.getElementById('book-result-area');
-  if (!inp || !btn || !resultEl) return;
-  const code = (inp.value || '').trim().toUpperCase();
-  if (!code) { inp.focus(); return; }
-  btn.disabled = true;
-  btn.innerHTML = '<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading…';
-  resultEl.innerHTML = '';
-  loadedBooking = null;
-  try {
-    const result = await _fetchBookingCode(code);
-    loadedBooking = result;
-    resultEl.innerHTML = _bookingResultHtml(result.data, result.isCorrectScore, 'addBookingToSlip');
-  } catch(e) {
-    resultEl.innerHTML = `<div class="book-err"><span class="mi">error_outline</span>${esc(e.message || 'Network error — please try again.')}</div>`;
-  }
-  btn.disabled = false;
-  btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
+/* Desktop load */
+async function loadBookingCode(){
+  const inp=document.getElementById('book-inp'),btn=document.getElementById('book-load-btn'),resultEl=document.getElementById('book-result-area');
+  if(!inp||!btn||!resultEl)return;
+  const code=(inp.value||'').trim().toUpperCase();if(!code){inp.focus();return;}
+  btn.disabled=true;btn.innerHTML='<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading&hellip;';
+  resultEl.innerHTML='';loadedBooking=null;
+  try{const result=await _fetchBookingCode(code);loadedBooking=result;resultEl.innerHTML=_buildBookingResultHtml(result.data,result.isCorrectScore,'addDesktopBookingToSlip');}
+  catch(e){resultEl.innerHTML=`<div class="book-err"><span class="mi">error_outline</span>${esc(e.message||'Network error.')}</div>`;}
+  btn.disabled=false;btn.innerHTML='<span class="mi" style="font-size:16px;">download</span> Load Code';
+}
+function addDesktopBookingToSlip(){
+  if(!loadedBooking)return;
+  if(!isLoggedIn()){const inp=document.getElementById('book-inp');if(inp)localStorage.setItem('ps_pending_booking_code',inp.value.trim().toUpperCase());showToast('Please login to place this bet');setTimeout(()=>window.location.href='login.html',900);return;}
+  const entries=_bookingToSlip(loadedBooking.data,loadedBooking.isCorrectScore);
+  slip={...slip,...entries};localStorage.setItem('ps_slip',JSON.stringify(slip));
+  showToast('Loading your slip\u2026');
+  document.getElementById('booking-loading-overlay').classList.add('show');
+  setTimeout(()=>window.location.href='betting.html',900);
 }
 
-/* MOBILE booking code */
-async function loadMobBookingCode() {
-  const inp      = document.getElementById('mob-book-inp');
-  const btn      = document.getElementById('mob-book-load-btn');
-  const resultEl = document.getElementById('mob-book-result-area');
-  if (!inp || !btn || !resultEl) return;
-  const code = (inp.value || '').trim().toUpperCase();
-  if (!code) { inp.focus(); return; }
-  btn.disabled = true;
-  btn.innerHTML = '<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading…';
-  resultEl.innerHTML = '';
-  loadedMobBooking = null;
-  try {
-    const result = await _fetchBookingCode(code);
-    loadedMobBooking = result;
-    resultEl.innerHTML = _bookingResultHtml(result.data, result.isCorrectScore, 'addMobBookingToSlip');
-  } catch(e) {
-    resultEl.innerHTML = `<div class="book-err"><span class="mi">error_outline</span>${esc(e.message || 'Network error — please try again.')}</div>`;
-  }
-  btn.disabled = false;
-  btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
-}
-
-function _addBookingData(data, isCorrectScore) {
-  data.games.forEach(g => {
-    const matchKey = g.gameId ? String(g.gameId) : (g.homeTeam + '_' + g.awayTeam);
-    const label    = isCorrectScore && g.scorePrediction
-      ? `${g.scorePrediction} (Correct Score)`
-      : (g.pickLabel || g.pick || 'Selection');
-    slip[matchKey] = { id: matchKey, t: g.pick, label, odd: parseFloat(g.odds) || 1, league: 'Booking Code', teams: `${g.homeTeam} v ${g.awayTeam}` };
-  });
-  localStorage.setItem('ps_slip', JSON.stringify(slip));
-}
-
-function addBookingToSlip() {
-  if (!loadedBooking) return;
-  if (!isLoggedIn()) {
-    const inp = document.getElementById('book-inp');
-    if (inp) localStorage.setItem('ps_pending_code', inp.value.trim().toUpperCase());
-    showToast('Please login to place this bet');
-    setTimeout(() => window.location.href = 'login.html', 900);
+/* Mobile load — shows preview then redirects on confirm */
+async function loadMobBookingCode(){
+  const inp=document.getElementById('mob-book-inp'),btn=document.getElementById('mob-book-load-btn'),resultEl=document.getElementById('mob-book-result-area');
+  if(!inp||!btn||!resultEl)return;
+  const code=(inp.value||'').trim().toUpperCase();if(!code){inp.focus();return;}
+  btn.disabled=true;btn.innerHTML='<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading&hellip;';
+  resultEl.innerHTML='';loadedMobBooking=null;
+  try{
+    const result=await _fetchBookingCode(code);
+    loadedMobBooking=result;
+    resultEl.innerHTML=_buildBookingResultHtml(result.data,result.isCorrectScore,'confirmMobBooking');
+    resultEl.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }catch(e){
+    resultEl.innerHTML=`<div class="book-err"><span class="mi">error_outline</span>${esc(e.message||'Network error.')}</div>`;
+    btn.disabled=false;
+    btn.innerHTML='<span class="mi" style="font-size:16px;">download</span> Load &amp; Bet Now';
     return;
   }
-  _addBookingData(loadedBooking.data, loadedBooking.isCorrectScore);
-  showToast(`✅ ${loadedBooking.data.games.length} selection(s) loaded — Going to Bet Now`);
-  setTimeout(() => window.location.href = 'betting.html', 900);
+  btn.disabled=false;btn.innerHTML='<span class="mi" style="font-size:16px;">download</span> Load &amp; Bet Now';
 }
 
-function addMobBookingToSlip() {
-  if (!loadedMobBooking) return;
-  if (!isLoggedIn()) {
-    const inp = document.getElementById('mob-book-inp');
-    if (inp) localStorage.setItem('ps_pending_code', inp.value.trim().toUpperCase());
-    showToast('Please login to place this bet');
-    setTimeout(() => window.location.href = 'login.html', 900);
-    return;
+function confirmMobBooking(){
+  if(!loadedMobBooking)return;
+  if(!isLoggedIn()){
+    const inp=document.getElementById('mob-book-inp');
+    if(inp)localStorage.setItem('ps_pending_booking_code',inp.value.trim().toUpperCase());
+    showToast('Please log in first to place this bet');
+    setTimeout(()=>window.location.href='login.html',900);return;
   }
-  _addBookingData(loadedMobBooking.data, loadedMobBooking.isCorrectScore);
-  updateBadges();
-  renderBsMainArea();
-  showToast(`✅ ${loadedMobBooking.data.games.length} selection(s) loaded`);
-  closeDrawer();
-  setTimeout(() => window.location.href = 'betting.html', 900);
+  const entries=_bookingToSlip(loadedMobBooking.data,loadedMobBooking.isCorrectScore);
+  slip={...slip,...entries};
+  localStorage.setItem('ps_slip',JSON.stringify(slip));
+  /* show full-screen overlay then navigate */
+  document.getElementById('booking-loading-overlay').classList.add('show');
+  setTimeout(()=>window.location.href='betting.html',900);
 }
 
-/* ─── FOOTBALL DATA ─── */
-async function fetchTodayGames() {
-  try {
-    const res = await fetch(`${FOOTBALL_BASE}/api/v1/football/games/today`, { signal:AbortSignal.timeout(30000) });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const json = await res.json();
-    return json.data || [];
-  } catch (e) { console.warn('[TODAY]', e.message); return null; }
-}
+/* ── FOOTBALL DATA ── */
+async function fetchTodayGames(){try{const res=await fetch(`${FOOTBALL_BASE}/api/v1/football/games/today`,{signal:AbortSignal.timeout(30000)});if(!res.ok)throw 0;return(await res.json()).data||[];}catch{return null;}}
+async function fetchLiveGames(){try{const res=await fetch(`${FOOTBALL_BASE}/api/v1/football/games/live`,{signal:AbortSignal.timeout(30000)});if(!res.ok)throw 0;return(await res.json()).data||[];}catch{return null;}}
 
-async function fetchLiveGames() {
-  try {
-    const res = await fetch(`${FOOTBALL_BASE}/api/v1/football/games/live`, { signal:AbortSignal.timeout(30000) });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const json = await res.json();
-    return json.data || [];
-  } catch (e) { console.warn('[LIVE]', e.message); return null; }
-}
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function fmt(v){if(v==null||v<=0)return null;return parseFloat(v).toFixed(2);}
+function skeletonRows(n,dark){let h='';for(let i=0;i<n;i++){const sc=dark?'skel dark':'skel';const div=`<div class="${sc}" style="width:44px;height:32px;border-radius:3px;"></div>`;h+=`<div class="skel-row${dark?' dark-row':''}" style="${dark?'background:#1a1a1a;':''}"><div style="flex:1"><div class="${sc}" style="width:${55+i*5}%;height:12px;"></div><div class="${sc}" style="width:${40+i*3}%;height:12px;margin-top:6px;"></div></div><div style="display:flex;gap:4px;margin-left:12px;">${div.repeat(6)}</div></div>`;}return h;}
+function toGhanaTime(raw){if(!raw)return'--:--';try{const d=/[+\-]\d{2}:?\d{2}$|Z$/.test(raw)?new Date(raw):new Date(raw+'+04:00');if(isNaN(d))return'--:--';return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Africa/Accra'});}catch{return'--:--';}}
 
-function esc(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-function fmt(v) { if (v == null || v <= 0) return null; return parseFloat(v).toFixed(2); }
-function skeletonRows(n, dark) {
-  let h = '';
-  for (let i=0;i<n;i++) {
-    const sc  = dark ? 'skel dark' : 'skel';
-    const div = `<div class="${sc}" style="width:44px;height:32px;border-radius:3px;"></div>`;
-    h += `<div class="skel-row${dark?' dark-row':''}" style="${dark?'background:#1a1a1a;':''}"><div style="flex:1"><div class="${sc}" style="width:${55+i*5}%;height:12px;"></div><div class="${sc}" style="width:${40+i*3}%;height:12px;margin-top:6px;"></div></div><div style="display:flex;gap:4px;margin-left:12px;">${div.repeat(6)}</div></div>`;
-  }
-  return h;
-}
-
-function toGhanaTime(raw) {
-  if (!raw) return '--:--';
-  try {
-    let d;
-    if (/[+\-]\d{2}:?\d{2}$|Z$/.test(raw)) { d = new Date(raw); }
-    else { d = new Date(raw + '+04:00'); }
-    if (isNaN(d.getTime())) return '--:--';
-    return d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit', timeZone:'Africa/Accra' });
-  } catch { return '--:--'; }
-}
-
-function renderTodayMatches(matches) {
-  const container = document.getElementById('match-list');
-  const badge     = document.getElementById('today-count-badge');
-  if (!matches || matches.length === 0) {
-    badge.textContent = '';
-    container.innerHTML = `<div class="state-box"><span class="mi">sports_soccer</span><p>No matches available for today.<br>Check back later or view upcoming fixtures.</p><button class="retry-btn" onclick="loadAllData()"><span class="mi">refresh</span> Try Again</button></div>`;
-    return;
-  }
-  badge.textContent = `(${matches.length} matches)`;
-  const grouped = {};
-  matches.forEach(m => { const k = m.league||'Other'; if(!grouped[k]) grouped[k]=[]; grouped[k].push(m); });
-  let html = '';
-  for (const [league, ms] of Object.entries(grouped)) {
-    html += `<div class="league-hdr-row"><span class="mi">sports_soccer</span>${esc(league)}<span style="margin-left:auto;font-size:10px;color:#888;">${ms.length} match${ms.length>1?'es':''}</span></div>`;
-    ms.forEach(m => {
-      const matchKey = m.externalFixtureId || (m.homeTeam+'_'+m.awayTeam);
-      const sel      = slip[matchKey]||{};
-      const isLive   = m.status==='LIVE', isFin = m.status==='FINISHED', showScore = isLive||isFin;
-      const koTime   = toGhanaTime(m.kickoffTime);
-      const periodLabel = m.matchPeriod||(isLive?'Live':isFin?'FT':'Upcoming');
-      const timeDisplay = isLive
-        ? `<div class="match-time live-time">${m.elapsedMinutes?m.elapsedMinutes+"'":'●'}</div>`
-        : `<div class="match-time">${koTime}</div>`;
-      let periodBadge = isLive
-        ? `<span class="period-badge pb-live"><span class="mi" style="font-size:9px;">circle</span> ${esc(periodLabel)}</span>`
-        : isFin
-          ? `<span class="period-badge pb-ft">FT</span>`
-          : `<span class="period-badge pb-up">${koTime}</span>`;
-      const homeCrest = m.homeLogo?`<img class="crest" src="${esc(m.homeLogo)}" onerror="this.style.display='none'" alt="">`:'';
-      const awayCrest = m.awayLogo?`<img class="crest" src="${esc(m.awayLogo)}" onerror="this.style.display='none'" alt="">`:'';
-      const hw=fmt(m.homeWinOdds), dr=fmt(m.drawOdds), aw=fmt(m.awayWinOdds), ov=fmt(m.over25Odds);
-      const goals = m.over25Odds?'2.5':(m.over15Odds?'1.5':'—');
-      const lq=esc(league), tm=`${esc(m.homeTeam)} v ${esc(m.awayTeam)}`;
-      html += `<div class="match-row">
+function renderTodayMatches(matches){
+  const container=document.getElementById('match-list'),badge=document.getElementById('today-count-badge');
+  if(!matches||!matches.length){badge.textContent='';container.innerHTML=`<div class="state-box"><span class="mi">sports_soccer</span><p>No matches available for today.</p><button class="retry-btn" onclick="loadAllData()"><span class="mi">refresh</span> Try Again</button></div>`;return;}
+  badge.textContent=`(${matches.length} matches)`;
+  const grouped={};matches.forEach(m=>{const k=m.league||'Other';if(!grouped[k])grouped[k]=[];grouped[k].push(m);});
+  let html='';
+  for(const[league,ms]of Object.entries(grouped)){
+    html+=`<div class="league-hdr-row"><span class="mi">sports_soccer</span>${esc(league)}<span style="margin-left:auto;font-size:10px;color:#888;">${ms.length} match${ms.length>1?'es':''}</span></div>`;
+    ms.forEach(m=>{
+      const matchKey=m.externalFixtureId||(m.homeTeam+'_'+m.awayTeam),sel=slip[matchKey]||{};
+      const isLive=m.status==='LIVE',isFin=m.status==='FINISHED',showScore=isLive||isFin;
+      const koTime=toGhanaTime(m.kickoffTime),periodLabel=m.matchPeriod||(isLive?'Live':isFin?'FT':'Upcoming');
+      const timeDisplay=isLive?`<div class="match-time live-time">${m.elapsedMinutes?m.elapsedMinutes+"'":'&#11044;'}</div>`:`<div class="match-time">${koTime}</div>`;
+      const periodBadge=isLive?`<span class="period-badge pb-live"><span class="mi" style="font-size:9px;">circle</span> ${esc(periodLabel)}</span>`:isFin?`<span class="period-badge pb-ft">FT</span>`:`<span class="period-badge pb-up">${koTime}</span>`;
+      const homeCrest=m.homeLogo?`<img class="crest" src="${esc(m.homeLogo)}" onerror="this.style.display='none'" alt="">`:''
+      const awayCrest=m.awayLogo?`<img class="crest" src="${esc(m.awayLogo)}" onerror="this.style.display='none'" alt="">`:''
+      const hw=fmt(m.homeWinOdds),dr=fmt(m.drawOdds),aw=fmt(m.awayWinOdds),ov=fmt(m.over25Odds);
+      const goals=m.over25Odds?'2.5':(m.over15Odds?'1.5':'&mdash;');
+      const lq=esc(league),tm=`${esc(m.homeTeam)} v ${esc(m.awayTeam)}`;
+      html+=`<div class="match-row">
         <div class="match-left">
           <div class="match-time-col">${timeDisplay}${periodBadge}</div>
           <div class="match-teams">
@@ -1149,90 +902,55 @@ function renderTodayMatches(matches) {
           </div>
         </div>
         <div class="odds-grid">
-          <button class="odd ${hw?'':'unavail'} ${sel.t==='1'?'sel':''}" ${hw?`onclick="addBet('${matchKey}','1','${esc(m.homeTeam)} Win',${m.homeWinOdds},'${lq}','${tm}')"`:''}>${hw||'—'}</button>
-          <button class="odd ${dr?'':'unavail'} ${sel.t==='X'?'sel':''}" ${dr?`onclick="addBet('${matchKey}','X','Draw',${m.drawOdds},'${lq}','${tm}')"`:''}>${dr||'—'}</button>
-          <button class="odd ${aw?'':'unavail'} ${sel.t==='2'?'sel':''}" ${aw?`onclick="addBet('${matchKey}','2','${esc(m.awayTeam)} Win',${m.awayWinOdds},'${lq}','${tm}')"`:''}>${aw||'—'}</button>
+          <button class="odd ${hw?'':'unavail'} ${sel.t==='1'?'sel':''}" ${hw?`onclick="addBet('${matchKey}','1','${esc(m.homeTeam)} Win',${m.homeWinOdds},'${lq}','${tm}')"`:''}>${hw||'&mdash;'}</button>
+          <button class="odd ${dr?'':'unavail'} ${sel.t==='X'?'sel':''}" ${dr?`onclick="addBet('${matchKey}','X','Draw',${m.drawOdds},'${lq}','${tm}')"`:''}>${dr||'&mdash;'}</button>
+          <button class="odd ${aw?'':'unavail'} ${sel.t==='2'?'sel':''}" ${aw?`onclick="addBet('${matchKey}','2','${esc(m.awayTeam)} Win',${m.awayWinOdds},'${lq}','${tm}')"`:''}>${aw||'&mdash;'}</button>
           <div class="goals-c"><div class="goals-v">${goals}</div></div>
-          <button class="odd ${ov?'':'unavail'} ${sel.t==='O'?'sel':''}" ${ov?`onclick="addBet('${matchKey}','O','Over ${goals}',${m.over25Odds},'${lq}','${tm}')"`:''}>${ov||'—'}</button>
+          <button class="odd ${ov?'':'unavail'} ${sel.t==='O'?'sel':''}" ${ov?`onclick="addBet('${matchKey}','O','Over ${goals}',${m.over25Odds},'${lq}','${tm}')"`:''}>${ov||'&mdash;'}</button>
           <div class="more-btn" onclick="location.href='betting.html'">+</div>
         </div>
       </div>`;
     });
   }
-  container.innerHTML = html;
+  container.innerHTML=html;
 }
 
-function renderLiveCards(matches) {
-  const row = document.getElementById('live-cards-row');
-  if (!matches||!matches.length) { row.innerHTML=''; return; }
-  row.innerHTML = matches.map(m => {
-    const score   = (m.homeScore!=null&&m.awayScore!=null)?`${m.homeScore}–${m.awayScore}`:'–';
-    const elapsed = m.elapsedMinutes?`${m.elapsedMinutes}'`:'●';
-    return `<div class="live-card" onclick="window.location='live-games.html'">
+function renderLiveCards(matches){
+  const row=document.getElementById('live-cards-row');if(!matches||!matches.length){row.innerHTML='';return;}
+  row.innerHTML=matches.map(m=>{
+    const score=(m.homeScore!=null&&m.awayScore!=null)?`${m.homeScore}&ndash;${m.awayScore}`:'&ndash;';
+    const elapsed=m.elapsedMinutes?`${m.elapsedMinutes}'`:'&#11044;';
+    return`<div class="live-card" onclick="window.location='live-games.html'">
       <div class="lc-top"><span class="lc-league">${esc(m.league||'')}</span><span class="live-badge"><span class="mi">circle</span> LIVE</span></div>
       <div class="lc-teams">${esc(m.homeTeam||'')}<br>${esc(m.awayTeam||'')}</div>
       <div class="lc-score">${score}</div>
-      <div class="lc-time"><span class="mi">schedule</span> ${elapsed} · ${esc(m.matchPeriod||'Live')}</div>
+      <div class="lc-time"><span class="mi">schedule</span> ${elapsed} &middot; ${esc(m.matchPeriod||'Live')}</div>
     </div>`;
   }).join('');
 }
 
-function randOdd(seed, min, max) {
-  let h = 0;
-  for (let i=0;i<seed.length;i++) { h = Math.imul(31,h)+seed.charCodeAt(i)|0; }
-  const r = Math.abs(h)/2147483647;
-  return (min+r*(max-min)).toFixed(2);
-}
-function getOdds(m) {
-  const seed = (m.homeTeam||'')+(m.awayTeam||'');
-  return {
-    hw: m.homeWinOdds && m.homeWinOdds>0 ? m.homeWinOdds.toFixed(2) : randOdd(seed+'h',1.40,4.50),
-    dr: m.drawOdds    && m.drawOdds>0    ? m.drawOdds.toFixed(2)    : randOdd(seed+'d',2.80,3.80),
-    aw: m.awayWinOdds && m.awayWinOdds>0 ? m.awayWinOdds.toFixed(2) : randOdd(seed+'a',1.60,5.50),
-    ov: m.over25Odds  && m.over25Odds>0  ? m.over25Odds.toFixed(2)  : randOdd(seed+'o',1.60,2.40),
-  };
-}
+function randOdd(seed,min,max){let h=0;for(let i=0;i<seed.length;i++){h=Math.imul(31,h)+seed.charCodeAt(i)|0;}return(min+(Math.abs(h)/2147483647)*(max-min)).toFixed(2);}
+function getOdds(m){const s=(m.homeTeam||'')+(m.awayTeam||'');return{hw:m.homeWinOdds>0?m.homeWinOdds.toFixed(2):randOdd(s+'h',1.4,4.5),dr:m.drawOdds>0?m.drawOdds.toFixed(2):randOdd(s+'d',2.8,3.8),aw:m.awayWinOdds>0?m.awayWinOdds.toFixed(2):randOdd(s+'a',1.6,5.5),ov:m.over25Odds>0?m.over25Odds.toFixed(2):randOdd(s+'o',1.6,2.4)};}
 
-function renderLiveSection(matches) {
-  const container = document.getElementById('live-list');
-  const badge     = document.getElementById('live-count-badge');
-  if (!matches||!matches.length) {
-    badge.textContent = '';
-    container.innerHTML = `<div class="state-box dark-state"><span class="mi">cell_tower</span><p style="color:#555;">No live matches right now.<br>Check back during match times.</p></div>`;
-    return;
-  }
-  badge.textContent = `(${matches.length} live)`;
-  const grouped = {};
-  matches.forEach(m => { const k=m.league||'Other'; if(!grouped[k]) grouped[k]=[]; grouped[k].push(m); });
-  let html = '';
-  for (const [league, ms] of Object.entries(grouped)) {
-    html += `<div class="live-league-bar"><span class="mi">sports_soccer</span><span class="ll-name">${esc(league)}</span><span style="margin-left:auto;font-size:10px;color:#555;">${ms.length} live</span></div>`;
-    ms.forEach(m => {
-      const matchKey = m.externalFixtureId || (m.homeTeam+'_'+m.awayTeam);
-      const sel      = slip[matchKey]||{};
-      const elapsed  = m.elapsedMinutes?`${m.elapsedMinutes}'`:'●';
-      const period   = m.matchPeriod||'Live';
-      const o        = getOdds(m);
-      const lq=esc(league), tm=`${esc(m.homeTeam)} v ${esc(m.awayTeam)}`;
-      const hLogo = m.homeLogo?`<img src="${esc(m.homeLogo)}" onerror="this.style.display='none'" alt="">`:'';
-      const aLogo = m.awayLogo?`<img src="${esc(m.awayLogo)}" onerror="this.style.display='none'" alt="">`:'';
-      const hScore = m.homeScore!=null?m.homeScore:0;
-      const aScore = m.awayScore!=null?m.awayScore:0;
-      html += `<div class="live-match">
-        <div class="lm-top">
-          <span class="lm-badge"><span class="mi">radio_button_checked</span>${elapsed}</span>
-          <span class="lm-period">${esc(period)}</span>
-        </div>
+function renderLiveSection(matches){
+  const container=document.getElementById('live-list'),badge=document.getElementById('live-count-badge');
+  if(!matches||!matches.length){badge.textContent='';container.innerHTML=`<div class="state-box dark-state"><span class="mi">cell_tower</span><p style="color:#555;">No live matches right now.</p></div>`;return;}
+  badge.textContent=`(${matches.length} live)`;
+  const grouped={};matches.forEach(m=>{const k=m.league||'Other';if(!grouped[k])grouped[k]=[];grouped[k].push(m);});
+  let html='';
+  for(const[league,ms]of Object.entries(grouped)){
+    html+=`<div class="live-league-bar"><span class="mi">sports_soccer</span><span class="ll-name">${esc(league)}</span></div>`;
+    ms.forEach(m=>{
+      const matchKey=m.externalFixtureId||(m.homeTeam+'_'+m.awayTeam),sel=slip[matchKey]||{};
+      const elapsed=m.elapsedMinutes?`${m.elapsedMinutes}'`:'&#11044;';
+      const o=getOdds(m),lq=esc(league),tm=`${esc(m.homeTeam)} v ${esc(m.awayTeam)}`;
+      const hLogo=m.homeLogo?`<img src="${esc(m.homeLogo)}" onerror="this.style.display='none'" alt="">`:''
+      const aLogo=m.awayLogo?`<img src="${esc(m.awayLogo)}" onerror="this.style.display='none'" alt="">`:''
+      html+=`<div class="live-match">
+        <div class="lm-top"><span class="lm-badge"><span class="mi">radio_button_checked</span>${elapsed}</span><span class="lm-period">${esc(m.matchPeriod||'Live')}</span></div>
         <div class="lm-teams">
-          <div class="lm-names">
-            <div class="lm-team">${hLogo}${esc(m.homeTeam||'Home')}</div>
-            <div class="lm-team">${aLogo}${esc(m.awayTeam||'Away')}</div>
-          </div>
-          <div class="lm-scorebox">
-            <span class="lm-score">${hScore}</span>
-            <span class="lm-sep">—</span>
-            <span class="lm-score">${aScore}</span>
-          </div>
+          <div class="lm-names"><div class="lm-team">${hLogo}${esc(m.homeTeam||'Home')}</div><div class="lm-team">${aLogo}${esc(m.awayTeam||'Away')}</div></div>
+          <div class="lm-scorebox"><span class="lm-score">${m.homeScore??0}</span><span class="lm-sep">&mdash;</span><span class="lm-score">${m.awayScore??0}</span></div>
         </div>
         <div class="lm-odds">
           <button class="lodd ${sel.t==='1'?'sel':''}" onclick="addBet('${matchKey}','1','${esc(m.homeTeam)} Win',${o.hw},'${lq}','${tm}')">${o.hw}</button>
@@ -1245,227 +963,95 @@ function renderLiveSection(matches) {
       </div>`;
     });
   }
-  container.innerHTML = html;
+  container.innerHTML=html;
 }
 
-function renderLiveMatches(matches) { renderLiveCards(matches); renderLiveSection(matches); }
-
-async function loadAllData() {
-  document.getElementById('match-list').innerHTML    = skeletonRows(4,false);
-  document.getElementById('live-list').innerHTML     = skeletonRows(2,true);
-  document.getElementById('live-cards-row').innerHTML = '';
-  const [today,live] = await Promise.all([fetchTodayGames(),fetchLiveGames()]);
-  renderTodayMatches(today);
-  renderLiveMatches(live);
-  renderBsMainArea();
-  updateBadges();
+function renderLiveMatches(matches){renderLiveCards(matches);renderLiveSection(matches);}
+async function loadAllData(){
+  document.getElementById('match-list').innerHTML=skeletonRows(4,false);
+  document.getElementById('live-list').innerHTML=skeletonRows(2,true);
+  document.getElementById('live-cards-row').innerHTML='';
+  const[today,live]=await Promise.all([fetchTodayGames(),fetchLiveGames()]);
+  renderTodayMatches(today);renderLiveMatches(live);renderBsMainArea();updateBadges();
 }
 
-/* ─── BET ACTIONS ─── */
-function addBet(id,type,label,odd,league,teams) {
-  if(!odd||odd<=0) return;
-  if(slip[id]&&slip[id].t===type){ delete slip[id]; }
-  else { slip[id]={id,t:type,label,odd:parseFloat(odd),league,teams}; }
+function addBet(id,type,label,odd,league,teams){
+  if(!odd||odd<=0)return;
+  if(slip[id]&&slip[id].t===type){delete slip[id];}
+  else{slip[id]={id,t:type,label,odd:parseFloat(odd),league,teams};}
   localStorage.setItem('ps_slip',JSON.stringify(slip));
-  renderBsMainArea();
-  updateBadges();
-  if (window.innerWidth <= 900) {
-    switchDrawerTab('slip');
-    openDrawer();
-  } else {
-    showToast('✅ ' + label + ' added');
-  }
+  renderBsMainArea();updateBadges();
+  if(window.innerWidth<=900){switchDrawerTab('slip');openDrawer();}
+  else{showToast('Added: '+label);}
 }
-function removeBet(id){ delete slip[id]; localStorage.setItem('ps_slip',JSON.stringify(slip)); renderBsMainArea(); updateBadges(); }
-function goToBetting(){ localStorage.setItem('ps_slip',JSON.stringify(slip)); window.location.href='betting.html'; }
+function removeBet(id){delete slip[id];localStorage.setItem('ps_slip',JSON.stringify(slip));renderBsMainArea();updateBadges();}
+function goToBetting(){localStorage.setItem('ps_slip',JSON.stringify(slip));window.location.href='betting.html';}
 
-/* ─── BETSLIP RENDER (desktop sidebar) ─── */
-function renderBsMainArea() {
-  const area    = document.getElementById('bs-main-area');
-  const betArea = document.getElementById('bs-bet-area');
-  const items   = Object.values(slip);
-
-  if (!isLoggedIn()) {
-    area.style.display    = 'block';
-    betArea.style.display = 'none';
-    area.innerHTML = `
-      <div class="bs-locked">
-        <span class="mi" style="font-size:40px;color:#ccc;display:block;margin-bottom:10px;">lock</span>
-        <div class="bs-lock-title">Sign in to Bet</div>
-        <p class="bs-lock-txt">Log in or create a free account to start placing bets.</p>
-        <div class="bs-lock-btns">
-          <a href="login.html" class="bs-lock-login">Login</a>
-          <a href="register.html" class="bs-lock-reg">Register</a>
-        </div>
-      </div>
-      <div class="book-section">
-        <div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div>
-        <p class="book-section-hint">Enter a code to preview games. Login to place the bet.</p>
-        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123" onkeydown="if(event.key==='Enter')loadBookingCode()">
-        <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()">
-          <span class="mi" style="font-size:16px;">download</span> Load Code
-        </button>
-        <div id="book-result-area"></div>
-      </div>
-      <div class="winners">
-        <div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div>
-        <div id="winners-list"></div>
-      </div>
-      <div class="mini-g">
-        <div class="mg-title"><span class="mi">casino</span> Quick Games</div>
-        <div class="mg-grid">
-          <a class="mg-card" href="games.html"><span class="mi" style="color:#f5a623;">sports_esports</span><div class="mg-name">eFootball</div></a>
-          <a class="mg-card" href="games.html"><span class="mi" style="color:#e74c3c;">style</span><div class="mg-name">Red Black</div></a>
-          <a class="mg-card" href="games.html"><span class="mi" style="color:#3498db;">height</span><div class="mg-name">Hi-Lo</div></a>
-          <a class="mg-card" href="games.html"><span class="mi" style="color:#2ecc71;">casino</span><div class="mg-name">Dice Roll</div></a>
-        </div>
-      </div>`;
-    renderWinners();
-    const pending = localStorage.getItem('ps_pending_code');
-    if (pending) {
-      const inp = document.getElementById('book-inp');
-      if (inp) { inp.value = pending; loadBookingCode(); }
-    }
-    return;
+function renderBsMainArea(){
+  const area=document.getElementById('bs-main-area'),betArea=document.getElementById('bs-bet-area'),items=Object.values(slip);
+  if(!isLoggedIn()){
+    area.style.display='block';betArea.style.display='none';
+    area.innerHTML=`<div class="bs-locked"><span class="mi" style="font-size:40px;color:#ccc;display:block;margin-bottom:10px;">lock</span><div class="bs-lock-title">Sign in to Bet</div><p class="bs-lock-txt">Log in or create a free account to start placing bets.</p><div class="bs-lock-btns"><a href="login.html" class="bs-lock-login">Login</a><a href="register.html" class="bs-lock-reg">Register</a></div></div>
+    <div class="book-section"><div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div><p class="book-section-hint">Enter a code to preview games. Login to place the bet.</p>
+    <input class="book-inp" id="book-inp" placeholder="e.g. ABC123" onkeydown="if(event.key==='Enter')loadBookingCode()">
+    <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()"><span class="mi" style="font-size:16px;">download</span> Load Code</button>
+    <div id="book-result-area"></div></div>
+    <div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>
+    <div class="mini-g"><div class="mg-title"><span class="mi">casino</span> Quick Games</div><div class="mg-grid">
+      <a class="mg-card" href="games.html"><span class="mi" style="color:#f5a623;">sports_esports</span><div class="mg-name">eFootball</div></a>
+      <a class="mg-card" href="games.html"><span class="mi" style="color:#e74c3c;">style</span><div class="mg-name">Red Black</div></a>
+      <a class="mg-card" href="games.html"><span class="mi" style="color:#3498db;">height</span><div class="mg-name">Hi-Lo</div></a>
+      <a class="mg-card" href="games.html"><span class="mi" style="color:#2ecc71;">casino</span><div class="mg-name">Dice Roll</div></a>
+    </div></div>`;
+    renderWinners();return;
   }
-
-  if (!items.length) {
-    area.style.display    = 'block';
-    betArea.style.display = 'none';
-    area.innerHTML = `
-      <div class="bs-empty">
-        <p class="bs-empty-txt">Click any odds to add selections, then head to Bet Now to place your bet.</p>
-      </div>
-      <div class="book-section">
-        <div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div>
-        <p class="book-section-hint">Enter a booking code to load a pre-built slip.</p>
-        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123" onkeydown="if(event.key==='Enter')loadBookingCode()">
-        <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()">
-          <span class="mi" style="font-size:16px;">download</span> Load Code
-        </button>
-        <div id="book-result-area"></div>
-      </div>
-      <div class="winners">
-        <div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div>
-        <div id="winners-list"></div>
-      </div>`;
-    renderWinners();
-    const pending = localStorage.getItem('ps_pending_code');
-    if (pending) {
-      localStorage.removeItem('ps_pending_code');
-      const inp = document.getElementById('book-inp');
-      if (inp) { inp.value = pending; loadBookingCode(); }
-    }
-    return;
+  if(!items.length){
+    area.style.display='block';betArea.style.display='none';
+    area.innerHTML=`<div class="bs-empty"><p class="bs-empty-txt">Click any odds to add selections.</p></div>
+    <div class="book-section"><div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div><p class="book-section-hint">Enter a booking code to load a pre-built slip.</p>
+    <input class="book-inp" id="book-inp" placeholder="e.g. ABC123" onkeydown="if(event.key==='Enter')loadBookingCode()">
+    <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()"><span class="mi" style="font-size:16px;">download</span> Load Code</button>
+    <div id="book-result-area"></div></div>
+    <div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
+    renderWinners();return;
   }
-
-  area.style.display    = 'none';
-  betArea.style.display = 'block';
-  document.getElementById('bet-items').innerHTML = items.map(b => `
-    <div class="bet-item">
-      <button class="bet-rm" onclick="removeBet('${b.id}')"><span class="mi">close</span></button>
-      <div class="bet-league">${esc(b.league)}</div>
-      <div class="bet-match">${esc(b.teams)}</div>
-      <div class="bet-sel-row">
-        <div>
-          <div class="bet-sel">${esc(b.label)}</div>
-          <div class="bet-mkt">Full Time</div>
-        </div>
-        <div class="bet-odd">${parseFloat(b.odd).toFixed(2)}</div>
-      </div>
-    </div>`).join('');
+  area.style.display='none';betArea.style.display='block';
+  document.getElementById('bet-items').innerHTML=items.map(b=>`<div class="bet-item">
+    <button class="bet-rm" onclick="removeBet('${b.id||b.key}')"><span class="mi">close</span></button>
+    <div class="bet-league">${esc(b.league)}</div>
+    <div class="bet-match">${esc(b.teams)}</div>
+    <div class="bet-sel-row">
+      <div><div class="bet-sel">${esc(b.label)}</div><div class="bet-mkt">Full Time</div></div>
+      <div class="bet-odd">${parseFloat(b.odd).toFixed(2)}</div>
+    </div></div>`).join('');
   calcPayout();
 }
 
-/* ─── WINNERS ─── */
-const winners = [
-  {n:'Kwame A***',a:'GHS 11,928',t:'Sports Betting',c:'#e74c3c'},
-  {n:'Ama B***',  a:'GHS 5,000', t:'UCL Acca',      c:'#3498db'},
-  {n:'Kofi M***', a:'GHS 3,549', t:'Jackpot 12',    c:'#2ecc71'},
-  {n:'Abena S***',a:'GHS 11,100',t:'Sports Betting', c:'#9b59b6'}
-];
-function renderWinners(){
-  const el=document.getElementById('winners-list');
-  if(!el) return;
-  el.innerHTML=winners.slice(0,4).map(w=>`
-    <div class="winner-item">
-      <div class="w-av" style="background:${w.c};"><span class="mi">person</span></div>
-      <div class="w-info"><div class="w-name">${w.n}</div><div class="w-type">${w.t}</div></div>
-      <div><div class="w-amt">${w.a}</div><div class="w-time">Just now</div></div>
-    </div>`).join('');
-}
-setInterval(()=>{
-  const names =['Nana K***','Kwesi L***','Akua T***','Fiifi G***','Afia M***'];
-  const types =['Sports Betting','Jackpot 12','Hi-Lo','UCL Acca'];
-  const colors=['#e74c3c','#3498db','#2ecc71','#9b59b6','#e67e22','#1abc9c'];
-  winners.unshift({
-    n:names[Math.floor(Math.random()*names.length)],
-    a:'GHS '+(Math.random()*15000+200|0).toLocaleString(),
-    t:types[Math.floor(Math.random()*types.length)],
-    c:colors[Math.floor(Math.random()*colors.length)]
-  });
-  if(winners.length>20) winners.pop();
-  renderWinners();
-},6000);
+const winners=[{n:'Kwame A***',a:'GHS 11,928',t:'Sports Betting',c:'#e74c3c'},{n:'Ama B***',a:'GHS 5,000',t:'UCL Acca',c:'#3498db'},{n:'Kofi M***',a:'GHS 3,549',t:'Jackpot 12',c:'#2ecc71'},{n:'Abena S***',a:'GHS 11,100',t:'Sports Betting',c:'#9b59b6'}];
+function renderWinners(){const el=document.getElementById('winners-list');if(!el)return;el.innerHTML=winners.slice(0,4).map(w=>`<div class="winner-item"><div class="w-av" style="background:${w.c};"><span class="mi">person</span></div><div class="w-info"><div class="w-name">${w.n}</div><div class="w-type">${w.t}</div></div><div><div class="w-amt">${w.a}</div><div class="w-time">Just now</div></div></div>`).join('');}
+setInterval(()=>{const names=['Nana K***','Kwesi L***','Akua T***','Fiifi G***'],types=['Sports Betting','Jackpot 12','Hi-Lo','UCL Acca'],colors=['#e74c3c','#3498db','#2ecc71','#9b59b6','#e67e22'];winners.unshift({n:names[Math.floor(Math.random()*names.length)],a:'GHS '+(Math.random()*15000+200|0).toLocaleString(),t:types[Math.floor(Math.random()*types.length)],c:colors[Math.floor(Math.random()*colors.length)]});if(winners.length>20)winners.pop();renderWinners();},6000);
 
-/* ─── PAYOUT / STAKES ─── */
-function calcPayout(){
-  const items=Object.values(slip), tot=items.reduce((a,b)=>a*b.odd,1), stake=parseFloat(document.getElementById('stake-inp').value)||0;
-  document.getElementById('sel-count').textContent   = items.length;
-  document.getElementById('tot-odds').textContent    = tot.toFixed(2);
-  document.getElementById('pot-win').textContent     = 'GHS '+(stake*tot-stake).toFixed(2);
-  document.getElementById('tot-payout').textContent  = 'GHS '+(stake*tot).toFixed(2);
-}
-function setStake(v){ document.getElementById('stake-inp').value=v; calcPayout(); }
+function calcPayout(){const items=Object.values(slip),tot=items.reduce((a,b)=>a*b.odd,1),stake=parseFloat(document.getElementById('stake-inp').value)||0;document.getElementById('sel-count').textContent=items.length;document.getElementById('tot-odds').textContent=tot.toFixed(2);document.getElementById('pot-win').textContent='GHS '+(stake*tot-stake).toFixed(2);document.getElementById('tot-payout').textContent='GHS '+(stake*tot).toFixed(2);}
+function setStake(v){document.getElementById('stake-inp').value=v;calcPayout();}
 
 function updateBadges(){
-  const c = Object.keys(slip).length;
-  document.getElementById('bubble-count').textContent = c;
-  document.getElementById('mob-badge').textContent    = c;
-  // update drawer tab badge
-  const slipBadge = document.getElementById('drawer-slip-badge');
-  if (slipBadge) {
-    slipBadge.textContent = c;
-    slipBadge.style.display = c > 0 ? 'inline-flex' : 'none';
-  }
-  // ALWAYS show bubble on mobile (≤900px)
-  const bubble = document.getElementById('bet-bubble');
-  if (window.innerWidth <= 900) {
-    bubble.style.display = 'flex';
-  } else {
-    bubble.style.display = 'none';
-  }
+  const c=Object.keys(slip).length;
+  document.getElementById('bubble-count').textContent=c;
+  document.getElementById('mob-badge').textContent=c;
+  const sb=document.getElementById('drawer-slip-badge');if(sb){sb.textContent=c;sb.style.display=c>0?'inline-flex':'none';}
+  const bubble=document.getElementById('bet-bubble');
+  if(window.innerWidth<=900)bubble.style.display='flex';else bubble.style.display='none';
 }
 
-/* ─── TOAST ─── */
 function showToast(msg){
   let t=document.getElementById('ps-toast');
-  if(!t){
-    t=document.createElement('div');
-    t.id='ps-toast';
-    t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a8a3c;color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:9999;box-shadow:0 4px 14px rgba(0,0,0,.2);white-space:nowrap;pointer-events:none;transition:opacity .3s;';
-    document.body.appendChild(t);
-  }
-  t.textContent=msg;
-  t.style.opacity='1';
-  clearTimeout(t._to);
-  t._to=setTimeout(()=>{ t.style.opacity='0'; },2800);
+  if(!t){t=document.createElement('div');t.id='ps-toast';t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a8a3c;color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:9999;box-shadow:0 4px 14px rgba(0,0,0,.2);white-space:nowrap;pointer-events:none;transition:opacity .3s;';document.body.appendChild(t);}
+  t.textContent=msg;t.style.opacity='1';clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';},2800);
 }
 
-/* ─── AUTO-REFRESH LIVE ─── */
-setInterval(async()=>{
-  const live=await fetchLiveGames();
-  if(live!==null) renderLiveMatches(live);
-},30000);
-
-/* ─── INIT ─── */
-applyAuthState();
-renderBsMainArea();
-updateBadges();
-loadAllData();
-
-// also call updateBadges on resize so bubble shows/hides correctly
-window.addEventListener('resize', updateBadges);
+setInterval(async()=>{const live=await fetchLiveGames();if(live!==null)renderLiveMatches(live);},30000);
+window.addEventListener('resize',updateBadges);
+applyAuthState();renderBsMainArea();updateBadges();loadAllData();
 </script>
 </body>
 </html>
