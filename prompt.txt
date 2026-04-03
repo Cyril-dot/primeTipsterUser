@@ -1,2 +1,29 @@
-betting page
-live games page and also the live games page the nva without links would be remove and replaced with activ nav links
+Sure! Here's a summary of what we've built so far:
+
+**Project:** Kiki Betting Website (Spring Boot backend)
+
+**External APIs used:**
+- `https://api.football-data.org/v4`
+- `https://v3.football.api-sports.io`
+- `https://api.the-odds-api.com/v4`
+
+**What we built:**
+- `GameDataStore.java` — single in-memory store that fetches all game data on startup via `@PostConstruct` and refreshes on schedule:
+  - Live games every **2 mins**
+  - Today games every **15 mins**
+  - Upcoming games every **60 mins**
+  - Full error logging with timing, before/after counts, error class and cause
+  - Old data kept on failure so users always see something
+
+- `GamesController.java` — serves data from the store, base mapping `/fetch/api/games`:
+  - `GET /fetch/api/games/live`
+  - `GET /fetch/api/games/today`
+  - `GET /fetch/api/games/upcoming`
+  - `GET /fetch/api/games/status`
+
+- Security config line: `.requestMatchers("/fetch/api/games/**").permitAll()`
+- Main class needs: `@EnableScheduling`
+
+What do you want to work on next?
+
+claudetester

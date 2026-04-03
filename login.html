@@ -31,16 +31,16 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .wm-p{color:#fff;}.wm-s{color:var(--yellow);}
 .wm-bar{width:4px;height:38px;background:var(--yellow);border-radius:0 3px 3px 0;}
 .header-spacer{flex:1;}
-.auth{display:flex;gap:7px;flex-shrink:0;}
+.auth-btns{display:flex;gap:7px;flex-shrink:0;}
 .btn-login{background:rgba(0,0,0,.25);border:1.5px solid rgba(255,255,255,.5);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;}
 .btn-reg{background:var(--yellow);border:none;color:#000;font-size:12px;font-weight:900;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;}
 
 /* PAGE WRAPPER */
-.page{min-height:calc(100vh - 66px);display:flex;align-items:center;justify-content:center;padding:24px 16px 40px;}
+.page{min-height:calc(100vh - 76px);display:flex;align-items:center;justify-content:center;padding:24px 16px 40px;}
 
 /* CARD */
 .auth-card{width:100%;max-width:440px;}
-.auth-card-inner{background:var(--white);border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.1);}
+.auth-card-inner{background:var(--white);border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.12);}
 
 /* CARD HEADER */
 .card-hdr{background:var(--dark2);padding:22px 28px 20px;position:relative;overflow:hidden;}
@@ -57,23 +57,72 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 /* FORM */
 .form-group{margin-bottom:16px;}
 .form-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block;}
-.input-wrap{position:relative;display:flex;align-items:center;}
-.input-wrap .mi{position:absolute;left:11px;color:var(--muted2);font-size:18px;pointer-events:none;}
-.form-input{width:100%;border:1.5px solid var(--gray3);border-radius:5px;padding:11px 12px 11px 38px;font-size:13px;font-family:'Barlow',sans-serif;color:var(--text);background:var(--white);outline:none;transition:border-color .2s;}
+
+/* ── INPUT WRAP (key fix) ── */
+.input-wrap{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+/* left icon */
+.input-wrap > .mi-left{
+  position:absolute;
+  left:11px;
+  color:var(--muted2);
+  font-size:18px;
+  pointer-events:none;
+  z-index:1;
+}
+.form-input{
+  width:100%;
+  border:1.5px solid var(--gray3);
+  border-radius:5px;
+  /* left padding for icon, right padding for eye toggle */
+  padding:11px 42px 11px 38px;
+  font-size:13px;
+  font-family:'Barlow',sans-serif;
+  color:var(--text);
+  background:var(--white);
+  outline:none;
+  transition:border-color .2s;
+  /* no right-padding override for non-password inputs */
+}
+.form-input.no-right-pad{
+  padding-right:12px;
+}
 .form-input:focus{border-color:var(--green);}
 .form-input::placeholder{color:var(--muted2);}
-.pw-toggle{position:absolute;right:11px;background:none;border:none;cursor:pointer;color:var(--muted2);display:flex;padding:2px;}
+
+/* eye toggle — sits INSIDE the input on the right */
+.pw-toggle{
+  position:absolute;
+  right:10px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  color:var(--muted2);
+  display:flex;
+  align-items:center;
+  padding:4px;
+  z-index:1;
+  line-height:1;
+}
 .pw-toggle .mi{font-size:18px;}
 .pw-toggle:hover .mi{color:var(--text);}
 
-/* FORGOT */
-.forgot-row{display:flex;justify-content:flex-end;margin-top:-8px;margin-bottom:16px;}
+/* FORGOT — below the password group, right-aligned */
+.forgot-row{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:6px;
+  margin-bottom:16px;
+}
 .forgot-link{font-size:11px;color:var(--green);font-weight:600;text-decoration:none;}
 .forgot-link:hover{color:var(--red);}
 
 /* REMEMBER */
 .check-row{display:flex;align-items:center;gap:8px;margin-bottom:18px;cursor:pointer;}
-.check-row input{accent-color:var(--green);width:15px;height:15px;cursor:pointer;}
+.check-row input{accent-color:var(--green);width:15px;height:15px;cursor:pointer;flex-shrink:0;}
 .check-row span{font-size:12px;color:var(--muted);}
 
 /* SUBMIT */
@@ -86,7 +135,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 /* DIVIDER */
 .divider{display:flex;align-items:center;gap:10px;margin:18px 0;}
 .divider-line{flex:1;height:1px;background:var(--gray2);}
-.divider-txt{font-size:11px;color:var(--muted2);font-weight:600;}
+.divider-txt{font-size:11px;color:var(--muted2);font-weight:600;white-space:nowrap;}
 
 /* SOCIAL BTNS */
 .social-row{display:flex;gap:8px;}
@@ -107,7 +156,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .promo-txt p{font-size:11px;color:rgba(255,255,255,.6);margin-top:1px;}
 
 /* ERROR */
-.form-error{font-size:11px;color:var(--red);margin-top:4px;display:none;align-items:center;gap:4px;}
+.form-error{font-size:11px;color:var(--red);margin-top:5px;display:none;align-items:center;gap:4px;}
 .form-error .mi{font-size:14px;}
 .form-error.show{display:flex;}
 
@@ -137,9 +186,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker"><div class="ticker-inner" id="ticker-inner"></div></div>
-
 <!-- HEADER -->
 <header class="header">
   <div class="header-top">
@@ -148,7 +194,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <div class="wm-bar"></div>
     </a>
     <div class="header-spacer"></div>
-    <div class="auth">
+    <div class="auth-btns">
       <a href="login.html" class="btn-login">Login</a>
       <a href="register.html" class="btn-reg">Register</a>
     </div>
@@ -191,25 +237,38 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
           <div class="form-group">
             <label class="form-label" for="email">Email Address</label>
             <div class="input-wrap">
-              <span class="mi">mail</span>
-              <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
+              <span class="mi mi-left">mail</span>
+              <input class="form-input no-right-pad" type="email" id="email"
+                     placeholder="you@example.com" autocomplete="email" required>
             </div>
-            <div class="form-error" id="email-err"><span class="mi">error</span> <span id="email-err-txt">Please enter a valid email</span></div>
+            <div class="form-error" id="email-err">
+              <span class="mi">error</span>
+              <span id="email-err-txt">Please enter a valid email</span>
+            </div>
           </div>
 
           <!-- PASSWORD -->
           <div class="form-group">
             <label class="form-label" for="password">Password</label>
             <div class="input-wrap">
-              <span class="mi">lock</span>
-              <input class="form-input" type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required style="padding-right:40px;">
-              <button type="button" class="pw-toggle" onclick="togglePw('password','pw-eye')"><span class="mi" id="pw-eye">visibility</span></button>
+              <span class="mi mi-left">lock</span>
+              <input class="form-input" type="password" id="password"
+                     placeholder="Enter your password" autocomplete="current-password" required>
+              <button type="button" class="pw-toggle" onclick="togglePw('password','pw-eye')" tabindex="-1">
+                <span class="mi" id="pw-eye">visibility</span>
+              </button>
             </div>
-            <div class="form-error" id="pw-err"><span class="mi">error</span> <span id="pw-err-txt">Password is required</span></div>
+            <div class="form-error" id="pw-err">
+              <span class="mi">error</span>
+              <span id="pw-err-txt">Password is required</span>
+            </div>
           </div>
 
           <!-- FORGOT + REMEMBER -->
-          <div class="forgot-row"><a href="#" class="forgot-link">Forgot password?</a></div>
+          <div class="forgot-row">
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
           <label class="check-row">
             <input type="checkbox" id="remember">
             <span>Keep me signed in on this device</span>
@@ -231,10 +290,10 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 
         <!-- SOCIAL -->
         <div class="social-row">
-          <button class="btn-social google" onclick="showToast('Google login coming soon','error')">
+          <button class="btn-social" onclick="showToast('Google login coming soon','error')">
             <span style="font-size:15px;font-weight:900;font-family:sans-serif;color:#ea4335;">G</span> Google
           </button>
-          <button class="btn-social phone" onclick="showToast('Phone login coming soon','error')">
+          <button class="btn-social" onclick="showToast('Phone login coming soon','error')">
             <span class="mi">phone_iphone</span> Phone
           </button>
         </div>
@@ -251,7 +310,11 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 
 <!-- FOOTER MINI -->
 <div class="footer-mini">
-  <p>© 2026 PrimeStakes &nbsp;·&nbsp; <span>Licensed by Gaming Commission of Ghana</span> &nbsp;·&nbsp; <span>18+</span> &nbsp;·&nbsp; <a href="#" style="color:#666;text-decoration:none;">Responsible Gaming</a></p>
+  <p>© 2026 PrimeStakes &nbsp;·&nbsp;
+    <span>Licensed by Gaming Commission of Ghana</span> &nbsp;·&nbsp;
+    <span>18+</span> &nbsp;·&nbsp;
+    <a href="#" style="color:#666;text-decoration:none;">Responsible Gaming</a>
+  </p>
 </div>
 
 <script>
@@ -277,24 +340,18 @@ async function checkApiHealth() {
 }
 checkApiHealth();
 
-/* ── TICKER ── */
-const tickerItems = [
-  "⚽ Arsenal 2–1 Chelsea · 73'",
-  "⚽ Real Madrid 1–0 Barcelona · 61'",
-  "🏆 JACKPOT GHS 150,000 — BET NOW!",
-  "📈 ACCA BOOST: Up to 1000% this weekend!",
-  "⭐ FREE BET: GHS 20 on registration!",
-  "⚽ Celtic 2–0 Rangers · 50'"
-];
-const d = tickerItems.map(t => `<span style="padding:0 4px;">${t}</span><span style="color:#333;margin:0 8px;">●</span>`).join('');
-document.getElementById('ticker-inner').innerHTML = d + d;
 
 /* ── PASSWORD TOGGLE ── */
 function togglePw(inputId, iconId) {
   const inp = document.getElementById(inputId);
   const ico = document.getElementById(iconId);
-  if (inp.type === 'password') { inp.type = 'text'; ico.textContent = 'visibility_off'; }
-  else { inp.type = 'password'; ico.textContent = 'visibility'; }
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    ico.textContent = 'visibility_off';
+  } else {
+    inp.type = 'password';
+    ico.textContent = 'visibility';
+  }
 }
 
 /* ── TOAST ── */
@@ -317,15 +374,21 @@ function clearError(id) { document.getElementById(id).classList.remove('show'); 
 /* ── LOGIN HANDLER ── */
 async function handleLogin(e) {
   e.preventDefault();
-  const email = document.getElementById('email').value.trim();
+  const email    = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   let valid = true;
 
   clearError('email-err');
   clearError('pw-err');
 
-  if (!email || !validateEmail(email)) { setError('email-err', 'Please enter a valid email address'); valid = false; }
-  if (!password) { setError('pw-err', 'Password is required'); valid = false; }
+  if (!email || !validateEmail(email)) {
+    setError('email-err', 'Please enter a valid email address');
+    valid = false;
+  }
+  if (!password) {
+    setError('pw-err', 'Password is required');
+    valid = false;
+  }
   if (!valid) return;
 
   const btn = document.getElementById('submit-btn');
@@ -344,7 +407,6 @@ async function handleLogin(e) {
     try { data = await res.json(); } catch { data = {}; }
 
     if (res.ok) {
-      // Extract token — handles token at root or nested under data
       const token = data.token || data.data?.token || data.accessToken || data.data?.accessToken;
       const user  = data.user  || data.data?.user  || data.data || {};
 

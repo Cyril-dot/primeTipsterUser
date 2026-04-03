@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bet Now – PrimeStakes</title>
+<link rel="icon" href="data:,">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 <style>
@@ -39,19 +40,18 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .live-pill{background:var(--red2);color:#fff;font-size:9px;font-weight:800;padding:1px 6px;border-radius:10px;animation:blink 1.2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* ── AUTH AREA (logged out) ── */
-.auth{display:flex;gap:7px;flex-shrink:0;align-items:center;}
+/* ── AUTH — guest ── */
+#header-auth{display:flex;gap:7px;flex-shrink:0;align-items:center;}
 .btn-login{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
 .btn-reg{background:var(--yellow);border:none;color:#000;font-size:12px;font-weight:900;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
 
-/* ── USER AREA (logged in) ── */
-.user-area{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+/* ── AUTH — logged in ── */
+#header-user{display:none;align-items:center;gap:8px;flex-shrink:0;}
 .wallet-btn{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.25);border:1.5px solid rgba(255,255,255,.3);border-radius:4px;padding:5px 10px;color:#fff;cursor:pointer;text-decoration:none;transition:background .15s;}
 .wallet-btn:hover{background:rgba(0,0,0,.4);}
 .wallet-btn .mi{font-size:16px;color:var(--yellow);}
 .wallet-bal{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#fff;white-space:nowrap;}
 .user-avatar{width:34px;height:34px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;color:#000;flex-shrink:0;cursor:pointer;border:2px solid rgba(255,255,255,.4);}
-
 .hamburger{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px;flex-shrink:0;}
 
 /* ── MOBILE MENU ── */
@@ -66,7 +66,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-auth-row a{flex:1;text-align:center;padding:10px;border-radius:4px;font-weight:700;font-size:13px;text-decoration:none;}
 .mob-auth-login{border:1.5px solid #666;color:#ccc;}
 .mob-auth-reg{background:var(--yellow);color:#000;}
-/* logged-in user info in mob menu */
 .mob-user-row{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #2a2a2a;}
 .mob-user-av{width:36px;height:36px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;color:#000;flex-shrink:0;}
 .mob-user-info{flex:1;min-width:0;}
@@ -74,6 +73,8 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-user-bal{font-size:11px;color:var(--green2);}
 .mob-wallet-link{display:flex;align-items:center;gap:10px;padding:12px 16px;color:var(--yellow);font-size:13px;font-weight:700;text-decoration:none;border-bottom:1px solid #2a2a2a;}
 .mob-wallet-link .mi{font-size:18px;}
+.mob-logout-row{padding:12px 16px;}
+.mob-logout-btn{width:100%;background:rgba(204,0,0,.15);border:1px solid rgba(204,0,0,.3);color:var(--red2);border-radius:4px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
 
 /* ── PAGE TABS ── */
 .page-tabs{background:var(--white);border-bottom:2px solid var(--gray2);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 16px;}
@@ -101,11 +102,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 /* ── CENTRE ── */
 .center{flex:1;padding:10px;min-width:0;overflow:hidden;}
 
-/* ── OFFLINE NOTICE ── */
-.demo-notice{background:#fff3cd;border:1px solid #e8a800;border-radius:6px;padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-size:12px;color:#7a5500;}
-.demo-notice .mi{font-size:18px;color:#e8a800;}
-.demo-notice button{margin-left:auto;background:var(--yellow);border:none;border-radius:3px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;color:#000;}
-
 /* ── MOBILE LEAGUE CHIPS ── */
 .mobile-chips{display:none;overflow-x:auto;scrollbar-width:none;padding:8px 10px;gap:6px;background:var(--white);border-bottom:1px solid var(--gray2);}
 .mobile-chips::-webkit-scrollbar{display:none;}
@@ -124,8 +120,11 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .loading-state{background:var(--white);border-radius:6px;border:1px solid var(--gray2);padding:32px;text-align:center;color:var(--muted);font-size:13px;display:flex;flex-direction:column;align-items:center;gap:10px;}
 .loading-state .mi{font-size:36px;color:var(--gray3);animation:spin 1s linear infinite;}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-.empty-state{background:var(--white);border-radius:6px;border:1px dashed var(--gray2);padding:32px;text-align:center;color:var(--muted);font-size:13px;display:flex;flex-direction:column;align-items:center;gap:8px;}
-.empty-state .mi{font-size:40px;opacity:.25;}
+.empty-state{background:var(--white);border-radius:6px;border:1px dashed var(--gray2);padding:48px 32px;text-align:center;color:var(--muted);font-size:13px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.empty-state .mi{font-size:48px;color:var(--gray3);}
+.empty-state h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--text);margin-top:4px;}
+.empty-state p{font-size:13px;color:var(--muted);line-height:1.6;max-width:280px;}
+.empty-state .retry-btn{margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;border:none;border-radius:4px;padding:9px 20px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
 
 /* ── LEAGUE GROUP ── */
 .league-group{background:var(--white);border-radius:6px;border:1px solid var(--gray2);margin-bottom:10px;overflow:hidden;}
@@ -158,7 +157,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .score-toggle-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
 .score-toggle-btn .mi{font-size:14px;}
 
-/* ── SCORE PREDICTION PANEL ── */
+/* ── SCORE PANEL ── */
 .score-panel{display:none;border-top:1px solid var(--gray2);background:#fafcff;padding:12px 14px;}
 .score-panel.open{display:block;}
 .score-panel-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
@@ -181,7 +180,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .bs-tab .mi{font-size:16px;}
 .bs-tab.active{color:var(--green);border-bottom-color:var(--green);}
 .bs-locked{padding:20px 14px;text-align:center;}
-.bs-lock-icon .mi{font-size:40px;color:var(--gray3);}
 .bs-lock-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;margin:8px 0 6px;}
 .bs-lock-txt{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
 .bs-lock-btns{display:flex;gap:8px;}
@@ -279,7 +277,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-badge{position:absolute;background:var(--yellow);color:#000;font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;top:-4px;right:-6px;padding:0 3px;}
 
 /* ── TOAST ── */
-#ps-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:opacity .3s;opacity:0;pointer-events:none;}
+#ps-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:opacity .3s;opacity:0;pointer-events:none;white-space:nowrap;}
 
 /* ── FOOTER ── */
 .footer{background:var(--dark);color:#ccc;}
@@ -292,8 +290,10 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 @media(max-width:1100px){.sidebar{display:none;}.mobile-chips{display:flex;}}
 @media(max-width:900px){.betslip{display:none;}.bet-bubble{display:flex;}}
 @media(max-width:800px){
-  .header-nav,.auth,.user-area{display:none;}.hamburger{display:flex;}
-  .mob-nav{display:block;}.layout{padding-bottom:60px;}
+  .header-nav,#header-auth,#header-user{display:none!important;}
+  .hamburger{display:flex;}
+  .mob-nav{display:block;}
+  .layout{padding-bottom:60px;}
   .center{padding:8px 8px 72px;}
   .game-main{grid-template-columns:1fr;gap:6px;}
   .game-left{display:flex;gap:12px;align-items:center;}
@@ -305,8 +305,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker"><div class="ticker-inner" id="ticker-inner"></div></div>
 
 <!-- HEADER -->
 <header class="header">
@@ -323,42 +321,46 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <a class="hnav" href="#"><span class="mi">emoji_events</span> Jackpot</a>
       <a class="hnav" href="#"><span class="mi">workspace_premium</span> Loyalty <span class="hot">HOT</span></a>
     </nav>
-    <!-- Logged-out auth -->
-    <div class="auth" id="header-auth">
+
+    <!-- GUEST BUTTONS -->
+    <div id="header-auth">
       <a href="login.html" class="btn-login">Login</a>
       <a href="register.html" class="btn-reg">Register</a>
     </div>
-    <!-- Logged-in user area -->
-    <div class="user-area" id="header-user" style="display:none;">
+
+    <!-- LOGGED IN -->
+    <div id="header-user">
       <a href="wallet.html" class="wallet-btn" id="header-wallet-btn">
         <span class="mi">account_balance_wallet</span>
-        <span class="wallet-bal" id="header-wallet-bal">GHS 0.00</span>
+        <span class="wallet-bal" id="header-wallet-bal">GHS —</span>
       </a>
-      <div class="user-avatar" id="header-avatar" onclick="toggleMenu()">--</div>
+      <div class="user-avatar" id="header-avatar" onclick="toggleMenu()">?</div>
     </div>
+
     <button class="hamburger" onclick="toggleMenu()"><span class="mi">menu</span></button>
   </div>
 </header>
 
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mob-menu">
-  <!-- Logged-out view -->
   <div id="mob-auth-section">
     <div class="mob-auth-row">
       <a href="login.html" class="mob-auth-login">Login</a>
       <a href="register.html" class="mob-auth-reg">Register</a>
     </div>
   </div>
-  <!-- Logged-in view -->
   <div id="mob-user-section" style="display:none;">
     <div class="mob-user-row">
-      <div class="mob-user-av" id="mob-user-av">--</div>
+      <div class="mob-user-av" id="mob-user-av">?</div>
       <div class="mob-user-info">
         <div class="mob-user-name" id="mob-user-name">User</div>
-        <div class="mob-user-bal" id="mob-user-bal">GHS 0.00</div>
+        <div class="mob-user-bal" id="mob-user-bal">GHS —</div>
       </div>
     </div>
     <a href="wallet.html" class="mob-wallet-link"><span class="mi">account_balance_wallet</span> My Wallet</a>
+    <div class="mob-logout-row">
+      <button class="mob-logout-btn" onclick="logout()">Sign Out</button>
+    </div>
   </div>
   <div class="mob-menu-divider"></div>
   <div class="mob-menu-lbl">Navigation</div>
@@ -371,11 +373,11 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 
 <!-- PAGE TABS -->
 <div class="page-tabs">
-  <div class="ptab active"><span class="mi">sports_soccer</span> All Games</div>
-  <div class="ptab"><span class="mi">public</span> Africa</div>
-  <div class="ptab"><span class="mi">language</span> Europe</div>
-  <div class="ptab"><span class="mi">emoji_events</span> Champions League</div>
-  <div class="ptab"><span class="mi">scoreboard</span> Score Predictions</div>
+  <div class="ptab active" onclick="filterLeague('all',this)"><span class="mi">sports_soccer</span> All Games</div>
+  <div class="ptab" onclick="filterLeague('Ghana Premier League',this)"><span class="mi">public</span> Africa</div>
+  <div class="ptab" onclick="filterLeague('England Premier League',this)"><span class="mi">language</span> Europe</div>
+  <div class="ptab" onclick="filterLeague('UEFA Champions League',this)"><span class="mi">emoji_events</span> Champions League</div>
+  <div class="ptab" onclick="setScoreTab(this)"><span class="mi">scoreboard</span> Score Predictions</div>
 </div>
 
 <!-- MOBILE LEAGUE CHIPS -->
@@ -409,14 +411,9 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 <main class="center" id="main-center">
   <div class="sec-head">
     <div class="sec-dot"></div>
-    <span class="sec-title">All Games</span>
+    <span class="sec-title" id="sec-title-txt">All Games</span>
     <span class="sec-count" id="game-count">Loading…</span>
     <button class="refresh-btn" onclick="loadGames()"><span class="mi">refresh</span> Refresh</button>
-  </div>
-  <div id="demo-notice" class="demo-notice" style="display:none;">
-    <span class="mi">warning</span>
-    <span>Could not reach server — showing limited fallback fixtures.</span>
-    <button onclick="loadGames()">Retry</button>
   </div>
   <div id="games-container">
     <div class="loading-state"><span class="mi">refresh</span> Loading games…</div>
@@ -521,30 +518,48 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </footer>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   CONFIG
+══════════════════════════════════════════ */
 const API_BASE = 'https://kikiwebbackend-iysi.onrender.com';
 
-// ── AUTH ──────────────────────────────────────────────────────────────────────
-const isLoggedIn = () => !!localStorage.getItem('ps_stakes');
-const getToken   = () => localStorage.getItem('ps_stakes');
+/* ══════════════════════════════════════════
+   AUTH HELPERS
+   — reads token from ALL possible key names
+══════════════════════════════════════════ */
+function getToken() {
+  return localStorage.getItem('ps_stakes')
+      || localStorage.getItem('token')
+      || localStorage.getItem('accessToken')
+      || null;
+}
+function isLoggedIn() { return !!getToken(); }
 
-function getInitials(user) {
-  if (!user) return '?';
-  const first = (user.firstName || user.first_name || '').trim();
-  const last  = (user.lastName  || user.last_name  || '').trim();
-  if (first && last) return (first[0] + last[0]).toUpperCase();
-  if (first) return first.substring(0,2).toUpperCase();
+function getStoredUser() {
+  try { return JSON.parse(localStorage.getItem('ps_user') || 'null') || {}; } catch { return {}; }
+}
+
+function getInitials(u) {
+  if (!u) return '?';
+  const f = (u.firstName || u.first_name || u.name || '').trim();
+  const l = (u.lastName  || u.last_name  || '').trim();
+  if (f && l) return (f[0] + l[0]).toUpperCase();
+  if (f)      return f.substring(0, 2).toUpperCase();
+  if (u.email) return u.email[0].toUpperCase();
   return '?';
 }
 
-function getDisplayName(user) {
-  if (!user) return 'User';
-  const first = user.firstName || user.first_name || '';
-  const last  = user.lastName  || user.last_name  || '';
-  return (first + ' ' + last).trim() || user.email || 'User';
+function getDisplayName(u) {
+  if (!u) return 'User';
+  const f = u.firstName || u.first_name || '';
+  const l = u.lastName  || u.last_name  || '';
+  const full = (f + ' ' + l).trim();
+  return full || u.name || u.username || u.email || 'User';
 }
 
-// Fetch wallet balance from API
+/* ══════════════════════════════════════════
+   FETCH BALANCE
+══════════════════════════════════════════ */
 async function fetchWalletBalance() {
   const token = getToken();
   if (!token) return null;
@@ -553,14 +568,19 @@ async function fetchWalletBalance() {
       headers: { 'Authorization': `Bearer ${token}` },
       signal: AbortSignal.timeout(8000)
     });
-    if (!res.ok) return null;
-    const data = await res.json();
-    // Handle nested response: data.data or data directly
+    if (!res.ok) { if (res.status === 401) logout(false); return null; }
+    const data    = await res.json();
     const payload = data.data || data;
-    return payload.walletBalance != null ? parseFloat(payload.walletBalance) : null;
+    return payload.walletBalance  != null ? parseFloat(payload.walletBalance)
+         : payload.balance        != null ? parseFloat(payload.balance)
+         : payload.accountBalance != null ? parseFloat(payload.accountBalance)
+         : null;
   } catch { return null; }
 }
 
+/* ══════════════════════════════════════════
+   APPLY AUTH STATE  ← direct style, no class
+══════════════════════════════════════════ */
 async function initAuth() {
   const authEl  = document.getElementById('header-auth');
   const userEl  = document.getElementById('header-user');
@@ -575,60 +595,69 @@ async function initAuth() {
     return;
   }
 
+  /* show logged-in UI immediately with stored data */
   authEl.style.display  = 'none';
   userEl.style.display  = 'flex';
   mobAuth.style.display = 'none';
   mobUser.style.display = 'block';
 
-  // Set initials from stored user data
-  let storedUser = null;
-  try { storedUser = JSON.parse(localStorage.getItem('ps_user') || 'null'); } catch {}
-  const initials = getInitials(storedUser);
-  const name     = getDisplayName(storedUser);
+  const u        = getStoredUser();
+  const initials = getInitials(u);
+  const name     = getDisplayName(u);
 
-  document.getElementById('header-avatar').textContent    = initials;
-  document.getElementById('mob-user-av').textContent      = initials;
-  document.getElementById('mob-user-name').textContent    = name;
+  document.getElementById('header-avatar').textContent  = initials;
+  document.getElementById('mob-user-av').textContent    = initials;
+  document.getElementById('mob-user-name').textContent  = name;
 
-  // Fetch live balance
-  const bal = await fetchWalletBalance();
-  const balStr = bal != null ? `GHS ${bal.toFixed(2)}` : 'GHS --';
+  /* fetch live balance */
+  const bal    = await fetchWalletBalance();
+  const balStr = bal != null ? `GHS ${bal.toFixed(2)}` : 'GHS —';
   document.getElementById('header-wallet-bal').textContent = balStr;
   document.getElementById('mob-user-bal').textContent      = balStr;
 }
 
-// ── MINIMAL FALLBACK (only 2 games) ──────────────────────────────────────────
-function makeDate(daysOffset, h, m) {
-  const d = new Date(); d.setDate(d.getDate() + daysOffset); d.setHours(h, m, 0, 0); return d.toISOString();
+/* ══════════════════════════════════════════
+   LOGOUT
+══════════════════════════════════════════ */
+function logout(redirect = true) {
+  ['ps_stakes','ps_user','ps_slip','token','accessToken'].forEach(k => localStorage.removeItem(k));
+  if (redirect) window.location.href = 'login.html';
 }
-const FALLBACK_GAMES = [
-  { id:'f001', homeTeam:'Hearts of Oak', awayTeam:'Asante Kotoko', matchDate:makeDate(0,15,0), league:'Ghana Premier League', oddsHomeWin:2.10, oddsDraw:3.20, oddsAwayWin:3.40 },
-  { id:'f002', homeTeam:'Arsenal',       awayTeam:'Chelsea',       matchDate:makeDate(0,17,0), league:'England Premier League', oddsHomeWin:2.42, oddsDraw:3.35, oddsAwayWin:2.96 },
-];
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
-let allGames = [];
-let slip = {};
-let currentFilter = 'all';
-let openScorePanels = new Set();
+/* ══════════════════════════════════════════
+
+
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+let allGames          = [];
+let slip              = {};
+let currentFilter     = 'all';
+let openScorePanels   = new Set();
 let scoreOptionsCache = {};
-let usingFallback = false;
 
-// ── SCORE OPTIONS ─────────────────────────────────────────────────────────────
+/* pre-load slip from storage */
+try { const s = localStorage.getItem('ps_slip'); if (s) slip = JSON.parse(s); } catch {}
+
+/* ══════════════════════════════════════════
+   SCORE OPTIONS
+══════════════════════════════════════════ */
 function generateScoreOptions(gameId) {
-  const rnd = (base) => parseFloat((base * (0.85 + Math.random() * 0.3)).toFixed(2));
+  const rnd = base => parseFloat((base * (0.85 + Math.random() * 0.3)).toFixed(2));
   const opts = [];
   for (let h = 0; h <= 4; h++) {
     for (let a = 0; a <= 4; a++) {
-      const tot = h + a;
+      const tot  = h + a;
       const base = tot === 0 ? 6 : tot === 1 ? 4.5 : tot === 2 ? 7 : tot === 3 ? 12 : 25;
-      opts.push({ id: `${gameId}-${h}-${a}`, homeScore: h, awayScore: a, odds: rnd(base) });
+      opts.push({ id:`${gameId}-${h}-${a}`, homeScore:h, awayScore:a, odds:rnd(base) });
     }
   }
   return opts;
 }
 
-// ── LOAD GAMES ────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   LOAD GAMES
+══════════════════════════════════════════ */
 async function loadGames() {
   document.getElementById('games-container').innerHTML =
     '<div class="loading-state"><span class="mi">refresh</span> Loading games…</div>';
@@ -637,17 +666,24 @@ async function loadGames() {
   try {
     const res = await fetch(`${API_BASE}/api/v1/games/public`, { signal: AbortSignal.timeout(12000) });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
+    const data  = await res.json();
     const games = Array.isArray(data) ? data : (data.data || []);
-    if (!games.length) throw new Error('Empty');
-    allGames = games.map(g => ({ ...g, league: g.league || guessLeague(g) }));
-    usingFallback = false;
-    document.getElementById('demo-notice').style.display = 'none';
+    allGames    = games.map(g => ({ ...g, league: g.league || guessLeague(g) }));
   } catch (err) {
-    console.warn('API unavailable, using fallback:', err.message);
-    allGames = FALLBACK_GAMES;
-    usingFallback = true;
-    document.getElementById('demo-notice').style.display = 'flex';
+    console.warn('API error:', err.message);
+    allGames = [];
+  }
+
+  if (!allGames.length) {
+    document.getElementById('game-count').textContent = '0 Games';
+    document.getElementById('games-container').innerHTML = `
+      <div class="empty-state">
+        <span class="mi">sports_soccer</span>
+        <h3>No Games Available</h3>
+        <p>No games have been uploaded yet. Check back soon!</p>
+        <button class="retry-btn" onclick="loadGames()"><span class="mi">refresh</span> Try Again</button>
+      </div>`;
+    return;
   }
 
   document.getElementById('game-count').textContent = allGames.length + ' Games';
@@ -657,11 +693,13 @@ async function loadGames() {
 function guessLeague(g) {
   const t = ((g.homeTeam || '') + (g.awayTeam || '')).toLowerCase();
   if (t.includes('hearts') || t.includes('kotoko') || t.includes('medeama')) return 'Ghana Premier League';
-  if (t.includes('enyimba') || t.includes('kano') || t.includes('rivers'))   return 'Nigeria NPFL';
+  if (t.includes('enyimba') || t.includes('kano')   || t.includes('rivers'))   return 'Nigeria NPFL';
   return 'Football';
 }
 
-// ── SCORE OPTIONS LOADER ──────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   SCORE OPTIONS LOADER
+══════════════════════════════════════════ */
 async function loadScoreOptions(gameId) {
   if (scoreOptionsCache[gameId]) return scoreOptionsCache[gameId];
   try {
@@ -679,22 +717,40 @@ async function loadScoreOptions(gameId) {
   }
 }
 
-// ── FILTER ────────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   FILTER
+══════════════════════════════════════════ */
 function filterLeague(league, el) {
   currentFilter = league;
   document.querySelectorAll('.sb-item').forEach(e => e.classList.remove('active'));
   document.querySelectorAll('.mchip').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(e => e.classList.remove('active'));
   if (el) el.classList.add('active');
+  document.getElementById('sec-title-txt').textContent = league === 'all' ? 'All Games' : league;
   renderGames();
 }
 
-// ── RENDER GAMES ──────────────────────────────────────────────────────────────
+function setScoreTab(el) {
+  document.querySelectorAll('.ptab').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  /* expand all score panels for visible games */
+  allGames.slice(0, 10).forEach(g => {
+    openScorePanels.add(String(g.id));
+  });
+  renderGames();
+}
+
+/* ══════════════════════════════════════════
+   RENDER GAMES
+══════════════════════════════════════════ */
 function renderGames() {
-  const games = currentFilter === 'all' ? allGames : allGames.filter(g => g.league === currentFilter);
+  const games = currentFilter === 'all'
+    ? allGames
+    : allGames.filter(g => g.league === currentFilter);
 
   if (!games.length) {
     document.getElementById('games-container').innerHTML =
-      '<div class="empty-state"><span class="mi">sports_soccer</span><span>No games in this category.</span></div>';
+      '<div class="empty-state"><span class="mi">sports_soccer</span><h3>No Games</h3><p>No games in this category right now.</p></div>';
     return;
   }
 
@@ -721,21 +777,24 @@ function renderGames() {
 }
 
 function toggleLeagueGroup(hdr) {
-  const body = hdr.nextElementSibling;
+  const body   = hdr.nextElementSibling;
   const toggle = hdr.querySelector('.league-toggle');
   const isOpen = toggle.classList.contains('open');
   body.style.display = isOpen ? 'none' : '';
   toggle.classList.toggle('open', !isOpen);
 }
 
+/* ══════════════════════════════════════════
+   BUILD GAME CARD
+══════════════════════════════════════════ */
 function buildGameCard(g) {
-  const dt = new Date(g.matchDate);
-  const timeStr = dt.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
-  const dateStr = dt.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
-  const selH = slip[`${g.id}-1X2-1`];
-  const selX = slip[`${g.id}-1X2-X`];
-  const sel2 = slip[`${g.id}-1X2-2`];
-  const isScoreOpen = openScorePanels.has(String(g.id));
+  const dt        = new Date(g.matchDate);
+  const timeStr   = dt.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+  const dateStr   = dt.toLocaleDateString('en-GB',  { weekday:'short', day:'numeric', month:'short' });
+  const selH      = slip[`${g.id}-1X2-1`];
+  const selX      = slip[`${g.id}-1X2-X`];
+  const sel2      = slip[`${g.id}-1X2-2`];
+  const isScoreOpen  = openScorePanels.has(String(g.id));
   const hasScoreSels = Object.keys(slip).some(k => k.startsWith(`${g.id}-CS-`));
 
   return `<div class="game-card" id="game-${g.id}">
@@ -771,15 +830,26 @@ function buildGameCard(g) {
   </div>`;
 }
 
-function esc(s) { return String(s).replace(/'/g, "\\'"); }
+function esc(s) {
+  return String(s || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+}
 
-// ── SCORE PANEL ───────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   SCORE PANEL
+══════════════════════════════════════════ */
 async function toggleScorePanel(gameId, btn) {
   const panel = document.getElementById(`score-panel-${gameId}`);
   if (!panel) return;
   const isOpen = panel.classList.contains('open');
-  if (isOpen) { panel.classList.remove('open'); btn.classList.remove('active'); openScorePanels.delete(String(gameId)); return; }
-  panel.classList.add('open'); btn.classList.add('active'); openScorePanels.add(String(gameId));
+  if (isOpen) {
+    panel.classList.remove('open');
+    btn.classList.remove('active');
+    openScorePanels.delete(String(gameId));
+    return;
+  }
+  panel.classList.add('open');
+  btn.classList.add('active');
+  openScorePanels.add(String(gameId));
   const opts = await loadScoreOptions(gameId);
   renderScorePanel(gameId, opts);
 }
@@ -788,9 +858,9 @@ function renderScorePanel(gameId, opts) {
   const panel = document.getElementById(`score-panel-${gameId}`);
   if (!panel) return;
   const game = allGames.find(g => String(g.id) === String(gameId));
-  let html = `<div class="score-panel-title"><span class="mi">scoreboard</span> Correct Score — ${game ? game.homeTeam + ' v ' + game.awayTeam : ''}</div><div class="score-grid">`;
+  let html = `<div class="score-panel-title"><span class="mi">scoreboard</span> Correct Score${game ? ' — ' + game.homeTeam + ' v ' + game.awayTeam : ''}</div><div class="score-grid">`;
   opts.forEach(opt => {
-    const key = `${gameId}-CS-${opt.id}`;
+    const key   = `${gameId}-CS-${opt.id}`;
     const isSel = !!slip[key];
     html += `<div class="score-opt ${isSel?'sel':''}" onclick="addBetScore('${gameId}','${opt.id}',${opt.homeScore},${opt.awayScore},${opt.odds},'${game?esc(game.homeTeam)+' v '+esc(game.awayTeam):''}','${game?esc(game.league||''):''}')">
       <span class="score-val">${opt.homeScore}-${opt.awayScore}</span>
@@ -801,23 +871,39 @@ function renderScorePanel(gameId, opts) {
   panel.innerHTML = html;
 }
 
-// ── ADD BET 1X2 ───────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   ADD BET 1X2
+══════════════════════════════════════════ */
 function addBet1X2(gameId, type, label, league, teams, odd) {
   if (!isLoggedIn()) { openLoginModal(); return; }
   const key = `${gameId}-1X2-${type}`;
   if (slip[key]) { delete slip[key]; }
-  else { ['1','X','2'].forEach(t => delete slip[`${gameId}-1X2-${t}`]); slip[key] = { key, gameId, type:'1X2', label, league, teams, odd, isScore:false }; }
-  refreshGameCard(gameId); renderBS(); updateBadges();
+  else {
+    ['1','X','2'].forEach(t => delete slip[`${gameId}-1X2-${t}`]);
+    slip[key] = { key, gameId, type:'1X2', label, league, teams, odd, isScore:false };
+  }
+  saveSlip();
+  refreshGameCard(gameId);
+  renderBS();
+  updateBadges();
 }
 
-// ── ADD BET SCORE ─────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   ADD BET SCORE
+══════════════════════════════════════════ */
 function addBetScore(gameId, optId, h, a, odd, teams, league) {
   if (!isLoggedIn()) { openLoginModal(); return; }
   const key = `${gameId}-CS-${optId}`;
   if (slip[key]) { delete slip[key]; }
   else { slip[key] = { key, gameId, type:'CS', label:`Score ${h}-${a}`, league, teams, odd, isScore:true, optId }; }
+  saveSlip();
   if (scoreOptionsCache[gameId]) renderScorePanel(gameId, scoreOptionsCache[gameId]);
-  renderBS(); updateBadges();
+  renderBS();
+  updateBadges();
+}
+
+function saveSlip() {
+  localStorage.setItem('ps_slip', JSON.stringify(slip));
 }
 
 function refreshGameCard(gameId) {
@@ -837,25 +923,33 @@ function refreshGameCard(gameId) {
   }
 }
 
-// ── BETSLIP RENDER ────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   BETSLIP RENDER
+══════════════════════════════════════════ */
 function renderBS() {
-  const items = Object.values(slip);
+  const items  = Object.values(slip);
   const bsMain = document.getElementById('bs-main-area');
   const bsBet  = document.getElementById('bs-bet-area');
 
   if (!items.length) {
-    bsMain.style.display = 'block'; bsBet.style.display = 'none';
-    renderBsEmpty(); return;
+    bsMain.style.display = 'block';
+    bsBet.style.display  = 'none';
+    renderBsEmpty();
+    return;
   }
 
-  bsMain.style.display = 'none'; bsBet.style.display = 'block';
+  bsMain.style.display = 'none';
+  bsBet.style.display  = 'block';
   document.getElementById('bet-items').innerHTML = items.map(b => `
     <div class="bet-item">
       <button class="bet-rm" onclick="removeBet('${b.key}')"><span class="mi">close</span></button>
       <div class="bet-league">${b.league}</div>
       <div class="bet-match">${b.teams}</div>
       <div class="bet-sel-row">
-        <div><div class="bet-sel">${b.label}</div><span class="bet-type-badge">${b.isScore?'Correct Score':'Full Time'}</span></div>
+        <div>
+          <div class="bet-sel">${b.label}</div>
+          <span class="bet-type-badge">${b.isScore?'Correct Score':'Full Time'}</span>
+        </div>
         <div class="bet-odd-val">${(+b.odd).toFixed(2)}</div>
       </div>
     </div>`).join('');
@@ -865,10 +959,10 @@ function renderBS() {
 
 function renderBsEmpty() {
   const bsMain = document.getElementById('bs-main-area');
-  const locked = !isLoggedIn();
-  bsMain.innerHTML = locked
-    ? `<div class="bs-locked">
-        <div class="bs-lock-icon"><span class="mi" style="font-size:40px;color:#ccc;">lock</span></div>
+  if (!isLoggedIn()) {
+    bsMain.innerHTML = `
+      <div class="bs-locked">
+        <div><span class="mi" style="font-size:40px;color:#ccc;">lock</span></div>
         <div class="bs-lock-title">Sign in to Bet</div>
         <p class="bs-lock-txt">Log in or create a free account to place bets.</p>
         <div class="bs-lock-btns">
@@ -876,14 +970,17 @@ function renderBsEmpty() {
           <a href="register.html" class="bs-lock-reg">Register</a>
         </div>
       </div>
-      <div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`
-    : `<div class="bs-empty">
+      <div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
+  } else {
+    bsMain.innerHTML = `
+      <div class="bs-empty">
         <p class="bs-empty-txt">Click any odds to add to your betslip.</p>
         <div class="book-lbl">Have a Booking Code?</div>
         <input class="book-inp" id="book-code-inp" placeholder="Enter code…" oninput="this.value=this.value.toUpperCase()">
         <button class="load-btn" onclick="loadBookingCode()"><span class="mi">download</span> Load Slip</button>
       </div>
       <div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
+  }
   renderWinners();
 }
 
@@ -928,15 +1025,19 @@ function renderBsDrawer(items) {
 function removeBet(key) {
   const gameId = slip[key]?.gameId;
   delete slip[key];
+  saveSlip();
   if (gameId) refreshGameCard(gameId);
-  renderBS(); updateBadges();
+  renderBS();
+  updateBadges();
 }
 
 function clearSlip() {
   const ids = [...new Set(Object.values(slip).map(s => s.gameId))];
   slip = {};
+  saveSlip();
   ids.forEach(id => refreshGameCard(id));
-  renderBS(); updateBadges();
+  renderBS();
+  updateBadges();
 }
 
 function calcPayout() {
@@ -958,7 +1059,9 @@ function setStake(v) {
   calcPayout();
 }
 
-// ── PLACE BET ─────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   PLACE BET
+══════════════════════════════════════════ */
 async function placeBet() {
   if (!isLoggedIn()) { openLoginModal(); return; }
   const items = Object.values(slip);
@@ -966,45 +1069,46 @@ async function placeBet() {
   const stake = parseFloat(document.getElementById('stake-inp').value) || 0;
   if (stake <= 0) { showToast('Enter a valid stake', true); return; }
 
-  const token = getToken();
-  const tot   = items.reduce((a,b) => a*(+b.odd), 1);
+  const token        = getToken();
+  const tot          = items.reduce((a,b) => a*(+b.odd), 1);
   const regularPicks = items.filter(i => !i.isScore);
-  const scorePicks   = items.filter(i => i.isScore);
+  const scorePicks   = items.filter(i =>  i.isScore);
   let placed = false;
 
   if (regularPicks.length) {
     const payload = {
       stake,
       selections: regularPicks.map(b => ({
-        gameId: b.gameId,
+        gameId:     b.gameId,
         marketType: b.type === '1' ? 'HOME_WIN' : b.type === '2' ? 'AWAY_WIN' : 'DRAW'
       }))
     };
     try {
       const res = await fetch(`${API_BASE}/api/v1/bets`, {
-        method: 'POST',
+        method:  'POST',
         headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${token}` },
-        body: JSON.stringify(payload),
-        signal: AbortSignal.timeout(12000)
+        body:    JSON.stringify(payload),
+        signal:  AbortSignal.timeout(12000)
       });
       if (res.ok) { placed = true; }
       else {
         const e = await res.json().catch(() => ({}));
-        showToast('❌ ' + (e.message || 'Failed to place bet'), true); return;
+        showToast('❌ ' + (e.message || 'Failed to place bet'), true);
+        return;
       }
     } catch (err) {
-      if (err.name === 'TimeoutError') { showToast('❌ Request timed out', true); return; }
-      showToast('❌ Network error', true); return;
+      showToast(err.name === 'TimeoutError' ? '❌ Request timed out' : '❌ Network error', true);
+      return;
     }
   }
 
   for (const b of scorePicks) {
     try {
       const res = await fetch(`${API_BASE}/api/v1/bets/correct-score`, {
-        method: 'POST',
+        method:  'POST',
         headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${token}` },
-        body: JSON.stringify({ gameId: b.gameId, correctScoreOptionId: b.optId, stake: stake / (scorePicks.length || 1) }),
-        signal: AbortSignal.timeout(12000)
+        body:    JSON.stringify({ gameId:b.gameId, correctScoreOptionId:b.optId, stake: stake / (scorePicks.length || 1) }),
+        signal:  AbortSignal.timeout(12000)
       });
       if (res.ok) placed = true;
       else { const e = await res.json().catch(()=>({})); showToast('❌ ' + (e.message || 'Score bet failed'), true); }
@@ -1014,17 +1118,21 @@ async function placeBet() {
   if (placed) {
     const ids = [...new Set(items.map(s => s.gameId))];
     slip = {};
+    saveSlip();
     ids.forEach(id => refreshGameCard(id));
-    renderBS(); updateBadges(); closeBsDrawer();
+    renderBS();
+    updateBadges();
+    closeBsDrawer();
     showToast(`✅ Bet placed! Potential: GHS ${(stake * tot).toFixed(2)}`);
-    // Refresh wallet balance display
-    initAuth();
+    initAuth(); /* refresh balance */
   }
 }
 
-// ── BOOKING CODE ──────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   BOOKING CODE
+══════════════════════════════════════════ */
 async function loadBookingCode() {
-  const inp = document.getElementById('book-code-inp');
+  const inp  = document.getElementById('book-code-inp');
   if (!inp) return;
   const code = inp.value.trim().toUpperCase();
   if (!code) { showToast('Enter a booking code', true); return; }
@@ -1032,24 +1140,28 @@ async function loadBookingCode() {
   try {
     const res = await fetch(`${API_BASE}/api/v1/games/public/booking/${code}`);
     if (!res.ok) throw new Error();
-    const data = await res.json();
+    const data  = await res.json();
     const games = data.games || [];
     if (!games.length) throw new Error();
     games.forEach(g => {
       const key = `${g.gameId}-BC-${g.position}`;
       slip[key] = { key, gameId:g.gameId, type:'BC', label:g.pickLabel||g.pick, league:'', teams:`${g.homeTeam} v ${g.awayTeam}`, odd:+g.odds, isScore:false };
     });
-    renderBS(); updateBadges();
+    saveSlip();
+    renderBS();
+    updateBadges();
     showToast(`✅ Loaded: ${games.length} selections`);
   } catch { showToast('❌ Code not found or expired', true); }
 }
 
-// ── WINNERS FEED ──────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   WINNERS FEED
+══════════════════════════════════════════ */
 const winnerPool = [
-  {n:"Kwame A***",a:"GHS 11,928",t:"Sports Betting",c:"#e74c3c"},
-  {n:"Ama B***",a:"GHS 5,000",t:"Correct Score",c:"#3498db"},
-  {n:"Kofi M***",a:"GHS 3,549",t:"UCL Acca",c:"#2ecc71"},
-  {n:"Abena S***",a:"GHS 11,100",t:"Sports Betting",c:"#9b59b6"},
+  {n:"Kwame A***", a:"GHS 11,928", t:"Sports Betting", c:"#e74c3c"},
+  {n:"Ama B***",   a:"GHS 5,000",  t:"Correct Score",  c:"#3498db"},
+  {n:"Kofi M***",  a:"GHS 3,549",  t:"UCL Acca",        c:"#2ecc71"},
+  {n:"Abena S***", a:"GHS 11,100", t:"Sports Betting",  c:"#9b59b6"},
 ];
 function renderWinners() {
   const el = document.getElementById('winners-list');
@@ -1065,12 +1177,19 @@ setInterval(() => {
   const names  = ["Nana K***","Kwesi L***","Akua T***","Fiifi G***"];
   const types  = ["Sports Betting","Correct Score","UCL Acca"];
   const colors = ["#e74c3c","#3498db","#2ecc71","#9b59b6","#e67e22"];
-  winnerPool.unshift({ n:names[Math.random()*names.length|0], a:"GHS "+(Math.random()*10000+200|0).toLocaleString(), t:types[Math.random()*types.length|0], c:colors[Math.random()*colors.length|0] });
+  winnerPool.unshift({
+    n: names[Math.random()*names.length|0],
+    a: "GHS " + (Math.random()*10000+200|0).toLocaleString(),
+    t: types[Math.random()*types.length|0],
+    c: colors[Math.random()*colors.length|0]
+  });
   if (winnerPool.length > 20) winnerPool.pop();
   renderWinners();
 }, 6000);
 
-// ── BADGES ────────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   BADGES
+══════════════════════════════════════════ */
 function updateBadges() {
   const count = Object.keys(slip).length;
   document.getElementById('bubble-count').textContent = count;
@@ -1079,49 +1198,60 @@ function updateBadges() {
   if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'inline-flex' : 'none'; }
 }
 
-// ── MOBILE BETSLIP DRAWER ─────────────────────────────────────────────────────
-function openBsDrawer()  { document.getElementById('bs-drawer-overlay').classList.add('open'); document.getElementById('bs-drawer').classList.add('open'); renderBsDrawer(Object.values(slip)); }
-function closeBsDrawer() { document.getElementById('bs-drawer-overlay').classList.remove('open'); document.getElementById('bs-drawer').classList.remove('open'); }
+/* ══════════════════════════════════════════
+   MOBILE BETSLIP DRAWER
+══════════════════════════════════════════ */
+function openBsDrawer() {
+  document.getElementById('bs-drawer-overlay').classList.add('open');
+  document.getElementById('bs-drawer').classList.add('open');
+  renderBsDrawer(Object.values(slip));
+}
+function closeBsDrawer() {
+  document.getElementById('bs-drawer-overlay').classList.remove('open');
+  document.getElementById('bs-drawer').classList.remove('open');
+}
 
-// ── LOGIN MODAL ───────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   LOGIN MODAL
+══════════════════════════════════════════ */
 function openLoginModal()  { document.getElementById('login-modal').classList.add('open'); }
 function closeLoginModal() { document.getElementById('login-modal').classList.remove('open'); }
 
-// ── TICKER ────────────────────────────────────────────────────────────────────
-function buildTicker() {
-  const items = ["⚽ Live games updated in real-time","🏆 JACKPOT GHS 150,000 — BET NOW!","📈 ACCA BOOST: Up to 1000% this weekend!","⭐ Correct Score Predictor — Pick exact scores!","⚽ Hearts of Oak vs Kotoko — Today 15:00 GMT","🔴 UCL: Bayern vs PSG — Today 17:00 GMT"];
-  const html = items.map(t=>`<span style="padding:0 4px;">${t}</span><span style="color:#333;margin:0 8px;">●</span>`).join('');
-  document.getElementById('ticker-inner').innerHTML = html + html;
-}
-
-// ── MOBILE MENU ───────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   MOBILE MENU
+══════════════════════════════════════════ */
 function toggleMenu() { document.getElementById('mob-menu').classList.toggle('open'); }
 document.addEventListener('click', e => {
   const menu  = document.getElementById('mob-menu');
   const ham   = document.querySelector('.hamburger');
   const av    = document.getElementById('header-avatar');
   const modal = document.getElementById('login-modal');
-  const clickedOutside = !menu.contains(e.target) && !ham?.contains(e.target) && !av?.contains(e.target);
-  if (menu.classList.contains('open') && clickedOutside) menu.classList.remove('open');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !ham?.contains(e.target) && !av?.contains(e.target)) {
+    menu.classList.remove('open');
+  }
   if (modal.classList.contains('open') && e.target === modal) closeLoginModal();
 });
 
-// ── TOAST ─────────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════ */
 function showToast(msg, isError = false) {
   const t = document.getElementById('ps-toast');
-  t.textContent = msg;
+  t.textContent      = msg;
   t.style.background = isError ? 'var(--red)' : 'var(--green)';
-  t.style.opacity = '1';
+  t.style.opacity    = '1';
   clearTimeout(t._to);
   t._to = setTimeout(() => { t.style.opacity = '0'; }, 3000);
 }
 
-// ── BOOT ──────────────────────────────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   BOOT
+══════════════════════════════════════════ */
 buildTicker();
+initAuth();
 loadGames();
 renderBS();
 updateBadges();
-initAuth();
 </script>
 </body>
 </html>

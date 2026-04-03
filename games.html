@@ -16,11 +16,6 @@
 html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);font-size:14px;}
 .mi{font-family:'Material Icons Round';font-size:20px;line-height:1;vertical-align:middle;display:inline-flex;align-items:center;}
 
-/* TICKER */
-.ticker{background:var(--dark);color:var(--yellow);font-size:12px;font-weight:600;padding:5px 0;overflow:hidden;white-space:nowrap;}
-.ticker-inner{display:inline-flex;gap:48px;animation:tick 30s linear infinite;}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
 /* HEADER */
 .header{background:var(--red);position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(0,0,0,.4);}
 .header-top{display:flex;align-items:center;gap:10px;padding:0 20px;height:56px;}
@@ -39,42 +34,19 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .hot{background:var(--yellow);color:#000;font-size:9px;font-weight:900;padding:1px 5px;border-radius:2px;margin-left:2px;}
 
 /* AUTH BUTTONS (logged-out) */
-.auth{display:flex;gap:7px;flex-shrink:0;}
+.auth{display:flex;gap:7px;flex-shrink:0;align-items:center;}
 .btn-login{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
 .btn-reg{background:var(--yellow);border:none;color:#000;font-size:12px;font-weight:900;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
 .hamburger{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px;}
 
 /* WALLET CHIP (logged-in) */
-.wallet-chip{display:none;align-items:center;gap:7px;background:rgba(0,0,0,.28);border:1.5px solid rgba(255,255,255,.18);border-radius:6px;padding:5px 13px 5px 10px;cursor:pointer;flex-shrink:0;transition:background .15s;position:relative;}
+.wallet-chip{display:none;align-items:center;gap:7px;background:rgba(0,0,0,.28);border:1.5px solid rgba(255,255,255,.18);border-radius:6px;padding:5px 13px 5px 10px;cursor:pointer;flex-shrink:0;transition:background .15s;text-decoration:none;}
 .wallet-chip:hover{background:rgba(0,0,0,.44);}
 .wallet-chip .mi{font-size:18px;color:var(--yellow);}
 .wallet-chip-info{display:flex;flex-direction:column;}
 .wallet-label{font-size:9px;color:rgba(255,255,255,.5);font-weight:700;text-transform:uppercase;line-height:1;margin-bottom:1px;}
 .wallet-bal{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:.3px;line-height:1;}
 .wallet-caret{font-size:14px;color:rgba(255,255,255,.4);margin-left:2px;}
-
-/* WALLET DROPDOWN PANEL */
-.wallet-panel{position:absolute;top:58px;right:16px;background:var(--white);border-radius:8px;border:1px solid var(--gray2);box-shadow:0 8px 28px rgba(0,0,0,.18);width:240px;z-index:400;display:none;overflow:hidden;}
-.wallet-panel.open{display:block;}
-.wp-head{background:var(--dark2);padding:13px 15px;display:flex;align-items:center;gap:9px;}
-.wp-head-icon{width:34px;height:34px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.wp-head-icon .mi{font-size:17px;color:#fff;}
-.wp-head-name{font-size:13px;font-weight:700;color:#fff;}
-.wp-head-email{font-size:10px;color:#555;}
-.wp-body{padding:13px 15px 8px;}
-.wp-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
-.wp-lbl{font-size:11px;color:var(--muted);font-weight:600;}
-.wp-val{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;}
-.wp-val.green{color:var(--green);}
-.wp-val.muted{color:var(--muted);font-size:13px;}
-.wp-divider{height:1px;background:var(--gray2);margin:6px 0 10px;}
-.wp-actions{display:flex;gap:7px;padding:10px 15px;background:#f7f7f7;border-top:1px solid var(--gray2);}
-.wp-btn{flex:1;padding:8px 6px;border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .15s;}
-.wp-btn .mi{font-size:14px;}
-.wp-btn.deposit{background:var(--green);color:#fff;}
-.wp-btn.deposit:hover{background:var(--green2);}
-.wp-btn.signout{background:var(--gray2);color:var(--text);}
-.wp-btn.signout:hover{background:#d0d0d0;}
 
 /* GAMES NAV */
 .games-nav{background:var(--white);border-bottom:2px solid var(--gray2);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 20px;}
@@ -87,7 +59,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 /* MAIN */
 .main{max-width:1200px;margin:0 auto;padding:14px 16px 80px;}
 
-/* HERO WITH IMAGE */
+/* HERO */
 .games-hero{position:relative;border-radius:10px;overflow:hidden;margin-bottom:16px;min-height:190px;display:flex;align-items:flex-end;}
 .games-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(1.15);}
 .games-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,transparent 100%);}
@@ -222,6 +194,11 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-drawer-panel{position:absolute;top:0;left:0;width:260px;bottom:0;background:var(--dark);display:flex;flex-direction:column;padding:0;}
 .mob-drawer-head{background:var(--red);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;}
 .mob-drawer-close{background:none;border:none;color:#fff;cursor:pointer;}
+.mob-drawer-user{padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #222;background:#161616;}
+.mob-drawer-av{width:36px;height:36px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;color:#000;flex-shrink:0;}
+.mob-drawer-user-info{flex:1;min-width:0;}
+.mob-drawer-user-name{font-size:13px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mob-drawer-user-bal{font-size:11px;color:var(--green2);}
 .mob-drawer-links{padding:10px 0;flex:1;overflow-y:auto;}
 .mob-drawer-link{display:flex;align-items:center;gap:10px;padding:13px 20px;color:rgba(255,255,255,.8);font-size:14px;font-weight:600;text-decoration:none;border-bottom:1px solid #222;transition:background .15s;}
 .mob-drawer-link:hover,.mob-drawer-link.active{background:#1a1a1a;color:#fff;}
@@ -255,7 +232,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   .live-tab{padding:4px 10px;font-size:11px;}
   .modal{max-width:98vw;}
   .modal-body{padding:14px;}
-  .wallet-panel{right:6px;width:220px;}
 }
 @media(max-width:360px){
   .wm-text{font-size:18px;}
@@ -265,21 +241,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span style="padding:0 20px;">🎰 Spin da' Bottle — Big wins every minute!</span>
-    <span style="padding:0 20px;color:#fff;">⚽ Virtual Football — 3-min matches, fast payouts</span>
-    <span style="padding:0 20px;">🎲 Dice Roll — Pick your number and win!</span>
-    <span style="padding:0 20px;color:#fff;">🃏 Hi-Lo — Higher or lower? Simple and fun</span>
-    <span style="padding:0 20px;">🎰 Spin da' Bottle — Big wins every minute!</span>
-    <span style="padding:0 20px;color:#fff;">⚽ Virtual Football — 3-min matches, fast payouts</span>
-    <span style="padding:0 20px;">🎲 Dice Roll — Pick your number and win!</span>
-    <span style="padding:0 20px;color:#fff;">🃏 Hi-Lo — Higher or lower? Simple and fun</span>
-  </div>
-</div>
-
-<header class="header" style="position:relative;">
+<header class="header">
   <div class="header-top">
     <a href="index.html" class="wordmark">
       <div class="wm-box"><span class="wm-text"><span class="wm-p">PRIME</span><span class="wm-s">STAKES</span></span></div>
@@ -289,59 +251,29 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     <nav class="header-nav">
       <a class="hnav" href="index.html"><span class="mi">home</span> Sports</a>
       <a class="hnav active" href="games.html"><span class="mi">sports_esports</span> Games</a>
-      <a class="hnav" href="live-games.html"><span class="mi">cell_tower</span> Live Betting <span class="live-pill">LIVE</span></a>
-      <a class="hnav" href="#"><span class="mi">schedule</span> Virtuals</a>
+      <a class="hnav" href="live-games.html"><span class="mi">cell_tower</span> Live <span class="live-pill">LIVE</span></a>
+      <a class="hnav" href="betting.html"><span class="mi">receipt_long</span> Bet Now</a>
       <a class="hnav" href="#"><span class="mi">emoji_events</span> Jackpot</a>
       <a class="hnav" href="#"><span class="mi">workspace_premium</span> Loyalty <span class="hot">HOT</span></a>
     </nav>
 
-    <!-- LOGGED-OUT: show login/register -->
+    <!-- LOGGED-OUT -->
     <div class="auth" id="auth-btns">
       <a href="login.html" class="btn-login">Login</a>
       <a href="register.html" class="btn-reg">Register</a>
     </div>
 
     <!-- LOGGED-IN: wallet chip -->
-    <div class="wallet-chip" id="wallet-chip" onclick="toggleWalletPanel()">
+    <a href="wallet.html" class="wallet-chip" id="wallet-chip">
       <span class="mi">account_balance_wallet</span>
       <div class="wallet-chip-info">
         <span class="wallet-label">Balance</span>
         <span class="wallet-bal" id="header-balance">---</span>
       </div>
-      <span class="mi wallet-caret">expand_more</span>
-    </div>
+      <span class="mi wallet-caret">chevron_right</span>
+    </a>
 
     <button class="hamburger" onclick="openDrawer()"><span class="mi">menu</span></button>
-  </div>
-
-  <!-- WALLET DROPDOWN -->
-  <div class="wallet-panel" id="wallet-panel">
-    <div class="wp-head">
-      <div class="wp-head-icon"><span class="mi">person</span></div>
-      <div>
-        <div class="wp-head-name" id="wp-name">Loading…</div>
-        <div class="wp-head-email" id="wp-email"></div>
-      </div>
-    </div>
-    <div class="wp-body">
-      <div class="wp-row">
-        <span class="wp-lbl">Wallet Balance</span>
-        <span class="wp-val green" id="wp-balance">---</span>
-      </div>
-      <div class="wp-row">
-        <span class="wp-lbl">Total Deposited</span>
-        <span class="wp-val muted" id="wp-deposited">---</span>
-      </div>
-      <div class="wp-divider"></div>
-      <div class="wp-row">
-        <span class="wp-lbl">Currency</span>
-        <span class="wp-val muted" id="wp-currency">GHS</span>
-      </div>
-    </div>
-    <div class="wp-actions">
-      <button class="wp-btn deposit"><span class="mi">add</span> Deposit</button>
-      <button class="wp-btn signout" onclick="logout()"><span class="mi">logout</span> Logout</button>
-    </div>
   </div>
 
   <nav class="games-nav">
@@ -357,26 +289,43 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 <div class="mob-drawer" id="mob-drawer" onclick="closeDrawer(event)">
   <div class="mob-drawer-panel" onclick="event.stopPropagation()">
     <div class="mob-drawer-head">
-      <span class="wm-text" style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;">PRIME<span style="color:var(--yellow);">STAKES</span></span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff;">PRIME<span style="color:var(--yellow);">STAKES</span></span>
       <button class="mob-drawer-close" onclick="document.getElementById('mob-drawer').classList.remove('open')"><span class="mi">close</span></button>
     </div>
+    <!-- Logged-in: user info + wallet link -->
+    <div class="mob-drawer-user" id="mob-drawer-user" style="display:none;">
+      <div class="mob-drawer-av" id="mob-drawer-av">--</div>
+      <div class="mob-drawer-user-info">
+        <div class="mob-drawer-user-name" id="mob-drawer-name">User</div>
+        <div class="mob-drawer-user-bal" id="mob-drawer-bal">GHS --</div>
+      </div>
+    </div>
+    <!-- Logged-out: auth buttons -->
+    <div class="mob-drawer-auth" id="mob-drawer-auth">
+      <a href="login.html"    class="btn-login" style="width:100%;justify-content:center;padding:10px;">Login</a>
+      <a href="register.html" class="btn-reg"   style="width:100%;justify-content:center;padding:10px;">Register</a>
+    </div>
     <div class="mob-drawer-links">
-      <a class="mob-drawer-link" href="index.html"><span class="mi">home</span> Sports</a>
+      <a class="mob-drawer-link" href="index.html"><span class="mi">home</span> Home</a>
       <a class="mob-drawer-link active" href="games.html"><span class="mi">sports_esports</span> Games</a>
       <a class="mob-drawer-link" href="live-games.html"><span class="mi">cell_tower</span> Live Betting</a>
-      <a class="mob-drawer-link" href="#"><span class="mi">schedule</span> Virtuals</a>
+      <a class="mob-drawer-link" href="betting.html"><span class="mi">receipt_long</span> Bet Now</a>
+      <a class="mob-drawer-link" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
       <a class="mob-drawer-link" href="#"><span class="mi">emoji_events</span> Jackpot</a>
       <a class="mob-drawer-link" href="#"><span class="mi">workspace_premium</span> Loyalty</a>
     </div>
-    <div class="mob-drawer-auth" id="mob-drawer-auth">
-      <!-- filled by JS -->
+    <!-- Logged-in: logout button at bottom -->
+    <div id="mob-drawer-logout" style="display:none;padding:16px 20px;border-top:1px solid #222;">
+      <button onclick="logout()" class="btn-login" style="width:100%;justify-content:center;padding:10px;display:flex;align-items:center;gap:6px;">
+        <span class="mi" style="font-size:16px;">logout</span> Logout
+      </button>
     </div>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- ── HERO WITH BACKGROUND IMAGE ── -->
+  <!-- HERO -->
   <div class="games-hero">
     <img
       class="games-hero-img"
@@ -395,7 +344,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     </div>
   </div>
 
-  <!-- ── LIVE & UPCOMING FIXTURES ── -->
+  <!-- LIVE & UPCOMING FIXTURES -->
   <div class="live-scores-section" id="section-fixtures">
     <div class="sec-head">
       <div class="sec-dot red"></div>
@@ -548,9 +497,9 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <div class="mob-nav-inner">
     <a class="mob-item" href="index.html"><span class="mi">home</span><span>Home</span></a>
     <a class="mob-item" href="live-games.html"><span class="mi">cell_tower</span><span>Live</span></a>
-    <div class="mob-item" style="background:var(--green);"><span class="mi">receipt_long</span><span>Betslip</span></div>
+    <a class="mob-item" href="betting.html"><span class="mi">receipt_long</span><span>Bet Now</span></a>
     <a class="mob-item active" href="games.html"><span class="mi">sports_esports</span><span>Games</span></a>
-    <div class="mob-item"><span class="mi">person</span><span>Account</span></div>
+    <a class="mob-item" href="wallet.html"><span class="mi">account_balance_wallet</span><span>Wallet</span></a>
   </div>
 </nav>
 
@@ -569,21 +518,21 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════
-//  CONFIG
-// ═══════════════════════════════════════════════════════════
 const API_BASE  = 'https://kikiwebbackend-iysi.onrender.com';
-const TOKEN_KEY = 'ps_stakes';   // ← same key as login.html
+const TOKEN_KEY = 'ps_stakes';
 const USER_KEY  = 'ps_user';
 
-// ═══════════════════════════════════════════════════════════
-//  AUTH HELPERS
-// ═══════════════════════════════════════════════════════════
-function getToken()   { return localStorage.getItem(TOKEN_KEY); }
-function getCachedUser() {
-  try { return JSON.parse(localStorage.getItem(USER_KEY)) || {}; } catch { return {}; }
+function getToken()     { return localStorage.getItem(TOKEN_KEY); }
+function isLoggedIn()   { return !!getToken(); }
+function getCachedUser(){ try { return JSON.parse(localStorage.getItem(USER_KEY)) || {}; } catch { return {}; } }
+
+function getInitials(u) {
+  const f = (u.firstName || '').trim();
+  const l = (u.lastName  || '').trim();
+  if (f && l) return (f[0] + l[0]).toUpperCase();
+  if (f) return f.substring(0,2).toUpperCase();
+  return '?';
 }
-function isLoggedIn() { return !!getToken(); }
 
 function logout() {
   localStorage.removeItem(TOKEN_KEY);
@@ -591,141 +540,85 @@ function logout() {
   window.location.href = 'login.html';
 }
 
-// ═══════════════════════════════════════════════════════════
-//  WALLET PANEL TOGGLE
-// ═══════════════════════════════════════════════════════════
-function toggleWalletPanel() {
-  document.getElementById('wallet-panel').classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  const chip  = document.getElementById('wallet-chip');
-  const panel = document.getElementById('wallet-panel');
-  if (!chip || !panel) return;
-  if (panel.classList.contains('open') && !chip.contains(e.target) && !panel.contains(e.target)) {
-    panel.classList.remove('open');
-  }
-});
-
-// ═══════════════════════════════════════════════════════════
-//  RENDER AUTH STATE  (logged-in vs logged-out)
-// ═══════════════════════════════════════════════════════════
 function renderAuthState() {
   const authBtns   = document.getElementById('auth-btns');
   const walletChip = document.getElementById('wallet-chip');
+  const drawerUser = document.getElementById('mob-drawer-user');
   const drawerAuth = document.getElementById('mob-drawer-auth');
+  const drawerOut  = document.getElementById('mob-drawer-logout');
 
   if (isLoggedIn()) {
-    // Hide login buttons, show wallet chip
     authBtns.style.display   = 'none';
     walletChip.style.display = 'flex';
+    drawerUser.style.display = 'flex';
+    drawerAuth.style.display = 'none';
+    drawerOut.style.display  = 'block';
 
-    // Instantly populate from cache
     const u = getCachedUser();
     if (u.firstName) {
-      document.getElementById('wp-name').textContent  = `${u.firstName} ${u.lastName || ''}`.trim();
-      document.getElementById('wp-email').textContent = u.email || '';
+      document.getElementById('mob-drawer-av').textContent   = getInitials(u);
+      document.getElementById('mob-drawer-name').textContent = `${u.firstName} ${u.lastName||''}`.trim();
     }
 
-    // Mobile drawer: show logout
-    drawerAuth.innerHTML = `
-      <button onclick="logout()" class="btn-login"
-        style="width:100%;justify-content:center;padding:10px;display:flex;align-items:center;gap:6px;">
-        <span class="mi" style="font-size:16px;">logout</span> Logout
-      </button>`;
-
-    // Fetch live wallet data from API
     fetchWalletData();
   } else {
     authBtns.style.display   = 'flex';
     walletChip.style.display = 'none';
-
-    drawerAuth.innerHTML = `
-      <a href="login.html"    class="btn-login" style="width:100%;justify-content:center;padding:10px;">Login</a>
-      <a href="register.html" class="btn-reg"   style="width:100%;justify-content:center;padding:10px;">Register</a>`;
+    drawerUser.style.display = 'none';
+    drawerAuth.style.display = 'flex';
+    drawerOut.style.display  = 'none';
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-//  FETCH WALLET  — calls GET /api/v1/users/me with Bearer token
-//  Backend response shape (from ResponseMapper):
-//  { data: { firstName, lastName, email, currency,
-//            walletBalance, totalDeposited, totalWithdrawn, ... } }
-// ═══════════════════════════════════════════════════════════
 async function fetchWalletData() {
   const token = getToken();
   if (!token) return;
-
   try {
     const res = await fetch(`${API_BASE}/api/v1/users/me`, {
       headers: { 'Authorization': `Bearer ${token}` },
       signal: AbortSignal.timeout(14000)
     });
-
-    if (res.status === 401) { logout(); return; }  // token expired
+    if (res.status === 401) { logout(); return; }
     if (!res.ok) return;
-
     const json = await res.json();
-    const u    = json.data || json;                 // unwrap ApiResponse wrapper
+    const u    = json.data || json;
 
-    const currency  = u.currency       || 'GHS';
-    const balance   = parseFloat(u.walletBalance   ?? u.balance   ?? 0).toFixed(2);
-    const deposited = parseFloat(u.totalDeposited  ?? 0).toFixed(2);
+    const currency  = u.currency    || 'GHS';
+    const balance   = parseFloat(u.walletBalance  ?? u.balance  ?? 0).toFixed(2);
     const firstName = u.firstName || '';
     const lastName  = u.lastName  || '';
-    const email     = u.email     || '';
 
-    // ── Update header chip
     document.getElementById('header-balance').textContent = `${currency} ${balance}`;
+    document.getElementById('mob-drawer-av').textContent   = getInitials({ firstName, lastName });
+    document.getElementById('mob-drawer-name').textContent = `${firstName} ${lastName}`.trim() || u.email || 'User';
+    document.getElementById('mob-drawer-bal').textContent  = `${currency} ${balance}`;
 
-    // ── Update wallet panel
-    document.getElementById('wp-name').textContent      = `${firstName} ${lastName}`.trim() || email;
-    document.getElementById('wp-email').textContent     = email;
-    document.getElementById('wp-balance').textContent   = `${currency} ${balance}`;
-    document.getElementById('wp-deposited').textContent = `${currency} ${deposited}`;
-    document.getElementById('wp-currency').textContent  = currency;
-
-    // Refresh cache
-    localStorage.setItem(USER_KEY, JSON.stringify({ firstName, lastName, email, currency }));
-
+    localStorage.setItem(USER_KEY, JSON.stringify({ firstName, lastName, email: u.email, currency }));
   } catch (err) {
-    // Fail silently — chip stays visible with cached data or '---'
     console.warn('Wallet fetch failed:', err.message);
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-//  FALLBACK FIXTURES  (reduced to 10)
-// ═══════════════════════════════════════════════════════════
 function todayAt(h, m) {
   const d = new Date(); d.setHours(h, m, 0, 0); return d.toISOString();
 }
-
 const FALLBACK_FIXTURES = [
-  // 4 live
   { uid:'f1', competition:'Premier League',   homeTeam:'Arsenal',       awayTeam:'Chelsea',        homeScore:1, awayScore:1, minute:'34', status:'IN_PLAY',  live:true,  odds:{home:2.10,draw:3.20,away:3.60} },
   { uid:'f2', competition:'La Liga',          homeTeam:'Real Madrid',   awayTeam:'Barcelona',      homeScore:1, awayScore:0, minute:'55', status:'IN_PLAY',  live:true,  odds:{home:1.60,draw:3.80,away:5.50} },
   { uid:'f3', competition:'Ghana Premier',    homeTeam:'Hearts of Oak', awayTeam:'Asante Kotoko',  homeScore:0, awayScore:0, minute:'15', status:'IN_PLAY',  live:true,  odds:{home:2.80,draw:3.00,away:2.60} },
   { uid:'f4', competition:'Champions League', homeTeam:'Porto',         awayTeam:'Benfica',        homeScore:1, awayScore:1, minute:'62', status:'IN_PLAY',  live:true,  odds:{home:2.50,draw:3.00,away:2.90} },
-  // 3 upcoming
   { uid:'f5', competition:'Premier League',   homeTeam:'Tottenham',     awayTeam:'Newcastle',      homeScore:null, awayScore:null, utcDate:todayAt(18,0),  status:'SCHEDULED', live:false, odds:{home:2.20,draw:3.30,away:3.40} },
   { uid:'f6', competition:'Serie A',          homeTeam:'Juventus',      awayTeam:'Napoli',         homeScore:null, awayScore:null, utcDate:todayAt(19,45), status:'SCHEDULED', live:false, odds:{home:2.40,draw:3.20,away:3.00} },
   { uid:'f7', competition:'Nigeria NPFL',     homeTeam:'Kano Pillars',  awayTeam:'Shooting Stars', homeScore:null, awayScore:null, utcDate:todayAt(16,0),  status:'SCHEDULED', live:false, odds:{home:2.40,draw:3.10,away:3.00} },
-  // 3 finished
-  { uid:'f8',  competition:'Bundesliga',   homeTeam:'Bayern Munich', awayTeam:'Dortmund',    homeScore:3, awayScore:1, status:'FINISHED', live:false, odds:{home:1.30,draw:5.50,away:9.00} },
-  { uid:'f9',  competition:'Ligue 1',      homeTeam:'PSG',           awayTeam:'Marseille',   homeScore:2, awayScore:0, status:'FINISHED', live:false, odds:{home:1.40,draw:4.50,away:8.00} },
-  { uid:'f10', competition:'Egypt Premier',homeTeam:'Al Ahly',       awayTeam:'Zamalek',     homeScore:1, awayScore:0, status:'FINISHED', live:false, odds:{home:1.80,draw:3.50,away:4.50} },
+  { uid:'f8',  competition:'Bundesliga',    homeTeam:'Bayern Munich', awayTeam:'Dortmund',   homeScore:3, awayScore:1, status:'FINISHED', live:false },
+  { uid:'f9',  competition:'Ligue 1',       homeTeam:'PSG',           awayTeam:'Marseille',  homeScore:2, awayScore:0, status:'FINISHED', live:false },
+  { uid:'f10', competition:'Egypt Premier', homeTeam:'Al Ahly',       awayTeam:'Zamalek',    homeScore:1, awayScore:0, status:'FINISHED', live:false },
 ];
 
-// ═══════════════════════════════════════════════════════════
-//  FIXTURES STATE
-// ═══════════════════════════════════════════════════════════
 let allFixtures  = [];
 let activeTab    = 'all';
 let refreshTimer = null;
 
-// ═══════════════════════════════════════════════════════════
-//  FETCH FIXTURES  (passes token if available)
-// ═══════════════════════════════════════════════════════════
 async function refreshFixtures() {
   showFixLoading();
   const headers = {};
@@ -734,27 +627,25 @@ async function refreshFixtures() {
 
   try {
     const [fixturesRes, liveRes] = await Promise.allSettled([
-      fetch(`${API_BASE}/api/v1/football/fixtures`, { headers }).then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); }),
-      fetch(`${API_BASE}/api/v1/football/live`,     { headers }).then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      fetch(`${API_BASE}/api/v1/football/fixtures`, { headers, signal:AbortSignal.timeout(10000) }).then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); }),
+      fetch(`${API_BASE}/api/v1/football/live`,     { headers, signal:AbortSignal.timeout(10000) }).then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     ]);
-
     const fm = (fixturesRes.status === 'fulfilled' && fixturesRes.value?.matches) ? fixturesRes.value.matches : [];
     const lm = (liveRes.status    === 'fulfilled' && liveRes.value?.matches)    ? liveRes.value.matches    : [];
-
     if (fm.length + lm.length > 0) {
       const map = new Map();
       fm.forEach(m => map.set(m.uid, m));
       lm.forEach(m => map.set(m.uid, { ...map.get(m.uid)||{}, ...m, live:true }));
       allFixtures = Array.from(map.values());
       document.getElementById('fix-count').textContent = allFixtures.length + ' Matches';
+      const existing = document.getElementById('fix-notice');
+      if (existing) existing.remove();
     } else {
       useFallback('fallback');
     }
   } catch (err) {
     useFallback('error');
-    console.warn('Fixtures API unavailable:', err.message);
   }
-
   renderFixtures();
   clearTimeout(refreshTimer);
   refreshTimer = setTimeout(refreshFixtures, 60000);
@@ -778,16 +669,12 @@ function useFallback(type) {
   document.getElementById('fixtures-list').insertAdjacentElement('beforebegin', el);
 }
 
-// ═══════════════════════════════════════════════════════════
-//  RENDER FIXTURES
-// ═══════════════════════════════════════════════════════════
 function renderFixtures() {
   const list = document.getElementById('fixtures-list');
   let matches = allFixtures;
   if      (activeTab === 'live')     matches = allFixtures.filter(m => m.live || m.status === 'IN_PLAY' || m.status === 'PAUSED');
   else if (activeTab === 'upcoming') matches = allFixtures.filter(m => !m.live && m.status !== 'FINISHED' && m.status !== 'IN_PLAY' && m.status !== 'PAUSED');
   else if (activeTab === 'finished') matches = allFixtures.filter(m => m.status === 'FINISHED');
-
   if (!matches.length) {
     list.innerHTML = `<div class="fix-empty"><span class="mi">sports_soccer</span><span>No matches in this category.</span></div>`;
     return;
@@ -799,17 +686,15 @@ function buildFixtureCard(m) {
   const isLive     = m.live || m.status === 'IN_PLAY' || m.status === 'PAUSED';
   const isFinished = m.status === 'FINISHED';
   const showScore  = isLive || isFinished;
-
-  let timeDisplay = '';
+  let timeDisplay  = '';
   if (isLive) {
-    timeDisplay = `<span class="fix-time-val live-time">${m.minute ? m.minute + "'" : 'LIVE'}</span>`;
+    timeDisplay = `<span class="fix-time-val live-time">${m.minute ? m.minute+"'" : 'LIVE'}</span>`;
   } else if (isFinished) {
     timeDisplay = `<span class="fix-time-val">FT</span>`;
   } else {
     const d = new Date(m.utcDate);
     timeDisplay = `<span class="fix-time-val">${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}</span>`;
   }
-
   const statusClass = isLive ? 'live' : isFinished ? 'finished' : 'upcoming';
   const statusLabel = isLive ? '● LIVE' : isFinished ? 'FT' : 'Soon';
   const ph = t => `<div class="fix-crest-placeholder">${(t||'?')[0]}</div>`;
@@ -820,9 +705,8 @@ function buildFixtureCard(m) {
       <div class="odd-btn"><span class="odd-label">X</span><span class="odd-val">${odds.draw||'-'}</span></div>
       <div class="odd-btn"><span class="odd-label">2</span><span class="odd-val">${odds.away||'-'}</span></div>
     </div>` : '';
-
   return `
-  <div class="fixture-card${isLive ? ' is-live' : ''}">
+  <div class="fixture-card${isLive?' is-live':''}">
     <div class="fix-league">${m.competition||m.league||''}</div>
     <div class="fix-teams">
       <div class="fix-team">${ph(m.homeTeam)} ${m.homeTeam||'Home'}</div>
@@ -850,31 +734,21 @@ function switchFixTab(tab, el) {
   renderFixtures();
 }
 
-// ═══════════════════════════════════════════════════════════
-//  SECTION TOGGLE
-// ═══════════════════════════════════════════════════════════
 function showSection(s, el) {
   document.querySelectorAll('.gnav').forEach(e => e.classList.remove('active'));
   el.classList.add('active');
   const sections = ['section-fixtures','section-mini','section-virtual','section-jackpot'];
-  sections.forEach(id => { const x = document.getElementById(id); if (x) x.style.display = 'none'; });
-
-  if      (s === 'all')     sections.forEach(id => { const x = document.getElementById(id); if (x) x.style.display = ''; });
+  sections.forEach(id => { const x = document.getElementById(id); if(x) x.style.display='none'; });
+  if      (s === 'all')     sections.forEach(id => { const x = document.getElementById(id); if(x) x.style.display=''; });
   else if (s === 'mini')    document.getElementById('section-mini').style.display    = '';
   else if (s === 'virtual') document.getElementById('section-virtual').style.display = '';
   else if (s === 'jackpot') document.getElementById('section-jackpot').style.display = '';
   else                      document.getElementById('section-mini').style.display    = '';
 }
 
-// ═══════════════════════════════════════════════════════════
-//  MOBILE DRAWER
-// ═══════════════════════════════════════════════════════════
 function openDrawer()   { document.getElementById('mob-drawer').classList.add('open'); }
 function closeDrawer(e) { if (e.target === document.getElementById('mob-drawer')) document.getElementById('mob-drawer').classList.remove('open'); }
 
-// ═══════════════════════════════════════════════════════════
-//  GAME MODAL
-// ═══════════════════════════════════════════════════════════
 let activeGame = null;
 
 function openGame(type) {
@@ -901,7 +775,6 @@ function openGame(type) {
         document.getElementById('spin-btn').disabled = false; spinning = false;
       }, 3100);
     };
-
   } else if (type === 'dice') {
     document.getElementById('modal-title').textContent = 'Dice Roll';
     const emojis = ['⚀','⚁','⚂','⚃','⚄','⚅']; let pick = null;
@@ -924,7 +797,6 @@ function openGame(type) {
         document.getElementById('dice-res').style.color = tot===pick ? '#f5c518' : '#e74c3c';
       }, 600);
     };
-
   } else if (type === 'hilo') {
     document.getElementById('modal-title').textContent = 'Hi-Lo';
     const cards=['2','3','4','5','6','7','8','9','10','J','Q','K','A']; let curr=Math.floor(Math.random()*13);
@@ -941,7 +813,6 @@ function openGame(type) {
       document.getElementById('hilo-res').style.color=won?'#f5c518':'#e74c3c';
       curr=next;
     };
-
   } else if (type === 'slots') {
     document.getElementById('modal-title').textContent='Lucky Slots';
     const sym=['🍒','🍋','🍊','🍇','⭐','💎','7️⃣'];
@@ -959,7 +830,6 @@ function openGame(type) {
         document.getElementById('slot-btn').disabled=false;
       }, 1200);
     };
-
   } else if (type === 'redblack') {
     document.getElementById('modal-title').textContent='Red or Black';
     const suits=['♠','♥','♦','♣'], vals=['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
@@ -978,7 +848,6 @@ function openGame(type) {
       document.getElementById('rb-res').textContent=won?`🎉 ${val}${suit} — ${g}! 2x WIN!`:`${val}${suit} — Wrong! It was ${isRed?'Red':'Black'}.`;
       document.getElementById('rb-res').style.color=won?'#f5c518':'#e74c3c';
     };
-
   } else if (type === 'coin') {
     document.getElementById('modal-title').textContent='Coin Flip';
     area.innerHTML=`<div id="coin" style="font-size:80px;transition:transform .5s;">🟡</div><div class="spin-result" id="coin-res" style="margin-top:12px;"></div>`;
@@ -996,7 +865,6 @@ function openGame(type) {
         document.getElementById('coin-res').style.color=won?'#f5c518':'#e74c3c';
       }, 600);
     };
-
   } else if (type === 'number') {
     document.getElementById('modal-title').textContent='Lucky Number';
     let pick=null;
@@ -1020,9 +888,6 @@ function openGame(type) {
 function closeGame()   { document.getElementById('modal').style.display='none'; activeGame=null; }
 function closeModal(e) { if (e.target===document.getElementById('modal')) closeGame(); }
 
-// ═══════════════════════════════════════════════════════════
-//  BOOT
-// ═══════════════════════════════════════════════════════════
 renderAuthState();
 refreshFixtures();
 </script>

@@ -182,10 +182,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </style>
 </head>
 <body>
-
-<!-- TICKER -->
-<div class="ticker"><div class="ticker-inner" id="ticker-inner"></div></div>
-
 <!-- HEADER -->
 <header class="header">
   <div class="header-top">
@@ -416,18 +412,6 @@ async function checkApiHealth() {
   }
 }
 checkApiHealth();
-
-/* ── TICKER ── */
-const tickerItems = [
-  "⚽ Arsenal 2–1 Chelsea · 73'",
-  "⚽ Real Madrid 1–0 Barcelona · 61'",
-  "🏆 JACKPOT GHS 150,000 — BET NOW!",
-  "📈 ACCA BOOST: Up to 1000% this weekend!",
-  "⭐ FREE BET: GHS 20 on registration!",
-  "⚽ Celtic 2–0 Rangers · 50'"
-];
-const d = tickerItems.map(t => `<span style="padding:0 4px;">${t}</span><span style="color:#333;margin:0 8px;">●</span>`).join('');
-document.getElementById('ticker-inner').innerHTML = d + d;
 
 /* ── PASSWORD TOGGLE ── */
 function togglePw(inputId, iconId) {
