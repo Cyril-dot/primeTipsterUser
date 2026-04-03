@@ -544,7 +544,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     </ul></div>
     <div class="ft-col ft-contact"><h4>Contact</h4>
       <div class="ci"><span class="mi">phone</span> +233 059 692 1899</div>
-      <div class="ci"><span class="mi">email</span> support@primestakes.com</div>
+      <div class="ci"><span class="mi">email</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="493a3c3939263b3d09393b20242c3a3d28222c3a672a2624">[email&#160;protected]</a></div>
       <div class="ci"><span class="mi">location_on</span> Accra, Ghana</div>
       <div class="socials">
         <div class="soc" style="background:#1877f2;color:#fff;">f</div>
@@ -568,7 +568,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <div class="ft-copy">© 2026 PrimeStakes. All rights reserved.</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const API_BASE      = 'https://kikiwebbackend-iysi.onrender.com';
 const FOOTBALL_BASE = 'https://kikiwebbackend-iysi.onrender.com';
 
@@ -683,6 +683,30 @@ function skeletonRows(n, dark) {
   return h;
 }
 
+/* BSD stores times in Asia/Dubai (UTC+4).
+   Ghana is GMT+0, so subtract 4 hours to get correct local time. */
+function toGhanaTime(raw) {
+  if (!raw) return '--:--';
+  try {
+    // Parse the ISO string — if it has no tz suffix treat as UTC+4 (BSD default)
+    let d;
+    if (/[+\-]\d{2}:?\d{2}$|Z$/.test(raw)) {
+      // Has explicit timezone — let JS parse it then subtract 4h for Dubai offset
+      d = new Date(raw);
+    } else {
+      // No timezone — BSD says it's Dubai (UTC+4), add 'Z' would make it UTC
+      // so treat it as UTC+4 by subtracting 4h from the raw time
+      d = new Date(raw + '+04:00');
+    }
+    if (isNaN(d.getTime())) return '--:--';
+    // Now format in Ghana timezone (Africa/Accra = UTC+0)
+    return d.toLocaleTimeString('en-GB', {
+      hour: '2-digit', minute: '2-digit',
+      timeZone: 'Africa/Accra'
+    });
+  } catch(e) { return '--:--'; }
+}
+
 function renderTodayMatches(matches) {
   const container = document.getElementById('match-list');
   const badge     = document.getElementById('today-count-badge');
@@ -701,7 +725,7 @@ function renderTodayMatches(matches) {
       const matchKey = m.externalFixtureId || (m.homeTeam+'_'+m.awayTeam);
       const sel = slip[matchKey]||{};
       const isLive = m.status==='LIVE', isFin = m.status==='FINISHED', showScore = isLive||isFin;
-      const koTime = m.kickoffTime ? new Date(m.kickoffTime).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) : '--:--';
+      const koTime = toGhanaTime(m.kickoffTime);
       const periodLabel = m.matchPeriod||(isLive?'Live':isFin?'FT':'Upcoming');
       const timeDisplay = isLive ? `<div class="match-time live-time">${m.elapsedMinutes?m.elapsedMinutes+"'":'●'}</div>` : `<div class="match-time">${koTime}</div>`;
       let periodBadge = isLive ? `<span class="period-badge pb-live"><span class="mi" style="font-size:9px;">circle</span> ${esc(periodLabel)}</span>` : isFin ? `<span class="period-badge pb-ft">FT</span>` : `<span class="period-badge pb-up">${koTime}</span>`;
@@ -869,9 +893,25 @@ function calcPayout(){const items=Object.values(slip),tot=items.reduce((a,b)=>a*
 function setStake(v){document.getElementById('stake-inp').value=v;calcPayout();}
 function updateBadges(){const c=Object.keys(slip).length;document.getElementById('bubble-count').textContent=c;document.getElementById('mob-badge').textContent=c;}
 
-function showToast(msg){let t=document.getElementById('ps-toast');if(!t){t=document.createElement('div');t.id='ps-toast';t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a8a3c;color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);white-space:nowrap;pointer-events:none;transition:opacity .3s;';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';},2800);}
+function showToast(msg){
+  let t=document.getElementById('ps-toast');
+  if(!t){
+    t=document.createElement('div');
+    t.id='ps-toast';
+    t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a8a3c;color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);white-space:nowrap;pointer-events:none;transition:opacity .3s;';
+    document.body.appendChild(t);
+  }
+  t.textContent=msg;
+  t.style.opacity='1';
+  clearTimeout(t._to);
+  t._to=setTimeout(()=>{ t.style.opacity='0'; }, 2800);
+}
 
-setInterval(async()=>{const live=await fetchLiveGames();if(live!==null)renderLiveMatches(live);},30000);
+/* Auto-refresh live every 30s */
+setInterval(async()=>{
+  const live=await fetchLiveGames();
+  if(live!==null) renderLiveMatches(live);
+},30000);
 
 applyAuthState();
 renderBsMainArea();
