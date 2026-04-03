@@ -301,25 +301,74 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .pb-ft{background:rgba(26,138,60,.1);color:var(--green);}
 .pb-up{background:var(--gray2);color:var(--muted);}
 
-/* ── FLOATING BUBBLE (desktop hidden via media query below) ── */
-.bet-bubble{position:fixed;bottom:24px;right:24px;z-index:400;display:none;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:none;background:none;padding:0;}
-.bet-bubble-btn{width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);border:2px solid var(--green2);position:relative;transition:transform .15s;}
+/* ── FLOATING BUBBLE ── */
+.bet-bubble{
+  position:fixed;bottom:72px;right:18px;z-index:400;
+  display:none; /* shown via JS on mobile */
+  flex-direction:column;align-items:center;gap:4px;
+  cursor:pointer;border:none;background:none;padding:0;
+}
+.bet-bubble-btn{
+  width:58px;height:58px;background:var(--green);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
+  border:3px solid var(--green2);position:relative;
+  transition:transform .15s,background .15s;
+}
 .bet-bubble-btn:hover{transform:scale(1.08);background:var(--green2);}
 .bet-bubble-btn .mi{font-size:26px;color:#fff;}
-.bet-bubble-count{position:absolute;top:-4px;right:-4px;background:var(--yellow);color:#000;font-size:11px;font-weight:900;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid #fff;}
+.bet-bubble-count{
+  position:absolute;top:-5px;right:-5px;
+  background:var(--yellow);color:#000;
+  font-size:11px;font-weight:900;
+  min-width:20px;height:20px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 4px;border:2px solid #fff;
+}
+/* label under bubble */
+.bet-bubble-label{
+  font-size:9px;font-weight:800;color:#fff;
+  background:rgba(0,0,0,.55);border-radius:3px;
+  padding:2px 6px;white-space:nowrap;letter-spacing:.3px;
+}
 
 /* ── MOBILE BETSLIP DRAWER ── */
 .bs-drawer-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:450;display:none;}
 .bs-drawer-overlay.open{display:block;}
-.bs-drawer{position:fixed;bottom:0;left:0;right:0;z-index:460;background:var(--white);border-radius:16px 16px 0 0;max-height:85vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease;}
+.bs-drawer{
+  position:fixed;bottom:0;left:0;right:0;z-index:460;
+  background:var(--white);border-radius:16px 16px 0 0;
+  max-height:88vh;overflow-y:auto;
+  transform:translateY(100%);transition:transform .3s ease;
+}
 .bs-drawer.open{transform:translateY(0);}
 .bs-drawer-handle{width:36px;height:4px;background:var(--gray3);border-radius:2px;margin:10px auto 0;}
-.bs-drawer-head{padding:10px 14px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gray2);padding-bottom:10px;}
+.bs-drawer-head{
+  padding:10px 14px;display:flex;align-items:center;
+  justify-content:space-between;border-bottom:2px solid var(--gray2);
+}
 .bs-drawer-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;display:flex;align-items:center;gap:6px;}
 .bs-drawer-title .mi{font-size:20px;color:var(--green);}
 .bs-drawer-close{background:none;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;}
 .bs-drawer-close .mi{font-size:22px;}
-.bs-drawer-body{padding:0 0 32px;}
+
+/* Drawer inner tabs */
+.drawer-tabs{display:flex;border-bottom:2px solid var(--gray2);}
+.drawer-tab{
+  flex:1;padding:10px 6px;text-align:center;
+  font-size:12px;font-weight:700;cursor:pointer;
+  color:var(--muted);border-bottom:3px solid transparent;
+  margin-bottom:-2px;display:flex;align-items:center;
+  justify-content:center;gap:4px;
+}
+.drawer-tab .mi{font-size:15px;}
+.drawer-tab.active{color:var(--green);border-bottom-color:var(--green);}
+
+.drawer-pane{display:none;}
+.drawer-pane.active{display:block;}
+
+/* Betslip pane */
+.bs-drawer-body{padding:0 0 16px;}
 .drawer-empty{padding:28px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;}
 .drawer-empty .mi{font-size:40px;color:var(--gray3);display:block;margin-bottom:8px;}
 .drawer-bet-item{border:1px solid var(--gray2);border-radius:4px;padding:10px 12px;margin-bottom:6px;position:relative;background:#fafffe;}
@@ -337,6 +386,18 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .drawer-pw .val{font-weight:700;}
 .drawer-pw.tot{border-bottom:none;}
 .drawer-pw.tot .val{color:var(--green);font-size:15px;font-weight:800;}
+
+/* Booking code pane inside drawer */
+.drawer-book-pane{padding:14px 16px 24px;}
+.drawer-book-pane .book-section{padding:0;border-top:none;}
+.drawer-book-pane .book-section-lbl{font-size:13px;margin-bottom:6px;}
+.drawer-book-pane .book-inp{font-size:15px;padding:11px 12px;}
+.drawer-book-pane .book-load-btn{padding:11px;font-size:14px;margin-top:8px;}
+.drawer-book-pane .book-err{font-size:12px;}
+.drawer-book-pane .book-result{margin-top:10px;}
+.drawer-book-pane .book-game-teams{font-size:13px;}
+.drawer-book-pane .book-game-odd{font-size:16px;}
+.drawer-book-pane .book-add-btn{padding:13px;font-size:15px;}
 
 /* FOOTER */
 .footer{background:var(--dark);color:#ccc;}
@@ -370,8 +431,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 /* RESPONSIVE */
 @media(max-width:900px){
   .betslip{display:none;}
-  .bet-bubble{display:flex;}
-  .bet-bubble{bottom:72px;}
+  /* bubble always visible on mobile (display set by JS) */
 }
 @media(max-width:800px){
   .header-nav,#guest-auth,#user-auth{display:none!important;}
@@ -559,15 +619,19 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </aside>
 </div>
 
-<!-- FLOATING BUBBLE (mobile only) -->
+<!-- ═══════════════════════════════════════
+     FLOATING BETSLIP BUBBLE (mobile only)
+     Always visible — shows betslip + booking code tabs
+════════════════════════════════════════ -->
 <button class="bet-bubble" id="bet-bubble" onclick="openDrawer()">
   <div class="bet-bubble-btn">
     <span class="mi">receipt_long</span>
     <span class="bet-bubble-count" id="bubble-count">0</span>
   </div>
+  <span class="bet-bubble-label">BETSLIP</span>
 </button>
 
-<!-- MOBILE BETSLIP DRAWER -->
+<!-- MOBILE BETSLIP DRAWER (with tabs: Betslip | Booking Code) -->
 <div class="bs-drawer-overlay" id="bs-drawer-overlay" onclick="closeDrawer()"></div>
 <div class="bs-drawer" id="bs-drawer">
   <div class="bs-drawer-handle"></div>
@@ -575,7 +639,40 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     <span class="bs-drawer-title"><span class="mi">receipt_long</span> Betslip</span>
     <button class="bs-drawer-close" onclick="closeDrawer()"><span class="mi">close</span></button>
   </div>
-  <div class="bs-drawer-body" id="bs-drawer-body"></div>
+
+  <!-- Drawer Tabs -->
+  <div class="drawer-tabs">
+    <div class="drawer-tab active" id="dtab-slip" onclick="switchDrawerTab('slip')">
+      <span class="mi">receipt_long</span> Betslip
+      <span id="drawer-slip-badge" style="background:var(--yellow);color:#000;font-size:9px;font-weight:900;padding:1px 5px;border-radius:8px;margin-left:3px;display:none;">0</span>
+    </div>
+    <div class="drawer-tab" id="dtab-book" onclick="switchDrawerTab('book')">
+      <span class="mi">confirmation_number</span> Booking Code
+    </div>
+  </div>
+
+  <!-- Betslip Pane -->
+  <div class="drawer-pane active" id="dpane-slip">
+    <div class="bs-drawer-body" id="bs-drawer-body"></div>
+  </div>
+
+  <!-- Booking Code Pane -->
+  <div class="drawer-pane" id="dpane-book">
+    <div class="drawer-book-pane">
+      <div class="book-section" style="border-top:none;padding:0;">
+        <div class="book-section-lbl" style="font-size:13px;margin-bottom:8px;">
+          <span class="mi">confirmation_number</span> Load a Booking Code
+        </div>
+        <p class="book-section-hint" style="font-size:12px;margin-bottom:10px;">Enter a booking code shared with you to preview and load games into your betslip.</p>
+        <input class="book-inp" id="mob-book-inp" placeholder="e.g. ABC123" style="font-size:15px;padding:12px;"
+          onkeydown="if(event.key==='Enter')loadMobBookingCode()">
+        <button class="book-load-btn" id="mob-book-load-btn" onclick="loadMobBookingCode()" style="padding:12px;font-size:14px;margin-top:8px;">
+          <span class="mi" style="font-size:16px;">download</span> Load Code
+        </button>
+        <div id="mob-book-result-area"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <nav class="mob-nav">
@@ -722,11 +819,29 @@ document.addEventListener('click', e => {
 let slip = {};
 try { const s = localStorage.getItem('ps_slip'); if (s) slip = JSON.parse(s); } catch {}
 
+/* ─── DRAWER TABS ─── */
+let activeDrawerTab = 'slip';
+function switchDrawerTab(tab) {
+  activeDrawerTab = tab;
+  document.getElementById('dtab-slip').classList.toggle('active', tab==='slip');
+  document.getElementById('dtab-book').classList.toggle('active', tab==='book');
+  document.getElementById('dpane-slip').classList.toggle('active', tab==='slip');
+  document.getElementById('dpane-book').classList.toggle('active', tab==='book');
+}
+
 /* ─── MOBILE DRAWER ─── */
-function openDrawer() {
+function openDrawer(tab) {
+  if (tab) switchDrawerTab(tab);
   renderDrawer();
   document.getElementById('bs-drawer-overlay').classList.add('open');
   document.getElementById('bs-drawer').classList.add('open');
+  // check for pending code
+  const pending = localStorage.getItem('ps_pending_code');
+  if (pending) {
+    switchDrawerTab('book');
+    const inp = document.getElementById('mob-book-inp');
+    if (inp) { inp.value = pending; loadMobBookingCode(); }
+  }
 }
 function closeDrawer() {
   document.getElementById('bs-drawer-overlay').classList.remove('open');
@@ -742,6 +857,11 @@ function renderDrawer() {
       <div class="drawer-empty">
         <span class="mi">receipt_long</span>
         No selections yet.<br>Tap any odds to add them here.
+      </div>
+      <div style="padding:0 16px 8px;">
+        <button onclick="openDrawer('book')" style="width:100%;padding:12px;background:none;border:1.5px dashed var(--green);border-radius:6px;color:var(--green);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Barlow',sans-serif;">
+          <span class="mi">confirmation_number</span> Load a Booking Code
+        </button>
       </div>`;
     return;
   }
@@ -796,63 +916,27 @@ function clearSlipAndDrawer() {
   renderDrawer();
 }
 
-/* ─── BOOKING CODE STATE ─── */
-let loadedBooking = null;
+/* ─── BOOKING CODE SHARED LOGIC ─── */
+let loadedBooking     = null;  // desktop
+let loadedMobBooking  = null;  // mobile drawer
 
-async function loadBookingCode() {
-  const inp      = document.getElementById('book-inp');
-  const btn      = document.getElementById('book-load-btn');
-  const resultEl = document.getElementById('book-result-area');
-  if (!inp || !btn || !resultEl) return;
-
-  const code = (inp.value || '').trim().toUpperCase();
-  if (!code) { inp.focus(); return; }
-
-  btn.disabled   = true;
-  btn.innerHTML  = '<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading…';
-  resultEl.innerHTML = '';
-  loadedBooking  = null;
-
-  let data = null;
-  let isCorrectScore = false;
-
-  try {
-    const r1 = await fetch(`${API_BASE}/api/v1/booking-codes/standard/${code}`, { signal: AbortSignal.timeout(14000) });
-    if (r1.ok) {
-      data = await r1.json();
-    } else if (r1.status === 400) {
-      const r2 = await fetch(`${API_BASE}/api/v1/booking-codes/correct-score/${code}`, { signal: AbortSignal.timeout(14000) });
-      if (r2.ok)              { data = await r2.json(); isCorrectScore = true; }
-      else if (r2.status === 404) throw new Error('Booking code not found. Please check and try again.');
-      else if (r2.status === 410) throw new Error('This booking code has expired or been disabled.');
-      else                        throw new Error('Could not load booking code. Try again.');
-    } else if (r1.status === 404) {
-      throw new Error('Booking code not found. Please check and try again.');
-    } else if (r1.status === 410) {
-      throw new Error('This booking code has expired or been disabled.');
-    } else {
-      throw new Error('Could not load booking code. Try again.');
-    }
-  } catch (e) {
-    resultEl.innerHTML = `<div class="book-err"><span class="mi">error_outline</span>${esc(e.message || 'Network error — please try again.')}</div>`;
-    btn.disabled  = false;
-    btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
-    return;
+async function _fetchBookingCode(code) {
+  const r1 = await fetch(`${API_BASE}/api/v1/booking-codes/standard/${code}`, { signal: AbortSignal.timeout(14000) });
+  if (r1.ok) return { data: await r1.json(), isCorrectScore: false };
+  if (r1.status === 400 || r1.status === 404) {
+    const r2 = await fetch(`${API_BASE}/api/v1/booking-codes/correct-score/${code}`, { signal: AbortSignal.timeout(14000) });
+    if (r2.ok)              return { data: await r2.json(), isCorrectScore: true };
+    if (r2.status === 404)  throw new Error('Booking code not found. Please check and try again.');
+    if (r2.status === 410)  throw new Error('This booking code has expired or been disabled.');
+    throw new Error('Could not load booking code. Try again.');
   }
-
-  loadedBooking = { data, isCorrectScore };
-  renderBookingResult(data, isCorrectScore);
-  btn.disabled  = false;
-  btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
+  if (r1.status === 410) throw new Error('This booking code has expired or been disabled.');
+  throw new Error('Could not load booking code. Try again.');
 }
 
-function renderBookingResult(data, isCorrectScore) {
-  const resultEl = document.getElementById('book-result-area');
-  if (!resultEl) return;
-  if (!data || !data.games || !data.games.length) {
-    resultEl.innerHTML = '<div class="book-err"><span class="mi">error_outline</span>No games found in this booking code.</div>';
-    return;
-  }
+function _bookingResultHtml(data, isCorrectScore, addFnName) {
+  if (!data || !data.games || !data.games.length)
+    return '<div class="book-err"><span class="mi">error_outline</span>No games found in this booking code.</div>';
   const combinedOdds = data.combinedOdds ? parseFloat(data.combinedOdds).toFixed(2) : '—';
   const count        = data.gameCount || data.games.length;
   const typeLabel    = isCorrectScore ? 'Correct Score' : 'Standard';
@@ -878,16 +962,73 @@ function renderBookingResult(data, isCorrectScore) {
   const btnClass = loggedIn ? 'book-add-btn' : 'book-add-btn login-needed';
   const btnIcon  = loggedIn ? 'add_circle' : 'login';
   const btnLabel = loggedIn ? 'Add to Betslip & Bet Now' : 'Login to Place This Bet';
-  resultEl.innerHTML = `<div class="book-result">
+  return `<div class="book-result">
     <div class="book-result-head">
       <span class="book-result-code"><span class="mi">confirmation_number</span>${count} game${count>1?'s':''} · ${typeLabel}</span>
       <span class="book-result-odds">Combined: ${combinedOdds}x</span>
     </div>
     ${gamesHtml}
-    <button class="${btnClass}" onclick="addBookingToSlip()">
+    <button class="${btnClass}" onclick="${addFnName}()">
       <span class="mi">${btnIcon}</span>${btnLabel}
     </button>
   </div>`;
+}
+
+/* DESKTOP booking code */
+async function loadBookingCode() {
+  const inp      = document.getElementById('book-inp');
+  const btn      = document.getElementById('book-load-btn');
+  const resultEl = document.getElementById('book-result-area');
+  if (!inp || !btn || !resultEl) return;
+  const code = (inp.value || '').trim().toUpperCase();
+  if (!code) { inp.focus(); return; }
+  btn.disabled = true;
+  btn.innerHTML = '<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading…';
+  resultEl.innerHTML = '';
+  loadedBooking = null;
+  try {
+    const result = await _fetchBookingCode(code);
+    loadedBooking = result;
+    resultEl.innerHTML = _bookingResultHtml(result.data, result.isCorrectScore, 'addBookingToSlip');
+  } catch(e) {
+    resultEl.innerHTML = `<div class="book-err"><span class="mi">error_outline</span>${esc(e.message || 'Network error — please try again.')}</div>`;
+  }
+  btn.disabled = false;
+  btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
+}
+
+/* MOBILE booking code */
+async function loadMobBookingCode() {
+  const inp      = document.getElementById('mob-book-inp');
+  const btn      = document.getElementById('mob-book-load-btn');
+  const resultEl = document.getElementById('mob-book-result-area');
+  if (!inp || !btn || !resultEl) return;
+  const code = (inp.value || '').trim().toUpperCase();
+  if (!code) { inp.focus(); return; }
+  btn.disabled = true;
+  btn.innerHTML = '<span class="mi" style="font-size:16px;">hourglass_empty</span> Loading…';
+  resultEl.innerHTML = '';
+  loadedMobBooking = null;
+  try {
+    const result = await _fetchBookingCode(code);
+    loadedMobBooking = result;
+    resultEl.innerHTML = _bookingResultHtml(result.data, result.isCorrectScore, 'addMobBookingToSlip');
+  } catch(e) {
+    resultEl.innerHTML = `<div class="book-err"><span class="mi">error_outline</span>${esc(e.message || 'Network error — please try again.')}</div>`;
+  }
+  btn.disabled = false;
+  btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
+}
+
+function _addBookingData(data, isCorrectScore) {
+  data.games.forEach(g => {
+    const matchKey = g.gameId ? String(g.gameId) : (g.homeTeam + '_' + g.awayTeam);
+    const label    = isCorrectScore && g.scorePrediction
+      ? `${g.scorePrediction} (Correct Score)`
+      : (g.pickLabel || g.pick || 'Selection');
+    slip[matchKey] = { id: matchKey, t: g.pick, label, odd: parseFloat(g.odds) || 1, league: 'Booking Code', teams: `${g.homeTeam} v ${g.awayTeam}` };
+  });
+  localStorage.setItem('ps_slip', JSON.stringify(slip));
 }
 
 function addBookingToSlip() {
@@ -899,23 +1040,25 @@ function addBookingToSlip() {
     setTimeout(() => window.location.href = 'login.html', 900);
     return;
   }
-  const { data, isCorrectScore } = loadedBooking;
-  data.games.forEach(g => {
-    const matchKey = g.gameId ? String(g.gameId) : (g.homeTeam + '_' + g.awayTeam);
-    const label    = isCorrectScore && g.scorePrediction
-      ? `${g.scorePrediction} (Correct Score)`
-      : (g.pickLabel || g.pick || 'Selection');
-    slip[matchKey] = {
-      id:     matchKey,
-      t:      g.pick,
-      label,
-      odd:    parseFloat(g.odds) || 1,
-      league: 'Booking Code',
-      teams:  `${g.homeTeam} v ${g.awayTeam}`
-    };
-  });
-  localStorage.setItem('ps_slip', JSON.stringify(slip));
-  showToast(`✅ ${data.games.length} selection${data.games.length > 1 ? 's' : ''} loaded — Going to Bet Now`);
+  _addBookingData(loadedBooking.data, loadedBooking.isCorrectScore);
+  showToast(`✅ ${loadedBooking.data.games.length} selection(s) loaded — Going to Bet Now`);
+  setTimeout(() => window.location.href = 'betting.html', 900);
+}
+
+function addMobBookingToSlip() {
+  if (!loadedMobBooking) return;
+  if (!isLoggedIn()) {
+    const inp = document.getElementById('mob-book-inp');
+    if (inp) localStorage.setItem('ps_pending_code', inp.value.trim().toUpperCase());
+    showToast('Please login to place this bet');
+    setTimeout(() => window.location.href = 'login.html', 900);
+    return;
+  }
+  _addBookingData(loadedMobBooking.data, loadedMobBooking.isCorrectScore);
+  updateBadges();
+  renderBsMainArea();
+  showToast(`✅ ${loadedMobBooking.data.games.length} selection(s) loaded`);
+  closeDrawer();
   setTimeout(() => window.location.href = 'betting.html', 900);
 }
 
@@ -1126,8 +1269,8 @@ function addBet(id,type,label,odd,league,teams) {
   localStorage.setItem('ps_slip',JSON.stringify(slip));
   renderBsMainArea();
   updateBadges();
-  /* on mobile open drawer instead of redirecting */
   if (window.innerWidth <= 900) {
+    switchDrawerTab('slip');
     openDrawer();
   } else {
     showToast('✅ ' + label + ' added');
@@ -1279,10 +1422,18 @@ function updateBadges(){
   const c = Object.keys(slip).length;
   document.getElementById('bubble-count').textContent = c;
   document.getElementById('mob-badge').textContent    = c;
-  /* show/hide bubble based on count */
+  // update drawer tab badge
+  const slipBadge = document.getElementById('drawer-slip-badge');
+  if (slipBadge) {
+    slipBadge.textContent = c;
+    slipBadge.style.display = c > 0 ? 'inline-flex' : 'none';
+  }
+  // ALWAYS show bubble on mobile (≤900px)
   const bubble = document.getElementById('bet-bubble');
   if (window.innerWidth <= 900) {
-    bubble.style.display = c > 0 ? 'flex' : 'none';
+    bubble.style.display = 'flex';
+  } else {
+    bubble.style.display = 'none';
   }
 }
 
@@ -1312,6 +1463,9 @@ applyAuthState();
 renderBsMainArea();
 updateBadges();
 loadAllData();
+
+// also call updateBadges on resize so bubble shows/hides correctly
+window.addEventListener('resize', updateBadges);
 </script>
 </body>
 </html>
