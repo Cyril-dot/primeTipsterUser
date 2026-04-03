@@ -525,16 +525,20 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 <script>
 const API_BASE = 'https://kikiwebbackend-iysi.onrender.com';
 
+// ── FIX: Updated minimum deposits ──
+// GHS: was 300 (unchanged), NGN: was 30000 (unchanged per request)
 const CURRENCY_CONFIG = {
   GHS: {
     label:'Ghana · GHS', flag:'🇬🇭',
-    minDep: 300, quickDep:[300,500,1000,2000,5000],
+    minDep: 300,                              // ✅ Min deposit: GHS 300
+    quickDep:[300, 500, 1000, 2000, 5000],   // ✅ Quick chips start at 300
     minWdr: 5000,
     fmt: v => 'GHS ' + Number(v).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})
   },
   NGN: {
     label:'Nigeria · NGN', flag:'🇳🇬',
-    minDep: 30000, quickDep:[30000,50000,100000,200000,500000],
+    minDep: 30000,                                        // ✅ Min deposit: NGN 30,000
+    quickDep:[30000, 50000, 100000, 200000, 500000],     // ✅ Quick chips start at 30,000
     minWdr: 500000,
     fmt: v => 'NGN ' + Number(v).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})
   }
@@ -559,7 +563,6 @@ let transactions = [];
 let txFilter     = 'all';
 let currency     = 'GHS';
 
-/* ── INIT ── FIX: removed buildTicker() call that was causing ReferenceError */
 async function init() {
   if (!isLoggedIn()) {
     show('auth-gate-wrap');
