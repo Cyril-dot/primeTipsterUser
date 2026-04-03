@@ -300,11 +300,43 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .pb-live{background:rgba(230,0,0,.1);color:var(--red2);}
 .pb-ft{background:rgba(26,138,60,.1);color:var(--green);}
 .pb-up{background:var(--gray2);color:var(--muted);}
-.bet-bubble{position:fixed;bottom:24px;right:24px;z-index:400;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;text-decoration:none;}
-.bet-bubble-btn{width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);border:2px solid var(--green2);position:relative;}
+
+/* ── FLOATING BUBBLE (desktop hidden via media query below) ── */
+.bet-bubble{position:fixed;bottom:24px;right:24px;z-index:400;display:none;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:none;background:none;padding:0;}
+.bet-bubble-btn{width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);border:2px solid var(--green2);position:relative;transition:transform .15s;}
+.bet-bubble-btn:hover{transform:scale(1.08);background:var(--green2);}
 .bet-bubble-btn .mi{font-size:26px;color:#fff;}
 .bet-bubble-count{position:absolute;top:-4px;right:-4px;background:var(--yellow);color:#000;font-size:11px;font-weight:900;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid #fff;}
-.bet-bubble-label{font-size:10px;font-weight:700;color:var(--dark);background:rgba(255,255,255,.9);padding:2px 8px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.12);}
+
+/* ── MOBILE BETSLIP DRAWER ── */
+.bs-drawer-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:450;display:none;}
+.bs-drawer-overlay.open{display:block;}
+.bs-drawer{position:fixed;bottom:0;left:0;right:0;z-index:460;background:var(--white);border-radius:16px 16px 0 0;max-height:85vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease;}
+.bs-drawer.open{transform:translateY(0);}
+.bs-drawer-handle{width:36px;height:4px;background:var(--gray3);border-radius:2px;margin:10px auto 0;}
+.bs-drawer-head{padding:10px 14px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gray2);padding-bottom:10px;}
+.bs-drawer-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.bs-drawer-title .mi{font-size:20px;color:var(--green);}
+.bs-drawer-close{background:none;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;}
+.bs-drawer-close .mi{font-size:22px;}
+.bs-drawer-body{padding:0 0 32px;}
+.drawer-empty{padding:28px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;}
+.drawer-empty .mi{font-size:40px;color:var(--gray3);display:block;margin-bottom:8px;}
+.drawer-bet-item{border:1px solid var(--gray2);border-radius:4px;padding:10px 12px;margin-bottom:6px;position:relative;background:#fafffe;}
+.drawer-bet-rm{position:absolute;top:7px;right:7px;background:none;border:none;color:var(--muted);cursor:pointer;display:flex;align-items:center;}
+.drawer-bet-rm .mi{font-size:16px;}
+.drawer-bet-rm:hover .mi{color:var(--red);}
+.drawer-go-btn{width:100%;padding:14px;background:var(--green);border:none;border-radius:4px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;}
+.drawer-go-btn .mi{font-size:22px;}
+.drawer-go-btn:hover{background:var(--green2);}
+.drawer-clear-btn{width:100%;background:none;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;padding:10px;font-family:'Barlow',sans-serif;margin-top:2px;}
+.drawer-clear-btn:hover{color:var(--red);}
+.drawer-payout{padding:8px 0 4px;}
+.drawer-pw{display:flex;justify-content:space-between;padding:4px 0;font-size:12.5px;border-bottom:1px solid #f8f8f8;}
+.drawer-pw .lbl{color:var(--muted);}
+.drawer-pw .val{font-weight:700;}
+.drawer-pw.tot{border-bottom:none;}
+.drawer-pw.tot .val{color:var(--green);font-size:15px;font-weight:800;}
 
 /* FOOTER */
 .footer{background:var(--dark);color:#ccc;}
@@ -335,12 +367,16 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-badge-wrap{position:relative;}
 .mob-badge{position:absolute;background:var(--yellow);color:#000;font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;top:-4px;right:-6px;padding:0 3px;}
 
-@media(max-width:900px){.betslip{display:none;}.bet-bubble{display:flex!important;}}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .betslip{display:none;}
+  .bet-bubble{display:flex;}
+  .bet-bubble{bottom:72px;}
+}
 @media(max-width:800px){
   .header-nav,#guest-auth,#user-auth{display:none!important;}
   .hamburger{display:flex;}
   .mob-nav{display:block;}
-  .bet-bubble{bottom:72px;}
   .layout{flex-direction:column;}
   .center{padding:8px 8px 72px;}
   .hero{padding:18px;min-height:140px;}
@@ -356,7 +392,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 }
 @media(max-width:600px){.ft-top{grid-template-columns:1fr;}.promo-row{grid-template-columns:1fr 1fr;}}
 @media(max-width:480px){.promo-row{grid-template-columns:1fr 1fr;}.hero h2{font-size:20px;}.jp-title{font-size:18px;}.jp-amt{font-size:22px;}.jp-btn{padding:8px 14px;font-size:14px;}}
-@media(min-width:901px){.bet-bubble{display:none;}}
+@media(min-width:901px){.bet-bubble{display:none!important;}}
 </style>
 </head>
 <body>
@@ -427,7 +463,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </div>
 
 <div class="layout">
-
 <main class="center">
   <div class="hero">
     <img class="hero-img" src="https://cdn.modernghana.com/content__/640/457/4292025124051-k5frj7u2h1-cedi-dollar.jpg" alt="" onerror="this.style.display='none'">
@@ -492,7 +527,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   </div>
 </main>
 
-<!-- ═══════════════════════ BETSLIP ═══════════════════════ -->
+<!-- DESKTOP BETSLIP -->
 <aside class="betslip" id="betslip-panel">
   <div class="bs-tabs">
     <div class="bs-tab active"><span class="mi">receipt_long</span> Betslip</div>
@@ -522,25 +557,35 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     <button class="place-btn" onclick="goToBetting()"><span class="mi">receipt_long</span> Go to Bet Now</button>
   </div>
 </aside>
-
 </div>
 
-<a class="bet-bubble" href="betting.html" id="bet-bubble">
+<!-- FLOATING BUBBLE (mobile only) -->
+<button class="bet-bubble" id="bet-bubble" onclick="openDrawer()">
   <div class="bet-bubble-btn">
     <span class="mi">receipt_long</span>
     <span class="bet-bubble-count" id="bubble-count">0</span>
   </div>
-  <span class="bet-bubble-label">Bet Now</span>
-</a>
+</button>
+
+<!-- MOBILE BETSLIP DRAWER -->
+<div class="bs-drawer-overlay" id="bs-drawer-overlay" onclick="closeDrawer()"></div>
+<div class="bs-drawer" id="bs-drawer">
+  <div class="bs-drawer-handle"></div>
+  <div class="bs-drawer-head">
+    <span class="bs-drawer-title"><span class="mi">receipt_long</span> Betslip</span>
+    <button class="bs-drawer-close" onclick="closeDrawer()"><span class="mi">close</span></button>
+  </div>
+  <div class="bs-drawer-body" id="bs-drawer-body"></div>
+</div>
 
 <nav class="mob-nav">
   <div class="mob-nav-inner">
     <a class="mob-item active" href="index.html"><span class="mi">home</span><span>Home</span></a>
     <a class="mob-item" href="live-games.html"><span class="mi">cell_tower</span><span>Live</span></a>
-    <a class="mob-item" href="betting.html">
+    <div class="mob-item" onclick="openDrawer()">
       <div class="mob-badge-wrap"><span class="mi">receipt_long</span><span class="mob-badge" id="mob-badge">0</span></div>
-      <span>Bet Now</span>
-    </a>
+      <span>Betslip</span>
+    </div>
     <a class="mob-item" href="games.html"><span class="mi">sports_esports</span><span>Games</span></a>
     <a class="mob-item" href="wallet.html"><span class="mi">account_balance_wallet</span><span>Wallet</span></a>
   </div>
@@ -601,7 +646,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 const API_BASE      = 'https://kikiwebbackend-iysi.onrender.com';
 const FOOTBALL_BASE = 'https://kikiwebbackend-iysi.onrender.com';
 
-/* ─── AUTH HELPERS ─────────────────────────────────────────────────────────── */
+/* ─── AUTH HELPERS ─── */
 function getToken()  { return localStorage.getItem('ps_stakes') || localStorage.getItem('token') || localStorage.getItem('accessToken') || null; }
 function getUser()   { try { return JSON.parse(localStorage.getItem('ps_user') || '{}') || {}; } catch { return {}; } }
 function isLoggedIn(){ return !!getToken(); }
@@ -673,14 +718,87 @@ document.addEventListener('click', e => {
   if (menu?.classList.contains('open') && !menu.contains(e.target) && !ham?.contains(e.target)) menu.classList.remove('open');
 });
 
-/* ─── SLIP STATE ──────────────────────────────────────────────────────────── */
+/* ─── SLIP STATE ─── */
 let slip = {};
 try { const s = localStorage.getItem('ps_slip'); if (s) slip = JSON.parse(s); } catch {}
 
-/* ─── BOOKING CODE STATE ──────────────────────────────────────────────────── */
-let loadedBooking = null;   // { data, isCorrectScore }
+/* ─── MOBILE DRAWER ─── */
+function openDrawer() {
+  renderDrawer();
+  document.getElementById('bs-drawer-overlay').classList.add('open');
+  document.getElementById('bs-drawer').classList.add('open');
+}
+function closeDrawer() {
+  document.getElementById('bs-drawer-overlay').classList.remove('open');
+  document.getElementById('bs-drawer').classList.remove('open');
+}
 
-/* ─── BOOKING CODE LOADER ─────────────────────────────────────────────────── */
+function renderDrawer() {
+  const body  = document.getElementById('bs-drawer-body');
+  const items = Object.values(slip);
+
+  if (!items.length) {
+    body.innerHTML = `
+      <div class="drawer-empty">
+        <span class="mi">receipt_long</span>
+        No selections yet.<br>Tap any odds to add them here.
+      </div>`;
+    return;
+  }
+
+  const stake = 10;
+  const tot   = items.reduce((a,b) => a * b.odd, 1);
+
+  let html = '<div style="padding:10px 14px 0;">';
+  html += items.map(b => `
+    <div class="drawer-bet-item">
+      <button class="drawer-bet-rm" onclick="removeAndRefreshDrawer('${b.id}')"><span class="mi">close</span></button>
+      <div class="bet-league">${esc(b.league)}</div>
+      <div class="bet-match">${esc(b.teams)}</div>
+      <div class="bet-sel-row">
+        <div>
+          <div class="bet-sel">${esc(b.label)}</div>
+          <div class="bet-mkt">Full Time</div>
+        </div>
+        <div class="bet-odd">${parseFloat(b.odd).toFixed(2)}</div>
+      </div>
+    </div>`).join('');
+
+  html += `</div>
+    <div style="padding:0 14px;">
+      <div class="drawer-payout">
+        <div class="drawer-pw"><span class="lbl">Selections</span><span class="val">${items.length}</span></div>
+        <div class="drawer-pw"><span class="lbl">Total odds</span><span class="val">${tot.toFixed(2)}</span></div>
+        <div class="drawer-pw tot"><span class="lbl" style="font-weight:700;">Est. payout (GHS 10)</span><span class="val">GHS ${(10 * tot).toFixed(2)}</span></div>
+      </div>
+      <button class="drawer-go-btn" onclick="goToBetting()">
+        <span class="mi">receipt_long</span> Go to Bet Now
+      </button>
+      <button class="drawer-clear-btn" onclick="clearSlipAndDrawer()">Clear all selections</button>
+    </div>`;
+
+  body.innerHTML = html;
+}
+
+function removeAndRefreshDrawer(id) {
+  delete slip[id];
+  localStorage.setItem('ps_slip', JSON.stringify(slip));
+  renderBsMainArea();
+  updateBadges();
+  renderDrawer();
+}
+
+function clearSlipAndDrawer() {
+  slip = {};
+  localStorage.setItem('ps_slip', JSON.stringify(slip));
+  renderBsMainArea();
+  updateBadges();
+  renderDrawer();
+}
+
+/* ─── BOOKING CODE STATE ─── */
+let loadedBooking = null;
+
 async function loadBookingCode() {
   const inp      = document.getElementById('book-inp');
   const btn      = document.getElementById('book-load-btn');
@@ -699,13 +817,10 @@ async function loadBookingCode() {
   let isCorrectScore = false;
 
   try {
-    // 1️⃣  Try standard endpoint first
     const r1 = await fetch(`${API_BASE}/api/v1/booking-codes/standard/${code}`, { signal: AbortSignal.timeout(14000) });
-
     if (r1.ok) {
       data = await r1.json();
     } else if (r1.status === 400) {
-      // Backend says it's a correct-score slip → try correct-score endpoint
       const r2 = await fetch(`${API_BASE}/api/v1/booking-codes/correct-score/${code}`, { signal: AbortSignal.timeout(14000) });
       if (r2.ok)              { data = await r2.json(); isCorrectScore = true; }
       else if (r2.status === 404) throw new Error('Booking code not found. Please check and try again.');
@@ -727,7 +842,6 @@ async function loadBookingCode() {
 
   loadedBooking = { data, isCorrectScore };
   renderBookingResult(data, isCorrectScore);
-
   btn.disabled  = false;
   btn.innerHTML = '<span class="mi" style="font-size:16px;">download</span> Load Code';
 }
@@ -735,16 +849,13 @@ async function loadBookingCode() {
 function renderBookingResult(data, isCorrectScore) {
   const resultEl = document.getElementById('book-result-area');
   if (!resultEl) return;
-
   if (!data || !data.games || !data.games.length) {
     resultEl.innerHTML = '<div class="book-err"><span class="mi">error_outline</span>No games found in this booking code.</div>';
     return;
   }
-
   const combinedOdds = data.combinedOdds ? parseFloat(data.combinedOdds).toFixed(2) : '—';
   const count        = data.gameCount || data.games.length;
   const typeLabel    = isCorrectScore ? 'Correct Score' : 'Standard';
-
   const gamesHtml = data.games.map(g => {
     const pickLabel = g.pickLabel || g.pick || '';
     const oddVal    = g.odds ? parseFloat(g.odds).toFixed(2) : '—';
@@ -763,12 +874,10 @@ function renderBookingResult(data, isCorrectScore) {
       ${dateStr ? `<div class="book-game-date"><span class="mi" style="font-size:11px;">schedule</span> ${dateStr}</div>` : ''}
     </div>`;
   }).join('');
-
-  const loggedIn    = isLoggedIn();
-  const btnClass    = loggedIn ? 'book-add-btn' : 'book-add-btn login-needed';
-  const btnIcon     = loggedIn ? 'add_circle' : 'login';
-  const btnLabel    = loggedIn ? 'Add to Betslip & Bet Now' : 'Login to Place This Bet';
-
+  const loggedIn = isLoggedIn();
+  const btnClass = loggedIn ? 'book-add-btn' : 'book-add-btn login-needed';
+  const btnIcon  = loggedIn ? 'add_circle' : 'login';
+  const btnLabel = loggedIn ? 'Add to Betslip & Bet Now' : 'Login to Place This Bet';
   resultEl.innerHTML = `<div class="book-result">
     <div class="book-result-head">
       <span class="book-result-code"><span class="mi">confirmation_number</span>${count} game${count>1?'s':''} · ${typeLabel}</span>
@@ -783,16 +892,13 @@ function renderBookingResult(data, isCorrectScore) {
 
 function addBookingToSlip() {
   if (!loadedBooking) return;
-
   if (!isLoggedIn()) {
-    // Save pending code so it auto-loads after login
     const inp = document.getElementById('book-inp');
     if (inp) localStorage.setItem('ps_pending_code', inp.value.trim().toUpperCase());
     showToast('Please login to place this bet');
     setTimeout(() => window.location.href = 'login.html', 900);
     return;
   }
-
   const { data, isCorrectScore } = loadedBooking;
   data.games.forEach(g => {
     const matchKey = g.gameId ? String(g.gameId) : (g.homeTeam + '_' + g.awayTeam);
@@ -808,13 +914,12 @@ function addBookingToSlip() {
       teams:  `${g.homeTeam} v ${g.awayTeam}`
     };
   });
-
   localStorage.setItem('ps_slip', JSON.stringify(slip));
   showToast(`✅ ${data.games.length} selection${data.games.length > 1 ? 's' : ''} loaded — Going to Bet Now`);
   setTimeout(() => window.location.href = 'betting.html', 900);
 }
 
-/* ─── FOOTBALL DATA ───────────────────────────────────────────────────────── */
+/* ─── FOOTBALL DATA ─── */
 async function fetchTodayGames() {
   try {
     const res = await fetch(`${FOOTBALL_BASE}/api/v1/football/games/today`, { signal:AbortSignal.timeout(30000) });
@@ -1013,26 +1118,30 @@ async function loadAllData() {
   updateBadges();
 }
 
-/* ─── BET ACTIONS ─────────────────────────────────────────────────────────── */
+/* ─── BET ACTIONS ─── */
 function addBet(id,type,label,odd,league,teams) {
   if(!odd||odd<=0) return;
-  if(slip[id]&&slip[id].t===type){delete slip[id];}
-  else{slip[id]={id,t:type,label,odd:parseFloat(odd),league,teams};}
+  if(slip[id]&&slip[id].t===type){ delete slip[id]; }
+  else { slip[id]={id,t:type,label,odd:parseFloat(odd),league,teams}; }
   localStorage.setItem('ps_slip',JSON.stringify(slip));
-  renderBsMainArea(); updateBadges();
-  showToast('✅ '+label+' added — Go to Bet Now');
-  setTimeout(()=>window.location.href='betting.html',900);
+  renderBsMainArea();
+  updateBadges();
+  /* on mobile open drawer instead of redirecting */
+  if (window.innerWidth <= 900) {
+    openDrawer();
+  } else {
+    showToast('✅ ' + label + ' added');
+  }
 }
 function removeBet(id){ delete slip[id]; localStorage.setItem('ps_slip',JSON.stringify(slip)); renderBsMainArea(); updateBadges(); }
 function goToBetting(){ localStorage.setItem('ps_slip',JSON.stringify(slip)); window.location.href='betting.html'; }
 
-/* ─── BETSLIP RENDER ──────────────────────────────────────────────────────── */
+/* ─── BETSLIP RENDER (desktop sidebar) ─── */
 function renderBsMainArea() {
   const area    = document.getElementById('bs-main-area');
   const betArea = document.getElementById('bs-bet-area');
   const items   = Object.values(slip);
 
-  /* ── Guest view ── */
   if (!isLoggedIn()) {
     area.style.display    = 'block';
     betArea.style.display = 'none';
@@ -1046,18 +1155,15 @@ function renderBsMainArea() {
           <a href="register.html" class="bs-lock-reg">Register</a>
         </div>
       </div>
-
       <div class="book-section">
         <div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div>
         <p class="book-section-hint">Enter a code to preview games. Login to place the bet.</p>
-        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123"
-               onkeydown="if(event.key==='Enter')loadBookingCode()">
+        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123" onkeydown="if(event.key==='Enter')loadBookingCode()">
         <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()">
           <span class="mi" style="font-size:16px;">download</span> Load Code
         </button>
         <div id="book-result-area"></div>
       </div>
-
       <div class="winners">
         <div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div>
         <div id="winners-list"></div>
@@ -1071,10 +1177,7 @@ function renderBsMainArea() {
           <a class="mg-card" href="games.html"><span class="mi" style="color:#2ecc71;">casino</span><div class="mg-name">Dice Roll</div></a>
         </div>
       </div>`;
-
     renderWinners();
-
-    // Auto-load any pending booking code (e.g. returning from login)
     const pending = localStorage.getItem('ps_pending_code');
     if (pending) {
       const inp = document.getElementById('book-inp');
@@ -1083,7 +1186,6 @@ function renderBsMainArea() {
     return;
   }
 
-  /* ── Logged in — no selections ── */
   if (!items.length) {
     area.style.display    = 'block';
     betArea.style.display = 'none';
@@ -1091,26 +1193,20 @@ function renderBsMainArea() {
       <div class="bs-empty">
         <p class="bs-empty-txt">Click any odds to add selections, then head to Bet Now to place your bet.</p>
       </div>
-
       <div class="book-section">
         <div class="book-section-lbl"><span class="mi">confirmation_number</span> Booking Code</div>
         <p class="book-section-hint">Enter a booking code to load a pre-built slip.</p>
-        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123"
-               onkeydown="if(event.key==='Enter')loadBookingCode()">
+        <input class="book-inp" id="book-inp" placeholder="e.g. ABC123" onkeydown="if(event.key==='Enter')loadBookingCode()">
         <button class="book-load-btn" id="book-load-btn" onclick="loadBookingCode()">
           <span class="mi" style="font-size:16px;">download</span> Load Code
         </button>
         <div id="book-result-area"></div>
       </div>
-
       <div class="winners">
         <div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div>
         <div id="winners-list"></div>
       </div>`;
-
     renderWinners();
-
-    // Auto-load pending booking code after login redirect
     const pending = localStorage.getItem('ps_pending_code');
     if (pending) {
       localStorage.removeItem('ps_pending_code');
@@ -1120,7 +1216,6 @@ function renderBsMainArea() {
     return;
   }
 
-  /* ── Has selections ── */
   area.style.display    = 'none';
   betArea.style.display = 'block';
   document.getElementById('bet-items').innerHTML = items.map(b => `
@@ -1139,7 +1234,7 @@ function renderBsMainArea() {
   calcPayout();
 }
 
-/* ─── WINNERS ─────────────────────────────────────────────────────────────── */
+/* ─── WINNERS ─── */
 const winners = [
   {n:'Kwame A***',a:'GHS 11,928',t:'Sports Betting',c:'#e74c3c'},
   {n:'Ama B***',  a:'GHS 5,000', t:'UCL Acca',      c:'#3498db'},
@@ -1170,7 +1265,7 @@ setInterval(()=>{
   renderWinners();
 },6000);
 
-/* ─── PAYOUT / STAKES ─────────────────────────────────────────────────────── */
+/* ─── PAYOUT / STAKES ─── */
 function calcPayout(){
   const items=Object.values(slip), tot=items.reduce((a,b)=>a*b.odd,1), stake=parseFloat(document.getElementById('stake-inp').value)||0;
   document.getElementById('sel-count').textContent   = items.length;
@@ -1179,13 +1274,19 @@ function calcPayout(){
   document.getElementById('tot-payout').textContent  = 'GHS '+(stake*tot).toFixed(2);
 }
 function setStake(v){ document.getElementById('stake-inp').value=v; calcPayout(); }
+
 function updateBadges(){
-  const c=Object.keys(slip).length;
-  document.getElementById('bubble-count').textContent=c;
-  document.getElementById('mob-badge').textContent=c;
+  const c = Object.keys(slip).length;
+  document.getElementById('bubble-count').textContent = c;
+  document.getElementById('mob-badge').textContent    = c;
+  /* show/hide bubble based on count */
+  const bubble = document.getElementById('bet-bubble');
+  if (window.innerWidth <= 900) {
+    bubble.style.display = c > 0 ? 'flex' : 'none';
+  }
 }
 
-/* ─── TOAST ───────────────────────────────────────────────────────────────── */
+/* ─── TOAST ─── */
 function showToast(msg){
   let t=document.getElementById('ps-toast');
   if(!t){
@@ -1200,13 +1301,13 @@ function showToast(msg){
   t._to=setTimeout(()=>{ t.style.opacity='0'; },2800);
 }
 
-/* ─── AUTO-REFRESH LIVE ───────────────────────────────────────────────────── */
+/* ─── AUTO-REFRESH LIVE ─── */
 setInterval(async()=>{
   const live=await fetchLiveGames();
   if(live!==null) renderLiveMatches(live);
 },30000);
 
-/* ─── INIT ────────────────────────────────────────────────────────────────── */
+/* ─── INIT ─── */
 applyAuthState();
 renderBsMainArea();
 updateBadges();
