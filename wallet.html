@@ -17,7 +17,6 @@
 html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);font-size:14px;overflow-x:hidden;}
 .mi{font-family:'Material Icons Round';font-size:20px;line-height:1;vertical-align:middle;display:inline-flex;align-items:center;}
 
-/* HEADER */
 .header{background:var(--red);position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(0,0,0,.4);}
 .header-top{display:flex;align-items:center;gap:10px;padding:0 16px;height:56px;}
 .wordmark{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;}
@@ -33,12 +32,9 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .live-pill{background:var(--red2);color:#fff;font-size:9px;font-weight:800;padding:1px 6px;border-radius:10px;animation:blink 1.2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* AUTH AREA */
 .auth{display:flex;gap:7px;flex-shrink:0;align-items:center;}
 .btn-login{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;white-space:nowrap;}
 .btn-reg{background:var(--yellow);border:none;color:#000;font-size:12px;font-weight:900;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:'Barlow',sans-serif;text-decoration:none;white-space:nowrap;}
-
-/* USER AREA */
 .user-area{display:none;align-items:center;gap:8px;flex-shrink:0;}
 .user-area.visible{display:flex;}
 .auth.hidden{display:none;}
@@ -46,7 +42,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .wallet-chip:hover{background:rgba(0,0,0,.38);}
 .wallet-chip .mi{font-size:15px;color:var(--yellow);}
 .wallet-bal{font-size:12px;font-weight:700;color:#fff;}
-.user-avatar{width:34px;height:34px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#000;cursor:pointer;border:2px solid rgba(255,255,255,.3);flex-shrink:0;position:relative;}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#000;cursor:pointer;border:2px solid rgba(255,255,255,.3);flex-shrink:0;}
 .user-wrap{position:relative;}
 .user-dropdown{position:absolute;top:46px;right:0;background:var(--white);border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.15);min-width:190px;z-index:300;display:none;overflow:hidden;}
 .user-dropdown.open{display:block;}
@@ -60,7 +56,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .ud-logout .mi{color:var(--red)!important;}
 .hamburger{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px;flex-shrink:0;}
 
-/* MOBILE MENU */
 .mob-menu{display:none;position:fixed;top:56px;left:0;right:0;background:var(--dark2);z-index:190;border-bottom:2px solid #333;max-height:calc(100vh - 56px);overflow-y:auto;}
 .mob-menu.open{display:block;}
 .mob-menu-lbl{padding:8px 16px;font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;}
@@ -79,10 +74,8 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-user-info .mob-ubal{font-size:11px;color:var(--green);font-weight:600;}
 .mob-logout-btn{margin-left:auto;background:rgba(204,0,0,.2);border:1px solid rgba(204,0,0,.4);color:var(--red2);border-radius:4px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
 
-/* PAGE LAYOUT */
 .page-wrap{max-width:900px;margin:0 auto;padding:20px 16px 80px;}
 
-/* AUTH GATE */
 .auth-gate{background:var(--white);border-radius:8px;border:1px solid var(--gray2);padding:48px 24px;text-align:center;margin-top:20px;}
 .auth-gate .mi{font-size:52px;color:var(--gray3);display:block;margin-bottom:14px;}
 .auth-gate h2{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px;}
@@ -92,13 +85,16 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .ag-login{border:1.5px solid var(--gray3);color:var(--text);}
 .ag-reg{background:var(--green);color:#fff;}
 
-/* LOADING STATE */
 .wallet-loading-state{text-align:center;padding:48px 20px;}
 .wallet-loading-state .spinner-lg{display:inline-block;width:36px;height:36px;border:3px solid var(--gray2);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
 .wallet-loading-state p{font-size:13px;color:var(--muted);margin-top:12px;}
 
-/* BALANCE CARDS */
+/* CURRENCY BANNER */
+.currency-banner{display:flex;align-items:center;gap:10px;background:var(--dark2);border-radius:6px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:rgba(255,255,255,.7);}
+.currency-banner .mi{font-size:18px;color:var(--yellow);}
+.currency-banner strong{color:#fff;}
+
 .balance-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
 .bal-card{background:var(--white);border-radius:8px;border:1px solid var(--gray2);padding:18px 20px;position:relative;overflow:hidden;}
 .bal-card.main{background:var(--dark);border-color:transparent;}
@@ -114,14 +110,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .bal-bg .mi{font-size:90px;color:var(--dark);}
 .bal-card.main .bal-bg .mi{color:#fff;}
 
-/* ACTION TABS */
 .wallet-tabs{display:flex;gap:8px;margin-bottom:20px;}
 .wtab{flex:1;padding:12px;text-align:center;background:var(--white);border:1.5px solid var(--gray2);border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px;}
 .wtab .mi{font-size:18px;}
 .wtab:hover{border-color:var(--green);color:var(--green);}
 .wtab.active{background:var(--green);border-color:var(--green);color:#fff;}
 
-/* PANELS */
 .panel{background:var(--white);border-radius:8px;border:1px solid var(--gray2);margin-bottom:20px;overflow:hidden;}
 .panel-head{padding:14px 18px;border-bottom:1px solid var(--gray2);display:flex;align-items:center;gap:8px;}
 .panel-head .mi{font-size:20px;color:var(--green);}
@@ -129,14 +123,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .panel-head .badge{background:#e8f5ec;color:var(--green);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:auto;}
 .panel-body{padding:20px 18px;}
 
-/* FORM FIELDS */
 .form-row{margin-bottom:16px;}
 .form-label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.4px;}
 .form-inp{width:100%;border:1.5px solid var(--gray3);border-radius:5px;padding:10px 13px;font-size:14px;font-weight:600;outline:none;font-family:'Barlow',sans-serif;color:var(--dark);transition:border-color .15s;}
 .form-inp:focus{border-color:var(--green);}
 .form-inp.err-inp{border-color:var(--red);}
 .form-hint{font-size:11px;color:var(--muted);margin-top:4px;}
-.form-hint.err{color:var(--red);}
 .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .amt-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
 .amt-chip{border:1.5px solid var(--gray3);border-radius:4px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;color:var(--dark);background:var(--white);transition:all .15s;}
@@ -147,14 +139,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .submit-btn.red-btn{background:var(--red);}
 .submit-btn.red-btn:hover:not(:disabled){background:var(--red2);}
 
-/* RULES BOX */
 .rules-box{background:#f8f8f8;border:1px solid var(--gray2);border-radius:5px;padding:12px 14px;margin-bottom:16px;}
 .rules-box h4{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
 .rules-box h4 .mi{font-size:14px;color:var(--yellow);}
 .rule-item{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--muted);margin-bottom:4px;line-height:1.5;}
 .rule-item .mi{font-size:14px;color:var(--green);margin-top:1px;flex-shrink:0;}
 
-/* FEE SUMMARY */
 .fee-summary{background:var(--dark);border-radius:6px;padding:14px 16px;margin-top:14px;}
 .fs-row{display:flex;justify-content:space-between;font-size:12.5px;padding:5px 0;border-bottom:1px solid #2a2a2a;}
 .fs-row:last-child{border-bottom:none;}
@@ -162,22 +152,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .fs-row .val{font-weight:700;color:#fff;}
 .fs-row.total .val{color:var(--yellow);font-size:15px;font-family:'Barlow Condensed',sans-serif;}
 
-/* PAYMENT METHOD CARDS */
-.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
-.method-card{border:2px solid var(--gray2);border-radius:6px;padding:12px;cursor:pointer;text-align:center;transition:all .15s;}
-.method-card:hover{border-color:var(--green);}
-.method-card.active{border-color:var(--green);background:#e8f5ec;}
-.method-name{font-size:11px;font-weight:700;margin-top:6px;color:var(--dark);}
-.method-logo{font-size:18px;font-weight:900;font-family:'Barlow Condensed',sans-serif;}
-
-/* PAYSTACK REDIRECT BANNER */
 .paystack-banner{background:#0a2e6e;border-radius:6px;padding:14px 16px;margin-top:14px;display:flex;align-items:center;gap:12px;}
 .paystack-banner .mi{font-size:22px;color:#fff;flex-shrink:0;}
 .paystack-banner-txt{flex:1;}
 .paystack-banner-txt p{font-size:12px;color:rgba(255,255,255,.7);margin-top:2px;}
 .paystack-banner-ttl{font-size:13px;font-weight:700;color:#fff;}
 
-/* TRANSACTIONS */
 .tx-filters{display:flex;gap:8px;padding:12px 18px;border-bottom:1px solid var(--gray2);overflow-x:auto;scrollbar-width:none;}
 .tx-filters::-webkit-scrollbar{display:none;}
 .tx-filter{border:1px solid var(--gray3);border-radius:4px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;color:var(--muted);background:var(--white);white-space:nowrap;transition:all .15s;}
@@ -207,21 +187,16 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .tx-empty .mi{font-size:48px;color:var(--gray3);display:block;margin-bottom:10px;}
 .tx-empty p{font-size:13px;color:var(--muted);}
 
-/* BOTTOM MOB NAV */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--red);z-index:300;border-top:2px solid #a80000;}
 .mob-nav-inner{display:flex;}
 .mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px;cursor:pointer;color:rgba(255,255,255,.7);font-size:10px;font-weight:600;gap:2px;transition:color .15s;text-decoration:none;}
 .mob-item .mi{font-size:22px;}
 .mob-item.active,.mob-item:hover{color:#fff;}
 
-/* TOAST */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:opacity .3s;opacity:0;pointer-events:none;white-space:nowrap;max-width:90vw;}
 .toast.show{opacity:1;}
-
-/* SPINNER */
 .spinner{display:inline-block;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
 
-/* RESPONSIVE */
 @media(max-width:800px){
   .header-nav,.auth,.user-area-desktop{display:none;}
   .hamburger{display:flex;}
@@ -233,16 +208,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 @media(max-width:600px){
   .balance-row{grid-template-columns:1fr;}
   .wallet-tabs{flex-direction:column;}
-  .method-grid{grid-template-columns:repeat(3,1fr);}
 }
-@media(max-width:480px){
-  .wm-text{font-size:18px;}
-}
+@media(max-width:480px){.wm-text{font-size:18px;}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="header-top">
     <a href="index.html" class="wordmark">
@@ -256,14 +227,10 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <a class="hnav" href="games.html"><span class="mi">sports_esports</span> Games</a>
       <a class="hnav active" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
     </nav>
-
-    <!-- Guest -->
     <div class="auth" id="guest-auth">
       <a href="login.html" class="btn-login">Login</a>
       <a href="register.html" class="btn-reg">Register</a>
     </div>
-
-    <!-- Logged in -->
     <div class="user-area" id="user-auth">
       <a href="wallet.html" class="wallet-chip">
         <span class="mi">account_balance_wallet</span>
@@ -282,12 +249,10 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
         </div>
       </div>
     </div>
-
     <button class="hamburger" onclick="toggleMenu()"><span class="mi">menu</span></button>
   </div>
 </header>
 
-<!-- MOBILE MENU -->
 <div class="mob-menu" id="mob-menu">
   <div id="mob-guest-section">
     <div class="mob-auth-row">
@@ -314,10 +279,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <a class="mob-menu-item active" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
 </div>
 
-<!-- PAGE CONTENT -->
 <div class="page-wrap" id="page-content" style="display:none;">
-
-  <!-- PAGE TITLE -->
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
     <span class="mi" style="font-size:28px;color:var(--green);">account_balance_wallet</span>
     <div>
@@ -329,7 +291,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     </button>
   </div>
 
-  <!-- BALANCE CARDS -->
+  <!-- CURRENCY BANNER -->
+  <div class="currency-banner" id="currency-banner" style="display:none;">
+    <span class="mi">public</span>
+    <span>Currency auto-detected based on your location: <strong id="banner-currency-name">—</strong></span>
+  </div>
+
   <div class="balance-row">
     <div class="bal-card main">
       <div class="bal-bg"><span class="mi">account_balance_wallet</span></div>
@@ -354,7 +321,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
     </div>
   </div>
 
-  <!-- ACTION TABS -->
   <div class="wallet-tabs">
     <div class="wtab active" onclick="showTab('deposit')" id="tab-deposit"><span class="mi">arrow_downward</span> Deposit</div>
     <div class="wtab" onclick="showTab('withdraw')" id="tab-withdraw"><span class="mi">arrow_upward</span> Withdraw</div>
@@ -374,17 +340,15 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
           <h4><span class="mi">info</span> Deposit Rules</h4>
           <div class="rule-item"><span class="mi">check_circle</span> <span id="rule-min-dep">Minimum deposit: loading…</span></div>
           <div class="rule-item"><span class="mi">check_circle</span> Funds credited after Paystack payment confirmation</div>
-          <div class="rule-item"><span class="mi">check_circle</span> Accepted: MTN MoMo, Vodafone Cash, AirtelTigo, Card</div>
+          <div class="rule-item"><span class="mi">check_circle</span> <span id="rule-payment-methods">Accepted: MTN MoMo, Vodafone Cash, AirtelTigo, Card</span></div>
           <div class="rule-item"><span class="mi">check_circle</span> Secure payments powered by Paystack</div>
         </div>
-
         <div class="form-row">
-          <label class="form-label">Amount (<span class="currency-lbl">GHS</span>)</label>
+          <label class="form-label">Amount (<span class="currency-lbl">—</span>)</label>
           <input class="form-inp" type="number" id="dep-amount" placeholder="Enter amount" min="1">
           <div class="amt-row" id="dep-quick-amts"></div>
           <div class="form-hint" id="dep-hint">Minimum: loading…</div>
         </div>
-
         <div class="paystack-banner">
           <span class="mi">lock</span>
           <div class="paystack-banner-txt">
@@ -392,7 +356,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
             <p>You'll be redirected to complete payment. Return here after payment is confirmed.</p>
           </div>
         </div>
-
         <button class="submit-btn" id="dep-btn" onclick="initiateDeposit()" style="margin-top:16px;">
           <span class="mi">open_in_new</span> Proceed to Pay
         </button>
@@ -416,13 +379,11 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
           <div class="rule-item"><span class="mi">schedule</span> Processing time: 1–24 hours via Paystack Transfer</div>
           <div class="rule-item"><span class="mi">info</span> Your balance must exceed the minimum to withdraw</div>
         </div>
-
         <div class="form-row">
-          <label class="form-label">Amount (<span class="currency-lbl">GHS</span>)</label>
+          <label class="form-label">Amount (<span class="currency-lbl">—</span>)</label>
           <input class="form-inp" type="number" id="wdr-amount" placeholder="Enter amount" oninput="updateWdrFee()">
           <div class="form-hint" id="wdr-hint">—</div>
         </div>
-
         <div class="form-row-2">
           <div class="form-row" style="margin-bottom:0;">
             <label class="form-label">Account Name</label>
@@ -433,32 +394,17 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
             <input class="form-inp" type="text" id="wdr-acct" placeholder="e.g. 0241234567">
           </div>
         </div>
-
         <div class="form-row" style="margin-top:16px;">
           <label class="form-label">Bank / Mobile Network</label>
           <select class="form-inp" id="wdr-bank">
             <option value="">— Select bank or network —</option>
-            <option value="MTN_GH">MTN MoMo (Ghana)</option>
-            <option value="VODA_GH">Vodafone Cash</option>
-            <option value="AIRTELTIGO_GH">AirtelTigo Money</option>
-            <option value="ABSA_GH">Absa Bank Ghana</option>
-            <option value="GCB_GH">GCB Bank</option>
-            <option value="ECOBANK_GH">Ecobank Ghana</option>
-            <option value="MTN_NG">MTN Nigeria MoMo</option>
-            <option value="OPAY_NG">OPay</option>
-            <option value="PALMPAY_NG">PalmPay</option>
-            <option value="GTB_NG">GTBank</option>
-            <option value="ACCESS_NG">Access Bank</option>
-            <option value="ZENITH_NG">Zenith Bank</option>
           </select>
         </div>
-
         <div class="fee-summary" id="wdr-fee-summary" style="display:none;">
           <div class="fs-row"><span class="lbl">Requested Amount</span><span class="val" id="fs-req">—</span></div>
           <div class="fs-row"><span class="lbl">Processing Fee (2%)</span><span class="val" id="fs-fee" style="color:#ff7777;">—</span></div>
           <div class="fs-row total"><span class="lbl" style="color:#888;">You Receive</span><span class="val" id="fs-recv">—</span></div>
         </div>
-
         <button class="submit-btn red-btn" id="wdr-btn" onclick="initiateWithdraw()" style="margin-top:14px;">
           <span class="mi">send</span> Submit Withdrawal
         </button>
@@ -484,10 +430,8 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <div id="tx-list"></div>
     </div>
   </div>
+</div>
 
-</div><!-- /page-wrap -->
-
-<!-- AUTH GATE (shown when logged out) -->
 <div class="page-wrap" id="auth-gate-wrap" style="display:none;">
   <div class="auth-gate">
     <span class="mi">lock</span>
@@ -500,7 +444,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   </div>
 </div>
 
-<!-- LOADING STATE -->
 <div class="page-wrap" id="loading-wrap">
   <div class="wallet-loading-state">
     <div class="spinner-lg"></div>
@@ -508,10 +451,8 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- BOTTOM MOB NAV -->
 <nav class="mob-nav">
   <div class="mob-nav-inner">
     <a class="mob-item" href="index.html"><span class="mi">home</span><span>Home</span></a>
@@ -525,23 +466,55 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 <script>
 const API_BASE = 'https://kikiwebbackend-iysi.onrender.com';
 
-// ── FIX: Updated minimum deposits ──
-// GHS: was 300 (unchanged), NGN: was 30000 (unchanged per request)
+// ─────────────────────────────────────────────
+// CURRENCY CONFIG — IP is the source of truth,
+// DB value (user.currency) is intentionally ignored
+// so Nigerian users with GHS stored in DB see NGN.
+// ─────────────────────────────────────────────
 const CURRENCY_CONFIG = {
   GHS: {
-    label:'Ghana · GHS', flag:'🇬🇭',
-    minDep: 300,                              // ✅ Min deposit: GHS 300
-    quickDep:[300, 500, 1000, 2000, 5000],   // ✅ Quick chips start at 300
+    label: 'Ghana · GHS', flag: '🇬🇭',
+    minDep: 300,
+    quickDep: [300, 500, 1000, 2000, 5000],
     minWdr: 5000,
-    fmt: v => 'GHS ' + Number(v).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})
+    paymentMethods: 'MTN MoMo, Vodafone Cash, AirtelTigo, Card',
+    banks: [
+      { value: 'MTN_GH',       label: 'MTN MoMo' },
+      { value: 'VODA_GH',      label: 'Vodafone Cash' },
+      { value: 'AIRTELTIGO_GH',label: 'AirtelTigo Money' },
+      { value: 'ABSA_GH',      label: 'Absa Bank Ghana' },
+      { value: 'GCB_GH',       label: 'GCB Bank' },
+      { value: 'ECOBANK_GH',   label: 'Ecobank Ghana' },
+    ],
+    fmt: v => 'GHS ' + Number(v).toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   },
   NGN: {
-    label:'Nigeria · NGN', flag:'🇳🇬',
-    minDep: 30000,                                        // ✅ Min deposit: NGN 30,000
-    quickDep:[30000, 50000, 100000, 200000, 500000],     // ✅ Quick chips start at 30,000
-    minWdr: 500000,
-    fmt: v => 'NGN ' + Number(v).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})
+    label: 'Nigeria · NGN', flag: '🇳🇬',
+    minDep: 5000,
+    quickDep: [5000, 10000, 20000, 50000, 100000],
+    minWdr: 10000,
+    paymentMethods: 'MTN MoMo, OPay, PalmPay, GTBank, Access Bank, Zenith Bank, Card',
+    banks: [
+      { value: 'MTN_NG',    label: 'MTN Nigeria MoMo' },
+      { value: 'OPAY_NG',   label: 'OPay' },
+      { value: 'PALMPAY_NG',label: 'PalmPay' },
+      { value: 'GTB_NG',    label: 'GTBank' },
+      { value: 'ACCESS_NG', label: 'Access Bank' },
+      { value: 'ZENITH_NG', label: 'Zenith Bank' },
+      { value: 'FIRST_NG',  label: 'First Bank Nigeria' },
+      { value: 'UBA_NG',    label: 'UBA' },
+    ],
+    fmt: v => '₦' + Number(v).toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   }
+};
+
+// ─────────────────────────────────────────────
+// COUNTRY → CURRENCY
+// ─────────────────────────────────────────────
+const COUNTRY_CURRENCY_MAP = {
+  GH: 'GHS', NG: 'NGN',
+  US: 'USD', GB: 'GBP',
+  DE: 'EUR', FR: 'EUR', IT: 'EUR', ES: 'EUR',
 };
 
 const getToken   = () => localStorage.getItem('ps_stakes');
@@ -549,11 +522,8 @@ const getUser    = () => { try { return JSON.parse(localStorage.getItem('ps_user
 const isLoggedIn = () => !!getToken();
 
 function getInitials(u) {
-  const f = (u.firstName || '').charAt(0).toUpperCase();
-  const l = (u.lastName  || '').charAt(0).toUpperCase();
-  return f + l || '??';
+  return ((u.firstName || '').charAt(0) + (u.lastName || '').charAt(0)).toUpperCase() || '??';
 }
-
 function authHeaders() {
   return { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json' };
 }
@@ -561,8 +531,31 @@ function authHeaders() {
 let walletData   = null;
 let transactions = [];
 let txFilter     = 'all';
-let currency     = 'GHS';
+let currency     = 'GHS'; // overridden by IP detection
 
+// ─────────────────────────────────────────────
+// IP-BASED CURRENCY DETECTION
+// Cached in sessionStorage — shared with other
+// pages so only one fetch per browser session.
+// ─────────────────────────────────────────────
+async function detectCurrencyFromIP() {
+  const cached = sessionStorage.getItem('ps_ip_currency');
+  if (cached && CURRENCY_CONFIG[cached]) return cached;
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) return 'GHS';
+    const data = await res.json();
+    const detected = COUNTRY_CURRENCY_MAP[data.country_code] || 'GHS';
+    sessionStorage.setItem('ps_ip_currency', detected);
+    return detected;
+  } catch {
+    return 'GHS';
+  }
+}
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
 async function init() {
   if (!isLoggedIn()) {
     show('auth-gate-wrap');
@@ -577,9 +570,18 @@ async function init() {
   hide('page-content');
   hide('auth-gate-wrap');
 
+  // Detect currency via IP FIRST — this is the source of truth
+  currency = await detectCurrencyFromIP();
+
+  renderDepositForm();
+  renderWithdrawForm();
+
   await loadWalletData();
 }
 
+// ─────────────────────────────────────────────
+// LOAD WALLET DATA
+// ─────────────────────────────────────────────
 async function loadWalletData() {
   try {
     const res = await fetch(`${API_BASE}/api/v1/users/me`, {
@@ -591,23 +593,21 @@ async function loadWalletData() {
 
     const data = await res.json();
     const payload = data.data || data;
-
     walletData = payload;
-    currency   = payload.currency || 'GHS';
 
+    // Update stored user — names/email only, NOT currency
+    // (DB currency ignored — IP detection is the source of truth)
     const u = getUser();
     Object.assign(u, {
       firstName: payload.firstName || u.firstName,
       lastName:  payload.lastName  || u.lastName,
       email:     payload.email     || u.email,
-      currency:  currency
     });
     localStorage.setItem('ps_user', JSON.stringify(u));
 
     applyUserHeader();
     renderBalanceCards();
-    renderDepositForm();
-    renderWithdrawForm();
+    showCurrencyBanner();
 
     hide('loading-wrap');
     show('page-content');
@@ -617,10 +617,9 @@ async function loadWalletData() {
   } catch (err) {
     hide('loading-wrap');
     show('page-content');
-    showToast('⚠️ Could not load wallet data — showing cached info', true);
+    showCurrencyBanner();
+    showToast('⚠️ Could not load wallet data — check your connection', true);
     renderBalanceCards();
-    renderDepositForm();
-    renderWithdrawForm();
   }
 }
 
@@ -635,9 +634,7 @@ async function loadTransactions() {
     const list = data.data || data;
     transactions = Array.isArray(list) ? list : [];
     renderTransactions();
-  } catch {
-    // transactions stay empty, no crash
-  }
+  } catch { /* silent */ }
 }
 
 async function refreshWallet() {
@@ -646,6 +643,18 @@ async function refreshWallet() {
   await loadWalletData();
 }
 
+// ─────────────────────────────────────────────
+// CURRENCY BANNER
+// ─────────────────────────────────────────────
+function showCurrencyBanner() {
+  const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  document.getElementById('banner-currency-name').textContent = `${cfg.flag} ${cfg.label}`;
+  document.getElementById('currency-banner').style.display = 'flex';
+}
+
+// ─────────────────────────────────────────────
+// RENDER BALANCE CARDS
+// ─────────────────────────────────────────────
 function renderBalanceCards() {
   const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
   const d   = walletData;
@@ -654,39 +663,59 @@ function renderBalanceCards() {
   document.querySelectorAll('.currency-lbl').forEach(el => el.textContent = currency);
 
   if (d) {
-    document.getElementById('main-balance').textContent = cfg.fmt(d.walletBalance ?? 0);
-    document.getElementById('total-dep').textContent    = cfg.fmt(d.totalDeposited  ?? 0);
-    document.getElementById('total-wdr').textContent    = cfg.fmt(d.totalWithdrawn  ?? 0);
+    document.getElementById('main-balance').textContent = cfg.fmt(d.walletBalance  ?? 0);
+    document.getElementById('total-dep').textContent    = cfg.fmt(d.totalDeposited ?? 0);
+    document.getElementById('total-wdr').textContent    = cfg.fmt(d.totalWithdrawn ?? 0);
     document.getElementById('bal-can-withdraw').textContent = d.canWithdraw ? 'Eligible to withdraw' : 'Keep betting to withdraw';
-    document.getElementById('header-balance').textContent = cfg.fmt(d.walletBalance ?? 0);
-    document.getElementById('mob-ubal').textContent       = cfg.fmt(d.walletBalance ?? 0);
+    document.getElementById('header-balance').textContent   = cfg.fmt(d.walletBalance ?? 0);
+    document.getElementById('mob-ubal').textContent         = cfg.fmt(d.walletBalance ?? 0);
   }
 }
 
+// ─────────────────────────────────────────────
+// RENDER DEPOSIT FORM
+// ─────────────────────────────────────────────
 function renderDepositForm() {
   const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
-  const minDep = cfg.minDep;
 
-  document.getElementById('dep-min-badge').textContent = `Min: ${currency} ${minDep.toLocaleString()}`;
-  document.getElementById('rule-min-dep').innerHTML    = `Minimum deposit: <strong>${currency} ${minDep.toLocaleString()}</strong>`;
-  document.getElementById('dep-hint').textContent      = `Minimum: ${currency} ${minDep.toLocaleString()}`;
-  document.getElementById('dep-amount').placeholder    = `Enter amount (min ${minDep.toLocaleString()})`;
+  document.getElementById('dep-min-badge').textContent        = `Min: ${currency} ${cfg.minDep.toLocaleString()}`;
+  document.getElementById('rule-min-dep').innerHTML           = `Minimum deposit: <strong>${currency} ${cfg.minDep.toLocaleString()}</strong>`;
+  document.getElementById('rule-payment-methods').textContent = `Accepted: ${cfg.paymentMethods}`;
+  document.getElementById('dep-hint').textContent             = `Minimum: ${currency} ${cfg.minDep.toLocaleString()}`;
+  document.getElementById('dep-amount').placeholder           = `Enter amount (min ${cfg.minDep.toLocaleString()})`;
+  document.getElementById('dep-amount').min                   = cfg.minDep;
+  document.getElementById('dep-amount').value                 = cfg.minDep;
+  document.querySelectorAll('.currency-lbl').forEach(el => el.textContent = currency);
 
   document.getElementById('dep-quick-amts').innerHTML = cfg.quickDep.map(a =>
     `<div class="amt-chip" onclick="document.getElementById('dep-amount').value=${a}">${currency} ${a.toLocaleString()}</div>`
   ).join('');
 }
 
+// ─────────────────────────────────────────────
+// RENDER WITHDRAW FORM (country-specific banks)
+// ─────────────────────────────────────────────
 function renderWithdrawForm() {
   const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
-  const minWdr = cfg.minWdr;
 
-  document.getElementById('wdr-min-badge').textContent = `Min: ${currency} ${minWdr.toLocaleString()}`;
-  document.getElementById('rule-min-wdr').innerHTML    = `Minimum withdrawal: <strong>${currency} ${minWdr.toLocaleString()}</strong>`;
-  document.getElementById('wdr-hint').textContent      = `Min: ${currency} ${minWdr.toLocaleString()} · 2% fee applies`;
-  document.getElementById('wdr-amount').placeholder    = `Minimum ${minWdr.toLocaleString()}`;
+  document.getElementById('wdr-min-badge').textContent = `Min: ${currency} ${cfg.minWdr.toLocaleString()}`;
+  document.getElementById('rule-min-wdr').innerHTML    = `Minimum withdrawal: <strong>${currency} ${cfg.minWdr.toLocaleString()}</strong>`;
+  document.getElementById('wdr-hint').textContent      = `Min: ${currency} ${cfg.minWdr.toLocaleString()} · 2% fee applies`;
+  document.getElementById('wdr-amount').placeholder    = `Minimum ${cfg.minWdr.toLocaleString()}`;
+
+  const select = document.getElementById('wdr-bank');
+  select.innerHTML = '<option value="">— Select bank or network —</option>';
+  cfg.banks.forEach(b => {
+    const opt = document.createElement('option');
+    opt.value = b.value;
+    opt.textContent = b.label;
+    select.appendChild(opt);
+  });
 }
 
+// ─────────────────────────────────────────────
+// INITIATE DEPOSIT
+// ─────────────────────────────────────────────
 async function initiateDeposit() {
   const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
   const amt = parseFloat(document.getElementById('dep-amount').value);
@@ -715,7 +744,6 @@ async function initiateDeposit() {
     if (res.ok) {
       const payload = data.data || data;
       const paymentUrl = payload.paymentUrl || payload.authorization_url;
-
       if (paymentUrl) {
         showToast('✅ Redirecting to Paystack…');
         setTimeout(() => { window.location.href = paymentUrl; }, 800);
@@ -724,16 +752,13 @@ async function initiateDeposit() {
         resetDepBtn();
       }
     } else {
-      const msg = data.message || data.error || 'Deposit failed. Please try again.';
-      showToast('❌ ' + msg, true);
+      showToast('❌ ' + (data.message || data.error || 'Deposit failed.'), true);
       resetDepBtn();
     }
   } catch (err) {
-    if (err.name === 'TimeoutError' || err.name === 'AbortError') {
-      showToast('❌ Request timed out — server may be waking up, try again', true);
-    } else {
-      showToast('❌ Network error — check your connection', true);
-    }
+    showToast(err.name === 'TimeoutError' || err.name === 'AbortError'
+      ? '❌ Request timed out — server may be waking up, try again'
+      : '❌ Network error — check your connection', true);
     resetDepBtn();
   }
 }
@@ -744,6 +769,9 @@ function resetDepBtn() {
   btn.innerHTML = '<span class="mi">open_in_new</span> Proceed to Pay';
 }
 
+// ─────────────────────────────────────────────
+// WITHDRAWAL FEE PREVIEW
+// ─────────────────────────────────────────────
 function updateWdrFee() {
   const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
   const amt = parseFloat(document.getElementById('wdr-amount').value) || 0;
@@ -760,6 +788,9 @@ function updateWdrFee() {
   }
 }
 
+// ─────────────────────────────────────────────
+// INITIATE WITHDRAW
+// ─────────────────────────────────────────────
 async function initiateWithdraw() {
   const cfg  = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
   const amt  = parseFloat(document.getElementById('wdr-amount').value);
@@ -782,12 +813,7 @@ async function initiateWithdraw() {
     const res = await fetch(`${API_BASE}/api/v1/wallet/withdraw`, {
       method: 'POST',
       headers: authHeaders(),
-      body: JSON.stringify({
-        amount: amt,
-        accountName: name,
-        accountNumber: acct,
-        bankCode: bank
-      }),
+      body: JSON.stringify({ amount: amt, accountName: name, accountNumber: acct, bankCode: bank }),
       signal: AbortSignal.timeout(20000)
     });
 
@@ -795,32 +821,29 @@ async function initiateWithdraw() {
 
     if (res.ok) {
       const payload = data.data || data;
-      const msg = payload.message || `Withdrawal of ${cfg.fmt(amt)} submitted successfully!`;
-      showToast('✅ ' + msg);
-
+      showToast('✅ ' + (payload.message || `Withdrawal of ${cfg.fmt(amt)} submitted!`));
       document.getElementById('wdr-amount').value = '';
       document.getElementById('wdr-name').value   = '';
       document.getElementById('wdr-acct').value   = '';
       document.getElementById('wdr-bank').value   = '';
       document.getElementById('wdr-fee-summary').style.display = 'none';
-
       setTimeout(() => refreshWallet(), 1500);
     } else {
-      const msg = data.message || data.error || 'Withdrawal failed. Please try again.';
-      showToast('❌ ' + msg, true);
+      showToast('❌ ' + (data.message || data.error || 'Withdrawal failed.'), true);
     }
   } catch (err) {
-    if (err.name === 'TimeoutError' || err.name === 'AbortError') {
-      showToast('❌ Request timed out. Please try again.', true);
-    } else {
-      showToast('❌ Network error — check your connection', true);
-    }
+    showToast(err.name === 'TimeoutError' || err.name === 'AbortError'
+      ? '❌ Request timed out. Please try again.'
+      : '❌ Network error — check your connection', true);
   } finally {
     btn.disabled = false;
     btn.innerHTML = '<span class="mi">send</span> Submit Withdrawal';
   }
 }
 
+// ─────────────────────────────────────────────
+// TRANSACTIONS
+// ─────────────────────────────────────────────
 function filterTx(f, el) {
   txFilter = f;
   document.querySelectorAll('.tx-filter').forEach(e => e.classList.remove('active'));
@@ -829,8 +852,8 @@ function filterTx(f, el) {
 }
 
 function renderTransactions() {
-  const cfg  = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
-  const list = document.getElementById('tx-list');
+  const cfg   = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const list  = document.getElementById('tx-list');
   const badge = document.getElementById('tx-count-badge');
 
   let filtered = [...transactions];
@@ -856,14 +879,13 @@ function renderTransactions() {
     const statusCls = status === 'SUCCESS' ? 'success' : status === 'PENDING' ? 'pending' : 'failed';
     const amt       = parseFloat(tx.amount || 0);
     const balAfter  = tx.balanceAfter != null ? parseFloat(tx.balanceAfter) : null;
-    const desc      = tx.description || type;
     const ref       = tx.paymentReference || tx.ref || '—';
     const date      = tx.createdAt ? new Date(tx.createdAt).toLocaleString('en-GB', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '—';
 
     return `<div class="tx-item">
       <div class="tx-icon ${iconClass}"><span class="mi">${icon}</span></div>
       <div class="tx-info">
-        <div class="tx-desc">${desc}</div>
+        <div class="tx-desc">${tx.description || type}</div>
         <div class="tx-meta">
           <span class="tx-ref">${ref}</span>
           <span class="tx-status ${statusCls}">${status}</span>
@@ -878,6 +900,9 @@ function renderTransactions() {
   }).join('');
 }
 
+// ─────────────────────────────────────────────
+// TAB SWITCHING
+// ─────────────────────────────────────────────
 function showTab(tab) {
   ['deposit','withdraw','history'].forEach(t => {
     document.getElementById('panel-'+t).style.display  = t === tab ? 'block' : 'none';
@@ -889,19 +914,20 @@ function showTab(tab) {
   }
 }
 
+// ─────────────────────────────────────────────
+// HEADER
+// ─────────────────────────────────────────────
 function applyUserHeader() {
-  const u = getUser();
+  const u        = getUser();
   const initials = getInitials(u);
   const fullName = [u.firstName, u.lastName].filter(Boolean).join(' ') || 'My Account';
-  const email    = u.email || '';
-  const cfg      = CURRENCY_CONFIG[u.currency || 'GHS'] || CURRENCY_CONFIG.GHS;
+  const cfg      = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
 
   document.getElementById('guest-auth').classList.add('hidden');
   document.getElementById('user-auth').classList.add('visible');
   document.getElementById('user-avatar').textContent = initials;
   document.getElementById('dd-name').textContent     = fullName;
-  document.getElementById('dd-email').textContent    = email;
-
+  document.getElementById('dd-email').textContent    = u.email || '';
   document.getElementById('mob-guest-section').style.display = 'none';
   document.getElementById('mob-user-section').style.display  = 'block';
   document.getElementById('mob-av').textContent    = initials;
@@ -921,6 +947,9 @@ function applyGuestHeader() {
   document.getElementById('mob-user-section').style.display  = 'none';
 }
 
+// ─────────────────────────────────────────────
+// AUTH
+// ─────────────────────────────────────────────
 function logout() {
   localStorage.removeItem('ps_stakes');
   localStorage.removeItem('ps_user');
@@ -943,9 +972,11 @@ document.addEventListener('click', e => {
     menu.classList.remove('open');
   }
 });
-
 function toggleMenu() { document.getElementById('mob-menu').classList.toggle('open'); }
 
+// ─────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────
 function showToast(msg, isError = false) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -954,10 +985,12 @@ function showToast(msg, isError = false) {
   clearTimeout(t._to);
   t._to = setTimeout(() => t.classList.remove('show'), 4000);
 }
-
 function show(id) { document.getElementById(id).style.display = 'block'; }
 function hide(id) { document.getElementById(id).style.display = 'none'; }
 
+// ─────────────────────────────────────────────
+// PAYSTACK CALLBACK
+// ─────────────────────────────────────────────
 function checkPaystackCallback() {
   const params = new URLSearchParams(window.location.search);
   const ref = params.get('trxref') || params.get('reference');
