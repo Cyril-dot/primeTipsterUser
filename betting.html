@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--red:#cc0000;--red2:#e60000;--green:#1a8a3c;--green2:#22a848;--yellow:#f5c518;--dark:#111;--dark2:#1a1a1a;--dark3:#222;--text:#1a1a1a;--muted:#666;--muted2:#999;--gray:#f0f0f0;--gray2:#e4e4e4;--gray3:#ccc;--white:#fff;}
+:root{--red:#cc0000;--red2:#e60000;--green:#1a8a3c;--green2:#22a848;--yellow:#f5c518;--dark:#111;--dark2:#1a1a1a;--dark3:#222;--text:#1a1a1a;--muted:#666;--muted2:#999;--gray:#f0f0f0;--gray2:#e4e4e4;--gray3:#ccc;--white:#fff;
+  --purple:#7c3aed;--purpleBg:rgba(124,58,237,0.09);--greenBg:rgba(26,138,60,0.09);--redBg:rgba(204,0,0,0.09);}
 html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);font-size:14px;overflow-x:hidden;}
 .mi{font-family:'Material Icons Round';font-size:20px;line-height:1;vertical-align:middle;display:inline-flex;align-items:center;}
 .header{background:var(--red);position:sticky;top:0;z-index:300;box-shadow:0 2px 10px rgba(0,0,0,.4);}
@@ -57,16 +58,8 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .mob-logout-row{padding:12px 16px;}
 .mob-logout-btn{width:100%;background:rgba(204,0,0,.15);border:1px solid rgba(204,0,0,.3);color:var(--red2);border-radius:4px;padding:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
 
-/* BOOKING CODE BANNER */
-.booking-banner{
-  background:linear-gradient(135deg,#0d5c2a 0%,#1a8a3c 100%);
-  border-bottom:3px solid var(--yellow);
-  padding:14px 20px;
-  display:none;
-  align-items:center;
-  gap:14px;
-  position:relative;
-}
+/* BOOKING BANNER */
+.booking-banner{background:linear-gradient(135deg,#0d5c2a 0%,#1a8a3c 100%);border-bottom:3px solid var(--yellow);padding:14px 20px;display:none;align-items:center;gap:14px;position:relative;}
 .booking-banner.show{display:flex;}
 .bb-icon{width:42px;height:42px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .bb-icon .mi{font-size:22px;color:var(--yellow);}
@@ -77,12 +70,15 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .bb-close:hover{color:#fff;}
 .bb-close .mi{font-size:20px;}
 
+/* PAGE TABS */
 .page-tabs{background:var(--white);border-bottom:2px solid var(--gray2);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 16px;}
 .page-tabs::-webkit-scrollbar{display:none;}
 .ptab{padding:11px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:all .15s;}
 .ptab .mi{font-size:17px;}
 .ptab:hover{color:var(--red);}
 .ptab.active{color:var(--red);border-bottom-color:var(--red);}
+.ptab.history-tab.active{color:var(--green);border-bottom-color:var(--green);}
+
 .layout{display:flex;max-width:1280px;margin:0 auto;min-height:calc(100vh - 56px);}
 .sidebar{width:196px;flex-shrink:0;background:var(--white);border-right:1px solid var(--gray2);max-height:calc(100vh - 56px);position:sticky;top:56px;overflow-y:auto;}
 .sb-head{background:var(--dark2);color:#fff;padding:8px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:6px;}
@@ -175,10 +171,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .load-btn{width:100%;background:var(--gray2);border:none;border-radius:4px;padding:8px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Barlow',sans-serif;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:4px;}
 .load-btn .mi{font-size:15px;}
 .bet-item{border:1px solid var(--gray2);border-radius:4px;padding:8px 10px;margin-bottom:6px;position:relative;background:#fafffe;}
-
-/* Booking code entries get a tinted border */
 .bet-item.from-code{border-left:3px solid var(--green);background:#f4fbf6;}
-
 .bet-rm{position:absolute;top:5px;right:5px;background:none;border:none;color:var(--muted);cursor:pointer;display:flex;align-items:center;}
 .bet-rm .mi{font-size:15px;}
 .bet-rm:hover .mi{color:var(--red);}
@@ -217,16 +210,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .w-type{font-size:10px;color:var(--muted);}
 .w-amt{font-size:12px;font-weight:800;color:var(--green);}
 .bs-sel-count{background:var(--red2);color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;margin-left:4px;}
-
-/* FLOATING BUBBLE */
 .bet-bubble{position:fixed;bottom:80px;right:16px;z-index:400;display:none;flex-direction:column;align-items:center;gap:4px;cursor:pointer;}
 .bet-bubble-btn{width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);border:2px solid var(--green2);position:relative;transition:transform .15s;}
 .bet-bubble-btn:hover{transform:scale(1.08);background:var(--green2);}
 .bet-bubble-btn .mi{font-size:24px;color:#fff;}
 .bet-bubble-count{position:absolute;top:-4px;right:-4px;background:var(--yellow);color:#000;font-size:10px;font-weight:900;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 3px;border:2px solid #fff;}
 .bet-bubble-label{font-size:10px;font-weight:700;color:var(--dark);background:rgba(255,255,255,.9);padding:2px 8px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.12);}
-
-/* MOBILE BETSLIP DRAWER */
 .bs-drawer-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:450;display:none;}
 .bs-drawer-overlay.open{display:block;}
 .bs-drawer{position:fixed;bottom:0;left:0;right:0;z-index:460;background:var(--white);border-radius:16px 16px 0 0;max-height:85vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s ease;}
@@ -236,8 +225,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .bs-drawer-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;}
 .bs-drawer-close{background:none;border:none;cursor:pointer;color:var(--muted);}
 .bs-drawer-body{padding:0 0 24px;}
-
-/* LOGIN MODAL */
 .overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
 .overlay.open{display:flex;}
 .modal{background:var(--white);border-radius:8px;width:100%;max-width:380px;overflow:hidden;}
@@ -251,8 +238,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .modal-btns a{flex:1;text-align:center;padding:10px;border-radius:4px;font-weight:700;font-size:13px;text-decoration:none;}
 .modal-login{border:1.5px solid var(--gray3);color:var(--text);}
 .modal-reg{background:var(--green);color:#fff;}
-
-/* MOBILE NAV */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--red);z-index:300;border-top:2px solid #a80000;}
 .mob-nav-inner{display:flex;}
 .mob-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px;cursor:pointer;color:rgba(255,255,255,.7);font-size:10px;font-weight:600;gap:2px;transition:color .15s;text-decoration:none;}
@@ -266,6 +251,93 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 .ft-legal{font-size:11px;color:#555;line-height:1.55;}
 .badge-18{width:30px;height:30px;border-radius:50%;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#555;}
 .ft-copy{padding:10px 24px;border-top:1px solid #1a1a1a;text-align:center;font-size:11px;color:#444;}
+
+/* ═══════════════════════════════════
+   BET HISTORY SECTION (integrated)
+═══════════════════════════════════ */
+#history-panel{display:none;}
+#games-panel{display:block;}
+
+.hist-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap;}
+.hist-topbar-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;display:flex;align-items:center;gap:8px;}
+.hist-topbar-title .mi{font-size:22px;color:var(--green);}
+.hist-refresh-btn{display:flex;align-items:center;gap:5px;background:none;border:1.5px solid var(--gray3);border-radius:4px;padding:6px 12px;font-size:12px;font-weight:700;color:var(--green);cursor:pointer;font-family:'Barlow',sans-serif;transition:all .15s;}
+.hist-refresh-btn:hover{background:#e8f5ec;border-color:var(--green);}
+.hist-refresh-btn .mi{font-size:15px;}
+
+.hist-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.hstat{background:var(--white);border:1px solid var(--gray2);border-radius:8px;padding:12px 10px;text-align:center;}
+.hstat-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;line-height:1;margin-bottom:3px;}
+.hstat-lbl{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;}
+.hstat.active .hstat-val{color:var(--purple);}
+.hstat.won .hstat-val{color:var(--green);}
+.hstat.lost .hstat-val{color:var(--red);}
+
+.hist-filters{display:flex;gap:5px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none;}
+.hist-filters::-webkit-scrollbar{display:none;}
+.hf-btn{border:1.5px solid var(--gray3);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;background:#fff;color:var(--muted);font-family:'Barlow',sans-serif;transition:all .15s;}
+.hf-btn:hover{border-color:var(--green);color:var(--green);}
+.hf-btn.active{background:var(--green);border-color:var(--green);color:#fff;}
+.hf-btn.active-won{background:var(--green);border-color:var(--green);color:#fff;}
+.hf-btn.active-lost{background:var(--red);border-color:var(--red);color:#fff;}
+.hf-btn.active-pending{background:var(--purple);border-color:var(--purple);color:#fff;}
+.hf-btn.active-code{background:var(--dark2);border-color:var(--dark2);color:#fff;}
+
+.hbet-card{background:var(--white);border:1px solid var(--gray2);border-radius:8px;overflow:hidden;margin-bottom:8px;transition:border-color .15s,box-shadow .15s;}
+.hbet-card:hover{box-shadow:0 2px 10px rgba(0,0,0,.08);}
+.hbet-card.won{border-left:3px solid var(--green);}
+.hbet-card.lost{border-left:3px solid var(--red);}
+.hbet-card.pending{border-left:3px solid var(--purple);}
+
+.hbet-top{padding:8px 12px;background:#fafafa;border-bottom:1px solid var(--gray2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.hbet-ref{font-size:11px;font-weight:700;color:var(--muted2);font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbet-type-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;}
+.tag-slip{background:#ede9fe;color:var(--purple);border:1px solid #c4b5fd;}
+.tag-code{background:#dbeafe;color:#2563eb;border:1px solid #93c5fd;}
+.hbet-status{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;}
+.hbet-status.won{background:var(--greenBg);color:var(--green);border:1px solid rgba(26,138,60,.25);}
+.hbet-status.lost{background:var(--redBg);color:var(--red);border:1px solid rgba(204,0,0,.25);}
+.hbet-status.pending{background:var(--purpleBg);color:var(--purple);border:1px solid rgba(124,58,237,.25);}
+
+.hbet-body{padding:10px 12px;display:flex;align-items:center;gap:10px;}
+.hbet-info{flex:1;min-width:0;}
+.hbet-match{font-size:13px;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:3px;}
+.hbet-pick-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#2563eb;margin-bottom:2px;}
+.hbet-pick{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:900;color:var(--dark);line-height:1;}
+.hbet-pick.won{color:var(--green);}
+.hbet-pick.lost{color:var(--red);opacity:.75;}
+.hbet-meta{font-size:11px;color:var(--muted);margin-top:3px;}
+.hbet-payout-col{text-align:right;flex-shrink:0;}
+.hbet-payout-lbl{font-size:9px;color:var(--muted2);margin-bottom:2px;text-transform:uppercase;font-weight:700;}
+.hbet-payout{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;}
+.hbet-payout.won{color:var(--green);}
+.hbet-payout.lost{color:var(--red);opacity:.75;}
+.hbet-payout.pending{color:var(--dark);}
+
+.hbet-foot{padding:5px 12px;border-top:1px solid var(--gray2);display:flex;justify-content:space-between;align-items:center;}
+.hbet-date{font-size:10px;color:var(--muted2);}
+.hbet-sels{font-size:10px;color:var(--muted2);}
+
+.hist-empty{background:var(--white);border-radius:8px;border:1px dashed var(--gray2);padding:40px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.hist-empty .mi{font-size:40px;color:var(--gray3);}
+.hist-empty h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--text);}
+.hist-empty p{font-size:12px;color:var(--muted);max-width:200px;line-height:1.6;}
+
+.hist-loading{background:var(--white);border-radius:8px;border:1px solid var(--gray2);padding:30px;text-align:center;color:var(--muted);font-size:13px;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.hist-loading .mi{font-size:28px;color:var(--gray3);animation:spin 1s linear infinite;}
+
+.hist-not-loggedin{background:var(--white);border-radius:8px;border:1px solid var(--gray2);padding:36px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.hist-not-loggedin .mi{font-size:40px;color:var(--gray3);}
+.hist-not-loggedin h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;}
+.hist-not-loggedin p{font-size:12px;color:var(--muted);line-height:1.6;}
+.hist-login-btns{display:flex;gap:8px;margin-top:4px;}
+.hist-login-btns a{padding:9px 20px;border-radius:4px;font-size:12px;font-weight:700;text-decoration:none;}
+.hist-login-login{border:1.5px solid var(--gray3);color:var(--text);}
+.hist-login-reg{background:var(--green);color:#fff;}
+
+.hbet-skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e4e4e4 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px;height:88px;margin-bottom:8px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
 @media(max-width:1100px){.sidebar{display:none;}.mobile-chips{display:flex;}}
 @media(max-width:900px){.betslip{display:none;}.bet-bubble{display:flex;}}
 @media(max-width:800px){
@@ -277,13 +349,13 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   .game-main{grid-template-columns:1fr;gap:6px;}
   .game-left{display:flex;gap:12px;align-items:center;}
   .booking-banner{flex-wrap:wrap;gap:10px;}
+  .hist-stats{gap:6px;}
 }
 @media(max-width:480px){.game-main{padding:10px;}.odd-btn{min-width:44px;padding:5px 0;}.odd-val{font-size:13px;}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="header-top">
     <a href="index.html" class="wordmark">
@@ -312,7 +384,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   </div>
 </header>
 
-<!-- MOBILE MENU -->
 <div class="mob-menu" id="mob-menu">
   <div id="mob-auth-section">
     <div class="mob-auth-row">
@@ -340,7 +411,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <a class="mob-menu-item" href="wallet.html"><span class="mi">account_balance_wallet</span> Wallet</a>
 </div>
 
-<!-- BOOKING CODE BANNER — shown when arriving from a booking code -->
 <div class="booking-banner" id="booking-banner">
   <div class="bb-icon"><span class="mi">confirmation_number</span></div>
   <div class="bb-text">
@@ -352,23 +422,24 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   </button>
 </div>
 
-<!-- PAGE TABS -->
+<!-- PAGE TABS — now includes My Bets -->
 <div class="page-tabs">
-  <div class="ptab active" onclick="filterLeague('all',this)"><span class="mi">sports_soccer</span> All Games</div>
-  <div class="ptab" onclick="filterLeague('Ghana Premier League',this)"><span class="mi">public</span> Africa</div>
-  <div class="ptab" onclick="filterLeague('England Premier League',this)"><span class="mi">language</span> Europe</div>
-  <div class="ptab" onclick="filterLeague('UEFA Champions League',this)"><span class="mi">emoji_events</span> Champions League</div>
-  <div class="ptab" onclick="setScoreTab(this)"><span class="mi">scoreboard</span> Score Predictions</div>
+  <div class="ptab active" id="ptab-games" onclick="switchMainTab('games',this)"><span class="mi">sports_soccer</span> All Games</div>
+  <div class="ptab" onclick="filterLeague('Ghana Premier League',this);switchMainTab('games',document.getElementById('ptab-games'))"><span class="mi">public</span> Africa</div>
+  <div class="ptab" onclick="filterLeague('England Premier League',this);switchMainTab('games',document.getElementById('ptab-games'))"><span class="mi">language</span> Europe</div>
+  <div class="ptab" onclick="filterLeague('UEFA Champions League',this);switchMainTab('games',document.getElementById('ptab-games'))"><span class="mi">emoji_events</span> Champions League</div>
+  <div class="ptab" id="ptab-scores" onclick="setScoreTab(this)"><span class="mi">scoreboard</span> Score Predictions</div>
+  <div class="ptab history-tab" id="ptab-history" onclick="switchMainTab('history',this)"><span class="mi">history</span> My Bets</div>
 </div>
 
-<!-- MOBILE LEAGUE CHIPS -->
 <div class="mobile-chips" id="mobile-chips">
-  <div class="mchip active" onclick="filterLeague('all',this)">All</div>
+  <div class="mchip active" id="mchip-games" onclick="switchMainTab('games',document.getElementById('ptab-games'))">🏟 Games</div>
   <div class="mchip" onclick="filterLeague('Ghana Premier League',this)">Ghana PL</div>
   <div class="mchip" onclick="filterLeague('Nigeria NPFL',this)">Nigeria</div>
   <div class="mchip" onclick="filterLeague('England Premier League',this)">EPL</div>
   <div class="mchip" onclick="filterLeague('Spain La Liga',this)">La Liga</div>
   <div class="mchip" onclick="filterLeague('UEFA Champions League',this)">UCL</div>
+  <div class="mchip" id="mchip-history" onclick="switchMainTab('history',document.getElementById('ptab-history'))">📋 My Bets</div>
 </div>
 
 <div class="layout">
@@ -383,18 +454,50 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <div class="sb-item" onclick="filterLeague('Italy Serie A',this)"><div class="sb-left"><span class="mi">sports_soccer</span><span class="sb-label">Serie A</span></div></div>
   <div class="sb-item" onclick="filterLeague('Germany Bundesliga',this)"><div class="sb-left"><span class="mi">sports_soccer</span><span class="sb-label">Bundesliga</span></div></div>
   <div class="sb-item" onclick="filterLeague('UEFA Champions League',this)"><div class="sb-left"><span class="mi">emoji_events</span><span class="sb-label">Champions League</span></div></div>
+  <div class="sb-head"><span class="mi">history</span> My Account</div>
+  <div class="sb-item" onclick="switchMainTab('history',document.getElementById('ptab-history'))"><div class="sb-left"><span class="mi">receipt</span><span class="sb-label">My Bet History</span></div></div>
 </aside>
 
 <main class="center" id="main-center">
-  <div class="sec-head">
-    <div class="sec-dot"></div>
-    <span class="sec-title" id="sec-title-txt">All Games</span>
-    <span class="sec-count" id="game-count">Loading&hellip;</span>
-    <button class="refresh-btn" onclick="loadGames()"><span class="mi">refresh</span> Refresh</button>
+
+  <!-- GAMES PANEL -->
+  <div id="games-panel">
+    <div class="sec-head">
+      <div class="sec-dot"></div>
+      <span class="sec-title" id="sec-title-txt">All Games</span>
+      <span class="sec-count" id="game-count">Loading&hellip;</span>
+      <button class="refresh-btn" onclick="loadGames()"><span class="mi">refresh</span> Refresh</button>
+    </div>
+    <div id="games-container">
+      <div class="loading-state"><span class="mi">refresh</span> Loading games&hellip;</div>
+    </div>
   </div>
-  <div id="games-container">
-    <div class="loading-state"><span class="mi">refresh</span> Loading games&hellip;</div>
+
+  <!-- BET HISTORY PANEL -->
+  <div id="history-panel">
+    <div class="hist-topbar">
+      <div class="hist-topbar-title"><span class="mi">history</span> My Bet History</div>
+      <button class="hist-refresh-btn" onclick="loadBetHistory()"><span class="mi">refresh</span> Refresh</button>
+    </div>
+    <div class="hist-stats">
+      <div class="hstat active"><div class="hstat-val" id="hstat-pending">—</div><div class="hstat-lbl">Active</div></div>
+      <div class="hstat won"><div class="hstat-val" id="hstat-won">—</div><div class="hstat-lbl">Won</div></div>
+      <div class="hstat lost"><div class="hstat-val" id="hstat-lost">—</div><div class="hstat-lbl">Lost</div></div>
+    </div>
+    <div class="hist-filters">
+      <button class="hf-btn active" id="hf-ALL" onclick="setHistFilter('ALL',this)">All</button>
+      <button class="hf-btn" id="hf-PENDING" onclick="setHistFilter('PENDING',this)">Active</button>
+      <button class="hf-btn" id="hf-WON" onclick="setHistFilter('WON',this)">Won</button>
+      <button class="hf-btn" id="hf-LOST" onclick="setHistFilter('LOST',this)">Lost</button>
+      <button class="hf-btn" id="hf-CODE" onclick="setHistFilter('CODE',this)">📋 Code Bets</button>
+    </div>
+    <div id="hist-container">
+      <div class="hbet-skeleton"></div>
+      <div class="hbet-skeleton" style="height:76px"></div>
+      <div class="hbet-skeleton" style="height:96px"></div>
+    </div>
   </div>
+
 </main>
 
 <aside class="betslip" id="betslip-panel">
@@ -428,7 +531,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 </aside>
 </div>
 
-<!-- FLOATING BUBBLE -->
 <div class="bet-bubble" id="bet-bubble" onclick="openBsDrawer()">
   <div class="bet-bubble-btn">
     <span class="mi">receipt_long</span>
@@ -437,7 +539,6 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <span class="bet-bubble-label">Betslip</span>
 </div>
 
-<!-- MOBILE BETSLIP DRAWER -->
 <div class="bs-drawer-overlay" id="bs-drawer-overlay" onclick="closeBsDrawer()"></div>
 <div class="bs-drawer" id="bs-drawer">
   <div class="bs-drawer-handle"></div>
@@ -448,20 +549,12 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
   <div class="bs-drawer-body" id="bs-drawer-body"></div>
 </div>
 
-<!-- LOGIN MODAL -->
 <div class="overlay" id="login-modal">
   <div class="modal">
-    <div class="modal-head">
-      <span class="mi">lock</span>
-      <span>Login Required</span>
-      <button class="modal-close" onclick="closeLoginModal()"><span class="mi">close</span></button>
-    </div>
+    <div class="modal-head"><span class="mi">lock</span><span>Login Required</span><button class="modal-close" onclick="closeLoginModal()"><span class="mi">close</span></button></div>
     <div class="modal-body">
       <p>You need to be logged in to place bets. Create a free account and start winning today!</p>
-      <div class="modal-btns">
-        <a href="login.html" class="modal-login">Login</a>
-        <a href="register.html" class="modal-reg">Register Free</a>
-      </div>
+      <div class="modal-btns"><a href="login.html" class="modal-login">Login</a><a href="register.html" class="modal-reg">Register Free</a></div>
     </div>
   </div>
 </div>
@@ -474,7 +567,9 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
       <div class="mob-badge-wrap"><span class="mi">receipt_long</span><span class="mob-badge" id="mob-badge">0</span></div>
       <span>Betslip</span>
     </div>
-    <a class="mob-item" href="games.html"><span class="mi">sports_esports</span><span>Games</span></a>
+    <div class="mob-item" onclick="switchMainTab('history',document.getElementById('ptab-history'))">
+      <span class="mi">history</span><span>My Bets</span>
+    </div>
     <a class="mob-item active" href="betting.html"><span class="mi">sports_soccer</span><span>Bet Now</span></a>
   </div>
 </nav>
@@ -491,6 +586,7 @@ html,body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--tex
 
 <script>
 const API_BASE = 'https://kikiwebbackend-iysi.onrender.com';
+const HIST_API = `${API_BASE}/api/v1/bets/history`;
 
 /* ── AUTH ── */
 function getToken(){return localStorage.getItem('ps_stakes')||localStorage.getItem('token')||localStorage.getItem('accessToken')||null;}
@@ -524,95 +620,235 @@ async function initAuth(){
 
 function logout(redirect=true){['ps_stakes','ps_user','ps_slip','token','accessToken'].forEach(k=>localStorage.removeItem(k));if(redirect)window.location.href='login.html';}
 
-/* ── SLIP ── */
-let allGames=[],slip={},currentFilter='all',openScorePanels=new Set(),scoreOptionsCache={};
+/* ══════════════════════════════════════
+   MAIN TAB SWITCHING (Games ↔ History)
+══════════════════════════════════════ */
+let currentMainTab = 'games';
+let historyLoaded  = false;
 
-/* Load slip from localStorage — handles both formats:
-   - Entries created by betting.html:  {key, gameId, type, label, ...}
-   - Entries created by index.html:    {key, id, gameId, t, type, label, odd, isScore, ...}
-   We normalise them all to betting.html's format. */
-function loadSlip(){
-  try{
-    const raw=localStorage.getItem('ps_slip');
-    if(!raw)return;
-    const parsed=JSON.parse(raw);
-    slip={};
-    for(const[k,v]of Object.entries(parsed)){
-      // Normalise: if entry has 'id' but not 'key', copy id -> key
-      const entry={...v};
-      if(!entry.key&&entry.id)entry.key=entry.id;
-      if(!entry.key)entry.key=k;
-      // Normalise 't' field (index.html uses t:, betting.html uses type:)
-      if(!entry.type&&entry.t)entry.type=entry.isScore?'CS':'1X2';
-      // Ensure label
-      if(!entry.label)entry.label=entry.t||'Selection';
-      // Ensure odd is a number
-      entry.odd=parseFloat(entry.odd)||1;
-      slip[entry.key]=entry;
-    }
-  }catch{}
+function switchMainTab(tab, tabEl) {
+  currentMainTab = tab;
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  if (tabEl) tabEl.classList.add('active');
+  document.getElementById('games-panel').style.display   = tab === 'games'   ? '' : 'none';
+  document.getElementById('history-panel').style.display = tab === 'history' ? '' : 'none';
+  document.querySelectorAll('.mchip').forEach(c => c.classList.remove('active'));
+  if (tab === 'history') document.getElementById('mchip-history')?.classList.add('active');
+  else document.getElementById('mchip-games')?.classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(s => s.classList.remove('active'));
+  if (tab === 'history' && !historyLoaded) loadBetHistory();
 }
 
-function saveSlip(){localStorage.setItem('ps_slip',JSON.stringify(slip));}
+/* ══════════════════════════════════════
+   BET HISTORY LOGIC
+══════════════════════════════════════ */
+let allBets = [];
+let histFilter = 'ALL';
 
-/* ── BOOKING CODE BANNER ── */
-function checkBookingCodeArrival(){
-  const items=Object.values(slip);
-  if(!items.length)return;
-  /* Check if any entries came from a booking code (league === 'Booking Code' or type === 'CS'/'1X2' from index) */
-  const fromCode=items.filter(i=>i.league==='Booking Code'||i.fromCode);
-  if(!fromCode.length)return;
-  const banner=document.getElementById('booking-banner');
-  const count=fromCode.length;
-  document.getElementById('bb-title').textContent=`${count} game${count>1?'s':''} loaded from booking code!`;
-  document.getElementById('bb-sub').textContent=`Enter your stake and tap Place Bet to confirm.`;
-  banner.classList.add('show');
-  /* On mobile, open the drawer immediately so they see their selections */
-  if(window.innerWidth<=900){
-    setTimeout(()=>openBsDrawer(),400);
+async function apiFetch(url, opts={}) {
+  const token = getToken();
+  const headers = {'Content-Type':'application/json',...(token?{Authorization:`Bearer ${token}`}:{}),...(opts.headers||{})};
+  const res  = await fetch(url, {...opts, headers});
+  const json = await res.json().catch(()=>({}));
+  if (!res.ok) throw new Error(json.message||`HTTP ${res.status}`);
+  return json.data !== undefined ? json.data : json;
+}
+
+async function loadBetHistory() {
+  historyLoaded = true;
+  const container = document.getElementById('hist-container');
+  container.innerHTML = `<div class="hist-loading"><span class="mi">refresh</span> Loading your bets…</div>`;
+
+  if (!isLoggedIn()) {
+    container.innerHTML = `<div class="hist-not-loggedin">
+      <span class="mi">lock</span>
+      <h3>Not Logged In</h3>
+      <p>Sign in to see your full bet history and track your wins.</p>
+      <div class="hist-login-btns">
+        <a href="login.html" class="hist-login-login">Login</a>
+        <a href="register.html" class="hist-login-reg">Register</a>
+      </div>
+    </div>`;
+    return;
+  }
+
+  try {
+    const history = await apiFetch(HIST_API);
+    allBets = [];
+    const slipBets = Array.isArray(history.mySlipBets) ? history.mySlipBets : [];
+    for (const s of slipBets) {
+      const sels = s.selections || [];
+      if (sels.length > 1) {
+        allBets.push({id:s.id,betType:'SLIP',ref:s.slipReference||s.id,match:`${sels.length}-leg Accumulator`,
+          pick:sels.map(x=>fmtMkt(x.marketType)).join(' · '),odds:s.totalOdds,stake:s.stake,
+          payout:s.potentialPayout,actualPayout:s.actualPayout,status:normalise(s.status),
+          placedAt:s.placedAt||s.createdAt,selCount:sels.length});
+      } else if (sels.length === 1) {
+        const sel=sels[0];
+        allBets.push({id:s.id,betType:'SLIP',ref:s.slipReference||s.id,
+          match:`${sel.homeTeam||'?'} vs ${sel.awayTeam||'?'}`,pick:fmtMkt(sel.marketType),
+          odds:s.totalOdds,stake:s.stake,payout:s.potentialPayout,actualPayout:s.actualPayout,
+          status:normalise(s.status),placedAt:s.placedAt||s.createdAt,selCount:1});
+      } else {
+        allBets.push({id:s.id,betType:'SLIP',ref:s.slipReference||s.id,match:'Bet Slip',pick:'—',
+          odds:s.totalOdds,stake:s.stake,payout:s.potentialPayout,actualPayout:s.actualPayout,
+          status:normalise(s.status),placedAt:s.placedAt||s.createdAt,selCount:0});
+      }
+    }
+    const codeBets = Array.isArray(history.myBookingCodeBets) ? history.myBookingCodeBets : [];
+    for (const pb of codeBets) {
+      allBets.push({id:pb.id,betType:'CODE',ref:pb.betReference||pb.id,
+        match:`Code: ${pb.bookingCode||'—'}`,pick:`${Number(pb.oddsAtPlacement||0).toFixed(2)}x combined`,
+        odds:pb.oddsAtPlacement,stake:pb.stake,payout:pb.potentialPayout,actualPayout:pb.actualPayout,
+        status:normalise(pb.status),placedAt:pb.placedAt,selCount:null});
+    }
+    allBets.sort((a,b)=>new Date(b.placedAt)-new Date(a.placedAt));
+    renderHistory();
+  } catch {
+    await loadHistoryFallback();
   }
 }
 
-/* ── SCORE OPTIONS ── */
-function generateScoreOptions(gameId){
-  const rnd=base=>parseFloat((base*(0.85+Math.random()*0.3)).toFixed(2));
-  const opts=[];
-  for(let h=0;h<=4;h++)for(let a=0;a<=4;a++){const tot=h+a,base=tot===0?6:tot===1?4.5:tot===2?7:tot===3?12:25;opts.push({id:`${gameId}-${h}-${a}`,homeScore:h,awayScore:a,odds:rnd(base)});}
-  return opts;
+async function loadHistoryFallback() {
+  try {
+    allBets = [];
+    try {
+      const slips = await apiFetch(`${API_BASE}/api/v1/bets/my`);
+      for (const s of (Array.isArray(slips)?slips:(slips.content||[]))) {
+        const sels=s.selections||[];
+        allBets.push({id:s.id,betType:'SLIP',ref:s.slipReference||s.id,
+          match:sels.length>1?`${sels.length}-leg Accumulator`:sels[0]?`${sels[0].homeTeam||'?'} vs ${sels[0].awayTeam||'?'}`:'Bet Slip',
+          pick:sels.length>1?`${sels.length} selections`:fmtMkt(sels[0]?.marketType||''),
+          odds:s.totalOdds,stake:s.stake,payout:s.potentialPayout,actualPayout:s.actualPayout,
+          status:normalise(s.status),placedAt:s.placedAt||s.createdAt,selCount:sels.length});
+      }
+    } catch {}
+    try {
+      const page = await apiFetch(`${API_BASE}/api/v1/bets/my-placed?page=0&size=50`);
+      for (const pb of (Array.isArray(page)?page:(page.content||[]))) {
+        allBets.push({id:pb.id,betType:'CODE',ref:pb.betReference||pb.id,
+          match:`Code: ${pb.bookingCode||'—'}`,pick:`${Number(pb.oddsAtPlacement||0).toFixed(2)}x combined`,
+          odds:pb.oddsAtPlacement,stake:pb.stake,payout:pb.potentialPayout,actualPayout:pb.actualPayout,
+          status:normalise(pb.status),placedAt:pb.placedAt,selCount:null});
+      }
+    } catch {}
+    allBets.sort((a,b)=>new Date(b.placedAt)-new Date(a.placedAt));
+    renderHistory();
+  } catch (err) {
+    document.getElementById('hist-container').innerHTML = `<div class="hist-empty">
+      <span class="mi">error_outline</span><h3>Couldn't Load Bets</h3><p>${escH(err.message)}</p></div>`;
+  }
 }
 
-/* ── LOAD GAMES ── */
+function setHistFilter(f, btn) {
+  histFilter = f;
+  document.querySelectorAll('.hf-btn').forEach(b => b.className = 'hf-btn');
+  const cls = f==='WON'?'active-won':f==='LOST'?'active-lost':f==='PENDING'?'active-pending':f==='CODE'?'active-code':'active';
+  btn.classList.add(cls);
+  renderHistory();
+}
+
+function renderHistory() {
+  const pending=allBets.filter(b=>b.status==='PENDING');
+  const won=allBets.filter(b=>b.status==='WON');
+  const lost=allBets.filter(b=>b.status==='LOST');
+  document.getElementById('hstat-pending').textContent = pending.length||'—';
+  document.getElementById('hstat-won').textContent     = won.length||'—';
+  document.getElementById('hstat-lost').textContent    = lost.length||'—';
+
+  let filtered;
+  if      (histFilter==='PENDING') filtered=pending;
+  else if (histFilter==='WON')     filtered=won;
+  else if (histFilter==='LOST')    filtered=lost;
+  else if (histFilter==='CODE')    filtered=allBets.filter(b=>b.betType==='CODE');
+  else                             filtered=allBets;
+
+  const container = document.getElementById('hist-container');
+  if (!allBets.length) {
+    container.innerHTML=`<div class="hist-empty"><span class="mi">receipt_long</span><h3>No Bets Yet</h3><p>Place your first bet on the markets or with a booking code!</p></div>`;
+    return;
+  }
+  if (!filtered.length) {
+    container.innerHTML=`<div class="hist-empty"><span class="mi">filter_alt</span><h3>Nothing Here</h3><p>No bets match this filter.</p></div>`;
+    return;
+  }
+  container.innerHTML = filtered.map((b,i)=>buildHistCard(b,i)).join('');
+}
+
+function buildHistCard(b) {
+  const st=b.status.toLowerCase();
+  const stLabel=st==='won'?'🏆 Won':st==='lost'?'✕ Lost':'⏳ Active';
+  const isCode=b.betType==='CODE';
+  const payoutVal=b.status==='WON'
+    ?`+GHS ${parseFloat(b.actualPayout||b.payout||0).toFixed(2)}`
+    :b.status==='LOST'
+      ?`–GHS ${parseFloat(b.stake||0).toFixed(2)}`
+      :`GHS ${parseFloat(b.payout||0).toFixed(2)}`;
+  const payoutCls=b.status==='WON'?'won':b.status==='LOST'?'lost':'pending';
+  const payoutLbl=b.status==='WON'?'Won':b.status==='LOST'?'Lost':'Potential';
+  return `<div class="hbet-card ${st}">
+    <div class="hbet-top">
+      <span class="hbet-ref">${escH(b.ref)}</span>
+      <span class="hbet-type-tag ${isCode?'tag-code':'tag-slip'}">${isCode?'Code':'Slip'}</span>
+      <span class="hbet-status ${st}">${stLabel}</span>
+    </div>
+    <div class="hbet-body">
+      <div class="hbet-info">
+        <div class="hbet-match">${escH(b.match)}</div>
+        <div class="hbet-pick-lbl">${isCode?'Booking Code':'Prediction'}</div>
+        <div class="hbet-pick ${st}">${escH(b.pick)}</div>
+        <div class="hbet-meta">Odds: ${Number(b.odds||0).toFixed(2)}x &middot; Stake: GHS ${parseFloat(b.stake||0).toFixed(2)}</div>
+      </div>
+      <div class="hbet-payout-col">
+        <div class="hbet-payout-lbl">${payoutLbl}</div>
+        <div class="hbet-payout ${payoutCls}">${payoutVal}</div>
+      </div>
+    </div>
+    <div class="hbet-foot">
+      <span class="hbet-date">${b.placedAt?fmtDate(b.placedAt):'—'}</span>
+      ${b.selCount!==null?`<span class="hbet-sels">${b.selCount} selection${b.selCount!==1?'s':''}</span>`:''}
+    </div>
+  </div>`;
+}
+
+/* ══════════════════════════════════════
+   GAMES / BETSLIP LOGIC (unchanged)
+══════════════════════════════════════ */
+let allGames=[],slip={},currentFilter='all',openScorePanels=new Set(),scoreOptionsCache={};
+
+function loadSlip(){
+  try{const raw=localStorage.getItem('ps_slip');if(!raw)return;const parsed=JSON.parse(raw);slip={};
+    for(const[k,v]of Object.entries(parsed)){const entry={...v};if(!entry.key&&entry.id)entry.key=entry.id;if(!entry.key)entry.key=k;if(!entry.type&&entry.t)entry.type=entry.isScore?'CS':'1X2';if(!entry.label)entry.label=entry.t||'Selection';entry.odd=parseFloat(entry.odd)||1;slip[entry.key]=entry;}}catch{}
+}
+function saveSlip(){localStorage.setItem('ps_slip',JSON.stringify(slip));}
+
+function checkBookingCodeArrival(){
+  const items=Object.values(slip);if(!items.length)return;
+  const fromCode=items.filter(i=>i.league==='Booking Code'||i.fromCode);if(!fromCode.length)return;
+  const banner=document.getElementById('booking-banner');
+  document.getElementById('bb-title').textContent=`${fromCode.length} game${fromCode.length>1?'s':''} loaded from booking code!`;
+  document.getElementById('bb-sub').textContent='Enter your stake and tap Place Bet to confirm.';
+  banner.classList.add('show');
+  if(window.innerWidth<=900)setTimeout(()=>openBsDrawer(),400);
+}
+
+function generateScoreOptions(gameId){const rnd=base=>parseFloat((base*(0.85+Math.random()*0.3)).toFixed(2));const opts=[];for(let h=0;h<=4;h++)for(let a=0;a<=4;a++){const tot=h+a,base=tot===0?6:tot===1?4.5:tot===2?7:tot===3?12:25;opts.push({id:`${gameId}-${h}-${a}`,homeScore:h,awayScore:a,odds:rnd(base)});}return opts;}
+
 async function loadGames(){
   document.getElementById('games-container').innerHTML='<div class="loading-state"><span class="mi">refresh</span> Loading games&hellip;</div>';
   document.getElementById('game-count').textContent='Loading\u2026';
-  try{
-    const res=await fetch(`${API_BASE}/api/v1/games/public`,{signal:AbortSignal.timeout(12000)});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const data=await res.json();
-    const games=Array.isArray(data)?data:(data.data||[]);
-    allGames=games.map(g=>({...g,league:g.league||guessLeague(g)}));
-  }catch(err){console.warn('API:',err.message);allGames=[];}
-  if(!allGames.length){
-    document.getElementById('game-count').textContent='0 Games';
-    document.getElementById('games-container').innerHTML=`<div class="empty-state"><span class="mi">sports_soccer</span><h3>No Games Available</h3><p>No games uploaded yet. Check back soon!</p><button class="retry-btn" onclick="loadGames()"><span class="mi">refresh</span> Try Again</button></div>`;
-    return;
-  }
-  document.getElementById('game-count').textContent=allGames.length+' Games';
-  renderGames();
+  try{const res=await fetch(`${API_BASE}/api/v1/games/public`,{signal:AbortSignal.timeout(12000)});if(!res.ok)throw new Error('HTTP '+res.status);const data=await res.json(),games=Array.isArray(data)?data:(data.data||[]);allGames=games.map(g=>({...g,league:g.league||guessLeague(g)}));}
+  catch(err){console.warn('API:',err.message);allGames=[];}
+  if(!allGames.length){document.getElementById('game-count').textContent='0 Games';document.getElementById('games-container').innerHTML=`<div class="empty-state"><span class="mi">sports_soccer</span><h3>No Games Available</h3><p>No games uploaded yet. Check back soon!</p><button class="retry-btn" onclick="loadGames()"><span class="mi">refresh</span> Try Again</button></div>`;return;}
+  document.getElementById('game-count').textContent=allGames.length+' Games';renderGames();
 }
 
 function guessLeague(g){const t=((g.homeTeam||'')+(g.awayTeam||'')).toLowerCase();if(t.includes('hearts')||t.includes('kotoko'))return'Ghana Premier League';if(t.includes('enyimba')||t.includes('kano'))return'Nigeria NPFL';return'Football';}
 
 async function loadScoreOptions(gameId){
   if(scoreOptionsCache[gameId])return scoreOptionsCache[gameId];
-  try{
-    const res=await fetch(`${API_BASE}/api/v1/games/public/${gameId}/correct-score`,{signal:AbortSignal.timeout(8000)});
-    if(!res.ok)throw 0;
-    const data=await res.json();
-    const opts=data.options||data.data||[];
-    if(!opts.length)throw 0;
-    scoreOptionsCache[gameId]=opts;return opts;
-  }catch{const opts=generateScoreOptions(gameId);scoreOptionsCache[gameId]=opts;return opts;}
+  try{const res=await fetch(`${API_BASE}/api/v1/games/public/${gameId}/correct-score`,{signal:AbortSignal.timeout(8000)});if(!res.ok)throw 0;const data=await res.json(),opts=data.options||data.data||[];if(!opts.length)throw 0;scoreOptionsCache[gameId]=opts;return opts;}
+  catch{const opts=generateScoreOptions(gameId);scoreOptionsCache[gameId]=opts;return opts;}
 }
 
 function filterLeague(league,el){
@@ -628,6 +864,7 @@ function filterLeague(league,el){
 function setScoreTab(el){
   document.querySelectorAll('.ptab').forEach(e=>e.classList.remove('active'));
   el.classList.add('active');
+  switchMainTab('games',el);
   allGames.slice(0,10).forEach(g=>{openScorePanels.add(String(g.id));});
   renderGames();
 }
@@ -638,66 +875,22 @@ function renderGames(){
   const grouped={};games.forEach(g=>{const lg=g.league||'Other';if(!grouped[lg])grouped[lg]=[];grouped[lg].push(g);});
   let html='';
   for(const[league,lgGames]of Object.entries(grouped)){
-    html+=`<div class="league-group">
-      <div class="league-hdr" onclick="toggleLeagueGroup(this)">
-        <span class="mi">sports_soccer</span>
-        <span class="league-name">${league}</span>
-        <span class="league-cnt">${lgGames.length} games</span>
-        <span class="mi league-toggle open">expand_less</span>
-      </div>
-      <div class="league-body">${lgGames.map(g=>buildGameCard(g)).join('')}</div>
-    </div>`;
+    html+=`<div class="league-group"><div class="league-hdr" onclick="toggleLeagueGroup(this)"><span class="mi">sports_soccer</span><span class="league-name">${league}</span><span class="league-cnt">${lgGames.length} games</span><span class="mi league-toggle open">expand_less</span></div><div class="league-body">${lgGames.map(g=>buildGameCard(g)).join('')}</div></div>`;
   }
   document.getElementById('games-container').innerHTML=html;
 }
 
-function toggleLeagueGroup(hdr){
-  const body=hdr.nextElementSibling,toggle=hdr.querySelector('.league-toggle'),isOpen=toggle.classList.contains('open');
-  body.style.display=isOpen?'none':'';
-  toggle.classList.toggle('open',!isOpen);
-}
+function toggleLeagueGroup(hdr){const body=hdr.nextElementSibling,toggle=hdr.querySelector('.league-toggle'),isOpen=toggle.classList.contains('open');body.style.display=isOpen?'none':'';toggle.classList.toggle('open',!isOpen);}
 
 function buildGameCard(g){
-  const dt=new Date(g.matchDate);
-  const timeStr=dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-  const dateStr=dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+  const dt=new Date(g.matchDate),timeStr=dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),dateStr=dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
   const selH=slip[`${g.id}-1X2-1`],selX=slip[`${g.id}-1X2-X`],sel2=slip[`${g.id}-1X2-2`];
-  const isScoreOpen=openScorePanels.has(String(g.id));
-  const hasScoreSels=Object.keys(slip).some(k=>k.startsWith(`${g.id}-CS-`));
-  return`<div class="game-card" id="game-${g.id}">
-    <div class="game-main">
-      <div class="game-left">
-        <div class="game-time">${timeStr}</div>
-        <div class="game-date">${dateStr}</div>
-      </div>
-      <div>
-        <div class="game-teams" style="margin-bottom:8px;">
-          <div class="game-team">${g.homeTeam}</div>
-          <div class="game-team">${g.awayTeam}</div>
-        </div>
-        <div class="game-odds-row">
-          <div class="odd-btn ${selH?'sel':''}" onclick="addBet1X2('${g.id}','1','${esc(g.homeTeam)} Win','${esc(g.league||'')}','${esc(g.homeTeam)} v ${esc(g.awayTeam)}',${g.oddsHomeWin})">
-            <span class="odd-label">1</span><span class="odd-val">${(+g.oddsHomeWin).toFixed(2)}</span>
-          </div>
-          <div class="odd-btn ${selX?'sel':''}" onclick="addBet1X2('${g.id}','X','Draw','${esc(g.league||'')}','${esc(g.homeTeam)} v ${esc(g.awayTeam)}',${g.oddsDraw})">
-            <span class="odd-label">X</span><span class="odd-val">${(+g.oddsDraw).toFixed(2)}</span>
-          </div>
-          <div class="odd-btn ${sel2?'sel':''}" onclick="addBet1X2('${g.id}','2','${esc(g.awayTeam)} Win','${esc(g.league||'')}','${esc(g.homeTeam)} v ${esc(g.awayTeam)}',${g.oddsAwayWin})">
-            <span class="odd-label">2</span><span class="odd-val">${(+g.oddsAwayWin).toFixed(2)}</span>
-          </div>
-          <button class="score-toggle-btn ${isScoreOpen||hasScoreSels?'active':''}" onclick="toggleScorePanel('${g.id}',this)">
-            <span class="mi">scoreboard</span> Scores${hasScoreSels?' \u2713':''}
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="score-panel ${isScoreOpen?'open':''}" id="score-panel-${g.id}">
-      <div class="score-loading"><span class="mi">refresh</span> Loading&hellip;</div>
-    </div>
-  </div>`;
+  const isScoreOpen=openScorePanels.has(String(g.id)),hasScoreSels=Object.keys(slip).some(k=>k.startsWith(`${g.id}-CS-`));
+  return`<div class="game-card" id="game-${g.id}"><div class="game-main"><div class="game-left"><div class="game-time">${timeStr}</div><div class="game-date">${dateStr}</div></div><div><div class="game-teams" style="margin-bottom:8px;"><div class="game-team">${g.homeTeam}</div><div class="game-team">${g.awayTeam}</div></div><div class="game-odds-row"><div class="odd-btn ${selH?'sel':''}" onclick="addBet1X2('${g.id}','1','${esc(g.homeTeam)} Win','${esc(g.league||'')}','${esc(g.homeTeam)} v ${esc(g.awayTeam)}',${g.oddsHomeWin})"><span class="odd-label">1</span><span class="odd-val">${(+g.oddsHomeWin).toFixed(2)}</span></div><div class="odd-btn ${selX?'sel':''}" onclick="addBet1X2('${g.id}','X','Draw','${esc(g.league||'')}','${esc(g.homeTeam)} v ${esc(g.awayTeam)}',${g.oddsDraw})"><span class="odd-label">X</span><span class="odd-val">${(+g.oddsDraw).toFixed(2)}</span></div><div class="odd-btn ${sel2?'sel':''}" onclick="addBet1X2('${g.id}','2','${esc(g.awayTeam)} Win','${esc(g.league||'')}','${esc(g.homeTeam)} v ${esc(g.awayTeam)}',${g.oddsAwayWin})"><span class="odd-label">2</span><span class="odd-val">${(+g.oddsAwayWin).toFixed(2)}</span></div><button class="score-toggle-btn ${isScoreOpen||hasScoreSels?'active':''}" onclick="toggleScorePanel('${g.id}',this)"><span class="mi">scoreboard</span> Scores${hasScoreSels?' \u2713':''}</button></div></div></div><div class="score-panel ${isScoreOpen?'open':''}" id="score-panel-${g.id}"><div class="score-loading"><span class="mi">refresh</span> Loading&hellip;</div></div></div>`;
 }
 
-function esc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+function esc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
+function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 async function toggleScorePanel(gameId,btn){
   const panel=document.getElementById(`score-panel-${gameId}`);if(!panel)return;
@@ -711,85 +904,45 @@ function renderScorePanel(gameId,opts){
   const panel=document.getElementById(`score-panel-${gameId}`);if(!panel)return;
   const game=allGames.find(g=>String(g.id)===String(gameId));
   let html=`<div class="score-panel-title"><span class="mi">scoreboard</span> Correct Score${game?' \u2014 '+game.homeTeam+' v '+game.awayTeam:''}</div><div class="score-grid">`;
-  opts.forEach(opt=>{
-    const key=`${gameId}-CS-${opt.id}`,isSel=!!slip[key];
-    html+=`<div class="score-opt ${isSel?'sel':''}" onclick="addBetScore('${gameId}','${opt.id}',${opt.homeScore},${opt.awayScore},${opt.odds},'${game?esc(game.homeTeam)+' v '+esc(game.awayTeam):''}','${game?esc(game.league||''):''}')">
-      <span class="score-val">${opt.homeScore}-${opt.awayScore}</span>
-      <span class="score-odds">${(+opt.odds).toFixed(2)}</span>
-    </div>`;
-  });
+  opts.forEach(opt=>{const key=`${gameId}-CS-${opt.id}`,isSel=!!slip[key];html+=`<div class="score-opt ${isSel?'sel':''}" onclick="addBetScore('${gameId}','${opt.id}',${opt.homeScore},${opt.awayScore},${opt.odds},'${game?esc(game.homeTeam)+' v '+esc(game.awayTeam):''}','${game?esc(game.league||''):''}')"><span class="score-val">${opt.homeScore}-${opt.awayScore}</span><span class="score-odds">${(+opt.odds).toFixed(2)}</span></div>`;});
   html+='</div>';panel.innerHTML=html;
 }
 
 function addBet1X2(gameId,type,label,league,teams,odd){
   if(!isLoggedIn()){openLoginModal();return;}
   const key=`${gameId}-1X2-${type}`;
-  if(slip[key]){delete slip[key];}
-  else{['1','X','2'].forEach(t=>delete slip[`${gameId}-1X2-${t}`]);slip[key]={key,gameId,type:'1X2',label,league,teams,odd:parseFloat(odd),isScore:false};}
+  if(slip[key]){delete slip[key];}else{['1','X','2'].forEach(t=>delete slip[`${gameId}-1X2-${t}`]);slip[key]={key,gameId,type:'1X2',label,league,teams,odd:parseFloat(odd),isScore:false};}
   saveSlip();refreshGameCard(gameId);renderBS();updateBadges();
 }
 
 function addBetScore(gameId,optId,h,a,odd,teams,league){
   if(!isLoggedIn()){openLoginModal();return;}
   const key=`${gameId}-CS-${optId}`;
-  if(slip[key]){delete slip[key];}
-  else{slip[key]={key,gameId,type:'CS',label:`Score ${h}-${a}`,league,teams,odd:parseFloat(odd),isScore:true,optId};}
+  if(slip[key]){delete slip[key];}else{slip[key]={key,gameId,type:'CS',label:`Score ${h}-${a}`,league,teams,odd:parseFloat(odd),isScore:true,optId};}
   saveSlip();if(scoreOptionsCache[gameId])renderScorePanel(gameId,scoreOptionsCache[gameId]);renderBS();updateBadges();
 }
 
 function refreshGameCard(gameId){
   const cardEl=document.getElementById(`game-${gameId}`);if(!cardEl)return;
   const game=allGames.find(g=>String(g.id)===String(gameId));if(!game)return;
-  const tmp=document.createElement('div');tmp.innerHTML=buildGameCard(game);
-  cardEl.replaceWith(tmp.firstElementChild);
-  if(openScorePanels.has(String(gameId))){
-    const panel=document.getElementById(`score-panel-${gameId}`),btn=document.querySelector(`#game-${gameId} .score-toggle-btn`);
-    if(panel)panel.classList.add('open');if(btn)btn.classList.add('active');
-    if(scoreOptionsCache[gameId])renderScorePanel(gameId,scoreOptionsCache[gameId]);
-  }
+  const tmp=document.createElement('div');tmp.innerHTML=buildGameCard(game);cardEl.replaceWith(tmp.firstElementChild);
+  if(openScorePanels.has(String(gameId))){const panel=document.getElementById(`score-panel-${gameId}`),btn=document.querySelector(`#game-${gameId} .score-toggle-btn`);if(panel)panel.classList.add('open');if(btn)btn.classList.add('active');if(scoreOptionsCache[gameId])renderScorePanel(gameId,scoreOptionsCache[gameId]);}
 }
 
-/* ── BETSLIP RENDER ── */
 function renderBS(){
   const items=Object.values(slip),bsMain=document.getElementById('bs-main-area'),bsBet=document.getElementById('bs-bet-area');
   if(!items.length){bsMain.style.display='block';bsBet.style.display='none';renderBsEmpty();return;}
   bsMain.style.display='none';bsBet.style.display='block';
-  document.getElementById('bet-items').innerHTML=items.map(b=>{
-    const fromCode=b.league==='Booking Code'||b.fromCode;
-    return`<div class="bet-item ${fromCode?'from-code':''}">
-      <button class="bet-rm" onclick="removeBet('${b.key}')"><span class="mi">close</span></button>
-      <div class="bet-league">${b.league||''}${fromCode?'&nbsp;<span style=\'font-size:9px;color:var(--green);\'>\u2713 Code</span>':''}</div>
-      <div class="bet-match">${b.teams||''}</div>
-      <div class="bet-sel-row">
-        <div>
-          <div class="bet-sel">${b.label||''}</div>
-          <span class="bet-type-badge">${b.isScore?'Correct Score':'Full Time'}</span>
-        </div>
-        <div class="bet-odd-val">${parseFloat(b.odd).toFixed(2)}</div>
-      </div>
-    </div>`;
-  }).join('');
-  calcPayout();
-  renderBsDrawer(items);
+  document.getElementById('bet-items').innerHTML=items.map(b=>{const fromCode=b.league==='Booking Code'||b.fromCode;return`<div class="bet-item ${fromCode?'from-code':''}"><button class="bet-rm" onclick="removeBet('${b.key}')"><span class="mi">close</span></button><div class="bet-league">${b.league||''}${fromCode?'&nbsp;<span style=\'font-size:9px;color:var(--green);\'>\u2713 Code</span>':''}</div><div class="bet-match">${b.teams||''}</div><div class="bet-sel-row"><div><div class="bet-sel">${b.label||''}</div><span class="bet-type-badge">${b.isScore?'Correct Score':'Full Time'}</span></div><div class="bet-odd-val">${parseFloat(b.odd).toFixed(2)}</div></div></div>`;}).join('');
+  calcPayout();renderBsDrawer(items);
 }
 
 function renderBsEmpty(){
   const bsMain=document.getElementById('bs-main-area');
   if(!isLoggedIn()){
-    bsMain.innerHTML=`<div class="bs-locked"><div><span class="mi" style="font-size:40px;color:#ccc;">lock</span></div>
-      <div class="bs-lock-title">Sign in to Bet</div>
-      <p class="bs-lock-txt">Log in or create a free account to place bets.</p>
-      <div class="bs-lock-btns"><a href="login.html" class="bs-lock-login">Login</a><a href="register.html" class="bs-lock-reg">Register</a></div>
-    </div>
-    <div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
+    bsMain.innerHTML=`<div class="bs-locked"><div><span class="mi" style="font-size:40px;color:#ccc;">lock</span></div><div class="bs-lock-title">Sign in to Bet</div><p class="bs-lock-txt">Log in or create a free account to place bets.</p><div class="bs-lock-btns"><a href="login.html" class="bs-lock-login">Login</a><a href="register.html" class="bs-lock-reg">Register</a></div></div><div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
   }else{
-    bsMain.innerHTML=`<div class="bs-empty">
-      <p class="bs-empty-txt">Click any odds to add to your betslip.</p>
-      <div class="book-lbl">Have a Booking Code?</div>
-      <input class="book-inp" id="book-code-inp" placeholder="Enter code&hellip;" oninput="this.value=this.value.toUpperCase()">
-      <button class="load-btn" onclick="loadBookingCode()"><span class="mi">download</span> Load Slip</button>
-    </div>
-    <div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
+    bsMain.innerHTML=`<div class="bs-empty"><p class="bs-empty-txt">Click any odds to add to your betslip.</p><div class="book-lbl">Have a Booking Code?</div><input class="book-inp" id="book-code-inp" placeholder="Enter code&hellip;" oninput="this.value=this.value.toUpperCase()"><button class="load-btn" onclick="loadBookingCode()"><span class="mi">download</span> Load Slip</button></div><div class="winners"><div class="wf-title"><span class="mi">emoji_events</span> Recent Winners</div><div id="winners-list"></div></div>`;
   }
   renderWinners();
 }
@@ -797,61 +950,18 @@ function renderBsEmpty(){
 function renderBsDrawer(items){
   const body=document.getElementById('bs-drawer-body');if(!body)return;
   if(!items||!items.length){body.innerHTML='<div style="padding:20px;text-align:center;color:var(--muted);font-size:13px;">No selections yet.</div>';return;}
-  const stake=parseFloat(document.getElementById('stake-inp')?.value)||10;
-  const tot=items.reduce((a,b)=>a*(+b.odd),1);
+  const stake=parseFloat(document.getElementById('stake-inp')?.value)||10,tot=items.reduce((a,b)=>a*(+b.odd),1);
   let html='<div style="padding:8px 12px 0;">';
-  html+=items.map(b=>{
-    const fromCode=b.league==='Booking Code'||b.fromCode;
-    return`<div class="bet-item ${fromCode?'from-code':''}">
-      <button class="bet-rm" onclick="removeBet('${b.key}')"><span class="mi">close</span></button>
-      <div class="bet-league">${b.league||''}</div>
-      <div class="bet-match">${b.teams||''}</div>
-      <div class="bet-sel-row">
-        <div><div class="bet-sel">${b.label||''}</div><span class="bet-type-badge">${b.isScore?'Correct Score':'Full Time'}</span></div>
-        <div class="bet-odd-val">${parseFloat(b.odd).toFixed(2)}</div>
-      </div>
-    </div>`;
-  }).join('');
-  html+=`</div>
-  <div class="stake-sec">
-    <div class="stake-lbl">Stake (GHS)</div>
-    <input class="stake-inp" type="number" id="drawer-stake-inp" value="${stake}" min="1" oninput="document.getElementById('stake-inp').value=this.value;calcPayout();">
-    <div class="qs-row">${[5,10,20,50,100].map(v=>`<button class="qs" onclick="setStake(${v})">${v}</button>`).join('')}</div>
-  </div>
-  <div class="payout-sec">
-    <div class="pw"><span class="lbl">Selections</span><span class="val">${items.length}</span></div>
-    <div class="pw"><span class="lbl">Total odds</span><span class="val">${tot.toFixed(2)}</span></div>
-    <div class="pw tot"><span class="lbl" style="font-weight:700;">Total payout</span><span class="val" style="color:var(--green);">GHS ${(stake*tot).toFixed(2)}</span></div>
-  </div>
-  <button class="place-btn" onclick="placeBet()"><span class="mi">check_circle</span> Place Bet</button>
-  <button class="clear-btn" onclick="clearSlip()">Clear all</button>`;
+  html+=items.map(b=>`<div class="bet-item ${b.league==='Booking Code'?'from-code':''}"><button class="bet-rm" onclick="removeBet('${b.key}')"><span class="mi">close</span></button><div class="bet-league">${b.league||''}</div><div class="bet-match">${b.teams||''}</div><div class="bet-sel-row"><div><div class="bet-sel">${b.label||''}</div><span class="bet-type-badge">${b.isScore?'Correct Score':'Full Time'}</span></div><div class="bet-odd-val">${parseFloat(b.odd).toFixed(2)}</div></div></div>`).join('');
+  html+=`</div><div class="stake-sec"><div class="stake-lbl">Stake (GHS)</div><input class="stake-inp" type="number" id="drawer-stake-inp" value="${stake}" min="1" oninput="document.getElementById('stake-inp').value=this.value;calcPayout();"><div class="qs-row">${[5,10,20,50,100].map(v=>`<button class="qs" onclick="setStake(${v})">${v}</button>`).join('')}</div></div><div class="payout-sec"><div class="pw"><span class="lbl">Selections</span><span class="val">${items.length}</span></div><div class="pw"><span class="lbl">Total odds</span><span class="val">${tot.toFixed(2)}</span></div><div class="pw tot"><span class="lbl" style="font-weight:700;">Total payout</span><span class="val" style="color:var(--green);">GHS ${(stake*tot).toFixed(2)}</span></div></div><button class="place-btn" onclick="placeBet()"><span class="mi">check_circle</span> Place Bet</button><button class="clear-btn" onclick="clearSlip()">Clear all</button>`;
   body.innerHTML=html;
 }
 
-function removeBet(key){
-  const gameId=slip[key]?.gameId;delete slip[key];saveSlip();
-  if(gameId)refreshGameCard(gameId);renderBS();updateBadges();
-  if(!Object.keys(slip).length)document.getElementById('booking-banner').classList.remove('show');
-}
-
-function clearSlip(){
-  const ids=[...new Set(Object.values(slip).map(s=>s.gameId))];
-  slip={};saveSlip();ids.forEach(id=>refreshGameCard(id));renderBS();updateBadges();
-  document.getElementById('booking-banner').classList.remove('show');
-}
-
-function calcPayout(){
-  const items=Object.values(slip),tot=items.reduce((a,b)=>a*(+b.odd),1),stake=parseFloat(document.getElementById('stake-inp').value)||0;
-  document.getElementById('sel-count').textContent=items.length;
-  document.getElementById('tot-odds').textContent=tot.toFixed(2);
-  document.getElementById('pot-win').textContent='GHS '+(stake*tot-stake).toFixed(2);
-  document.getElementById('tot-payout').textContent='GHS '+(stake*tot).toFixed(2);
-  const ds=document.getElementById('drawer-stake-inp');if(ds)ds.value=stake;
-}
-
+function removeBet(key){const gameId=slip[key]?.gameId;delete slip[key];saveSlip();if(gameId)refreshGameCard(gameId);renderBS();updateBadges();if(!Object.keys(slip).length)document.getElementById('booking-banner').classList.remove('show');}
+function clearSlip(){const ids=[...new Set(Object.values(slip).map(s=>s.gameId))];slip={};saveSlip();ids.forEach(id=>refreshGameCard(id));renderBS();updateBadges();document.getElementById('booking-banner').classList.remove('show');}
+function calcPayout(){const items=Object.values(slip),tot=items.reduce((a,b)=>a*(+b.odd),1),stake=parseFloat(document.getElementById('stake-inp').value)||0;document.getElementById('sel-count').textContent=items.length;document.getElementById('tot-odds').textContent=tot.toFixed(2);document.getElementById('pot-win').textContent='GHS '+(stake*tot-stake).toFixed(2);document.getElementById('tot-payout').textContent='GHS '+(stake*tot).toFixed(2);const ds=document.getElementById('drawer-stake-inp');if(ds)ds.value=stake;}
 function setStake(v){document.getElementById('stake-inp').value=v;const ds=document.getElementById('drawer-stake-inp');if(ds)ds.value=v;calcPayout();}
 
-/* ── PLACE BET ── */
 async function placeBet(){
   if(!isLoggedIn()){openLoginModal();return;}
   const items=Object.values(slip);if(!items.length)return;
@@ -862,16 +972,12 @@ async function placeBet(){
   let placed=false;
   if(regularPicks.length){
     const payload={stake,selections:regularPicks.map(b=>({gameId:b.gameId,marketType:b.type==='1'?'HOME_WIN':b.type==='2'?'AWAY_WIN':'DRAW'}))};
-    try{
-      const res=await fetch(`${API_BASE}/api/v1/bets`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify(payload),signal:AbortSignal.timeout(12000)});
-      if(res.ok){placed=true;}else{const e=await res.json().catch(()=>({}));showToast('\u274C '+(e.message||'Failed to place bet'),true);return;}
-    }catch(err){showToast(err.name==='TimeoutError'?'\u274C Request timed out':'\u274C Network error',true);return;}
+    try{const res=await fetch(`${API_BASE}/api/v1/bets`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify(payload),signal:AbortSignal.timeout(12000)});if(res.ok){placed=true;}else{const e=await res.json().catch(()=>({}));showToast('\u274C '+(e.message||'Failed to place bet'),true);return;}}
+    catch(err){showToast(err.name==='TimeoutError'?'\u274C Request timed out':'\u274C Network error',true);return;}
   }
   for(const b of scorePicks){
-    try{
-      const res=await fetch(`${API_BASE}/api/v1/bets/correct-score`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify({gameId:b.gameId,correctScoreOptionId:b.optId,stake:stake/(scorePicks.length||1)}),signal:AbortSignal.timeout(12000)});
-      if(res.ok)placed=true;else{const e=await res.json().catch(()=>({}));showToast('\u274C '+(e.message||'Score bet failed'),true);}
-    }catch{showToast('\u274C Network error on score bet',true);}
+    try{const res=await fetch(`${API_BASE}/api/v1/bets/correct-score`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},body:JSON.stringify({gameId:b.gameId,correctScoreOptionId:b.optId,stake:stake/(scorePicks.length||1)}),signal:AbortSignal.timeout(12000)});if(res.ok)placed=true;else{const e=await res.json().catch(()=>({}));showToast('\u274C '+(e.message||'Score bet failed'),true);}}
+    catch{showToast('\u274C Network error on score bet',true);}
   }
   if(placed){
     const ids=[...new Set(items.map(s=>s.gameId))];
@@ -879,68 +985,54 @@ async function placeBet(){
     document.getElementById('booking-banner').classList.remove('show');
     showToast(`\u2705 Bet placed! Potential: GHS ${(stake*tot).toFixed(2)}`);
     initAuth();
+    if(currentMainTab==='history'){historyLoaded=false;loadBetHistory();}
   }
 }
 
-/* ── BOOKING CODE (in betslip panel) ── */
 async function loadBookingCode(){
   const inp=document.getElementById('book-code-inp');if(!inp)return;
-  const code=inp.value.trim().toUpperCase();
-  if(!code){showToast('Enter a booking code',true);return;}
+  const code=inp.value.trim().toUpperCase();if(!code){showToast('Enter a booking code',true);return;}
   showToast('Loading\u2026');
-  try{
-    const res=await fetch(`${API_BASE}/api/v1/games/public/booking/${code}`);
-    if(!res.ok)throw 0;
-    const data=await res.json(),games=data.games||[];
-    if(!games.length)throw 0;
-    games.forEach(g=>{
-      const key=`${g.gameId}-BC-${g.position}`;
-      slip[key]={key,gameId:g.gameId,type:'BC',label:g.pickLabel||g.pick,league:'Booking Code',teams:`${g.homeTeam} v ${g.awayTeam}`,odd:+g.odds,isScore:false};
-    });
-    saveSlip();renderBS();updateBadges();showToast(`\u2705 Loaded: ${games.length} selections`);
-  }catch{showToast('\u274C Code not found or expired',true);}
+  try{const res=await fetch(`${API_BASE}/api/v1/games/public/booking/${code}`);if(!res.ok)throw 0;const data=await res.json(),games=data.games||[];if(!games.length)throw 0;
+    games.forEach(g=>{const key=`${g.gameId}-BC-${g.position}`;slip[key]={key,gameId:g.gameId,type:'BC',label:g.pickLabel||g.pick,league:'Booking Code',teams:`${g.homeTeam} v ${g.awayTeam}`,odd:+g.odds,isScore:false};});
+    saveSlip();renderBS();updateBadges();showToast(`\u2705 Loaded: ${games.length} selections`);}
+  catch{showToast('\u274C Code not found or expired',true);}
 }
 
-/* ── WINNERS FEED ── */
 const winnerPool=[{n:"Kwame A***",a:"GHS 11,928",t:"Sports Betting",c:"#e74c3c"},{n:"Ama B***",a:"GHS 5,000",t:"Correct Score",c:"#3498db"},{n:"Kofi M***",a:"GHS 3,549",t:"UCL Acca",c:"#2ecc71"},{n:"Abena S***",a:"GHS 11,100",t:"Sports Betting",c:"#9b59b6"}];
 function renderWinners(){const el=document.getElementById('winners-list');if(!el)return;el.innerHTML=winnerPool.slice(0,4).map(w=>`<div class="winner-item"><div class="w-av" style="background:${w.c};"><span class="mi">person</span></div><div class="w-info"><div class="w-name">${w.n}</div><div class="w-type">${w.t}</div></div><div class="w-amt">${w.a}</div></div>`).join('');}
 setInterval(()=>{const names=["Nana K***","Kwesi L***","Akua T***","Fiifi G***"],types=["Sports Betting","Correct Score","UCL Acca"],colors=["#e74c3c","#3498db","#2ecc71","#9b59b6","#e67e22"];winnerPool.unshift({n:names[Math.random()*names.length|0],a:"GHS "+(Math.random()*10000+200|0).toLocaleString(),t:types[Math.random()*types.length|0],c:colors[Math.random()*colors.length|0]});if(winnerPool.length>20)winnerPool.pop();renderWinners();},6000);
 
-/* ── BADGES ── */
 function updateBadges(){
   const count=Object.keys(slip).length;
   document.getElementById('bubble-count').textContent=count;
   document.getElementById('mob-badge').textContent=count;
-  const badge=document.getElementById('bs-sel-badge');
-  if(badge){badge.textContent=count;badge.style.display=count>0?'inline-flex':'none';}
+  const badge=document.getElementById('bs-sel-badge');if(badge){badge.textContent=count;badge.style.display=count>0?'inline-flex':'none';}
 }
-
-/* ── DRAWER ── */
 function openBsDrawer(){document.getElementById('bs-drawer-overlay').classList.add('open');document.getElementById('bs-drawer').classList.add('open');renderBsDrawer(Object.values(slip));}
 function closeBsDrawer(){document.getElementById('bs-drawer-overlay').classList.remove('open');document.getElementById('bs-drawer').classList.remove('open');}
-
-/* ── LOGIN MODAL ── */
 function openLoginModal(){document.getElementById('login-modal').classList.add('open');}
 function closeLoginModal(){document.getElementById('login-modal').classList.remove('open');}
-
-/* ── MENU ── */
 function toggleMenu(){document.getElementById('mob-menu').classList.toggle('open');}
 document.addEventListener('click',e=>{
   const menu=document.getElementById('mob-menu'),ham=document.querySelector('.hamburger'),av=document.getElementById('header-avatar'),modal=document.getElementById('login-modal');
   if(menu.classList.contains('open')&&!menu.contains(e.target)&&!ham?.contains(e.target)&&!av?.contains(e.target))menu.classList.remove('open');
   if(modal.classList.contains('open')&&e.target===modal)closeLoginModal();
 });
-
-/* ── TOAST ── */
 function showToast(msg,isError=false){const t=document.getElementById('ps-toast');t.textContent=msg;t.style.background=isError?'var(--red)':'var(--green)';t.style.opacity='1';clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';},3000);}
 
-/* ── BOOT ── */
-loadSlip();           // load + normalise slip from localStorage
+/* Helpers */
+function normalise(s){if(!s)return'PENDING';const u=String(s).toUpperCase();if(u==='WON'||u==='WIN')return'WON';if(u==='LOST'||u==='LOSE'||u==='LOSS')return'LOST';return'PENDING';}
+function fmtMkt(m){return{HOME_WIN:'Home Win',DRAW:'Draw',AWAY_WIN:'Away Win',CORRECT_SCORE:'Correct Score'}[m]||m||'—';}
+function fmtDate(iso){if(!iso)return'—';try{const d=new Date(iso),now=new Date();const isToday=d.toDateString()===now.toDateString();const pre=isToday?'Today':d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});return pre+' · '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}catch{return iso;}}
+
+/* Boot */
+loadSlip();
 initAuth();
 loadGames();
 renderBS();
 updateBadges();
-checkBookingCodeArrival();   // show banner if came from booking code
+checkBookingCodeArrival();
 </script>
 </body>
 </html>
