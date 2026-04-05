@@ -484,7 +484,7 @@ select.form-inp{cursor:pointer;}
   </div>
 </nav>
 
-<script>
+  <script>
 // ═══════════════════════════════════════════════
 // CONFIG
 // ═══════════════════════════════════════════════
@@ -551,7 +551,7 @@ let walletData   = null;
 let transactions = [];
 let txFilter     = 'all';
 let currency     = 'GHS';
-let isVerifying  = false; // prevents double-call on refresh
+let isVerifying  = false;
 
 // ═══════════════════════════════════════════════
 // IP CURRENCY DETECTION
@@ -575,6 +575,7 @@ async function detectCurrencyFromIP() {
 // INIT
 // ═══════════════════════════════════════════════
 async function init() {
+  console.log('[PS] init() — isLoggedIn:', isLoggedIn());
   if (!isLoggedIn()) {
     show('auth-gate-wrap');
     hide('loading-wrap');
@@ -589,18 +590,16 @@ async function init() {
   hide('auth-gate-wrap');
 
   currency = await detectCurrencyFromIP();
+  console.log('[PS] detected currency:', currency);
   renderDepositForm();
   renderWithdrawForm();
 
-  // Verify Paystack callback BEFORE loading wallet (so balance is fresh)
   await handlePaystackCallback();
-
   await loadWalletData();
 }
 
 // ═══════════════════════════════════════════════
 // PAYSTACK CALLBACK HANDLER
-// Calls GET /api/v1/wallet/deposit/verify/{reference}
 // ═══════════════════════════════════════════════
 async function handlePaystackCallback() {
   if (isVerifying) return;
@@ -608,8 +607,8 @@ async function handlePaystackCallback() {
   const ref = params.get('trxref') || params.get('reference');
   if (!ref) return;
 
+  console.log('[PS] handlePaystackCallback — ref:', ref);
   isVerifying = true;
-  // Clean URL immediately — prevents re-trigger on refresh
   window.history.replaceState({}, '', 'wallet.html');
 
   const area = document.getElementById('verify-result');
@@ -627,7 +626,10 @@ async function handlePaystackCallback() {
       signal: AbortSignal.timeout(20000)
     });
 
-    const data = await res.json();
+    let data = {};
+    try { data = await res.json(); } catch (_) {}
+    console.log('[PS] verify response:', res.status, data);
+
     const status = (data.status || data.data?.status || '').toLowerCase();
 
     if (res.ok && (status === 'success' || status === 'already_processed')) {
@@ -640,6 +642,7 @@ async function handlePaystackCallback() {
         </div>`;
       showToast('✅ Payment verified! Balance updated.');
     } else {
+      console.warn('[PS] verify failed — status:', res.status, 'body:', data);
       area.innerHTML = `
         <div class="verify-banner error">
           <span class="mi">error</span>
@@ -648,6 +651,7 @@ async function handlePaystackCallback() {
       showToast('❌ Payment verification failed — contact support', true);
     }
   } catch (err) {
+    console.error('[PS] verify exception:', err);
     area.innerHTML = `
       <div class="verify-banner error">
         <span class="mi">error</span>
@@ -661,19 +665,21 @@ async function handlePaystackCallback() {
 // LOAD WALLET — GET /api/v1/users/me
 // ═══════════════════════════════════════════════
 async function loadWalletData() {
+  console.log('[PS] loadWalletData()');
   try {
     const res = await fetch(`${API_BASE}/api/v1/users/me`, {
       headers: authHeaders(),
       signal: AbortSignal.timeout(15000)
     });
 
+    console.log('[PS] /users/me status:', res.status);
     if (res.status === 401) { logout(); return; }
 
     const data = await res.json();
+    console.log('[PS] /users/me payload:', data);
     const payload = data.data || data;
     walletData = payload;
 
-    // Update stored user — names/email only, NOT currency
     const u = getUser();
     Object.assign(u, {
       firstName: payload.firstName || u.firstName,
@@ -692,6 +698,7 @@ async function loadWalletData() {
     loadTransactions();
 
   } catch (err) {
+    console.error('[PS] loadWalletData error:', err);
     hide('loading-wrap');
     show('page-content');
     showCurrencyBanner();
@@ -701,21 +708,26 @@ async function loadWalletData() {
 }
 
 // ═══════════════════════════════════════════════
-// LOAD TRANSACTIONS — GET /api/v1/wallet/transactions
+// LOAD TRANSACTIONS
 // ═══════════════════════════════════════════════
 async function loadTransactions() {
+  console.log('[PS] loadTransactions()');
   try {
     const res = await fetch(`${API_BASE}/api/v1/wallet/transactions`, {
       headers: authHeaders(),
       signal: AbortSignal.timeout(12000)
     });
+    console.log('[PS] /transactions status:', res.status);
     if (res.status === 401) { logout(); return; }
     if (!res.ok) return;
     const data = await res.json();
     const list = data.data || data;
     transactions = Array.isArray(list) ? list : [];
+    console.log('[PS] transactions loaded:', transactions.length);
     renderTransactions();
-  } catch { /* silent */ }
+  } catch (err) {
+    console.error('[PS] loadTransactions error:', err);
+  }
 }
 
 async function refreshWallet() {
@@ -741,12 +753,12 @@ function renderBalanceCards() {
   document.querySelectorAll('.currency-lbl').forEach(el => el.textContent = currency);
   if (d) {
     const bal = d.walletBalance ?? d.balance ?? 0;
-    document.getElementById('main-balance').textContent    = cfg.fmt(bal);
-    document.getElementById('total-dep').textContent       = cfg.fmt(d.totalDeposited ?? 0);
-    document.getElementById('total-wdr').textContent       = cfg.fmt(d.totalWithdrawn ?? 0);
-    document.getElementById('bal-can-withdraw').textContent= d.canWithdraw ? 'Eligible to withdraw' : 'Keep betting to withdraw';
-    document.getElementById('header-balance').textContent  = cfg.fmt(bal);
-    document.getElementById('mob-ubal').textContent        = cfg.fmt(bal);
+    document.getElementById('main-balance').textContent     = cfg.fmt(bal);
+    document.getElementById('total-dep').textContent        = cfg.fmt(d.totalDeposited ?? 0);
+    document.getElementById('total-wdr').textContent        = cfg.fmt(d.totalWithdrawn ?? 0);
+    document.getElementById('bal-can-withdraw').textContent = d.canWithdraw ? 'Eligible to withdraw' : 'Keep betting to withdraw';
+    document.getElementById('header-balance').textContent   = cfg.fmt(bal);
+    document.getElementById('mob-ubal').textContent         = cfg.fmt(bal);
   }
 }
 
@@ -786,9 +798,11 @@ function renderWithdrawForm() {
 // INITIATE DEPOSIT — POST /api/v1/wallet/deposit
 // ═══════════════════════════════════════════════
 async function initiateDeposit() {
-  const cfg = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
+  const cfg    = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
   const rawVal = document.getElementById('dep-amount').value;
-  const amt = parseFloat(rawVal);
+  const amt    = parseFloat(rawVal);
+
+  console.log('[PS] initiateDeposit — currency:', currency, '| amount:', amt);
 
   if (!rawVal || isNaN(amt) || amt < cfg.minDep) {
     showToast(`❌ Minimum deposit is ${currency} ${cfg.minDep.toLocaleString()}`, true);
@@ -802,14 +816,18 @@ async function initiateDeposit() {
 
   let res, data = {};
   try {
+    console.log('[PS] POST /deposit — body:', { amount: amt });
     res = await fetch(`${API_BASE}/api/v1/wallet/deposit`, {
       method: 'POST',
       headers: authHeaders(),
       body: JSON.stringify({ amount: amt }),
       signal: AbortSignal.timeout(25000)
     });
-    try { data = await res.json(); } catch (_) {}
+    console.log('[PS] /deposit response status:', res.status);
+    try { data = await res.json(); } catch (_) { console.warn('[PS] could not parse /deposit response as JSON'); }
+    console.log('[PS] /deposit response body:', data);
   } catch (err) {
+    console.error('[PS] /deposit fetch error:', err);
     showToast(
       err.name === 'TimeoutError' || err.name === 'AbortError'
         ? '❌ Request timed out — server may be waking up. Wait 30s and retry.'
@@ -825,56 +843,18 @@ async function initiateDeposit() {
   if (res.ok) {
     const payload = data.data || data;
     const paymentUrl = payload.paymentUrl || payload.authorization_url;
+    console.log('[PS] paymentUrl:', paymentUrl);
     if (paymentUrl) {
       showToast('✅ Redirecting to Paystack…');
       setTimeout(() => { window.location.href = paymentUrl; }, 800);
       return;
     }
+    console.error('[PS] No paymentUrl in response:', payload);
     showToast('❌ No payment URL returned. Try again.', true);
   } else {
     const msg = data.message || data.error || data.detail || `Server error (${res.status})`;
+    console.error('[PS] /deposit error:', res.status, msg, data);
     showToast('❌ ' + msg, true);
-    console.error('Deposit error:', res.status, data);
-  }
-
-  resetDepBtn();
-}
-
-  const btn = document.getElementById('dep-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Connecting to Paystack…';
-
-  try {
-    const res = await fetch(`${API_BASE}/api/v1/wallet/deposit`, {
-      method: 'POST',
-      headers: authHeaders(),
-      body: JSON.stringify({ amount: amt }),
-      signal: AbortSignal.timeout(20000)
-    });
-
-    if (res.status === 401) { logout(); return; }
-
-    const data = await res.json();
-
-    if (res.ok) {
-      const payload = data.data || data;
-      const paymentUrl = payload.paymentUrl || payload.authorization_url;
-      if (paymentUrl) {
-        showToast('✅ Redirecting to Paystack…');
-        setTimeout(() => { window.location.href = paymentUrl; }, 800);
-        return; // don't reset — user is leaving
-      }
-      showToast('❌ No payment URL returned. Try again.', true);
-    } else {
-      showToast('❌ ' + (data.message || data.error || 'Deposit failed.'), true);
-    }
-  } catch (err) {
-    showToast(
-      err.name === 'TimeoutError' || err.name === 'AbortError'
-        ? '❌ Request timed out — server may be waking up, try again'
-        : '❌ Network error — check your connection',
-      true
-    );
   }
 
   resetDepBtn();
@@ -907,7 +887,6 @@ function updateWdrFee() {
 
 // ═══════════════════════════════════════════════
 // INITIATE WITHDRAW — POST /api/v1/wallet/withdraw
-// Body: { amount, accountName, accountNumber, bankCode }
 // ═══════════════════════════════════════════════
 async function initiateWithdraw() {
   const cfg  = CURRENCY_CONFIG[currency] || CURRENCY_CONFIG.GHS;
@@ -915,6 +894,8 @@ async function initiateWithdraw() {
   const name = document.getElementById('wdr-name').value.trim();
   const acct = document.getElementById('wdr-acct').value.trim();
   const bank = document.getElementById('wdr-bank').value;
+
+  console.log('[PS] initiateWithdraw — amt:', amt, '| bank:', bank);
 
   if (!amt || isNaN(amt) || amt < cfg.minWdr) {
     showToast(`❌ Minimum withdrawal is ${currency} ${cfg.minWdr.toLocaleString()}`, true);
@@ -936,9 +917,12 @@ async function initiateWithdraw() {
       signal: AbortSignal.timeout(20000)
     });
 
+    console.log('[PS] /withdraw status:', res.status);
     if (res.status === 401) { logout(); return; }
 
-    const data = await res.json();
+    let data = {};
+    try { data = await res.json(); } catch (_) {}
+    console.log('[PS] /withdraw body:', data);
 
     if (res.ok) {
       const payload = data.data || data;
@@ -950,9 +934,12 @@ async function initiateWithdraw() {
       document.getElementById('wdr-fee-summary').style.display = 'none';
       setTimeout(() => refreshWallet(), 1500);
     } else {
-      showToast('❌ ' + (data.message || data.error || 'Withdrawal failed.'), true);
+      const msg = data.message || data.error || data.detail || `Server error (${res.status})`;
+      console.error('[PS] /withdraw error:', res.status, msg, data);
+      showToast('❌ ' + msg, true);
     }
   } catch (err) {
+    console.error('[PS] /withdraw fetch error:', err);
     showToast(
       err.name === 'TimeoutError' || err.name === 'AbortError'
         ? '❌ Request timed out. Please try again.'
