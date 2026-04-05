@@ -794,15 +794,50 @@ async function initiateDeposit() {
     showToast(`❌ Minimum deposit is ${currency} ${cfg.minDep.toLocaleString()}`, true);
     flashError('dep-amount');
     return;
-  } else {
-  let msg = `Server error (${res.status})`;
+  }
+
+  const btn = document.getElementById('dep-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Connecting to Paystack…';
+
+  let res, data = {};
   try {
-    const errText = await res.text();
-    console.error('Full error response:', errText);
-    const errJson = JSON.parse(errText);
-    msg = errJson.message || errJson.error || errJson.detail || msg;
-  } catch (_) {}
-  showToast('❌ ' + msg, true);
+    res = await fetch(`${API_BASE}/api/v1/wallet/deposit`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ amount: amt }),
+      signal: AbortSignal.timeout(25000)
+    });
+    try { data = await res.json(); } catch (_) {}
+  } catch (err) {
+    showToast(
+      err.name === 'TimeoutError' || err.name === 'AbortError'
+        ? '❌ Request timed out — server may be waking up. Wait 30s and retry.'
+        : '❌ Network error — check your connection',
+      true
+    );
+    resetDepBtn();
+    return;
+  }
+
+  if (res.status === 401) { logout(); return; }
+
+  if (res.ok) {
+    const payload = data.data || data;
+    const paymentUrl = payload.paymentUrl || payload.authorization_url;
+    if (paymentUrl) {
+      showToast('✅ Redirecting to Paystack…');
+      setTimeout(() => { window.location.href = paymentUrl; }, 800);
+      return;
+    }
+    showToast('❌ No payment URL returned. Try again.', true);
+  } else {
+    const msg = data.message || data.error || data.detail || `Server error (${res.status})`;
+    showToast('❌ ' + msg, true);
+    console.error('Deposit error:', res.status, data);
+  }
+
+  resetDepBtn();
 }
 
   const btn = document.getElementById('dep-btn');
