@@ -794,7 +794,16 @@ async function initiateDeposit() {
     showToast(`❌ Minimum deposit is ${currency} ${cfg.minDep.toLocaleString()}`, true);
     flashError('dep-amount');
     return;
-  }
+  } else {
+  let msg = `Server error (${res.status})`;
+  try {
+    const errText = await res.text();
+    console.error('Full error response:', errText);
+    const errJson = JSON.parse(errText);
+    msg = errJson.message || errJson.error || errJson.detail || msg;
+  } catch (_) {}
+  showToast('❌ ' + msg, true);
+}
 
   const btn = document.getElementById('dep-btn');
   btn.disabled = true;
